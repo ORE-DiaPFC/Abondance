@@ -4,38 +4,38 @@
 
 Le dossier se compose de sous-dossiers correspondant aux différents sites de l'ORE analysés (Bresle, Scorff, Oir et Nivelle). Ces dossiers sont sous-divisés en fonction des stades observés (adultes, smolts ou tacons) :  
 
-ORE/  # dossier racine
-|
-|_Abundance/ # dossier contenant les analyses des indices d'abondances
-	- README.md # ce fichier
-	- run.sh # script bash permettant de créer les scripts d'analyse par site et par stade (ex: analyse_tacon.R) puis de lancer les analyses; faire ./run.sh dans un terminal (linux)
-	- analyse.R # script d'analyse principal; ce script est automatiquement modifié via run.sh pour changer les paramètres (ex: nombre d'itérations,...)
-	|_doc/ # contient les rapports,...
+ORE/  # dossier racine  
+|  
+|_Abundance/ # dossier contenant les analyses des indices d'abondances  
+	- README.md # ce fichier  
+	- run.sh # script bash permettant de créer les scripts d'analyse par site et par stade (ex: analyse_tacon.R) puis de lancer les analyses; faire ./run.sh dans un terminal (linux)  
+	- analyse.R # script d'analyse principal; ce script est automatiquement modifié via run.sh pour changer les paramètres (ex: nombre d'itérations,...)  
+	|_doc/ # contient les rapports,...  
+  		|  
+ 		|_Bresle/  
+   			|_adult/  
+			  |_smolt/  
+          			- data/ # données d'échantillonnage  
+          			- inits/ # contient un script R (inits_smolt.R) qui génère automatiquement les valeurs initiales pour les chaînes MCMC  
+          			- model/ # modele pour les inférences  
+          			- results/ # contient les diagnostiques et les résultats des analyses  
+          			- Sab/ # dossier des analyses faites par Sabrina Servanty (cf. rapport dans le dossier doc/)  
+          			- parameters_smolt.R # paramètres à monitorer  
   		|
- 		|_Bresle/
-   			|_adult/
-			  |_smolt/
-          			- data/ # données d'échantillonnage
-          			- inits/ # contient un script R (inits_smolt.R) qui génère automatiquement les valeurs initiales pour les chaînes MCMC
-          			- model/ # modele pour les inférences
-          			- results/ # contient les diagnostiques et les résultats des analyses
-          			- Sab/ # dossier des analyses faites par Sabrina Servanty (cf. rapport dans le dossier doc/)
-          			- parameters_smolt.R # paramètres à monitorer
+ 		|_Oir/  
+      			|_adult/  
+     			|_smolt/  
+      			|_tacon/  
   		|
- 		|_Oir/
-      			|_adult/
-     			|_smolt/
-      			|_tacon/
-  		|
-  		|_Scorff/
-      			|_adult/
-      			|_smolt/
-      			|_tacon/
-  		|
-  		|_Nivelle/
-      			|_adult/
-      			|_tacon/
-				- analyse_coda_tacon.R # Permet d'obtenir des fichiers textes avec les estimations finales d'abondance à partir des CODA (S. Servanty)
+  		|_Scorff/  
+      			|_adult/  
+      			|_smolt/  
+      			|_tacon/  
+  		|  
+  		|_Nivelle/  
+      			|_adult/  
+      			|_tacon/  
+				- analyse_coda_tacon.R # Permet d'obtenir des fichiers textes avec les estimations finales d'abondance à partir des CODA (S. Servanty)  
 
 
 ## ANALYSES
