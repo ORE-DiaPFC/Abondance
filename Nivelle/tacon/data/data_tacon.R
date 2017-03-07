@@ -2,13 +2,13 @@
 
 
 ##-----------------------------INFO ----------------------------------##
-# year <- 2015
+# year <- 2016
 # site <- "Nivelle"
 # stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
-# work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance',site,stade,'data/',sep="/")
+# work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance',site,stade,sep="/")
 # setwd(work.dir)
 
 

@@ -12,14 +12,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2015"
+year <- "2016"
 site <- "Nivelle"
 stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
-setwd(work.dir)
+# work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
+# setwd(work.dir)
 
 
 ##-----------------------------DATA ----------------------------------##
