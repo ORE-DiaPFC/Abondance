@@ -9,7 +9,7 @@
 *.zip
 *.7z
 *.csv
-*.txt
+#*.txt
 *.pdf
 
 # History files
