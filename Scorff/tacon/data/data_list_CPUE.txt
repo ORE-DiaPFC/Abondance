@@ -1,0 +1,125 @@
+list(
+
+# Nombre d'ann?es de suivi depuis 1993
+# Devra ?tre mis ? jour
+Nyear = 24,
+
+# Q est la moyenne pond?r?e du d?bit annuel (m3/s). 
+# Pond?r? par le nombre de stations ?chantillonn?es un jour X une ann?e Y
+# /!\ Ne sont consid?r?es que les 40 stations principales (S1 ? S39 + SA82)
+# La covariable est standardis?e dans le mod?le 
+# Devra ?tre mis ? jour
+Q = c(2.178947368	,
+2.362564103	,
+1.540769231	,
+0.722641026	,
+0.490923077	,
+1.622051282	,
+2.773589744	,
+1.51	,
+1.157538462	,
+0.853153846	,
+0.331846154	,
+1.393589744	,
+0.50674359	,
+0.720512821	,
+1.75	,
+1.279487179	,
+0.777282051	,
+0.594051282	,
+0.620974359	,
+1.122564103	,
+0.615307692	,
+0.752692308	,
+1.1185,
+0.61),
+
+# D?bit moyen observ? lors de la caract?risation des habitats en 1995 et 2010
+# Utilisation pour corriger la densit? observ?e
+# Mettre ? jour en reprenant la derni?re valeur: 0.670285714
+Q95_10 = c(1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+0.670285714	,
+0.670285714	,
+0.670285714	,
+0.670285714	,
+0.670285714	,
+0.670285714	,
+0.670285714	),
+
+# D?bit moyen observ? lors de la caract?risation des habitats en 1995
+# Utilisation pour corriger la densit? observ?e
+# Mettre ? jour en reprenant la derni?re valeur: 1.197947368
+Q95 = c(1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	,
+1.197947368	),
+
+# D?bit moyen observ? lors de la caract?risation des habitats en 1996
+# Utilisation pour corriger la densit? observ?e
+# Mettre ? jour en reprenant la derni?re valeur: 0.794666667
+Q96 = c(0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	,
+0.794666667	),
+
+# Nombre de stations suivies par CPUE sur le Scorff et ses affluents
+# Pas de mise ? jour
+Nstation = 53
+
+)

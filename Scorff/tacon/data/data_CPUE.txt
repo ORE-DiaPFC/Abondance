@@ -1,0 +1,114 @@
+##################################################################################################################################################																							
+## Donn?es d'indice d'abondance sur le Scorff et ses affluents avec les stations en ligne et les ann?es en colonne																							
+## /!\ Ne pas modifier l'ordre des lignes. Les lignes 52 et 53 (Ruisseau St Caradec) ont commenc? ? ?tre ?chantillonn?es en 2015 et sont d?j? incluses dans le mod?le.																							
+##################################################################################################################################################																							
+## Ordre des stations:																							
+#1	S1	Mon rivi?re																					
+#2	S2	Min St Yves																					
+#3	S3	Lomener																					
+#4	S4	Gourdeau																					
+#5	S5	Trou de gaz																					
+#6	S6	Min Roch																					
+#7	S7	Pt Kerlo aval																					
+#8	S8	Pt Kerlo moyen																					
+#9	S9	Pt Kerlo pisciculture																					
+#10	S10	Fanguiguo																					
+#11	S11	St Inifer																					
+#12	S12	Kerl?gan																					
+#13	S13	Min papier aval																					
+#14	S14	Min papier																					
+#15	S15	Stang aval																					
+#16	S16	Min du Stang																					
+#17	S17	Kervinel aval																					
+#18	S18	Kervinel moyen																					
+#19	S19	Kervinel amont																					
+#20	S20	Pontulaire																					
+#21	S21	Pontulaire amont																					
+#22	S22	Maison foresti?re																					
+#23	S23	Pt Neuf amont																					
+#24	S24	Coat Cren																					
+#25	S25	Coat Cren amont																					
+#26	S26	Pt Callec aval																					
+#27	S27	Pt Callec piscic.																					
+#28	S28	Pt Callec amont																					
+#29	S29	Coscodo																					
+#30	S30	Locorion																					
+#31	S31	Moulin neuf																					
+#32	S32	Man?																					
+#33	S33	Min Herv?no																					
+#34	S34	Min Brodimont																					
+#35	S35	Le Stume																					
+#36	S36	St Connet																					
+#37	S37	Min Penvern																					
+#38	S38	Cabreno																					
+#39	S39	Gu?m?n?																					
+#40	SA82	Bras Pt Callec am.																					
+#41	S40	Min ? tan																					
+#42	S41	Tronscorff																					
+#43	SA11	St Sauveur																					
+#44	SA12	St Sauveur Moustoir																					
+#45	SA23	Penlan_global																					
+#46	SA32	Kernec_global																					
+#47	SA41	Kerl?gan_global																					
+#48	SA71	Pont Ar Belec amont																					
+#49	SA72	Pont Ar Belec aval																					
+#50	SA811	Reau Lignol																					
+#51	SA83	Kerlautre																					
+#52	SA812	Reau St Caradec																					
+#53	SA813	Reau St Caradec MIN TRIOULIN																					
+##################################################################################################################################################																							
+CPUE_Sc[,1]	CPUE_Sc[,2]	CPUE_Sc[,3]	CPUE_Sc[,4]	CPUE_Sc[,5]	CPUE_Sc[,6]	CPUE_Sc[,7]	CPUE_Sc[,8]	CPUE_Sc[,9]	CPUE_Sc[,10]	CPUE_Sc[,11]	CPUE_Sc[,12]	CPUE_Sc[,13]	CPUE_Sc[,14]	CPUE_Sc[,15]	CPUE_Sc[,16]	CPUE_Sc[,17]	CPUE_Sc[,18]	CPUE_Sc[,19]	CPUE_Sc[,20]	CPUE_Sc[,21]	CPUE_Sc[,22]	CPUE_Sc[,23]	CPUE_Sc[,24]
+8	22	25	26	9	13	5	9	14	16	38	24	18	4	7	11	7	10	1	25	18	5	4	2
+NA	14	1	14	18	8	23	33	3	28	29	14	35	11	24	27	36	18	24	35	16	27	29	10
+11	8	12	40	86	26	28	28	7	64	91	47	86	25	49	57	76	40	81	67	59	66	39	54
+18	16	25	17	59	16	21	27	4	50	70	65	76	48	56	39	61	32	118	74	91	81	75	42
+4	13	12	19	40	9	12	34	2	54	94	46	73	28	27	52	47	65	103	42	38	43	38	40
+7	11	3	8	32	5	7	39	8	40	105	12	74	37	36	82	69	35	106	45	50	36	42	23
+2	2	0	13	9	3	3	16	3	30	54	26	62	28	25	39	34	21	39	29	29	12	41	29
+0	4	0	8	8	4	1	9	2	27	61	26	79	19	20	46	32	29	50	19	37	21	39	32
+6	14	0	25	7	13	6	25	13	55	64	28	36	32	26	51	39	27	47	22	50	24	34	20
+2	8	3	41	41	4	11	29	4	36	50	19	60	25	6	20	25	19	16	28	28	15	48	20
+15	34	7	70	56	11	24	52	4	68	69	42	77	71	31	75	82	41	63	43	71	23	99	47
+8	26	7	52	62	17	31	32	13	58	78	44	67	74	22	39	62	40	59	27	55	40	58	42
+12	16	17	51	57	19	20	34	9	48	74	39	68	36	13	38	61	37	49	33	72	31	90	34
+22	30	14	63	74	27	39	64	10	111	101	91	65	75	66	60	72	103	115	82	101	52	128	62
+8	11	11	97	106	28	10	33	3	78	48	40	47	76	61	53	32	74	61	17	52	45	53	50
+13	15	2	72	35	19	6	27	9	50	78	69	39	97	63	30	36	60	45	23	58	30	61	46
+6	23	0	47	31	29	0	30	4	35	35	50	57	53	35	30	49	38	42	25	28	24	37	24
+8	12	2	70	66	20	7	68	2	36	77	36	47	47	35	27	40	38	34	15	31	43	37	26
+8	25	11	58	70	11	8	70	11	76	85	50	52	34	31	34	49	47	44	15	41	50	20	28
+15	14	6	59	34	7	7	31	4	32	72	47	65	18	20	12	31	23	28	6	22	18	13	32
+13	15	7	48	34	7	15	56	0	25	102	38	49	39	29	46	24	27	28	13	37	26	23	45
+10	9	4	43	40	5	5	62	1	28	50	35	20	36	25	14	11	41	50	25	52	43	67	27
+7	6	2	20	15	0	7	7	0	12	32	20	10	20	9	3	6	23	32	4	39	31	51	26
+3	11	3	18	11	0	1	20	1	7	22	16	20	9	8	6	6	38	26	3	23	34	13	18
+11	19	2	14	9	0	1	19	0	5	36	5	11	15	17	9	11	29	30	13	30	22	24	25
+12	35	10	7	3	0	7	20	0	21	60	24	38	18	18	19	14	17	42	27	45	33	29	33
+6	27	1	6	0	0	10	27	0	37	78	37	45	45	63	46	31	46	83	41	63	63	49	39
+12	18	12	20	4	2	3	12	0	36	40	18	18	30	15	22	34	18	42	19	20	19	25	26
+11	14	15	31	10	2	2	10	2	44	72	42	59	41	23	37	58	20	60	38	32	24	52	45
+16	22	42	67	38	1	1	13	4	63	66	66	71	93	22	38	79	54	123	55	74	80	69	28
+9	17	19	30	9	0	1	9	5	54	39	53	49	46	20	26	85	8	125	41	2	62	45	32
+1	8	30	26	14	1	0	11	4	44	39	26	35	47	22	31	29	35	46	23	27	27	29	26
+9	18	22	16	8	1	2	23	6	55	67	21	40	30	39	30	34	19	67	30	23	15	17	15
+6	26	36	11	10	2	0	7	8	40	47	22	29	30	17	42	17	27	77	23	20	21	33	32
+18	29	37	12	39	6	6	9	9	32	34	28	71	42	24	27	40	43	95	39	37	27	38	40
+10	19	42	20	30	0	0	7	12	6	45	27	51	18	10	16	40	26	31	27	16	19	24	25
+9	28	29	10	12	0	2	0	2	13	45	21	27	21	16	18	58	39	48	39	41	39	27	40
+2	NA	27	4	2	0	1	0	0	12	19	2	9	11	3	2	13	15	26	16	11	12	12	12
+13	0	12	7	0	0	0	0	0	0	23	0	23	15	6	4	12	49	32	8	11	4	18	5
+0	6	33	20	41	0	0	3	0	5	43	5	4	17	35	26	35	44	0	26	65	25	53	45
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	7	NA	NA	NA	NA	NA	NA	NA	NA	12	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	32	NA	NA	NA	NA	NA	NA	NA	NA	4	NA	NA	NA	NA
+1	3	4	4	0	21	0	0	0	0	2	0	0	0	7	0	0	1	1	9	1	0	2	2
+9	0	4	2	0	3	0	0	0	0	0	1	3	1	23	0	1	2	0	9	8	0	3	2
+9	3	0	4	4	0	3	9	10	1	14	7	8	12	18	9	13	14	10	39	2	13	12	4
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	0	0	0	0	0	0	0	9	3	4	6	6
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	0	0	0	2	0	0	0	1	15	16	18	8
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	0	3	10	7
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	2	1	19	33	21
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	6	5
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	14
+#END																							
