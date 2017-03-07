@@ -1,0 +1,60 @@
+=============================
+DIAGNOSTICS
+=============================
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       5001      0.0583 
+rate_lambda  failed         NA      0.0218 
+p_MC90_1SW   passed          1      0.1228 
+p_MC90_MSW   passed          1      0.4587 
+lambda0      passed          1      0.3435 
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+shape_lambda passed      3.770 0.04891  
+rate_lambda  <NA>           NA      NA  
+p_MC90_1SW   passed      0.125 0.00239  
+p_MC90_MSW   passed      0.316 0.00742  
+lambda0      passed    217.842 2.82505  
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+      -3.802       -3.630        1.353       -1.480        2.344 
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 25       30835 3746          8.23     
+ rate_lambda  28       37562 3746         10.00     
+ p_MC90_1SW   25       27200 3746          7.26     
+ p_MC90_MSW   24       26232 3746          7.00     
+ lambda0      20       25955 3746          6.93     
+

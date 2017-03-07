@@ -1,0 +1,39 @@
+################################################################################
+## NEED TO UPDATE WITH NA
+## nm_2[t,g]: Annual number of marked fish captured at Olha per breeding category (when trapping is total, globally from 92 to 2011);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+## num_2[t,g]: Annual number of unmarked fish captured at Olha per breeding category (when trapping is total, globally from 92 to 2011);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+################################################################################
+nm_2[,1]	nm_2[,2]	nm_2[,3]	nm_2[,4]	num_2[,1]	num_2[,2]	num_2[,3]	num_2[,4]
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+30	34	0	4	10	7	0	1
+74	73	0	5	56	43	1	7
+35	20	2	7	29	33	1	4
+33	35	1	4	6	2	3	2
+35	70	2	19	3	2	0	4
+18	37	1	5	0	2	0	0
+42	43	0	5	5	2	1	2
+52	40	1	8	3	8	4	2
+NA	NA	NA	NA	NA	NA	NA	NA
+53	39	1	10	11	3	0	4
+60	78	1	12	29	22	0	2
+2	8	8	18	0	1	0	0
+12	11	0	4	3	1	0	0
+17	21	0	5	3	3	0	0
+2	4	2	6	4	2	1	2
+16	9	3	2	2	3	0	2
+10	5	0	11	2	4	0	2
+21	7	0	10	0	4	0	1
+46	35	5	6	6	4	2	2
+9	9	11	11	1	1	1	2
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+#END							

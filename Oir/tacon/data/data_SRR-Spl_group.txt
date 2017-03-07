@@ -1,0 +1,19 @@
+################################################################################
+## Ce fichier n'a pas besoin d'?tre mis ? jour
+## Surface au 100m? en radier/rapide et en plat pour chaque secteur (group) consid?r?				
+################################################################################				
+StotPC[]	StotRR[]			
+32.67065	4.65871	#	Group 1	Oir1.2, 1.3, 1.4, IAS02
+35.60085	14.296875	#	Group 2	Oir2.1, PTE03, IAS03
+35.497	11.3317	#	Group 3	Oir2.5, Oir 2.6, Oir2.7, Oir 2.8, PTE04, IAS04
+28.4851	3.9323	#	Group 4	Oir3.2, Oir3.3'
+29.8685	4.5699	#	Group 5	Oir3.4', Oir 3.5
+18.41615	10.5273	#	Group 6	Oir4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, IAS05, IS06
+19.6725	13.556	#	Group 7	Oir5.2a, IAS07
+35.8377	26.29735	#	Group 8	Oir5.2b, 5.3, 5.4, 5.5, 5.6, 5.7, IAS08
+15.1699	23.0059	#	Group 9	PTE05, IAS09
+13.593	25.8505	#	Group 10	IAS10
+7.1075	20.6625	#	Group 11	Moulin du bois (mbam1, mbam2, mbav1, mbav2)
+17.5275	24.5275	#	Group 12	Pont Levesque: plam1, plam2, plav1, plav2, IAS11
+5.51	24.95	#	Group 13	La Roche RR01 ? RR20
+#END

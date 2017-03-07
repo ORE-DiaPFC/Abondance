@@ -1,0 +1,18 @@
+#################################################################################################################################################################
+## Ce fichier n'a pas besoin d'?tre mis ? jour
+## Surface en 100m? de radier/rapide des stations ?chantillonn?es par enl?vement successif et qui ont servi dans la construction de la relation d'intercalibration				
+#################################################################################################################################################################
+Srr_inter[]		
+1.12	#	Oir4.5
+0.979	#	Oir4.6
+6.3458	#	Oir4.7
+0.2272	#	Oir1.2
+2.5127	#	Oir1.3
+7.9825	#	Oir5.2b
+0.651	#	Oir5.3
+0.57	#	Oir5.4
+0.8	#	Oir5.5
+1.3475	#	Oir5.6
+1.2597	#	plav1
+1.01745	#	plav2
+#END		

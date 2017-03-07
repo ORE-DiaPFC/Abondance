@@ -1,0 +1,45 @@
+######################################################################################
+##  C_B[]: Annual number of smolt captured at Beauchamps
+##  D_B[]: Annual number of dead smolt at Beauchamps
+##  Cm_B[t]: Annual number of smolt marked and released downstream Beauchamps
+##  Cum_B[t]: Annual number of smolt captured at Beauchamps and released unmarked downstream
+##  Cm_Eu[t]: Annual number of marked smolt captured at Eu
+##  Cum_Eu[t]: Annual number of unmarked smolt captured at Eu
+###################################################################################### 
+C_B[]	D_B[]	Cm_B[]	Cum_B[]	Cm_Eu[]	Cum_Eu[]		
+1115	0	NA	NA	NA	NA	#	1982
+1128	0	NA	NA	NA	NA	#	1983
+750	0	NA	NA	NA	NA	#	1984
+1530	0	NA	NA	NA	NA	#	1985
+747	0	745	2	61	97	#	1986
+400	0	NA	NA	NA	NA	#	1987
+NA	NA	NA	NA	NA	NA	#	1988
+NA	NA	NA	NA	NA	NA	#	1989
+NA	NA	NA	NA	NA	NA	#	1990
+NA	NA	NA	NA	NA	NA	#	1991
+415	0	NA	NA	NA	NA	#	1992
+565	15	550	0	61	122	#	1993
+941	20	920	1	77	121	#	1994
+50	0	NA	NA	NA	NA	#	1995
+42	2	40	0	2	153	#	1996
+2594	6	2588	0	230	327	#	1997
+800	30	770	0	78	84	#	1998
+40	0	40	0	3	47	#	1999
+263	9	253	1	20	109	#	2000
+NA	NA	NA	NA	NA	NA	#	2001
+63	0	NA	NA	NA	NA	#	2002
+774	10	764	0	66	186	#	2003
+4321	54	4267	0	287	222	#	2004
+2110	60	2050	0	158	244	#	2005
+1074	32	1040	2	70	113	#	2006
+2215	30	2175	10	123	190	#	2007
+2155	60	2090	5	194	417	#	2008
+317	7	310	0	32	77	#	2009
+1135	10	1120	5	41	72	#	2010
+1829	29	1800	0	186	476	#	2011
+1938	28	1910	0	184	430	#	2012
+523	10	513	0	26	74	#	2013
+424	4	420	0	21	130	#	2014
+1968	6	1932	30	105	320	#	2015
+3482	0	3409	73	258	330	#	2016
+#END							

@@ -1,0 +1,29 @@
+######################################################################################################################################
+##  C_MP[t,a]: Annual number of fish captured at Moulin des Princes per sea age category; 1:1SW, 2:MSW
+##  Cum_MP[t,a]: Annual number of fish captured at Moulin des Princes and released unmarked per sea age category (happened only once in 1995 for 1SW); 1:1SW, 2:MSW
+##  Cm_MP[t,a]: Annual number of fish captured and marked at Moulin des Princes per sea age category; 1:1SW, 2:MSW
+######################################################################################################################################
+C_MP[,1]	C_MP[,2]	Cm_MP[,1]	Cm_MP[,2]	Cum_MP[,1]	Cum_MP[,2]
+157	7	156	7	0	0
+508	43	500	42	1	0
+507	31	502	30	0	0
+322	38	320	38	0	0
+442	9	442	9	0	0
+167	41	166	41	0	0
+151	11	151	11	0	0
+228	17	226	17	0	0
+420	7	420	7	0	0
+130	26	130	25	0	0
+761	33	761	33	0	0
+335	73	335	73	0	0
+662	39	661	39	0	0
+318	47	318	47	0	0
+190	29	190	29	0	0
+187	54	187	54	0	0
+533	34	533	34	0	0
+307	140	307	140	0	0
+227	56	227	56	0	0
+394	43	393	43	0	0
+433	76	433	76	0	0
+391	72	391	72	0	0
+#END					

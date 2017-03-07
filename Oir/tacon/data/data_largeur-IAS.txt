@@ -1,0 +1,17 @@
+############################################################
+# Ce fichier n'a pas besoin d'?tre mis ? jour
+# W_Oir est la largeur moyenne en m?tre des stations suivies par IAS
+############################################################# 
+W_Oir[]	
+4.684375	# IAS03
+2.623076923	#IAS09
+3.55	#IAS06
+3.585714286	#IAS07
+1.98	#IAS10
+4.6625	#IAS04
+4.303125	#IAS05
+5.45	#IAS02
+3.416666667	#IAS08
+2.03181445	#IAS11
+1.384980237	#IAS12
+#END	

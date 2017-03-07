@@ -1,0 +1,57 @@
+##################################################################################################################################################
+## Il s'agit ici des donn?es d'indice d'abondance pour les stations: IAS03; IAS06; IAS07; IAS09; IAS10
+## Ces stations ont leur fichier de donn?es ? part des autres stations IAS car elles N'ont PAS servi dans la construction de la relation d'intercalibration
+## /!\ Les donn?es de surface sont au 100m? car si elles sont en m?,il y a des probl?mes de mise ? jour car sampling dans de trop petites valeurs
+## /!\ Bien reprendre les bonnes infos selon la station consid?r?e
+## /!\ Ces stations sont index?s de 2 mani?res diff?rentes: 
+## 1: IAno_num : index concernant uniquement les stations suivies par IAS et 
+## 2: Site_IA: index concernant toutes les stations ?chantillonn?es (donc pas seulement IAS)
+##################################################################################################################################################
+## Year_IA: index de l'ann?e
+## CPUE_IAno: nombre de smolt captur?s lors des indices d'abondance pour une station donn?e 
+## Site_IA: index de la station parmi toutes les stations ?chantillonn?es quelque soit la m?thode /!\ Bien reprendre les bonnes infos selon la station consid?r?e 
+## IAno_num: index de la station IAS /!\ Bien reprendre les bonnes infos selon la station consid?r?e
+## Srr_IA: surface de radiers rapides de la station ?chantillonn?e (en 100m?) /!\ Bien reprendre les bonnes infos selon la station consid?r?e
+## Group_IA: index du groupe auquel appartient la station ?chantillonn?e /!\ Bien reprendre les bonnes infos selon la station consid?r?e
+##################################################################################################################################################
+Year_IA[]	CPUE_IAno[]	Site_IA[]	IAno_num[]	Srr_IA[]	Group_IA[]		
+8	6	58	1	6.9439	2	#	IAS03
+13	23	58	1	6.9439	2	#	IAS03
+21	42	59	2	3.3564	9	#	IAS09
+22	56	59	2	3.3564	9	#	IAS09
+23	42	58	1	6.9439	2	#	IAS03
+23	43	60	3	3.563	6	#	IAS06
+23	36	61	4	4.056	7	#	IAS07
+23	49	59	2	3.3564	9	#	IAS09
+23	22	62	5	4	10	#	IAS10
+24	32	58	1	6.9439	2	#	IAS03
+24	59	60	3	3.563	6	#	IAS06
+24	48	61	4	4.056	7	#	IAS07
+24	63	59	2	3.3564	9	#	IAS09
+24	22	62	5	4	10	#	IAS10
+25	32	58	1	6.9439	2	#	IAS03
+25	89	60	3	3.563	6	#	IAS06
+25	49	61	4	4.056	7	#	IAS07
+25	49	59	2	3.3564	9	#	IAS09
+25	30	62	5	4	10	#	IAS10
+26	27	58	1	6.9439	2	#	IAS03
+26	69	60	3	3.563	6	#	IAS06
+26	46	61	4	4.056	7	#	IAS07
+26	55	59	2	3.3564	9	#	IAS09
+26	45	62	5	4	10	#	IAS10
+27	16	58	1	6.9439	2	#	IAS03
+27	81	60	3	3.563	6	#	IAS06
+27	57	61	4	4.056	7	#	IAS07
+27	37	59	2	3.3564	9	#	IAS09
+27	34	62	5	4	10	#	IAS10
+28	31	58	1	6.9439	2	#	IAS03
+28	73	60	3	3.563	6	#	IAS06
+28	100	61	4	4.056	7	#	IAS07
+28	56	59	2	3.3564	9	#	IAS09
+28	23	62	5	4	10	#	IAS10
+29	18	58	1	6.9439	2	#	IAS03
+29	42	60	3	3.563	6	#	IAS06
+29	48	61	4	4.056	7	#	IAS07
+29	56	59	2	3.3564	9	#	IAS09
+29	17	62	5	4	10	#	IAS10
+#END							

@@ -1,0 +1,17 @@
+################################################################################
+### THIS FILE DOES NOT NEED TO BE UPDATED
+## R_EF[t,g]: Annual number of fish removed for experiment by electric fishing between Uxondoa and Olha per breeding category (from 1984 to 1991);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+## M_EF[t,g]: Annual number of fish removed between Uxondoa and Olha and moved upstream Olha per breeding category (1990 & 1991);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+## Cm_EF[t,g]: Annual number of marked fish captured by EF, angling or found dead between Uxondoa and Olha per breeding category (from 1984 to 1991); 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW 
+## Cum_EF[t,g]: Annual number of unmarked fish captured by EF, angling or found dead between Uxondoa and Olha per breeding category (from 1984 to 1991); 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW 
+################################################################################
+R_EF[,1]	R_EF[,2]	R_EF[,3]	R_EF[,4]	M_EF[,1]	M_EF[,2]	M_EF[,3]	M_EF[,4]	Cm_EF[,1]	Cm_EF[,2]	Cm_EF[,3]	Cm_EF[,4]	Cum_EF[,1]	Cum_EF[,2]	Cum_EF[,3]	Cum_EF[,4]
+2	2	0	0	NA	NA	NA	NA	2	5	2	1	3	0	0	0
+0	0	0	2	NA	NA	NA	NA	0	1	0	4	0	0	0	0
+6	8	1	1	NA	NA	NA	NA	4	7	1	2	3	3	0	0
+6	11	0	4	NA	NA	NA	NA	6	8	1	6	2	4	0	1
+4	2	0	3	NA	NA	NA	NA	10	9	0	0	6	3	0	3
+3	3	2	5	NA	NA	NA	NA	4	5	1	4	1	1	1	2
+10	4	0	0	16	11	0	1	19	15	0	2	7	1	0	0
+1	2	0	0	4	4	0	7	5	6	0	6	0	0	0	3
+#END

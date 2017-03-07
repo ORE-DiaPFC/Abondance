@@ -1,0 +1,71 @@
+=============================
+DIAGNOSTICS
+=============================
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+                                            
+              Stationarity start     p-value
+              test         iteration        
+rho           passed           1     0.22250
+l_ML_dim      passed           1     0.05304
+sigmap_ML_dim passed        5001     0.09207
+junk          passed       10001     0.09905
+shape_lambda  failed          NA     0.00279
+rate_lambda   failed          NA     0.00298
+mean_gamma    passed       20001     0.13877
+var_gamma     passed           1     0.06799
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+rho           passed     5.25e-01 6.77e-03 
+l_ML_dim      passed     2.74e+00 2.44e-01 
+sigmap_ML_dim failed     7.82e-01 9.14e-02 
+junk          failed    -3.95e-03 4.34e-02 
+shape_lambda  <NA>             NA       NA 
+rate_lambda   <NA>             NA       NA 
+mean_gamma    passed     7.87e+03 1.71e+01 
+var_gamma     passed     2.04e+07 2.62e+05 
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
+     -1.33324      -0.50189       0.96588      -1.02232       0.02315 
+  rate_lambda    mean_gamma     var_gamma 
+      0.01420       0.41886       0.36304 
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ rho           30       30895   3746           8.250   
+ l_ML_dim      65       77233   3746          20.600   
+ sigmap_ML_dim 1309     1560599 3746         417.000   
+ junk          65       70359   3746          18.800   
+ shape_lambda  16       21392   3746           5.710   
+ rate_lambda   16       21284   3746           5.680   
+ mean_gamma    2        3722    3746           0.994   
+ var_gamma     15       19195   3746           5.120   
+
