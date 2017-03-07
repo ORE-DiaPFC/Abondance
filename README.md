@@ -67,8 +67,7 @@ ___
 - Nécessite de regarder si il y a des "cut" dans les modèles
 
 # BRESLE
-* automatisation des inits (cf inits_stade.R)
-* séparation 1HM/PHM basée sur la taille / seuil fixé à 70cm / à actualiser?
+* séparation 1HM/PHM basée sur la taille / seuil fixé à 70cm -> à actualiser?
 
 # SCORFF
 * modele SMOLT change chaqque année en fonction de l'arret des pièges!
