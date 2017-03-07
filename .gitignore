@@ -2,8 +2,8 @@
 # Folders
 /GT
 /doc
-/raw
-/Sab
+/*/raw
+/*/*/Sab
 
 # Formats
 *.zip
@@ -21,6 +21,8 @@
 *.Rdata
 *.RData
 *.Rout
+
+/*/*/CODAindex.txt
 
 # Example code in package build process
 *-Ex.R
