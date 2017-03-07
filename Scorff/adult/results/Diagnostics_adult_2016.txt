@@ -1,0 +1,83 @@
+=============================
+DIAGNOSTICS
+=============================
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+                                           
+             Stationarity start     p-value
+             test         iteration        
+sigmapi_MP   passed         1       0.29851
+sigmapi_R    failed        NA       0.00127
+mupi_oF      passed         1       0.14574
+sigmapi_oF   passed         1       0.28920
+diffF_1SW    passed         1       0.11100
+diffF_MSW    passed         1       0.11554
+diff1SW      passed       501       0.05261
+diffMSW      passed         1       0.40440
+pi_oD        passed         1       0.13998
+shape_lambda passed         1       0.89298
+rate_lambda  passed         1       0.89803
+lambda_tot0  passed         1       0.31651
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+sigmapi_MP   passed      0.3491 2.25e-02 
+sigmapi_R    <NA>            NA       NA 
+mupi_oF      passed      0.7872 3.75e-02 
+sigmapi_oF   failed      1.1734 5.64e-01 
+diffF_1SW    failed     -0.1038 1.53e-02 
+diffF_MSW    passed     -0.8611 2.92e-02 
+diff1SW      failed      0.5074 1.06e-01 
+diffMSW      failed      0.9013 1.11e-01 
+pi_oD        passed      0.2146 1.72e-02 
+shape_lambda passed      6.4713 3.11e-01 
+rate_lambda  passed      0.0104 5.17e-04 
+lambda_tot0  passed    616.8054 2.77e+01 
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW      diff1SW      diffMSW        pi_oD 
+      -0.612        0.448        2.261        0.633        2.681        3.960        3.518        0.110       -2.038 
+shape_lambda  rate_lambda  lambda_tot0 
+       0.316        0.215       -1.870 
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ sigmapi_MP   108      101576 3746         27.10     
+ sigmapi_R    12       17367  3746          4.64     
+ mupi_oF      12       13347  3746          3.56     
+ sigmapi_oF   91       101052 3746         27.00     
+ diffF_1SW    8        8928   3746          2.38     
+ diffF_MSW    8        9864   3746          2.63     
+ diff1SW      20       21575  3746          5.76     
+ diffMSW      25       26975  3746          7.20     
+ pi_oD        24       22008  3746          5.88     
+ shape_lambda 15       16561  3746          4.42     
+ rate_lambda  22       23208  3746          6.20     
+ lambda_tot0  16       18154  3746          4.85     
+
