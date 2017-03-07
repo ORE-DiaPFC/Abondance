@@ -4,10 +4,11 @@
 /doc
 /raw
 
+# Formats
 *.zip
 *.7z
-
-# Results
+*.csv
+*.txt
 *.pdf
 
 # History files

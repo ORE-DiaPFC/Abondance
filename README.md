@@ -1,9 +1,8 @@
-Mise à jour et standardisation des séries chronologiques d'abondance du
-saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle
+# Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle
 
 ## STRUCTURE
 
-Le dossier se compose de sous-dossiers correspondant aux différents sites de l'ORE analysés (Bresle, Scorff, Oir et Nivelle). Ces dossiers sont sous-divisés en fonction des stades observés (adultes, smolts ou tacons) :
+Le dossier se compose de sous-dossiers correspondant aux différents sites de l'ORE analysés (Bresle, Scorff, Oir et Nivelle). Ces dossiers sont sous-divisés en fonction des stades observés (adultes, smolts ou tacons) :  
 
 ORE/  # dossier racine
 |
