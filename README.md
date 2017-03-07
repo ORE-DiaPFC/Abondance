@@ -1,18 +1,18 @@
-# Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle
+# Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC
 
 ## STRUCTURE
 
 Le dossier se compose de sous-dossiers correspondant aux différents sites de l'ORE analysés (Bresle, Scorff, Oir et Nivelle). Ces dossiers sont sous-divisés en fonction des stades observés (adultes, smolts ou tacons) :  
 
 ORE/  # dossier racine  
-|  
-|_Abundance/ # dossier contenant les analyses des indices d'abondances  
+  |  
+  |_Abundance/ # dossier contenant les analyses des indices d'abondances  
 	- README.md # ce fichier  
 	- run.sh # script bash permettant de créer les scripts d'analyse par site et par stade (ex: analyse_tacon.R) puis de lancer les analyses; faire ./run.sh dans un terminal (linux)  
 	- analyse.R # script d'analyse principal; ce script est automatiquement modifié via run.sh pour changer les paramètres (ex: nombre d'itérations,...)  
-	|_doc/ # contient les rapports,...  
-  		|  
- 		|_Bresle/  
+  |_doc/ # contient les rapports,...  
+  |  
+ 	|_Bresle/  
    			|_adult/  
 			  |_smolt/  
           			- data/ # données d'échantillonnage  
