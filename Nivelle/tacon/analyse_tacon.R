@@ -32,21 +32,24 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 
 
 #------------------------INITS----------------------------------##
-source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
-load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
-if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+#if(!file.exists(paste('inits/inits_',stade,year,'.Rdata',sep=""))){
+  source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
+#}
+load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
+#if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+#if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/",stade,"-",site,".R",sep="") # path of the model
+model <- paste("model/",stade,"-",site,".txt",sep="") # path of the model
 if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=50000 # Total number of steps in chains to save.
+nburnin=500 # Number of steps to "burn-in" the samplers.
+nstore=5000 # Total number of steps in chains to save.
 nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
@@ -66,6 +69,8 @@ fit <- bugs(
   ,working.directory=work.dir
 )
 
+# save last values for inits
+#if(site == "Nivelle") {save(fit$save.states,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))}
 
 ######### JAGS ##########
 ## Compile & adapt

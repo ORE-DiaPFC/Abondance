@@ -1,0 +1,72 @@
+OpenBUGS version 3.2.3 rev 1012
+model is syntactically correct
+data loaded
+model compiled
+expected the collection operator c error pos 88 (error on line 1)
+unable to generate initial values for node <alpha_dj[7]> of type UpdaterSlice.Left
+model must be initialized before updating
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before updating
+model must be initialized before monitors used
+model must be initialized before monitors used
