@@ -101,7 +101,7 @@ NA,
 1,
 17,
 2,
-1
+2
 ),
 
 # Annual number of marked smolt captured at Moulin des Princes
