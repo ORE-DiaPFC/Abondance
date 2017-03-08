@@ -1,9 +1,9 @@
 list(
 # Index de la derni?re ann?e. /!\ 1985 est consid?r? comme ann?e y=2
-Y_last=32,
+Y_last=33,
 
 # Index dernier site. Add 17 per year because now only CPUE are done on 17 stations
-I=630,
+I=647,
 
 # Donn?es de CPUE en s?quence
 # Seules les derni?res ann?es sont par paquets de 17 stations.
