@@ -34,7 +34,7 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 #------------------------INITS----------------------------------##
 source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
 load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
-if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+#if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 
 #------------------------MODEL----------------------------------##
