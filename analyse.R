@@ -32,10 +32,15 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 
 
 #------------------------INITS----------------------------------##
-source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
-load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
+#if(!file.exists(paste('inits/inits_',stade,year,'.Rdata',sep=""))){
+  source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
+#}
+load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+#if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+
+
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/",stade,"-",site,".R",sep="") # path of the model
@@ -66,6 +71,11 @@ fit <- bugs(
   ,working.directory=work.dir
 )
 
+### Save inits ###
+# save last values for inits
+inits <- fit$last.values
+if(site == "Nivelle") {save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))}
+
 
 ######### JAGS ##########
 ## Compile & adapt
@@ -94,8 +104,8 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 
 ## BACKUP
-save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
-write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
+#save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
+#write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
