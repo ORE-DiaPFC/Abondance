@@ -79,3 +79,8 @@ ___
 Lange F., Guéraud F., Huchet E., Rives J. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Nivelle river (France). [doi:10.15468/alsjvy](http://www.gbif.org/dataset/e96db990-bd86-4a79-89a2-446844a27811)
 
 Jeannot N., Azam D., Guilloux Y. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Scorff river (France). [doi:10.15468/mz4lyw](http://www.gbif.org/dataset/89064e3a-aa3c-495d-b236-092e1dae7042)
+
+___
+## REFERENCES
+
+Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35)
