@@ -56,14 +56,14 @@ Abundance/ # dossier contenant les analyses des indices d'abondances
 	- analyse.R # script d'analyse principal; ce script est automatiquement modifié via run.sh pour changer les paramètres (ex: nombre d'itérations,...)  
   |_doc/ # contient les rapports,...  
   |  
- 	|_Bresle/  
+ 	|_SITE/  
    			|_adult/  
 			  |_smolt/  
           			- data/ # données d'échantillonnage  
           			- inits/ # contient un script R (inits_smolt.R) qui génère automatiquement les valeurs initiales pour les chaînes MCMC  
           			- model/ # modele pour les inférences  
           			- results/ # contient les diagnostiques et les résultats des analyses  
-          			- Sab/ # dossier des analyses faites par Sabrina Servanty (cf. rapport dans le dossier doc/)  
+          			- bugs/ # contient les fichiers pour openbugs 
           			- parameters_smolt.R # paramètres à monitorer  
 
 
