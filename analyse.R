@@ -39,11 +39,11 @@ if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
 }
 #load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-
+#if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
+inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,".txt",sep="") # path of the model
+model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
 if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
