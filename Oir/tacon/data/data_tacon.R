@@ -33,6 +33,12 @@ Srr_IA <- tmp[,5]
 Group_IA <- tmp[,6]
 
 
+## Nombre de donn?es (nombre de lignes) pour les IA sur les sites qui ne servent pas pour la relation d'intercalibration
+## IA concern?s: IAS03, IAS09, IAS06, IAS07, IAS10
+## Devra ?tre mis ? jour
+NIAno = nrow(tmp) # fait dans le script data_tacon.R
+
+
 ##################################################################################################################################################
 ## Il s'agit ici des tacons captur?s par enl?vements successifs
 ## Depuis 2009 (Year = 23), seuls les stations de type PTE et celles du ruisseau de la roche (RR...) sont encore suivies par enl?vement successifs
@@ -58,6 +64,10 @@ Group <- tmp[,5]
 Lieu <- tmp[,6]
 Srr <- tmp[,7]
 Spl <- tmp[,8]
+
+## Nombre de donn?es (nombre de lignes) pour les pr?l?vements successifs (soit PE ou PTE)
+## Devra ?tre mis ? jour
+NPE1 = nrow(tmp) # fait dans le script data_tacon.R
 
 
 
@@ -90,6 +100,15 @@ Lieu_IAinter <- tmp[,6]
 Group_IAinter <- tmp[,7]
 
 
+## Nombre de donn?es (nombre de lignes) pour les IA sur les sites servant pour la relation d'intercalibration
+## IA concern?s: IAS04, IAS05, IAS02,IAS08,IAS11,IAS12
+## Devra ?tre mis ? jour
+NIAinter = nrow(tmp) # fait dans le script data_tacon.R
+
+
+
+
+
 ############################################################
 # Ce fichier n'a pas besoin d'?tre mis ? jour
 # W_Oir est la largeur moyenne en m?tre des stations suivies par IAS
@@ -117,7 +136,11 @@ StotPC <- tmp[,1]
 StotRR <- tmp[,2]
 
 
-data <- c( fish, list(Year_IA=Year_IA, CPUE_IAno=CPUE_IAno,Site_IA=Site_IA,IAno_num=IAno_num,Srr_IA=Srr_IA,Group_IA=Group_IA
+
+
+data <- c( fish, list(NIAno=NIAno,NIAinter=NIAinter,NPE1=NPE1,
+                      Year_IA=Year_IA,
+                      CPUE_IAno=CPUE_IAno,Site_IA=Site_IA,IAno_num=IAno_num,Srr_IA=Srr_IA,Group_IA=Group_IA
                       ,Year=Year,C1=C1,C2=C2,Site=Site,Group=Group,Lieu=Lieu,Srr=Srr,Spl=Spl
                       ,Year_IAinter=Year_IAinter,CPUE_inter=CPUE_inter,IAinter_num=IAinter_num,Site_IAinter=Site_IAinter,Srr_IAinter=Srr_IAinter,Lieu_IAinter=Lieu_IAinter
                       ,Group_IAinter=Group_IAinter

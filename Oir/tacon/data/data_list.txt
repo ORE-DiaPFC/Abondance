@@ -2,21 +2,21 @@ list(
 
 ### Nombre d'ann?es de suivi
 ## Devra ?tre mis ? jour
-Nyear = 29,
+Nyear = 30,
 
 ## Nombre de donn?es (nombre de lignes) pour les pr?l?vements successifs (soit PE ou PTE)
 ## Devra ?tre mis ? jour
-NPE1 = 995,
+# NPE1 = 995, # fait dans le script data_tacon.R
 
 ## Nombre de donn?es (nombre de lignes) pour les IA sur les sites qui ne servent pas pour la relation d'intercalibration
 ## IA concern?s: IAS03, IAS09, IAS06, IAS07, IAS10
 ## Devra ?tre mis ? jour
-NIAno = 39,
+# NIAno = 39, # fait dans le script data_tacon.R
 
 ## Nombre de donn?es (nombre de lignes) pour les IA sur les sites servant pour la relation d'intercalibration
 ## IA concern?s: IAS04, IAS05, IAS02,IAS08,IAS11,IAS12
 ## Devra ?tre mis ? jour
-NIAinter = 117, 
+# NIAinter = 117, # fait dans le script data_tacon.R
 
 ## Nombre de groupes (secteurs regroupant diff?rentes stations)
 ## Pas de mise ? jour
