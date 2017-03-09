@@ -12,9 +12,9 @@
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 #------------------------INITS----------------------------------##
-#inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
+inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
 #save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
-load(paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
+#load(paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 
 ###################################################
 # NO UPDATE
@@ -589,4 +589,5 @@ inits <- list(c( inits_fix,inits_updated))
 #write(inits[[1]],file=paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
 #lapply(inits[[1]], write, paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
 #save(inits,file=paste('inits/inits_',stade,'.Rdata',sep=""))
-save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
