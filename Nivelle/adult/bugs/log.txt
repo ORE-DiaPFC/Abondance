@@ -1,0 +1,144 @@
+OpenBUGS version 3.2.3 rev 1012
+model is syntactically correct
+data loaded (variables not in the model: Dm_12, Dum_12, Am_12, Aum_12)
+model compiled
+initial values loaded but chain contain uninitialized variables
+initial values generated, model initialized
+500 updates took 3 s
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+1000 updates took 8 s
+CODA files written
+no monitors set
