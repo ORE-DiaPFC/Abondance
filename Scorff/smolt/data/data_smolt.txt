@@ -26,7 +26,7 @@ NA,
 393,
 2372,
 1478,
-3207),
+3203),
 
 # Annual number of smolt marked and released downstream Moulin de Lesl?
 Cm_ML = c(
@@ -127,7 +127,7 @@ Cm_MP = c(
 29,
 225,
 117,
-394),
+393),
 
 # Annual number of unmarked smolt captured at Moulin des Princes
 Cum_MP = c(
@@ -152,7 +152,7 @@ NA ,
 698,
 766,
 488,
-824),
+805),
 
 # Annual number of dead smolt at Moulin des Princes
 D_MP = c(
