@@ -12,13 +12,9 @@
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 #------------------------INITS----------------------------------##
-# inits<-function(){
-#   list(
-#     beta=rnorm(1,0,1)
-#   )}
-
-inits1 <- read.bugsdata(paste("inits/init-",site,"-",stade,"2014",".txt",sep=""))
-#inits<-list(inits1)#inits2,inits3)
+inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
+#save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
+#load(paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 
 
 ###################################################
@@ -40,44 +36,44 @@ cauchy = 1.757
 ###################################################
 # TO UPDATE
 ###################################################
-#gryr_Oir <- inits1$gryr_Oir
+#gryr_Oir <- inits0$gryr_Oir
 # ajouter 13 "0" à la fin
-gryr_Oir_inits <- c(inits1$gryr_Oir, rep(0, 13))
+gryr_Oir_inits <- c(inits0$gryr_Oir, rep(0, 13))
 
-lambdaOir_cpu <- inits1$lambdaOir_cpu
+lambdaOir_cpu <- inits0$lambdaOir_cpu
 CPUE_IAno <- data$CPUE_IAno # extraire les 5 dernières valeurs
 CPUE_inter <- data$CPUE_inter # extraire les 6 dernières valeurs
 lambdaOir_cpu_tmp <- c(tail(CPUE_IAno,5), tail(CPUE_inter,6)) +1
 lambdaOir_cpu_inits <- as.matrix(cbind(lambdaOir_cpu, lambdaOir_cpu_tmp))
 
-log_dOir <- inits1$log_dOir
+log_dOir <- inits0$log_dOir
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
-vect2 <- log((tail(data$C1,23)*2) / (tail(data$Srr,23)+ 0.2*tail(data$Spl,23)))
+vect2 <- log(((tail(data$C1,23)+1)*2) / (tail(data$Srr,23)+ 0.2*tail(data$Spl,23)))
 vect3 <- log(lambdaOir_cpu_tmp)
 log_dOir_tmp <- c(vect1,vect2,vect3)
 log_dOir_inits <- as.matrix(cbind(log_dOir,log_dOir_tmp))
 
-lp_remgr_inits <- as.matrix(cbind(inits1$lp_remgr,rep(1,13)))
+lp_remgr_inits <- as.matrix(cbind(inits0$lp_remgr,rep(1,13)))
 
-n_LR_inits <- as.integer(c(inits1$n_LR, (.2*data$StotPC[13] + data$StotRR[13])*exp(mean(log_dOir_tmp[35:54]))))
+n_LR_inits <- as.integer(c(inits0$n_LR, (.2*data$StotPC[13] + data$StotRR[13])*exp(mean(log_dOir_tmp[35:54]))))
 
-n_MB_inits <- as.integer(c(inits1$n_MB,1000))
+n_MB_inits <- as.integer(c(inits0$n_MB,1000))
 
-n_Oir_gr_inits <- as.matrix(cbind(inits1$n_Oir_gr,as.integer(mean(head(lambdaOir_cpu_tmp,9))*(.2*data$StotPC[1:10] + data$StotRR[1:10]))))
+n_Oir_gr_inits <- as.matrix(cbind(inits0$n_Oir_gr,as.integer(mean(head(lambdaOir_cpu_tmp,9))*(.2*data$StotPC[1:10] + data$StotRR[1:10]))))
 
-n_PL_inits <- as.integer(c(inits1$n_PL, lambdaOir_cpu_tmp[10]*(.2*data$StotPC[13] + data$StotRR[13])))
+n_PL_inits <- as.integer(c(inits0$n_PL, lambdaOir_cpu_tmp[10]*(.2*data$StotPC[13] + data$StotRR[13])))
 
 
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
 vect2 <- tail(data$C1,23)*2
 vect3 <- lambdaOir_cpu_tmp*2
 ntot_tmp <- c(vect1,vect2,vect3)
-ntot_inits <- as.matrix(cbind(inits1$ntot,ntot_tmp))
+ntot_inits <- as.matrix(cbind(inits0$ntot,ntot_tmp))
 
-year_dOir_inits <- c(inits1$year_dOir, 0)
+year_dOir_inits <- c(inits0$year_dOir, 0)
 
 
-C1_inits <- c(inits1$C1, rep(NA,23))
+C1_inits <- c(inits0$C1, rep(NA,23))
 
 
 tmpC2 <- tail(data$C2,23) 
@@ -87,7 +83,7 @@ for (i in 1:length(tmp)){
   if(is.na(tmpC2[i])) tmp[i] <- as.integer(.2*tmpC1[i])
   if(!is.na(tmpC2[i])) tmp[i] <- NA
 }
-C2_inits <- c(inits1$C2, tmp)
+C2_inits <- c(inits0$C2, tmp)
   
   
 inits_updated <- list(
@@ -107,5 +103,9 @@ inits_updated <- list(
 
 inits <- list(c( inits_fix,inits_updated))
 
-save(inits,file=paste(paste('inits/inits_',stade,'.Rdata',sep="")))
+#write(inits[[1]],file=paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
+#lapply(inits[[1]], write, paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
+#save(inits,file=paste('inits/inits_',stade,'.Rdata',sep=""))
+#save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
 
