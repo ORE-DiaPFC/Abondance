@@ -8,7 +8,7 @@
 # Formats
 *.zip
 *.7z
-*.csv
+#*.csv
 #*.txt
 *.pdf
 
