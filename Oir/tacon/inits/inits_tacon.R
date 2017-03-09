@@ -48,7 +48,7 @@ lambdaOir_cpu_inits <- as.matrix(cbind(lambdaOir_cpu, lambdaOir_cpu_tmp))
 
 log_dOir <- inits0$log_dOir
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
-vect2 <- log(((tail(data$C1,23)+1)*2) / (tail(data$Srr,23)+ 0.2*tail(data$Spl,23)))
+vect2 <- log(((tail(data$C1,23)*2)+10) / (tail(data$Srr,23)+ 0.2*tail(data$Spl,23)))
 vect3 <- log(lambdaOir_cpu_tmp)
 log_dOir_tmp <- c(vect1,vect2,vect3)
 log_dOir_inits <- as.matrix(cbind(log_dOir,log_dOir_tmp))
@@ -65,7 +65,7 @@ n_PL_inits <- as.integer(c(inits0$n_PL, lambdaOir_cpu_tmp[10]*(.2*data$StotPC[13
 
 
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
-vect2 <- tail(data$C1,23)*2
+vect2 <- (tail(data$C1,23)*2)+10
 vect3 <- lambdaOir_cpu_tmp*2
 ntot_tmp <- c(vect1,vect2,vect3)
 ntot_inits <- as.matrix(cbind(inits0$ntot,ntot_tmp))
