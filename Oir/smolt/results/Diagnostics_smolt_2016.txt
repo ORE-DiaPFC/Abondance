@@ -1,0 +1,57 @@
+=============================
+DIAGNOSTICS
+=============================
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int_MC  passed       1         0.7184 
+logit_flow_MC passed       1         0.0526 
+log_cess_MC   passed       1         0.2295 
+shape_lambda  passed       1         0.8390 
+rate_lambda   passed       1         0.8781 
+mean_gamma    passed       1         0.7485 
+var_gamma     passed       1         0.6012 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int_MC  passed     5.07e-01 1.00e-02 
+logit_flow_MC failed    -9.75e-02 1.14e-02 
+log_cess_MC   failed     1.03e-01 2.82e-02 
+shape_lambda  passed     2.48e+00 1.02e-01 
+rate_lambda   passed     2.08e-03 9.31e-05 
+mean_gamma    passed     1.21e+03 8.99e+00 
+var_gamma     passed     6.28e+05 3.46e+04 
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda    mean_gamma     var_gamma 
+        0.262         1.687        -3.009         0.433         0.419        -0.502        -0.640 
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+
+You need a sample size of at least 3746 with these values of q, r and s
