@@ -1,0 +1,40 @@
+################################################################################
+## C_U[t,g]: Annual number of fish captured at Uxondoa per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+## Cm_U[t,g]: Annual number of fish captured at Uxondoa and released with mark per breeding category = C_U[t,g] except for 1993 and 1994 ; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+## Cum_U[t,g]: Annual number of fish captured at Uxndoa but released unmarked (happened only in 1993 and 1994) per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
+################################################################################
+C_U[,1]	C_U[,2]	C_U[,3]	C_U[,4]	Cum_U[,1]	Cum_U[,2]	Cum_U[,3]	Cum_U[,4]	Cm_U[,1]	Cm_U[,2]	Cm_U[,3]	Cm_U[,4]
+42	81	6	11	NA	NA	NA	NA	5	14	4	7
+34	28	6	30	NA	NA	NA	NA	10	4	2	14
+106	109	8	23	NA	NA	NA	NA	48	40	3	13
+53	89	7	29	NA	NA	NA	NA	21	23	3	15
+36	31	2	17	NA	NA	NA	NA	18	13	0	4
+76	75	9	27	NA	NA	NA	NA	24	29	8	24
+78	117	8	23	NA	NA	NA	NA	42	69	6	17
+54	59	10	23	NA	NA	NA	NA	23	39	9	20
+71	83	7	35	NA	NA	NA	NA	43	62	5	26
+141	198	4	26	33	42	4	6	83	131	0	19
+109	126	2	30	26	30	0	5	49	65	2	22
+67	83	5	30	NA	NA	NA	NA	34	56	5	29
+61	89	4	32	NA	NA	NA	NA	52	83	3	29
+37	64	1	9	NA	NA	NA	NA	29	50	1	9
+68	65	1	6	NA	NA	NA	NA	64	55	0	6
+63	52	3	18	NA	NA	NA	NA	62	50	3	18
+59	47	5	19	NA	NA	NA	NA	52	41	5	18
+75	69	3	15	NA	NA	NA	NA	64	54	3	15
+130	128	3	25	NA	NA	NA	NA	120	120	3	25
+10	13	10	40	NA	NA	NA	NA	4	10	10	37
+31	36	2	13	NA	NA	NA	NA	29	31	2	12
+28	35	0	10	NA	NA	NA	NA	22	34	0	10
+15	14	3	17	NA	NA	NA	NA	6	8	3	15
+26	21	4	7	NA	NA	NA	NA	19	15	4	5
+19	22	2	18	NA	NA	NA	NA	18	18	2	18
+27	11	0	16	NA	NA	NA	NA	26	10	0	15
+61	54	6	11	NA	NA	NA	NA	59	54	6	10
+13	22	11	23	NA	NA	NA	NA	12	20	11	22
+13	4	1	9	NA	NA	NA	NA	13	4	1	9
+24	29	6	21	NA	NA	NA	NA	24	29	6	21
+22	5	5	27	NA	NA	NA	NA	22	5	5	27
+15	10	4	20	NA	NA	NA	NA	15	10	4	20
+19	5	2	14	NA	NA	NA	NA	19	5	2	14
+#END											

@@ -1,0 +1,39 @@
+################################################################################
+## NB[t,g]: annual breeding escapement per breeding category in the high catchment zone added or removed in the HC zone;  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW 
+## = sum of the number of fish removed from the population and the number of fish released upstream Olah. Happened in 2000 and since 2012.
+################################################################################
+NB[,1]	NB[,2]	NB[,3]	NB[,4]
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+7	5	0	0
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+NA	NA	NA	NA
+0	0	0	0
+0	0	0	0
+0	0	0	0
+0	0	0	0
+0	0	0	0
+#END			

@@ -1,0 +1,39 @@
+################################################################################							
+## Cm_O[t,g]: Annual number of marked fish captured at Olha per breeding category since 2012 (partial trapping);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"							
+## Cum_O[t,g]: Annual number of unmarked fish captured at Olha per breeding category since 2012 (partial trapping);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"							
+################################################################################							
+Cm_O[,1]	Cm_O[,2]	Cm_O[,3]	Cm_O[,4]	Cum_O[,1]	Cum_O[,2]	Cum_O[,3]	Cum_O[,4]
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+5	4	0	2	1	1	0	0
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA
+7	2	1	1	12	9	0	2
+10	15	1	14	5	5	3	4
+6	0	2	8	8	3	0	5
+6	2	1	4	3	2	1	2
+4	1	0	5	6	5	0	2
+#END							
