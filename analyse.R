@@ -33,19 +33,23 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 
 #------------------------INITS----------------------------------##
 #if(!file.exists(paste('inits/inits_',stade,year,'.Rdata',sep=""))){
+if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
   source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
-#}
-load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+  #load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+}
 #load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-#if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-
+if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/",stade,"-",site,".R",sep="") # path of the model
+model <- paste("model/model_",stade,"-",site,".txt",sep="") # path of the model
 if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
+
+filename <- file.path(work.dir, model)
+#system(paste("cp",model,paste(stade,"-",site,".txt",sep=""),sep=""))
+
 
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
@@ -62,19 +66,24 @@ start.time = Sys.time(); cat("Start of the run\n");
 fit <- bugs(
   data
   ,inits
-  ,model.file = model
+  ,model.file = filename
   ,parameters
   ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
   ,DIC=FALSE
-  ,codaPkg = FALSE, clearWD=TRUE
+  ,codaPkg = FALSE, clearWD=FALSE
   #,debug=TRUE
-  ,working.directory=work.dir
+  ,working.directory=paste(work.dir,"bugs",sep="/")
 )
+
+## cleaning
+system("rm bugs/CODA*")
 
 ### Save inits ###
 # save last values for inits
-inits <- fit$last.values
-if(site == "Nivelle") {save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))}
+# inits <- fit$last.values
+# if(site == "Nivelle") {
+#   save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#   }
 
 
 ######### JAGS ##########
@@ -104,8 +113,8 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 
 ## BACKUP
-#save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
-#write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
+save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
+write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
