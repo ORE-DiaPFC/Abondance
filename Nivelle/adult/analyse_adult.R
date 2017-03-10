@@ -12,12 +12,13 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2015"
+year <- "2016"
 site <- "Nivelle"
 stade <- "adult"
 
 
 ## WORKING DIRECTORY:
+# work.dir<-paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
 # work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
 # setwd(work.dir)
 
@@ -53,8 +54,8 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=500 # Number of steps to "burn-in" the samplers.
-nstore=1000 # Total number of steps in chains to save.
+nburnin=2000 # Number of steps to "burn-in" the samplers.
+nstore=5000 # Total number of steps in chains to save.
 nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 

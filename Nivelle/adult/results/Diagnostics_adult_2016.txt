@@ -1,0 +1,101 @@
+=============================
+DIAGNOSTICS
+=============================
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+                                           
+             Stationarity start     p-value
+             test         iteration        
+mup_11_1     passed        1        0.2294 
+sigmap_11_1  passed        1        0.1678 
+mup_11_2     passed        1        0.4416 
+sigmap_11_2  failed       NA        0.0198 
+mupi_EF      passed        1        0.1983 
+sigmapi_EF   passed        1        0.1726 
+mup_21       passed        1        0.6430 
+sigmap_21    passed        1        0.1533 
+k_1          passed        1        0.2935 
+k_2          passed        1        0.7129 
+eta_1        passed        1        0.1334 
+eta_2        passed        1        0.2324 
+rho          passed        1        0.6888 
+shape_lambda passed        1        0.2802 
+rate_lambda  passed        1        0.3441 
+lambda_tot0  passed        1        0.8005 
+a_1.1SW      passed        1        0.8186 
+a_2.1SW      passed        1        0.6540 
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+mup_11_1     passed      0.2447 0.005560 
+sigmap_11_1  failed      0.4376 0.068686 
+mup_11_2     passed      0.1204 0.002275 
+sigmap_11_2  <NA>            NA       NA 
+mupi_EF      passed      0.2476 0.002445 
+sigmapi_EF   passed      0.7760 0.023879 
+mup_21       passed      0.6521 0.002417 
+sigmap_21    passed      0.5789 0.015989 
+k_1          passed      1.1704 0.064811 
+k_2          passed      2.4299 0.160761 
+eta_1        passed      3.3534 0.062855 
+eta_2        passed      5.1254 0.117029 
+rho          passed      0.9452 0.009248 
+shape_lambda passed      2.8566 0.068897 
+rate_lambda  passed      0.0151 0.000405 
+lambda_tot0  passed    142.0949 4.915053 
+a_1.1SW      passed     10.0370 0.246490 
+a_2.1SW      passed      2.9461 0.073931 
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+    mup_11_1  sigmap_11_1     mup_11_2  sigmap_11_2      mupi_EF   sigmapi_EF       mup_21    sigmap_21          k_1 
+     -0.6974      -2.6615      -0.3153       0.6576      -2.2736      -0.2349       0.3858       1.2018       0.5753 
+         k_2        eta_1        eta_2          rho shape_lambda  rate_lambda  lambda_tot0      a_1.1SW      a_2.1SW 
+     -0.0455       1.1900       1.4736      -0.5396      -0.5237      -0.5010      -0.5615       0.8885       0.8970 
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ mup_11_1     4        5124  3746          1.37     
+ sigmap_11_1  56       55960 3746         14.90     
+ mup_11_2     10       11628 3746          3.10     
+ sigmap_11_2  60       50640 3746         13.50     
+ mupi_EF      3        4338  3746          1.16     
+ sigmapi_EF   12       13334 3746          3.56     
+ mup_21       4        5062  3746          1.35     
+ sigmap_21    22       19268 3746          5.14     
+ k_1          36       40242 3746         10.70     
+ k_2          58       61786 3746         16.50     
+ eta_1        4        4816  3746          1.29     
+ eta_2        4        5038  3746          1.34     
+ rho          44       48640 3746         13.00     
+ shape_lambda 9        9892  3746          2.64     
+ rate_lambda  12       13658 3746          3.65     
+ lambda_tot0  5        5973  3746          1.59     
+ a_1.1SW      10       12194 3746          3.26     
+ a_2.1SW      9        9483  3746          2.53     
+
