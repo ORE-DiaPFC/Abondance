@@ -11,6 +11,8 @@
 #*.csv
 #*.txt
 *.pdf
+*.xlxs
+*.xls
 
 # History files
 .Rhistory
