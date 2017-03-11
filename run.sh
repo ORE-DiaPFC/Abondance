@@ -4,14 +4,14 @@
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2016
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
-ITER=50000 # Total number of steps in chains to save.
-THIN=1 # Number of steps to "thin" (1=keep every step).
+ITER=25000 # Total number of steps in chains to save.
+THIN=2 # Number of steps to "thin" (1=keep every step).
 
 
 REPbase="/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance"
 #"/media/ORE/Abundance" 
 
-for SITE in Bresle #Oir Nivelle Scorff
+for SITE in Bresle Oir Nivelle Scorff 
 do
      
 cd $REPbase/$SITE
@@ -32,11 +32,11 @@ cd $REPbase/$SITE
      sed 's|ITER|'"$ITER"'|g' -i $STADE/analyse_"$STADE".R
      sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
 
-     #R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+     R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R #& # analyse dans R
     
-    rm -f $STADE/CODAindex.txt
+    #rm -f $STADE/CODAindex.txt
     #rm -f analyse_"$STADE".R
-    #rm -f analyse_"$STADE".Rout  
+    rm -f analyse_"$STADE".Rout  
     fi
     done
  done   

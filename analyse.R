@@ -44,7 +44,7 @@ inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -178,6 +178,6 @@ dev.off()
 
 #------------------------------------------------------------------------------
 ## SUMMARY
-if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
+#if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
