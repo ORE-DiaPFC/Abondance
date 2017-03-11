@@ -8,7 +8,7 @@
 library(coda)
 
 ##-----------------------------DATA ----------------------------------##
-year <- 2015
+#year <- 2016
 site <- "Nivelle"
 stade <- "tacon"
 
@@ -824,7 +824,7 @@ for (y in 2:Y_last) {
   }
 
 # Write the results in tables
-cnames <- c("mean", "sd","0.025", "0.05", "0.25","0.5","0.75","0.95","0.975")
+cnames <- c("mean", "sd","q0.025", "q0.05", "q0.25","q0.5","q0.75","q0.95","q0.975")
 write.table(YOY_tot_q,file="results/YOY_tot.txt", row.names=F, col.names=cnames, sep = "\t")
 write.table(YOYnat_q,file="results/YOYnat.txt", row.names=F, col.names=cnames, sep = "\t")
 write.table(YOYcomp_q,file="results/YOYcomp.txt", row.names=F, col.names=cnames, sep = "\t")
