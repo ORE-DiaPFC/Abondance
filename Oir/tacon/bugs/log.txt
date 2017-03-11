@@ -4,7 +4,7 @@ data loaded
 model compiled
 model is initialized
 model is already initialized
-500 updates took 14 s
+5000 updates took 295 s
 monitor set
 monitor set
 monitor set
@@ -30,31 +30,28 @@ monitor set
 monitor set
 monitor set
 monitor set
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-1000 updates took 28 s
-CODA files written
-no monitors set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set

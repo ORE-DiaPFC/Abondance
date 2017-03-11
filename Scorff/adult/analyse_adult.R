@@ -18,8 +18,8 @@ stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-# work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
-# setwd(work.dir)
+work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
+setwd(work.dir)
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -54,8 +54,8 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=5000 # Total number of steps in chains to save.
+nburnin=500 # Number of steps to "burn-in" the samplers.
+nstore=1000 # Total number of steps in chains to save.
 nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
@@ -178,6 +178,6 @@ dev.off()
 
 #------------------------------------------------------------------------------
 ## SUMMARY
-if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
+#if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 

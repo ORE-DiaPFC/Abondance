@@ -12,15 +12,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-# year <- "2016"
-# site <- "Oir"
-# stade <- "tacon"
+year <- "2016"
+site <- "Oir"
+stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
-# work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
-# setwd(work.dir)
-
+work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
+setwd(work.dir)
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -45,18 +44,19 @@ inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
 #system(paste("cp",model,paste(stade,"-",site,".txt",sep=""),sep=""))
 
+
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=500 # Number of steps to "burn-in" the samplers.
-nstore=1000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
+nburnin=5000 # Number of steps to "burn-in" the samplers.
+nstore=25000 # Total number of steps in chains to save.
+nthin=2 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -78,11 +78,38 @@ fit <- bugs(
 ## cleaning
 system("rm bugs/CODA*")
 
+### Save inits ###
 # save last values for inits
-#inits <- fit$last.values
-#if(site == "Nivelle") {save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))}
-#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+# inits <- fit$last.values
+# if(site == "Nivelle") {
+#   save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#   }
 
+
+######### JAGS ##########
+## Compile & adapt
+#Create, initialize, and adapt the model:
+# fit <- jags.model(
+#   model,
+#   data,inits,
+#   n.chains=nChains,
+#   n.adapt = adaptSteps)
+
+# # Run JAGS in parallel. Each Chain is sent to a seperate core.
+# cl <- makeSOCKcluster(nChains)                       # Request 3 cores. /!\ Need to check how many core  your computer has
+# fit.mcmc <- jags.parfit(cl,
+#                         data,
+#                         parameters,
+#                         model.dir,
+#                         inits,
+#                         n.chains=nChains,n.adapt=adaptSteps,n.update=nburnin,n.iter=nstore*nthin, thin=nthin
+# )
+# stopCluster(cl) #### /!\ Really important to do!
+
+# duration of the run 
+end.time = Sys.time()
+elapsed.time = difftime(end.time, start.time, units='mins')
+cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 
 ## BACKUP
@@ -151,6 +178,6 @@ dev.off()
 
 #------------------------------------------------------------------------------
 ## SUMMARY
-if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
+#if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 

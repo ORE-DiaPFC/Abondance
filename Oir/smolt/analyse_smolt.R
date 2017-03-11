@@ -18,10 +18,8 @@ stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/ORE/Abundance",site,stade,sep="/")
+work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
 setwd(work.dir)
-
-
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -52,6 +50,7 @@ model
 filename <- file.path(work.dir, model)
 #system(paste("cp",model,paste(stade,"-",site,".txt",sep=""),sep=""))
 
+
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
@@ -79,10 +78,12 @@ fit <- bugs(
 ## cleaning
 system("rm bugs/CODA*")
 
+### Save inits ###
 # save last values for inits
-#inits <- fit$last.values
-#if(site == "Nivelle") {save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))}
-#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+# inits <- fit$last.values
+# if(site == "Nivelle") {
+#   save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#   }
 
 
 ######### JAGS ##########

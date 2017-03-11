@@ -340,8 +340,8 @@ model {
             
     for (a in 1:2) {    
      # WINBUGS trick because dsum function is not available (available in JAGS)
-    # xC_F[t,a] <- m_F[t,a] + um_F[t,a]
-    #  C_F[t,a] ~ dnorm (xC_F[t,a],1000000)
+     xC_F[t,a] <- m_F[t,a] + um_F[t,a]
+      C_F[t,a] ~ dnorm (xC_F[t,a],1000000)
               
       ## Fish susceptible to die from other cause than fishing per sea age
       nv_m[t,a] <- Cm_MP[t,a] - m_F[t,a] # marked

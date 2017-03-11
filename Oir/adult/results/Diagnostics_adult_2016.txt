@@ -12,19 +12,19 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.298  
-rate_lambda  passed       1         0.224  
-p_MC90_1SW   passed       1         0.848  
-p_MC90_MSW   passed       1         0.596  
-lambda0      passed       1         0.310  
+shape_lambda passed       1         0.391  
+rate_lambda  passed       1         0.454  
+p_MC90_1SW   passed       1         0.849  
+p_MC90_MSW   passed       1         0.168  
+lambda0      passed       1         0.775  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      3.7786 0.089681 
-rate_lambda  passed      0.0172 0.000451 
-p_MC90_1SW   passed      0.1253 0.005723 
-p_MC90_MSW   passed      0.2955 0.014528 
-lambda0      passed    221.5138 7.184882 
+shape_lambda passed      3.6712  0.24009 
+rate_lambda  passed      0.0169  0.00127 
+p_MC90_1SW   failed      0.1253  0.01344 
+p_MC90_MSW   failed      0.3227  0.03972 
+lambda0      passed    228.7220 17.24491 
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -40,7 +40,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
-       0.492        0.258        0.541        0.800       -0.964 
+       1.490        1.692       -0.998       -0.606       -0.246 
 
 
 ---------------------------
@@ -49,12 +49,5 @@ Raftery and Lewis's diagnostic
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                    
-              Burn-in  Total Lower bound  Dependence
-              (M)      (N)   (Nmin)       factor (I)
- shape_lambda 18       20262 3746         5.41      
- rate_lambda  16       16250 3746         4.34      
- p_MC90_1SW   18       19480 3746         5.20      
- p_MC90_MSW   20       27940 3746         7.46      
- lambda0      15       14655 3746         3.91      
 
+You need a sample size of at least 3746 with these values of q, r and s

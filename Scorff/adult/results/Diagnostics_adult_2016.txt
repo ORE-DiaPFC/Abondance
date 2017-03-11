@@ -12,33 +12,33 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-sigmapi_MP   passed          1      0.0631 
-sigmapi_R    passed          1      0.3471 
-mupi_oF      passed       2001      0.1701 
-sigmapi_oF   passed          1      0.0617 
-diffF_1SW    passed          1      0.2121 
-diffF_MSW    passed          1      0.3396 
-diff1SW      passed          1      0.2906 
-diffMSW      passed       2001      0.1825 
-pi_oD        passed          1      0.0798 
-shape_lambda passed          1      0.1801 
-rate_lambda  passed          1      0.1355 
-lambda_tot0  passed          1      0.6136 
-                                          
-             Halfwidth Mean      Halfwidth
-             test                         
-sigmapi_MP   passed      0.35274 1.73e-02 
-sigmapi_R    passed      0.37165 6.28e-03 
-mupi_oF      passed      0.83583 3.36e-02 
-sigmapi_oF   failed      2.01282 3.99e-01 
-diffF_1SW    passed     -0.22315 1.58e-02 
-diffF_MSW    passed     -0.93534 4.52e-02 
-diff1SW      failed      0.47186 8.08e-02 
-diffMSW      passed      0.90697 9.01e-02 
-pi_oD        passed      0.19594 1.80e-02 
-shape_lambda passed      6.21314 2.65e-01 
-rate_lambda  passed      0.00994 4.42e-04 
-lambda_tot0  passed    634.08820 2.85e+01 
+sigmapi_MP   passed       401       0.84558
+sigmapi_R    passed         1       0.53609
+mupi_oF      passed         1       0.34409
+sigmapi_oF   passed         1       0.27791
+diffF_1SW    passed       401       0.29801
+diffF_MSW    passed         1       0.50898
+diff1SW      passed         1       0.48518
+diffMSW      passed         1       0.58811
+pi_oD        failed        NA       0.00372
+shape_lambda passed         1       0.78731
+rate_lambda  passed         1       0.68296
+lambda_tot0  passed         1       0.51476
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+sigmapi_MP   passed      0.318  0.01684 
+sigmapi_R    passed      0.372  0.00947 
+mupi_oF      passed      0.642  0.00415 
+sigmapi_oF   passed      0.692  0.02780 
+diffF_1SW    failed     -0.213  0.02561 
+diffF_MSW    passed     -0.792  0.06497 
+diff1SW      failed      0.583  0.15646 
+diffMSW      failed      1.016  0.12561 
+pi_oD        <NA>           NA       NA 
+shape_lambda failed      6.294  0.68377 
+rate_lambda  failed      0.010  0.00104 
+lambda_tot0  passed    580.261 57.82927 
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -53,10 +53,10 @@ The Z-score is calculated under the assumption that the two parts of the chain a
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW      diff1SW      diffMSW        pi_oD 
-      -2.386       -1.801       -3.473       -3.028        0.727       -1.230       -0.590       -0.213        3.160 
-shape_lambda  rate_lambda  lambda_tot0 
-       0.647        0.559        1.148 
+  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
+       1.440        0.701       -0.954       -1.191        2.950       -0.826 
+     diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
+      -0.063        2.440       -3.485        0.784        0.692        0.806 
 
 
 ---------------------------
@@ -65,19 +65,5 @@ Raftery and Lewis's diagnostic
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                     
-              Burn-in  Total  Lower bound  Dependence
-              (M)      (N)    (Nmin)       factor (I)
- sigmapi_MP   32       30836  3746          8.23     
- sigmapi_R    8        11354  3746          3.03     
- mupi_oF      7        7397   3746          1.97     
- sigmapi_oF   121      131736 3746         35.20     
- diffF_1SW    5        5391   3746          1.44     
- diffF_MSW    24       25796  3746          6.89     
- diff1SW      21       24552  3746          6.55     
- diffMSW      12       12362  3746          3.30     
- pi_oD        35       34530  3746          9.22     
- shape_lambda 16       17809  3746          4.75     
- rate_lambda  18       21819  3746          5.82     
- lambda_tot0  24       24390  3746          6.51     
 
+You need a sample size of at least 3746 with these values of q, r and s

@@ -4,14 +4,7 @@ data loaded
 model compiled
 initial values loaded but chain contain uninitialized variables
 initial values generated, model initialized
-500 updates took 1 s
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
+500 updates took 0 s
 monitor set
 monitor set
 monitor set
@@ -54,13 +47,6 @@ inference can not be made when sampler is in adaptive phase
 inference can not be made when sampler is in adaptive phase
 inference can not be made when sampler is in adaptive phase
 inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-inference can not be made when sampler is in adaptive phase
-1000 updates took 3 s
+1000 updates took 0 s
 CODA files written
 no monitors set
