@@ -12,37 +12,37 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                              
               Stationarity start     p-value 
               test         iteration         
-mu_B          passed       1001      4.80e-01
-sigmap_B      failed         NA      4.34e-02
-logit_int_Eu  passed          1      4.72e-01
-logit_flow_Eu failed         NA      6.56e-04
-sigmap_Eu     passed          1      7.13e-02
-p_B95         failed         NA      1.78e-04
-p_B00         passed          1      3.28e-01
-p_B02         failed         NA      1.01e-02
-shape_lambda  failed         NA      1.18e-02
-rate_lambda   passed       2001      9.10e-02
-mean_gamma    failed         NA      6.62e-05
-var_gamma     passed        501      7.37e-02
-test          failed         NA      2.14e-05
-R2            passed          1      9.94e-02
+mu_B          passed       10001     0.087859
+sigmap_B      passed           1     0.055910
+logit_int_Eu  passed           1     0.134761
+logit_flow_Eu passed       10001     0.268373
+sigmap_Eu     passed        7501     0.080705
+p_B95         passed           1     0.356449
+p_B00         passed           1     0.160608
+p_B02         passed           1     0.444178
+shape_lambda  passed        5001     0.084974
+rate_lambda   passed           1     0.115752
+mean_gamma    failed          NA     0.000959
+var_gamma     passed       10001     0.187606
+test          passed       10001     0.116361
+R2            passed       10001     0.083408
                                            
               Halfwidth Mean      Halfwidth
               test                         
-mu_B          passed     2.92e-01 3.53e-03 
-sigmap_B      <NA>             NA       NA 
-logit_int_Eu  passed    -2.51e+00 7.28e-03 
-logit_flow_Eu <NA>             NA       NA 
-sigmap_Eu     passed     2.88e-01 9.15e-03 
-p_B95         <NA>             NA       NA 
-p_B00         failed     7.14e-01 7.46e-02 
-p_B02         <NA>             NA       NA 
-shape_lambda  <NA>             NA       NA 
-rate_lambda   passed     7.44e-04 2.95e-05 
+mu_B          passed     2.74e-01 3.50e-03 
+sigmap_B      passed     8.71e-01 1.49e-02 
+logit_int_Eu  passed    -2.50e+00 4.00e-03 
+logit_flow_Eu passed    -7.42e-02 5.34e-03 
+sigmap_Eu     passed     2.95e-01 4.84e-03 
+p_B95         failed     2.45e-01 4.53e-02 
+p_B00         passed     6.12e-01 3.73e-02 
+p_B02         failed     2.30e-01 4.48e-02 
+shape_lambda  passed     2.61e+00 5.39e-02 
+rate_lambda   passed     6.85e-04 1.09e-05 
 mean_gamma    <NA>             NA       NA 
-var_gamma     passed     5.53e+06 2.19e+05 
-test          <NA>             NA       NA 
-R2            failed     2.09e-02 1.15e-02 
+var_gamma     passed     6.32e+06 1.28e+05 
+test          passed     1.54e-01 1.51e-02 
+R2            failed     2.61e-02 8.95e-03 
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -57,10 +57,12 @@ The Z-score is calculated under the assumption that the two parts of the chain a
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu         p_B95         p_B00         p_B02  shape_lambda 
-       14.779         3.004         1.367        -2.365         0.933         4.813        -4.356         1.405        -9.742 
-  rate_lambda    mean_gamma     var_gamma          test            R2 
-       -6.820       -10.096         3.068        -3.508         1.917 
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
+        7.863        -3.134         2.159        -2.086        -1.054 
+        p_B95         p_B00         p_B02  shape_lambda   rate_lambda 
+       -1.072        -2.978        -1.147        -2.020         0.354 
+   mean_gamma     var_gamma          test            R2 
+      -10.903        -2.704        -2.770         3.015 
 
 
 ---------------------------
@@ -72,18 +74,18 @@ Probability (s) = 0.95
                                                       
                Burn-in  Total  Lower bound  Dependence
                (M)      (N)    (Nmin)       factor (I)
- mu_B          4        4636   3746          1.24     
- sigmap_B      6        7934   3746          2.12     
- logit_int_Eu  3        4088   3746          1.09     
- logit_flow_Eu 3        4062   3746          1.08     
- sigmap_Eu     10       12834  3746          3.43     
- p_B95         125      133685 3746         35.70     
- p_B00         70       76909  3746         20.50     
- p_B02         189      205653 3746         54.90     
- shape_lambda  10       11064  3746          2.95     
- rate_lambda   8        8931   3746          2.38     
- mean_gamma    3        4088   3746          1.09     
- var_gamma     8        10468  3746          2.79     
- test          6        45514  3746         12.20     
- R2            3        4267   3746          1.14     
+ mu_B          12       21996  3746           5.87    
+ sigmap_B      18       25692  3746           6.86    
+ logit_int_Eu  12       17680  3746           4.72    
+ logit_flow_Eu 8        15736  3746           4.20    
+ sigmap_Eu     18       25518  3746           6.81    
+ p_B95         266      294120 3746          78.50    
+ p_B00         264      303908 3746          81.10    
+ p_B02         468      487578 3746         130.00    
+ shape_lambda  20       20072  3746           5.36    
+ rate_lambda   16       17528  3746           4.68    
+ mean_gamma    4        7766   3746           2.07    
+ var_gamma     24       28434  3746           7.59    
+ test          30       220960 3746          59.00    
+ R2            4        7832   3746           2.09    
 

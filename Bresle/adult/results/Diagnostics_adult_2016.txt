@@ -12,15 +12,15 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.0754 
-rate_lambda  passed       1         0.0988 
-lambda_tot0  passed       1         0.9441 
-                                         
-             Halfwidth Mean     Halfwidth
-             test                        
-shape_lambda passed      3.6837 0.128060 
-rate_lambda  passed      0.0243 0.000869 
-lambda_tot0  passed    164.1569 4.714110 
+shape_lambda passed       10001     0.223  
+rate_lambda  passed        2501     0.157  
+lambda_tot0  passed           1     0.593  
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+shape_lambda passed      3.627 0.06632  
+rate_lambda  passed      0.024 0.00042  
+lambda_tot0  passed    165.669 1.74561  
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -36,7 +36,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda  lambda_tot0 
-       0.977        0.813        0.024 
+       2.851        3.231       -0.877 
 
 
 ---------------------------
@@ -48,7 +48,7 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 16       17506 3746         4.67      
- rate_lambda  16       18270 3746         4.88      
- lambda_tot0  8        9123  3746         2.44      
+ shape_lambda 24       30996 3746         8.27      
+ rate_lambda  24       30240 3746         8.07      
+ lambda_tot0  12       17600 3746         4.70      
 

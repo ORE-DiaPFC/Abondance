@@ -143,5 +143,7 @@ inits_updated <- list(
 
 inits <- list(c( inits_fix,inits_updated))
 
-save(inits,file=paste(paste('inits/inits_',stade,'.Rdata',sep="")))
+#save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+
 
