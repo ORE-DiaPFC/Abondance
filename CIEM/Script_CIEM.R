@@ -53,7 +53,11 @@ colnames(Expl_rate) <- c("1SW (%)", "MSW (%)")
 write.csv(round(Expl_rate,1), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""))
 
 
-
+# con <- file("object.csv", open="wt")
+# writeLines(paste("# this csv file was created by mycode.R on 
+# 12/2/2005"), con)
+# write.csv( object, con)
+# close(con)
 
 
 
