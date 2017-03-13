@@ -26,6 +26,7 @@
 *.Rout
 
 /*/*/CODAindex.txt
+/*/*/CODAchain1.txt
 
 # Example code in package build process
 *-Ex.R
