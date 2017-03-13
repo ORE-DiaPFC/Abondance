@@ -32,7 +32,7 @@ cd $REPbase/$SITE
      sed 's|ITER|'"$ITER"'|g' -i $STADE/analyse_"$STADE".R
      sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
 
-     R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R #& # analyse dans R
+    # R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R #& # analyse dans R
     
     #rm -f $STADE/CODAindex.txt
     #rm -f analyse_"$STADE".R

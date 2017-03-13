@@ -1,6 +1,7 @@
 rm(list=ls())   # Clear memory
 
 
+
 ##------------------ R PACKAGES ------------------------------##
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
@@ -20,6 +21,9 @@ stade <- "STADE"
 ## WORKING DIRECTORY:
 work.dir<-paste("Rep",site,stade,sep="/")
 setwd(work.dir)
+
+# cleaning
+system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
