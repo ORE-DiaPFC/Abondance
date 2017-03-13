@@ -29,7 +29,7 @@ ___
 
 ## Membres
 
-Responsables:
+Responsables:  
 Sabrina Servanty  
 Étienne Prévost  
 Mathieu Buoro  
@@ -76,7 +76,7 @@ ___
 2. Dans un terminal (linux): ./run.sh 
 
 ___
-## DATA
+## DONNEES
 
 Lange F., Guéraud F., Huchet E., Rives J. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Nivelle river (France). [doi:10.15468/alsjvy](http://www.gbif.org/dataset/e96db990-bd86-4a79-89a2-446844a27811)
 
