@@ -30,15 +30,17 @@ ___
 ## Membres
 
 Responsables:
-Sabrina Servanty 1 & Étienne Prévost 2
+Sabrina Servanty  
+Étienne Prévost  
+Mathieu Buoro  
 Ecobiop, INRA, Univ. Pau & Pays de l’Adour, Aquapôle INRA, 64310 Saint-Pée-sur-Nivelle
 INRA, Pôle GEST’AQUA, 64310 Saint-Pée-sur-Nivelle
-1 : sab.servanty[a]free.fr ; 2 : eprevost[a]st-pee.inra.fr
 
 Avec la participation de :  
-Gilles Euzenat, Jean-Louis Fagard, Françoise Fournel ; ONEMA, Pôle GEST’AQUA, 76260 Eu  
-Laurent Beaulaton ; ONEMA, Pôle GEST’AQUA, 35042 Rennes  
-Richard Delanoë ; ONEMA, Pôle GEST’AQUA, 50220 Ducey  
+Gilles Euzenat, Jean-Louis Fagard, Françoise Fournel ; AFB, Pôle GEST’AQUA, 76260 Eu  
+Laurent Beaulaton ; AFB, Pôle GEST’AQUA, 35042 Rennes  
+Richard Delanoë ; AFB, Pôle GEST’AQUA, 50220 Ducey  
+Quentin Josset; AFB, Pôle GEST’AQUA, Bresle
 Etienne Rivot, Marie Nevoux ; ESE, AgroCampus, INRA, 35042 Rennes  
 Frédéric Marchand ; INRA, U3E, Pôle GEST’AQUA, 35042 Rennes  
 Nicolas Jeannot ; INRA, U3E, Pôle GEST’AQUA, 56620 Pont-Scorff  
@@ -74,7 +76,7 @@ ___
 2. Dans un terminal (linux): ./run.sh 
 
 ___
-## DATA PAPER
+## DATA
 
 Lange F., Guéraud F., Huchet E., Rives J. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Nivelle river (France). [doi:10.15468/alsjvy](http://www.gbif.org/dataset/e96db990-bd86-4a79-89a2-446844a27811)
 
