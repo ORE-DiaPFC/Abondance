@@ -1,6 +1,7 @@
 rm(list=ls())   # Clear memory
 
 
+
 ##------------------ R PACKAGES ------------------------------##
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
@@ -20,6 +21,9 @@ stade <- "smolt"
 ## WORKING DIRECTORY:
 work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
 setwd(work.dir)
+
+# cleaning
+system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -44,7 +48,7 @@ inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -54,9 +58,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=500 # Number of steps to "burn-in" the samplers.
-nstore=1000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
+nburnin=5000 # Number of steps to "burn-in" the samplers.
+nstore=25000 # Total number of steps in chains to save.
+nthin=2 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -178,6 +182,6 @@ dev.off()
 
 #------------------------------------------------------------------------------
 ## SUMMARY
-if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
+#if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 

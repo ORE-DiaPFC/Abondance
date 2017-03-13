@@ -1,6 +1,7 @@
 rm(list=ls())   # Clear memory
 
 
+
 ##------------------ R PACKAGES ------------------------------##
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
@@ -20,6 +21,9 @@ stade <- "smolt"
 ## WORKING DIRECTORY:
 work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
 setwd(work.dir)
+
+# cleaning
+system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -54,9 +58,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=500 # Number of steps to "burn-in" the samplers.
-nstore=1000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
+nburnin=5000 # Number of steps to "burn-in" the samplers.
+nstore=25000 # Total number of steps in chains to save.
+nthin=2 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
