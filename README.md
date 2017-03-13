@@ -27,12 +27,22 @@ données vers les années pauvres en données.
 
 ___
 
-## Membres
+## MEMBRES
 
+<<<<<<< HEAD
 Responsables:  
 Sabrina Servanty  
 Étienne Prévost  
 Mathieu Buoro  
+||||||| parent of f121302... collaborators name added
+Responsables:
+Sabrina Servanty  
+Étienne Prévost  
+Mathieu Buoro  
+=======
+Responsables:  
+Sabrina Servanty, Étienne Prévost, Mathieu Buoro  
+>>>>>>> f121302... collaborators name added
 Ecobiop, INRA, Univ. Pau & Pays de l’Adour, Aquapôle INRA, 64310 Saint-Pée-sur-Nivelle
 INRA, Pôle GEST’AQUA, 64310 Saint-Pée-sur-Nivelle
 
