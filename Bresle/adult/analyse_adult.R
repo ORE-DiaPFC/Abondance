@@ -1,6 +1,7 @@
 rm(list=ls())   # Clear memory
 
 
+
 ##------------------ R PACKAGES ------------------------------##
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
@@ -20,6 +21,9 @@ stade <- "adult"
 ## WORKING DIRECTORY:
 work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
 setwd(work.dir)
+
+# cleaning
+system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##

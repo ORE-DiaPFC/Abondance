@@ -76,7 +76,7 @@ colnames(table) <- c("1SW",	"MSW",		"eggs (million)",	"eggs/CL")
 rownames(table) <- years
 
 #Conservation Limit:
-CL = 1.44
+CL = 1.44 # A REVISER?
 
 # Spawners:
 table[,"1SW"] <- fit$median$e_1SW # spawners 1SW
@@ -88,7 +88,7 @@ table[,"eggs/CL"] <- table[,"eggs (million)"] / CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock, egg deposition and attainment of CLs -",site," (",year,")
+writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
                              CL = 1.44 (millions)
                  ",sep=""), con)
 write.csv( round(table,2), con)
@@ -135,8 +135,8 @@ table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock, egg deposition and attainment of CLs -",site," (",year,") 
-                 CL = 3 eggs/m²
+writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+                 CL = ",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -147,7 +147,7 @@ site <- "Oir"
 stade <- "adult"
 nyear <- length(seq(1984,year,1))
 
-load("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/data/data_",stade,"_",year,".RData",sep="")) # DATA
+#load("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/data/data_",stade,"_",year,".RData",sep="")) # DATA
 load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
 
 
@@ -169,16 +169,21 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("Nesc_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 
-fec_1SW = 4635 # fecondité 1SW # Prevost 1996
-fec_MSW = 7965 # fecondite MSW # prevost 1996
-eggs_tot.mcmc = e_1SW.mcmc * fec_1SW + e_MSW.mcmc * fec_MSW
+prop.female <- read.csv(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
+fec_1SW = prop.female[,2] * 4635 # fecondité 1SW # Prevost 1996
+fec_MSW = prop.female[,3] * 7965 # fecondite MSW # prevost 1996
+
+eggs_tot.mcmc <- array(,dim=dim(e_1SW.mcmc))
+for (i in 1:dim(mcmc)[1]){
+eggs_tot.mcmc[i,] = e_1SW.mcmc[i,] * fec_1SW + e_MSW.mcmc[i,] * fec_MSW
+}
 eggs_tot <- apply(eggs_tot.mcmc,2,quantile, probs=0.5) #median
 
 # calculs basés sur la conservation limit des tableaux CIEM!! A REFAIRE à partir des données MAIS
-#/!\ chercher les données de surface d eproduction dans les données de juvéniles
+#/!\ chercher les données de surface de production dans les données de juvéniles
 #Conservation Limit de taux de depose oeufs
 CL = 3 # eggs/m²
-S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners / ajout de 31 pour tenir compte des affluents non proscptés
+S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners / pas de variation depuis le debut du suivi
 CL_eggs <- S_prod * CL # /!\ data$S_Sc starts in 1993 instead of 1994
 
 
@@ -191,8 +196,8 @@ table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock, egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL = 3 eggs/m²
+writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+                                  CL =",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -246,7 +251,9 @@ table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock, egg deposition and attainment of CLs -",site," (",year,")",sep=""), con)
+writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+                                  CL =",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ NOT revised from data
+                 ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
 
@@ -265,10 +272,10 @@ site <- "Nivelle"
 
 years <- seq(1984, year, 1)
 table <- array(, dim=c(length(years), 4))
-colnames(table) <- c( "smolt year","0+ parr", 	"adults",	"survival rate (%)")
+colnames(table) <- c( "PARR 0+ year","0+ parr", 	"adults",	"survival rate (%)")
 rownames(table) <- years
-smolt.years <- years+1
-table[,1] <- smolt.years
+#smolt.years <- years+1
+table[,1] <- years #smolt.years
   
 ## JUVENILES
 stade <- "tacon"
@@ -292,12 +299,12 @@ table[,4] <- (table[,3] / table[,2])*100
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle (parrs O+; cohort parr 0+ = smolt.years -1). 
+                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
                  Stocking is considered to adjust numbers"
                   ,sep=""), con)
-write.csv( round(table,2), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 
@@ -332,12 +339,12 @@ table[,4] <- (table[,3] / table[,2])*100
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle (parrs O+; cohort parr 0+ = smolt.years -1). 
+                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
                  Stocking is considered to adjust numbers"
                  ,sep=""), con)
-write.csv( round(table,2), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 ##________________________BRESLE (starting in 1984)
@@ -375,12 +382,12 @@ table[,4] <- (table[,3] / table[,2])*100
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle (parrs O+; cohort parr 0+ = smolt.years -1). 
+                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
                  Stocking is considered to adjust numbers"
                  ,sep=""), con)
-write.csv( round(table,2), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 
@@ -418,10 +425,10 @@ table[,4] <- (table[,3] / table[,2])*100
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle (parrs O+; cohort parr 0+ = smolt.years -1). 
+                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
                  Stocking is considered to adjust numbers"
                  ,sep=""), con)
-write.csv( round(table,2), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
