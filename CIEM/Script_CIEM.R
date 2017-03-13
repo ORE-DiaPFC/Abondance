@@ -136,7 +136,7 @@ table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                 CL = ",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data
+                 CL = ",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -182,14 +182,14 @@ eggs_tot <- apply(eggs_tot.mcmc,2,quantile, probs=0.5) #median
 # calculs basés sur la conservation limit des tableaux CIEM!! A REFAIRE à partir des données MAIS
 #/!\ chercher les données de surface de production dans les données de juvéniles
 #Conservation Limit de taux de depose oeufs
-CL = 3 # eggs/m²
-S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners / pas de variation depuis le debut du suivi
-CL_eggs <- S_prod * CL # /!\ data$S_Sc starts in 1993 instead of 1994
-
+# CL = 3 # eggs/m²
+# S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners / pas de variation depuis le debut du suivi
+# CL_eggs <- S_prod * CL # /!\ data$S_Sc starts in 1993 instead of 1994
+CL_eggs <- 0.12 # extracted from table 8 CIEM
 
 #Conservation Limit de taux de depose oeufs
 #CL_eggs = 0.12 # issue des tableaux CIEM, A REVOIR!!!
-ratio_CL <- eggs_tot / CL_eggs #* 1e6
+ratio_CL <- eggs_tot / (CL_eggs * 1e6)
 
 table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
@@ -197,7 +197,7 @@ table[,"eggs/CL"] <- ratio_CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL =",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data
+                                  CL =",CL_eggs,"
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -243,8 +243,8 @@ eggs_tot <- apply(eggs_tot.mcmc,2,quantile, probs=0.5) #median
 #/!\ chercher les données de surface d eproduction dans les données de juvéniles
 
 #Conservation Limit de taux de depose oeufs
-CL_eggs = 0.36 # issue des tableaux CIEM, A REVOIR!!!
-ratio_CL <- (eggs_tot/1e6) / CL_eggs
+CL_eggs = 0.36 # issue des tableaux CIEM, A REVOIR?
+ratio_CL <- eggs_tot / (CL_eggs * 1e6)
 
 table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
@@ -252,7 +252,7 @@ table[,"eggs/CL"] <- ratio_CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL =",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ NOT revised from data
+                                  CL =",CL_eggs," (with 3 eggs/m²) /!\ NOT revised from data
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
