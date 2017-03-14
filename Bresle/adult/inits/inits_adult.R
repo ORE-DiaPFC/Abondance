@@ -59,7 +59,7 @@ inits_fix <- list(
 #   180, 180,
 #   180 # 2016
 #   )
-lambda_tot = (data$Cm_Eu[,1] + data$Cm_Eu[,2]) * ((rowSums(data$Cm_B) + rowSums(Cum_B))/rowSums(data$Cm_B))
+lambda_tot = (data$Cm_Eu[,1] + data$Cm_Eu[,2]) * ((rowSums(data$Cm_B) + rowSums(data$Cum_B))/rowSums(data$Cm_B))
 
 # METTRE A JOUR /!\ TAILLE MATRICE
   # logit_pi_B = structure(.Data = c(
