@@ -252,7 +252,7 @@ table[,"eggs/CL"] <- ratio_CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL =",CL_eggs," (with 3 eggs/m²) /!\ NOT revised from data
+                                  CL =",CL_eggs,"
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
