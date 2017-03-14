@@ -6,7 +6,7 @@ YEAR=2016
 CHAINS=3
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
 ITER=25000 # Total number of steps in chains to save.
-THIN=2 # Number of steps to "thin" (1=keep every step).
+THIN=4 # Number of steps to "thin" (1=keep every step).
 
 
 REPbase="/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance"
