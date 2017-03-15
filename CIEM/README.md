@@ -1,5 +1,5 @@
 
-# TABLES FOR CIEM (Updated in 2016)  
+# TABLES FOR CIEM  
 
 - Table 7 - Exploitation rate in the river Scorff
 - Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs

@@ -45,17 +45,18 @@ Expl_rate <- cbind(
   Expl_rate_MSW = (C_F_MSW / n_MSW)*100  
     )
 
-Expl_rate <- rbind(Expl_rate,colMeans(Expl_rate))
+#Expl_rate <- rbind(Expl_rate,colMeans(Expl_rate))
 
-rownames(Expl_rate) <- c(seq(1994,year,1), "Average")
-colnames(Expl_rate) <- c("1SW (%)", "MSW (%)")
+rowname <- c(seq(1994,year,1))#, "Average")
+Expl_rate <- cbind(rowname,Expl_rate)
+colnames(Expl_rate) <- c("Year","1SW (%)", "MSW (%)")
 
 #write.csv(round(Expl_rate,1), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""))
 
 
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 7 - Exploitation rate in the river Scorff - 1994-",year,")",sep=""), con)
-write.csv( round(Expl_rate,1), con)
+#writeLines(paste("# Table 7 - Exploitation rate in the river Scorff - 1994-",year,")",sep=""), con)
+write.csv( round(Expl_rate,1), con, row.names = FALSE)
 close(con)
 
 
@@ -71,9 +72,9 @@ stade <- "adult"
 load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/Nivelle/adult/results/Results_adult_",year,".RData",sep=""))
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c("1SW",	"MSW",		"eggs (million)",	"eggs/CL")
-rownames(table) <- years
+table <- array(, dim=c(length(years), 5))
+colnames(table) <- c("Year","1SW",	"MSW",		"eggs (million)",	"eggs/CL")
+table[,"Year"] <- years #rownames(table) <- years
 
 #Conservation Limit:
 CL = 1.44 # A REVISER?
@@ -88,10 +89,10 @@ table[,"eggs/CL"] <- table[,"eggs (million)"] / CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
-                             Conservation Limit = 1.44 (millions)
-                 ",sep=""), con)
-write.csv( round(table,2), con)
+#writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
+                 #             Conservation Limit = 1.44 (millions)
+                 # ",sep=""), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 ##________________________ SCORFF (starting in 1994)
@@ -103,9 +104,9 @@ load("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/Scorff/tacon/data/data_tacon_2
 load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c("1SW",	"MSW",		"eggs (million)",	"eggs/CL")
-rownames(table) <- years
+table <- array(, dim=c(length(years), 5))
+colnames(table) <- c("Year","1SW",	"MSW",		"eggs (million)",	"eggs/CL")
+table[,"Year"] <- years #rownames(table) <- years
 
 # Spawners:
 table[,"1SW"] <- c(rep(NA,10), fit$median$e_1SW) # spawners 1SW
@@ -135,10 +136,10 @@ table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                 Conservation Limit = ",round(mean(CL_eggs/1e6),2)," (milliions / using 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
-                 ",sep=""), con)
-write.csv( round(table,2), con)
+# writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+#                  Conservation Limit = ",round(mean(CL_eggs/1e6),2)," (milliions / using 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
+#                  ",sep=""), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 
@@ -156,9 +157,9 @@ load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/resul
 
 years <- seq(1984, year, 1)
 nyear <- length(years)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c("1SW",	"MSW",		"eggs (million)",	"eggs/CL")
-rownames(table) <- years
+table <- array(, dim=c(length(years), 5))
+colnames(table) <- c("Year","1SW",	"MSW",		"eggs (million)",	"eggs/CL")
+table[,"Year"] <- years #rownames(table) <- years
 
 # Spawners:
 table[,"1SW"] <- fit$median$Nesc_1SW # spawners 1SW
@@ -196,10 +197,10 @@ table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  Conservation Limit =",CL_eggs," (millions)
-                 ",sep=""), con)
-write.csv( round(table,2), con)
+# writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+#                                   Conservation Limit =",CL_eggs," (millions)
+#                  ",sep=""), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 
@@ -217,9 +218,9 @@ load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/resul
 # retirer les individus non marqués des effectifs estimés n (n - (data$C_MC - data$Cm_MC))
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c("1SW",	"MSW",		"eggs (million)",	"eggs/CL")
-rownames(table) <- years
+table <- array(, dim=c(length(years), 5))
+colnames(table) <- c("Year","1SW",	"MSW",		"eggs (million)",	"eggs/CL")
+table[,"Year"] <- years #rownames(table) <- years
 
 # Spawners:
 table[,"1SW"] <- fit$median$n_1SW # spawners 1SW
@@ -248,10 +249,10 @@ table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  Conservation Limit =",CL_eggs," (millions)
-                 ",sep=""), con)
-write.csv( round(table,2), con)
+# writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
+#                                   Conservation Limit =",CL_eggs," (millions)
+#                  ",sep=""), con)
+write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
 
