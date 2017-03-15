@@ -45,7 +45,7 @@ if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 #if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 inits.tmp <- read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep=""))
-inits <- rep(list(inits.tmp),3)
+inits <- rep(list(inits.tmp),2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
@@ -57,28 +57,43 @@ filename <- file.path(work.dir, model)
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = 3 #length(inits) # Number of chains to run.
+nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=25000 # Total number of steps in chains to save.
-nthin=4 # Number of steps to "thin" (1=keep every step).
+nburnin=1000 # Number of steps to "burn-in" the samplers.
+nstore=5000 # Total number of steps in chains to save.
+nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
 start.time = Sys.time(); cat("Start of the run\n"); 
 
 ######### BUGS ##########
-fit <- bugs(
-  data
-  ,inits
-  ,model.file = filename
-  ,parameters
-  ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
-  ,DIC=FALSE
-  ,codaPkg = FALSE, clearWD=FALSE
-  #,debug=TRUE
-  ,working.directory=paste(work.dir,"bugs",sep="/")
+# fit <- bugs(
+#   data
+#   ,inits
+#   ,model.file = filename
+#   ,parameters
+#   ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
+#   ,DIC=FALSE
+#   ,codaPkg = FALSE, clearWD=FALSE
+#   #,debug=TRUE
+#   ,working.directory=paste(work.dir,"bugs",sep="/")
+# )
+
+SEED <- floor(runif(2, 100000, 999999))
+cl <- makePSOCKcluster(nChains)
+## fitting the model with OpenBUGS
+## using the preferred R2OpenBUGS interface
+fit <- bugs.parfit(cl, data, parameters, filename,
+                   n.iter=nstore + nburnin, n.thin=nthin,
+                   seed=SEED,
+                   program="openbugs",
+                   DIC=FALSE,
+                   #codaPkg = FALSE, clearWD=FALSE,
+                   #debug=TRUE,
+                   working.directory=paste(work.dir,"bugs",sep="/")
 )
+stopCluster(cl)
 
 ## cleaning
 system("rm bugs/CODA*")

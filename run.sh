@@ -3,22 +3,22 @@
 
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2016
-CHAINS=3
+CHAINS=2
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
-ITER=25000 # Total number of steps in chains to save.
-THIN=4 # Number of steps to "thin" (1=keep every step).
+ITER=10000 # Total number of steps in chains to save.
+THIN=5 # Number of steps to "thin" (1=keep every step).
 
 
 REPbase="/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance"
 #"/media/ORE/Abundance" 
 
-for SITE in Bresle #Nivelle Oir Scorff 
+for SITE in Oir #Scorff #Nivelle Bresle  
 do
      
 cd $REPbase/$SITE
      echo $SITE
      
-     for STADE in tacon smolt adult
+     for STADE in tacon #adult #smolt   
      do
       if [ -d "$STADE" ]; then # if directory exists...
   # Control will enter here if $DIRECTORY exists.

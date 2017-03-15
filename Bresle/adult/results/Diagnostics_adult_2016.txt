@@ -1,6 +1,17 @@
 =============================
 DIAGNOSTICS
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+shape_lambda          1          1
+rate_lambda           1          1
+lambda_tot0           1          1
+
+Multivariate psrf
+
+1
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -9,18 +20,48 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
+[[1]]
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed          1      0.7430 
-rate_lambda  passed          1      0.3791 
-lambda_tot0  passed       5001      0.0613 
+shape_lambda passed       1         0.461  
+rate_lambda  passed       1         0.340  
+lambda_tot0  passed       1         0.785  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      3.6844 0.047101 
-rate_lambda  passed      0.0243 0.000303 
-lambda_tot0  passed    168.3312 1.382674 
+shape_lambda passed      3.6257 0.040264 
+rate_lambda  passed      0.0238 0.000271 
+lambda_tot0  passed    169.5738 1.258302 
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.7763 
+rate_lambda  passed       1         0.4195 
+lambda_tot0  passed       1         0.0592 
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+shape_lambda passed      3.6237 0.043851 
+rate_lambda  passed      0.0239 0.000295 
+lambda_tot0  passed    167.8131 1.419483 
+
+[[3]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.315  
+rate_lambda  passed       1         0.255  
+lambda_tot0  passed       1         0.499  
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+shape_lambda passed      3.6205 0.042441 
+rate_lambda  passed      0.0237 0.000291 
+lambda_tot0  passed    170.4717 1.286544 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -31,16 +72,37 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda  lambda_tot0 
-       0.910        0.476       -1.454 
+       0.917        1.249        0.471 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda  lambda_tot0 
+      0.2514       0.0589      -0.8762 
+
+
+[[3]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda  lambda_tot0 
+     -1.2517      -1.3461      -0.0797 
+
 
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
@@ -48,7 +110,34 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 24       34744 3746         9.27      
- rate_lambda  32       35472 3746         9.47      
- lambda_tot0  12       18352 3746         4.90      
+ shape_lambda 24       36224 3746          9.67     
+ rate_lambda  32       38736 3746         10.30     
+ lambda_tot0  12       18172 3746          4.85     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 32       38008 3746         10.10     
+ rate_lambda  24       38056 3746         10.20     
+ lambda_tot0  12       18392 3746          4.91     
+
+
+[[3]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 32       35848 3746         9.57      
+ rate_lambda  32       34720 3746         9.27      
+ lambda_tot0  16       18600 3746         4.97      
+
 
