@@ -89,7 +89,7 @@ table[,"eggs/CL"] <- table[,"eggs (million)"] / CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
-                             CL = 1.44 (millions)
+                             Conservation Limit = 1.44 (millions)
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -136,7 +136,7 @@ table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                 CL = ",round(mean(CL_eggs/1e6),2)," (with 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
+                 Conservation Limit = ",round(mean(CL_eggs/1e6),2)," (milliions / using 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -197,7 +197,7 @@ table[,"eggs/CL"] <- ratio_CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL =",CL_eggs,"
+                                  Conservation Limit =",CL_eggs," (millions)
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
@@ -230,20 +230,17 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("n_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("n_MSW[",1:nyear,"]",sep="")] # female only
 
-
-#S_prod <- colSums(data$S_Sc) # surface de production juveniles accessible aux spawners 
-#CL_eggs <- S_prod[2:(nyear+1)] * CL 
-
-fec_1SW = 0.45 * 3485 # fecondité 1SW Female # A REVOIR
-fec_MSW = 0.80 * 5569 # fecondite MSW Female # A REVOIR
+## Fecondité moyenne: 5736
+fec_1SW = 0.49 * 4808 # fecondité 1SW Female et sex ratio A REVOIR / recalculé par Buoro en 2016
+fec_MSW = 0.73 * 8106 # fecondite MSW Female et sex ratio A REVOIR / recalculé par Buoro en 2016
 eggs_tot.mcmc = e_1SW.mcmc * fec_1SW + e_MSW.mcmc * fec_MSW
 eggs_tot <- apply(eggs_tot.mcmc,2,quantile, probs=0.5) #median
 
 # calculs basés sur la conservation limit des tableaux CIEM!! A REFAIRE à partir des données MAIS
 #/!\ chercher les données de surface d eproduction dans les données de juvéniles
-
-#Conservation Limit de taux de depose oeufs
-CL_eggs = 0.36 # issue des tableaux CIEM, A REVOIR?
+# S_prod <- c(rep(2725, 1:30),rep(3314, 30-length(years))) # surface de production juveniles accessible aux spawners / 2725 jusqu’à fin 2013 et on est ensuite passé à 3314 après.
+# CL_eggs <- S_prod * CL # /!\ data$S_Sc starts in 1993 instead of 1994
+CL_eggs <- 0.36 # extracted from table 8 CIEM
 ratio_CL <- eggs_tot / (CL_eggs * 1e6)
 
 table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
@@ -252,7 +249,7 @@ table[,"eggs/CL"] <- ratio_CL
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
-                                  CL =",CL_eggs,"
+                                  Conservation Limit =",CL_eggs," (millions)
                  ",sep=""), con)
 write.csv( round(table,2), con)
 close(con)
