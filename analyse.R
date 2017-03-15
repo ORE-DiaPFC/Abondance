@@ -142,6 +142,7 @@ if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
   gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
 }
+cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
 
 cat("\n---------------------------\n")
