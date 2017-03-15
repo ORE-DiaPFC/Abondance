@@ -44,7 +44,8 @@ if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
 #load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 #if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))
+inits.tmp <- read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep=""))
+inits <- rep(list(inits.tmp),2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
@@ -56,11 +57,11 @@ filename <- file.path(work.dir, model)
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = length(inits) # Number of chains to run.
+nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=25000 # Total number of steps in chains to save.
-nthin=2 # Number of steps to "thin" (1=keep every step).
+nstore=15000 # Total number of steps in chains to save.
+nthin=5 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -139,7 +140,7 @@ cat("=============================\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
-  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
+  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
 }
 
 
@@ -177,6 +178,7 @@ pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
 traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 # caterplot(fit.mcmc,parameters[i]) 
 #}
+gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 dev.off()
 
 

@@ -1,6 +1,26 @@
 =============================
 DIAGNOSTICS
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+sigmapi_MP         1.13       1.47
+sigmapi_R          1.00       1.00
+mupi_oF            1.00       1.00
+sigmapi_oF         1.00       1.00
+diffF_1SW          1.01       1.05
+diffF_MSW          1.01       1.05
+diff1SW            1.00       1.01
+diffMSW            1.00       1.00
+pi_oD              1.00       1.00
+shape_lambda       1.00       1.00
+rate_lambda        1.00       1.00
+lambda_tot0        1.00       1.00
+
+Multivariate psrf
+
+1.09
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -9,36 +29,70 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
+[[1]]
                                            
              Stationarity start     p-value
              test         iteration        
-sigmapi_MP   passed       401       0.84558
-sigmapi_R    passed         1       0.53609
-mupi_oF      passed         1       0.34409
-sigmapi_oF   passed         1       0.27791
-diffF_1SW    passed       401       0.29801
-diffF_MSW    passed         1       0.50898
-diff1SW      passed         1       0.48518
-diffMSW      passed         1       0.58811
-pi_oD        failed        NA       0.00372
-shape_lambda passed         1       0.78731
-rate_lambda  passed         1       0.68296
-lambda_tot0  passed         1       0.51476
+sigmapi_MP   passed       1         0.0994 
+sigmapi_R    passed       1         0.1892 
+mupi_oF      passed       1         0.9505 
+sigmapi_oF   passed       1         0.7301 
+diffF_1SW    passed       1         0.2133 
+diffF_MSW    passed       1         0.2341 
+diff1SW      passed       1         0.8640 
+diffMSW      passed       1         0.8281 
+pi_oD        passed       1         0.9868 
+shape_lambda passed       1         0.7666 
+rate_lambda  passed       1         0.8214 
+lambda_tot0  passed       1         0.4773 
                                         
              Halfwidth Mean    Halfwidth
              test                       
-sigmapi_MP   passed      0.318  0.01684 
-sigmapi_R    passed      0.372  0.00947 
-mupi_oF      passed      0.642  0.00415 
-sigmapi_oF   passed      0.692  0.02780 
-diffF_1SW    failed     -0.213  0.02561 
-diffF_MSW    passed     -0.792  0.06497 
-diff1SW      failed      0.583  0.15646 
-diffMSW      failed      1.016  0.12561 
-pi_oD        <NA>           NA       NA 
-shape_lambda failed      6.294  0.68377 
-rate_lambda  failed      0.010  0.00104 
-lambda_tot0  passed    580.261 57.82927 
+sigmapi_MP   passed      0.339 0.004005 
+sigmapi_R    passed      0.368 0.001891 
+mupi_oF      passed      0.643 0.001007 
+sigmapi_oF   passed      0.715 0.004837 
+diffF_1SW    passed     -0.378 0.004567 
+diffF_MSW    passed     -0.732 0.010261 
+diff1SW      passed      0.475 0.024191 
+diffMSW      passed      1.009 0.028685 
+pi_oD        passed      0.220 0.005928 
+shape_lambda passed      6.299 0.075603 
+rate_lambda  passed      0.010 0.000124 
+lambda_tot0  passed    605.208 7.541086 
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+sigmapi_MP   passed       1         0.3397 
+sigmapi_R    passed       1         0.0983 
+mupi_oF      passed       1         0.2256 
+sigmapi_oF   passed       1         0.9805 
+diffF_1SW    passed       1         0.8000 
+diffF_MSW    passed       1         0.6128 
+diff1SW      passed       1         0.1633 
+diffMSW      passed       1         0.0511 
+pi_oD        passed       1         0.8577 
+shape_lambda passed       1         0.1174 
+rate_lambda  passed       1         0.1426 
+lambda_tot0  passed       1         0.9815 
+                                          
+             Halfwidth Mean      Halfwidth
+             test                         
+sigmapi_MP   passed      0.30621 0.005392 
+sigmapi_R    passed      0.36836 0.001845 
+mupi_oF      passed      0.64320 0.000990 
+sigmapi_oF   passed      0.71685 0.004757 
+diffF_1SW    passed     -0.35152 0.004839 
+diffF_MSW    passed     -0.78284 0.011087 
+diff1SW      passed      0.46587 0.026531 
+diffMSW      passed      1.00336 0.026357 
+pi_oD        passed      0.21609 0.006938 
+shape_lambda passed      6.22257 0.070451 
+rate_lambda  passed      0.00986 0.000115 
+lambda_tot0  passed    607.46321 7.191439 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -49,21 +103,72 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
   sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
-       1.440        0.701       -0.954       -1.191        2.950       -0.826 
+     -1.6222       0.1728      -0.7636       0.4483      -1.2879       0.0997 
      diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
-      -0.063        2.440       -3.485        0.784        0.692        0.806 
+      0.3054       0.2793      -0.2714      -0.3730      -0.3457      -0.0840 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
+     -0.0501       0.3956       0.1184      -0.8714      -0.8953      -0.0463 
+     diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
+      1.5120      -1.5655      -0.6992      -3.3681      -3.1951      -0.2791 
+
 
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ sigmapi_MP   100      116900 3746          31.20    
+ sigmapi_R    20       24130  3746           6.44    
+ mupi_oF      10       19265  3746           5.14    
+ sigmapi_oF   15       20460  3746           5.46    
+ diffF_1SW    15       20085  3746           5.36    
+ diffF_MSW    30       48390  3746          12.90    
+ diff1SW      45       78360  3746          20.90    
+ diffMSW      40       50490  3746          13.50    
+ pi_oD        495      777150 3746         207.00    
+ shape_lambda 30       44250  3746          11.80    
+ rate_lambda  25       31130  3746           8.31    
+ lambda_tot0  40       47200  3746          12.60    
 
-You need a sample size of at least 3746 with these values of q, r and s
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ sigmapi_MP   200      211400 3746          56.40    
+ sigmapi_R    15       22745  3746           6.07    
+ mupi_oF      10       18500  3746           4.94    
+ sigmapi_oF   15       20305  3746           5.42    
+ diffF_1SW    10       19860  3746           5.30    
+ diffF_MSW    30       39280  3746          10.50    
+ diff1SW      40       48060  3746          12.80    
+ diffMSW      40       47790  3746          12.80    
+ pi_oD        350      476100 3746         127.00    
+ shape_lambda 30       45110  3746          12.00    
+ rate_lambda  30       47570  3746          12.70    
+ lambda_tot0  30       33010  3746           8.81    
+
+

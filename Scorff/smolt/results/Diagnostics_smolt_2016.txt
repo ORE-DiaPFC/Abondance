@@ -1,6 +1,22 @@
 =============================
 DIAGNOSTICS
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+rho                 1.06       1.25
+l_ML_dim            1.06       1.25
+sigmap_ML_dim       1.00       1.00
+junk                1.00       1.01
+shape_lambda        1.00       1.00
+rate_lambda         1.00       1.00
+mean_gamma          1.00       1.00
+var_gamma           1.00       1.00
+
+Multivariate psrf
+
+1.07
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -9,28 +25,54 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
-                                             
-              Stationarity start     p-value 
-              test         iteration         
-rho           failed        NA       3.31e-06
-l_ML_dim      passed       401       7.82e-02
-sigmap_ML_dim passed       301       5.97e-02
-junk          passed         1       2.83e-01
-shape_lambda  passed         1       2.50e-01
-rate_lambda   passed         1       2.17e-01
-mean_gamma    passed       401       1.20e-01
-var_gamma     passed         1       3.70e-01
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+rho           passed       1001      0.1105 
+l_ML_dim      passed       2001      0.2914 
+sigmap_ML_dim passed       3001      0.0668 
+junk          passed          1      0.3863 
+shape_lambda  passed          1      0.4409 
+rate_lambda   passed          1      0.3162 
+mean_gamma    passed          1      0.0974 
+var_gamma     passed          1      0.1411 
                                           
               Halfwidth Mean     Halfwidth
               test                        
-rho           <NA>            NA       NA 
-l_ML_dim      failed    1.44e+00 1.76e-01 
-sigmap_ML_dim failed    9.66e-01 2.06e-01 
-junk          failed    1.23e-01 1.29e-01 
-shape_lambda  passed    3.32e+00 1.83e-01 
-rate_lambda   passed    4.20e-04 2.78e-05 
-mean_gamma    passed    8.09e+03 9.27e+01 
-var_gamma     passed    2.16e+07 1.91e+06 
+rho           passed    5.69e-01 1.90e-02 
+l_ML_dim      failed    7.93e-01 1.78e-01 
+sigmap_ML_dim failed    1.51e+00 1.69e-01 
+junk          failed    3.15e-02 7.61e-02 
+shape_lambda  passed    3.55e+00 3.65e-02 
+rate_lambda   passed    4.51e-04 5.27e-06 
+mean_gamma    passed    7.98e+03 2.26e+01 
+var_gamma     passed    2.00e+07 2.75e+05 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+rho           passed       1001      0.0651 
+l_ML_dim      passed       3001      0.4450 
+sigmap_ML_dim passed       1001      0.0620 
+junk          passed          1      0.4874 
+shape_lambda  passed          1      0.2795 
+rate_lambda   passed          1      0.2751 
+mean_gamma    passed          1      0.1230 
+var_gamma     passed          1      0.2093 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+rho           passed     5.10e-01 1.57e-02 
+l_ML_dim      failed     1.07e+00 1.58e-01 
+sigmap_ML_dim failed     1.45e+00 1.74e-01 
+junk          failed    -4.74e-02 5.56e-02 
+shape_lambda  passed     3.49e+00 3.66e-02 
+rate_lambda   passed     4.44e-04 5.10e-06 
+mean_gamma    passed     7.99e+03 2.69e+01 
+var_gamma     passed     2.04e+07 2.94e+05 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -41,19 +83,64 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda   rate_lambda    mean_gamma     var_gamma 
-       -1.380         9.300        -6.232        -0.224         0.825         0.834        -0.850        -0.651 
+          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
+      -7.4177        6.9178       -1.1726        0.0424       -1.9903 
+  rate_lambda    mean_gamma     var_gamma 
+      -1.6969       -0.7418        0.8361 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
+        3.422        -3.702        -7.206         1.644         0.179 
+  rate_lambda    mean_gamma     var_gamma 
+        0.382        -0.998        -0.535 
+
 
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ rho           50       59100   3746          15.80    
+ l_ML_dim      15       22050   3746           5.89    
+ sigmap_ML_dim 1190     1115090 3746         298.00    
+ junk          90       103350  3746          27.60    
+ shape_lambda  20       23430   3746           6.25    
+ rate_lambda   20       24080   3746           6.43    
+ mean_gamma    10       19875   3746           5.31    
+ var_gamma     30       43130   3746          11.50    
 
-You need a sample size of at least 3746 with these values of q, r and s
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ rho           35       38730  3746         10.30     
+ l_ML_dim      15       21510  3746          5.74     
+ sigmap_ML_dim 420      370055 3746         98.80     
+ junk          70       75500  3746         20.20     
+ shape_lambda  20       23960  3746          6.40     
+ rate_lambda   20       24770  3746          6.61     
+ mean_gamma    10       18400  3746          4.91     
+ var_gamma     30       45580  3746         12.20     
+
+

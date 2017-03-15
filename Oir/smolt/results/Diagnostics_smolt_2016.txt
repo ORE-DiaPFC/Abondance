@@ -1,6 +1,21 @@
 =============================
 DIAGNOSTICS
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+logit_int_MC           1          1
+logit_flow_MC          1          1
+log_cess_MC            1          1
+shape_lambda           1          1
+rate_lambda            1          1
+mean_gamma             1          1
+var_gamma              1          1
+
+Multivariate psrf
+
+1
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -9,26 +24,50 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
+[[1]]
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int_MC  passed       1         0.7184 
-logit_flow_MC passed       1         0.0526 
-log_cess_MC   passed       1         0.2295 
-shape_lambda  passed       1         0.8390 
-rate_lambda   passed       1         0.8781 
-mean_gamma    passed       1         0.7485 
-var_gamma     passed       1         0.6012 
+logit_int_MC  passed       1         0.3716 
+logit_flow_MC passed       1         0.5808 
+log_cess_MC   passed       1         0.0922 
+shape_lambda  passed       1         0.7636 
+rate_lambda   passed       1         0.6233 
+mean_gamma    passed       1         0.1097 
+var_gamma     passed       1         0.4389 
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int_MC  passed     5.07e-01 1.00e-02 
-logit_flow_MC failed    -9.75e-02 1.14e-02 
-log_cess_MC   failed     1.03e-01 2.82e-02 
-shape_lambda  passed     2.48e+00 1.02e-01 
-rate_lambda   passed     2.08e-03 9.31e-05 
-mean_gamma    passed     1.21e+03 8.99e+00 
-var_gamma     passed     6.28e+05 3.46e+04 
+logit_int_MC  passed     5.02e-01 2.03e-03 
+logit_flow_MC passed    -9.08e-02 2.23e-03 
+log_cess_MC   passed     7.94e-02 5.36e-03 
+shape_lambda  passed     2.42e+00 1.37e-02 
+rate_lambda   passed     2.01e-03 1.27e-05 
+mean_gamma    passed     1.22e+03 2.37e+00 
+var_gamma     passed     6.66e+05 5.51e+03 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int_MC  passed       1         0.166  
+logit_flow_MC passed       1         0.424  
+log_cess_MC   passed       1         0.496  
+shape_lambda  passed       1         0.995  
+rate_lambda   passed       1         0.973  
+mean_gamma    passed       1         0.785  
+var_gamma     passed       1         0.907  
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int_MC  passed     5.05e-01 2.07e-03 
+logit_flow_MC passed    -9.28e-02 2.17e-03 
+log_cess_MC   passed     8.22e-02 5.40e-03 
+shape_lambda  passed     2.43e+00 1.44e-02 
+rate_lambda   passed     2.02e-03 1.31e-05 
+mean_gamma    passed     1.22e+03 2.42e+00 
+var_gamma     passed     6.64e+05 5.49e+03 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -39,21 +78,62 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
-        0.262         1.687        -3.009         0.433         0.419 
+       -1.481         0.214        -2.435         0.215         0.643 
    mean_gamma     var_gamma 
-       -0.502        -0.640 
+       -1.417        -0.810 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
+      -1.1401       -1.2888       -0.8089       -0.0227       -0.2365 
+   mean_gamma     var_gamma 
+       0.5299       -0.2433 
+
 
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
+                                                     
+               Burn-in  Total Lower bound  Dependence
+               (M)      (N)   (Nmin)       factor (I)
+ logit_int_MC  10       18700 3746         4.99      
+ logit_flow_MC 10       18910 3746         5.05      
+ log_cess_MC   10       18805 3746         5.02      
+ shape_lambda  15       21335 3746         5.70      
+ rate_lambda   15       21890 3746         5.84      
+ mean_gamma    10       19010 3746         5.07      
+ var_gamma     15       21100 3746         5.63      
 
-You need a sample size of at least 3746 with these values of q, r and s
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+               Burn-in  Total Lower bound  Dependence
+               (M)      (N)   (Nmin)       factor (I)
+ logit_int_MC  10       18810 3746         5.02      
+ logit_flow_MC 10       18910 3746         5.05      
+ log_cess_MC   10       19430 3746         5.19      
+ shape_lambda  15       22295 3746         5.95      
+ rate_lambda   15       22915 3746         6.12      
+ mean_gamma    10       18500 3746         4.94      
+ var_gamma     15       21495 3746         5.74      
+
+

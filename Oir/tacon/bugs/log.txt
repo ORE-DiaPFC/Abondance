@@ -2,56 +2,62 @@ OpenBUGS version 3.2.3 rev 1012
 model is syntactically correct
 data loaded
 model compiled
-model is initialized
-model is already initialized
-5000 updates took 295 s
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
-monitor set
+unable to generate initial values for node [09D4B960H] of type GraphT.Mixing
+model must be initialized before updating
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+model must be initialized before monitors used
+can not calculate DIC for this model
+model must be initialized before updating
+model must be initialized before monitors used
+model must be initialized before monitors used
+DIC monitor not set

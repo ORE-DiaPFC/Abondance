@@ -1,88 +1,66 @@
-
-> cat("=============================\n")
 =============================
-
-> cat("DIAGNOSTICS\n")
 DIAGNOSTICS
-
-> cat("=============================\n")
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
 
-> if (nChains > 1) {
-+	  cat("Convergence: gelman-Rubin R test\n")
-+	  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
-+	}
+             Point est. Upper C.I.
+shape_lambda          1          1
+rate_lambda           1          1
+p_MC90_1SW            1          1
+p_MC90_MSW            1          1
+lambda0               1          1
 
-> cat("\n---------------------------\n")
+Multivariate psrf
+
+1
 
 ---------------------------
-
-> cat("Heidelberger and Welch's convergence diagnostic\n")
 Heidelberger and Welch's convergence diagnostic
-
-> cat("
-+	heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting c ..." ... [TRUNCATED] 
 
 heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
-
-> heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
+[[1]]
                                            
              Stationarity start     p-value
              test         iteration        
-<<<<<<< HEAD
-shape_lambda passed       1         0.391  
-rate_lambda  passed       1         0.454  
-p_MC90_1SW   passed       1         0.849  
-p_MC90_MSW   passed       1         0.168  
-lambda0      passed       1         0.775  
-||||||| parent of 00840a9... Mise à jour estimation 2016
-shape_lambda passed       10001     0.1734 
-rate_lambda  passed           1     0.0553 
-p_MC90_1SW   passed           1     0.1727 
-p_MC90_MSW   passed        5001     0.1327 
-lambda0      passed           1     0.3314 
-=======
-shape_lambda passed       5001      0.2675 
-rate_lambda  passed       5001      0.2906 
-p_MC90_1SW   passed          1      0.0672 
-p_MC90_MSW   passed          1      0.8971 
-lambda0      passed          1      0.9597 
->>>>>>> 00840a9... Mise à jour estimation 2016
+shape_lambda passed       1         0.953  
+rate_lambda  passed       1         0.818  
+p_MC90_1SW   passed       1         0.514  
+p_MC90_MSW   passed       1         0.919  
+lambda0      passed       1         0.817  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-<<<<<<< HEAD
-shape_lambda passed      3.6712  0.24009 
-rate_lambda  passed      0.0169  0.00127 
-p_MC90_1SW   failed      0.1253  0.01344 
-p_MC90_MSW   failed      0.3227  0.03972 
-lambda0      passed    228.7220 17.24491 
-||||||| parent of 00840a9... Mise à jour estimation 2016
-shape_lambda passed      3.7439 0.05646  
-rate_lambda  passed      0.0173 0.00022  
-p_MC90_1SW   passed      0.1255 0.00270  
-p_MC90_MSW   passed      0.3182 0.00779  
-lambda0      passed    219.2745 2.93325  
-=======
-shape_lambda passed      3.7920 0.045345 
-rate_lambda  passed      0.0173 0.000222 
-p_MC90_1SW   passed      0.1240 0.002493 
-p_MC90_MSW   passed      0.3090 0.007232 
-lambda0      passed    219.3195 2.719270 
+shape_lambda passed      3.8174 0.039148 
+rate_lambda  passed      0.0175 0.000192 
+p_MC90_1SW   passed      0.1249 0.002114 
+p_MC90_MSW   passed      0.3107 0.006255 
+lambda0      passed    221.6969 2.331400 
 
-> cat("\n---------------------------\n")
->>>>>>> 00840a9... Mise à jour estimation 2016
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.142  
+rate_lambda  passed       1         0.205  
+p_MC90_1SW   passed       1         0.349  
+p_MC90_MSW   passed       1         0.608  
+lambda0      passed       1         0.613  
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+shape_lambda passed      3.8107 0.034399 
+rate_lambda  passed      0.0175 0.000172 
+p_MC90_1SW   passed      0.1261 0.002122 
+p_MC90_MSW   passed      0.3093 0.005722 
+lambda0      passed    218.9082 2.276849 
+
 
 ---------------------------
-
-> cat("Geweke's convergence diagnostic\n")
 Geweke's convergence diagnostic
-
-> cat("
-+	Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a  ..." ... [TRUNCATED] 
 
 Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
 If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
@@ -90,60 +68,54 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
-
-> geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
-<<<<<<< HEAD
-       1.490        1.692       -0.998       -0.606       -0.246 
-||||||| parent of 00840a9... Mise à jour estimation 2016
-       1.243        0.951       -0.650       -2.387        0.666 
-=======
-        1.23         1.16        -1.78         1.03         1.11 
->>>>>>> 00840a9... Mise à jour estimation 2016
+     -0.0826       0.0986      -1.5012      -0.3209      -0.3973 
 
 
-> cat("\n---------------------------\n")
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+      -1.350       -1.168        0.375        0.996        0.753 
+
+
 
 ---------------------------
-
-> cat("Raftery and Lewis's diagnostic\n")
 Raftery and Lewis's diagnostic
-
-> raftery.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], q=0.025, r=0.005, s=0.95, converge.eps=0.001)
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-<<<<<<< HEAD
-||||||| parent of 00840a9... Mise à jour estimation 2016
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 24       32658 3746          8.72     
- rate_lambda  24       32490 3746          8.67     
- p_MC90_1SW   40       48128 3746         12.80     
- p_MC90_MSW   32       36960 3746          9.87     
- lambda0      18       26418 3746          7.05     
-=======
+ shape_lambda 30       40080 3746         10.70     
+ rate_lambda  30       43750 3746         11.70     
+ p_MC90_1SW   60       67545 3746         18.00     
+ p_MC90_MSW   40       49710 3746         13.30     
+ lambda0      20       24575 3746          6.56     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 24       29526 3746          7.88     
- rate_lambda  20       21756 3746          5.81     
- p_MC90_1SW   40       49410 3746         13.20     
- p_MC90_MSW   32       39496 3746         10.50     
- lambda0      24       30240 3746          8.07     
+ shape_lambda 20       24635 3746          6.58     
+ rate_lambda  20       24495 3746          6.54     
+ p_MC90_1SW   30       42400 3746         11.30     
+ p_MC90_MSW   40       49440 3746         13.20     
+ lambda0      20       23825 3746          6.36     
 
->>>>>>> 00840a9... Mise à jour estimation 2016
 
-<<<<<<< HEAD
-You need a sample size of at least 3746 with these values of q, r and s
-||||||| parent of 00840a9... Mise à jour estimation 2016
-=======
-> # Stop writing to the file
-> sink()
->>>>>>> 00840a9... Mise à jour estimation 2016
