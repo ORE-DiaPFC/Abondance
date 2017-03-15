@@ -45,7 +45,7 @@ if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 #if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 inits.tmp <- read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep=""))
-inits <- rep(list(inits.tmp),3)
+inits <- rep(list(inits.tmp),2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model

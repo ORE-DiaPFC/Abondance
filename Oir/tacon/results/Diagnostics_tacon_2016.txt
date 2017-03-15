@@ -1,6 +1,24 @@
 =============================
 DIAGNOSTICS
 =============================
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+sd_prem             1.05       1.08
+mup_rem             1.00       1.02
+int_width           1.01       1.02
+width_coef          1.00       1.01
+rate_lcpu           1.00       1.00
+sigma_dOir          1.00       1.00
+sigma_yOir          1.00       1.00
+sigma_gryrOir       1.00       1.00
+coef_PC             1.00       1.01
+
+Multivariate psrf
+
+1.01
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -9,30 +27,58 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
-                                             
-              Stationarity start     p-value 
-              test         iteration         
-sd_prem       failed        NA       2.77e-06
-mup_rem       passed         1       3.11e-01
-int_width     passed       301       4.10e-01
-width_coef    passed       301       5.29e-01
-rate_lcpu     passed       301       3.75e-01
-sigma_dOir    passed         1       2.68e-01
-sigma_yOir    passed         1       9.52e-01
-sigma_gryrOir passed         1       3.67e-01
-coef_PC       passed         1       8.23e-01
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed       1         0.9789 
+mup_rem       passed       1         0.0571 
+int_width     passed       1         0.4537 
+width_coef    passed       1         0.8525 
+rate_lcpu     passed       1         0.1515 
+sigma_dOir    passed       1         0.0931 
+sigma_yOir    passed       1         0.0681 
+sigma_gryrOir passed       1         0.3069 
+coef_PC       passed       1         0.3134 
                                         
               Halfwidth Mean   Halfwidth
               test                      
-sd_prem       <NA>          NA      NA  
-mup_rem       passed     0.805 0.00244  
-int_width     passed    -0.764 0.03540  
-width_coef    passed     0.791 0.03054  
-rate_lcpu     passed     0.560 0.04292  
-sigma_dOir    passed     0.718 0.00326  
-sigma_yOir    passed     1.272 0.03306  
-sigma_gryrOir passed     0.912 0.01078  
-coef_PC       passed     0.134 0.00874  
+sd_prem       passed     0.516 0.016859 
+mup_rem       passed     0.804 0.000493 
+int_width     passed    -0.781 0.007099 
+width_coef    passed     0.802 0.005512 
+rate_lcpu     passed     0.563 0.005760 
+sigma_dOir    passed     0.719 0.000612 
+sigma_yOir    passed     1.278 0.006462 
+sigma_gryrOir passed     0.915 0.001793 
+coef_PC       passed     0.132 0.001808 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed       1         0.7061 
+mup_rem       passed       1         0.8000 
+int_width     passed       1         0.8278 
+width_coef    passed       1         0.6533 
+rate_lcpu     passed       1         0.0778 
+sigma_dOir    passed       1         0.2731 
+sigma_yOir    passed       1         0.6592 
+sigma_gryrOir passed       1         0.8345 
+coef_PC       passed       1         0.4626 
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.524 0.019848 
+mup_rem       passed     0.804 0.000449 
+int_width     passed    -0.789 0.007147 
+width_coef    passed     0.807 0.005408 
+rate_lcpu     passed     0.564 0.005582 
+sigma_dOir    passed     0.719 0.000654 
+sigma_yOir    passed     1.279 0.006521 
+sigma_gryrOir passed     0.914 0.001844 
+coef_PC       passed     0.132 0.001914 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -43,21 +89,66 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
 
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
-       5.2540        1.0550       -1.7698        2.3750        0.0962 
+       -0.352        -1.523        -1.303         0.813         1.710 
    sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
-       1.0448        0.5791       -0.4697        0.4144 
+       -1.402        -1.082        -0.988        -0.768 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
+       -0.395        -0.393         0.465        -0.693         0.645 
+   sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
+       -1.595         0.361         0.112        -0.293 
+
 
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ sd_prem       575      662575 3746         177.00    
+ mup_rem       30       41650  3746          11.10    
+ int_width     75       93840  3746          25.10    
+ width_coef    75       89235  3746          23.80    
+ rate_lcpu     15       21510  3746           5.74    
+ sigma_dOir    15       22300  3746           5.95    
+ sigma_yOir    15       21335  3746           5.70    
+ sigma_gryrOir 15       20645  3746           5.51    
+ coef_PC       60       66220  3746          17.70    
 
-You need a sample size of at least 3746 with these values of q, r and s
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ sd_prem       1420     1588005 3746         424.00    
+ mup_rem       30       48060   3746          12.80    
+ int_width     90       113670  3746          30.30    
+ width_coef    50       59700   3746          15.90    
+ rate_lcpu     15       21870   3746           5.84    
+ sigma_dOir    10       18920   3746           5.05    
+ sigma_yOir    15       20540   3746           5.48    
+ sigma_gryrOir 15       20815   3746           5.56    
+ coef_PC       75       81615   3746          21.80    
+
+
