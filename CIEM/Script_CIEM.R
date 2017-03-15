@@ -296,12 +296,12 @@ table[,4] <- (table[,3] / table[,2])*100
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
-                  Adult numbers refer to the smolt year N: runs of N+1 and N+2
-                  These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
-                 Stocking is considered to adjust numbers"
-                  ,sep=""), con)
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                   ,sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
@@ -336,12 +336,12 @@ table[,4] <- (table[,3] / table[,2])*100
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
-                  Adult numbers refer to the smolt year N: runs of N+1 and N+2
-                  These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
-                 Stocking is considered to adjust numbers"
-                 ,sep=""), con)
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                  ,sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
@@ -379,12 +379,12 @@ table[,4] <- (table[,3] / table[,2])*100
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
-                  Adult numbers refer to the smolt year N: runs of N+1 and N+2
-                  These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
-                 Stocking is considered to adjust numbers"
-                 ,sep=""), con)
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                  ,sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
@@ -422,11 +422,11 @@ table[,4] <- (table[,3] / table[,2])*100
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-                  Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
-                  Adult numbers refer to the smolt year N: runs of N+1 and N+2
-                  These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
-                 Stocking is considered to adjust numbers"
-                 ,sep=""), con)
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                  ,sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
