@@ -40,8 +40,8 @@ stade <- "adult"
 dir <-  paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,sep="")
 if (file.exists(dir)){
 load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-n_1SW <-fit$median$e_1SW # spawners 1SW
-n_MSW <- fit$median$e_MSW # spawners MSW
+n_1SW <-fit$median$n_1SW # 1SW
+n_MSW <- fit$median$n_MSW #  MSW
 table[2:nrow(table),4] <- round(n_1SW,0) # 1995 to now
 table[2:nrow(table),5] <- round(n_MSW,0) # 1995 to now
 }
