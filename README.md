@@ -19,11 +19,15 @@ Les objectifs liés à cette fiche action étaient donc de pallier à cette déf
 standardisant les méthodes servant à produire les séries d’abondance sur tous les petits fleuves côtiers
 de l’ORE DiaPFC (la Nivelle, l’Oir, le Scorff, la Bresle) et ce, à tous les stades de vie faisant l’objet de
 suivi, i.e. adulte anadrome, juvénile en eau douce (ou tacon), juvénile migrant (ou smolt). Des modèles
-hiérarchiques ont ainsi été développés à des fins d’estimation dans un cadre bayésien. Ces modèles
+hiérarchiques ont ainsi été développés à des fins d’estimation dans un cadre bayésien (Servanty & Prévost 2016). Ces modèles
 facilitent l'intégration de sources de données multiples et associées à différentes échelles (spatiales ou
 temporelles). Ils permettent également de transférer de l’information entre les années riches en
 données vers les années pauvres en données.
 
+___
+## REFERENCES
+
+Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35)
 
 ___
 
@@ -80,10 +84,6 @@ Lange F., Guéraud F., Huchet E., Rives J. and Prévost E. 2017. Abundances and 
 
 Jeannot N., Azam D., Guilloux Y. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Scorff river (France). [doi:10.15468/mz4lyw](http://www.gbif.org/dataset/89064e3a-aa3c-495d-b236-092e1dae7042)
 
-___
-## REFERENCES
-
-Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35)
 
 ___
 ## LICENSE
