@@ -34,7 +34,7 @@ ___
 ## MEMBRES
 
 Responsables:  
-Sabrina Servanty, Étienne Prévost, Mathieu Buoro  
+Étienne Prévost & Mathieu Buoro  
 Ecobiop, INRA, Univ. Pau & Pays de l’Adour, Aquapôle INRA, 64310 Saint-Pée-sur-Nivelle
 INRA, Pôle GEST’AQUA, 64310 Saint-Pée-sur-Nivelle
 
