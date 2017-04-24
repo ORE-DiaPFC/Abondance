@@ -124,7 +124,7 @@ mydf <- as.matrix(fit$summary)
 mydf <- cbind(rownames(mydf), mydf)
 rownames(mydf) <- NULL
 colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))
-write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
+write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=",", row.names = FALSE)
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
