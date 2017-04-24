@@ -119,7 +119,12 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
-write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
+
+mydf <- as.matrix(fit$summary)
+mydf <- cbind(rownames(mydf), mydf)
+rownames(mydf) <- NULL
+colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))
+write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
