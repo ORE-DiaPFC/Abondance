@@ -68,3 +68,4 @@ monitor set
 monitor set
 monitor set
 monitor set
+25000 updates took 4293402 s
