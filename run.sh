@@ -12,9 +12,9 @@ THIN=10 # Number of steps to "thin" (1=keep every step).
 REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance"
 #"/media/ORE/Abundance" 
 
-i=0
+COUNTER=0
 
-for SITE in Bresle Oir Scorff Nivelle Bresle  
+for SITE in Bresle #Oir Scorff Nivelle Bresle  
 do
      
 cd $REPbase/$SITE
@@ -46,23 +46,19 @@ cd $REPbase/$SITE
 
    # R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
-    # Save PIDs of processes
-    i = i + 1
-    echo $!
-    pids[${i}]=$!
-    echo $!
+# Save PIDs of processes
+#COUNTER=$[COUNTER + 1]
+#echo $COUNTER
+
+# CLEANING
+    #rm -f $STADE/CODAindex.txt
+    #rm -f analyse_"$STADE".R
+    #rm -f analyse_"$STADE".Rout
+    #rm -f  $STADE/data/data_"$STADE"_TMP.R
+    
     fi
     done
  done   
     
-## CLEANING
-# for pid in ${pids[*]};
-#   do
-#   wait $pid; 
-#     
-#     rm -f $STADE/CODAindex.txt
-#     #rm -f analyse_"$STADE".R
-#     #rm -f analyse_"$STADE".Rout  
-#     rm -f  $STADE/data/data_"$STADE"_TMP.R
-#   
-# done;
+
+
