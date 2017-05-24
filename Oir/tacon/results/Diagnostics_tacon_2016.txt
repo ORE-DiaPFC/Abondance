@@ -95,9 +95,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
-       -0.352        -1.523        -1.303         0.813         1.710 
+      -0.3524       -1.5230       -1.3026        0.8127        1.7098 
    sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
-       -1.402        -1.082        -0.988        -0.768 
+      -1.4025       -1.0817       -0.9876       -0.7677 
 
 
 [[2]]
@@ -106,9 +106,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
-       -0.395        -0.393         0.465        -0.693         0.645 
+      -0.3954       -0.3933        0.4645       -0.6932        0.6454 
    sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
-       -1.595         0.361         0.112        -0.293 
+      -1.5950        0.3611        0.1118       -0.2929 
 
 
 

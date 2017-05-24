@@ -1,7 +1,11 @@
 ##-----------------------------INFO ----------------------------------##
-# year <- 2015
-# site <- "Oir"
-# stade <- "smolt"
+year <- "YEAR"
+site <- "SITE"
+stade <- "STADE"
+
+## WORKING DIRECTORY:
+#work.dir<-paste("Rep",site,stade,sep="/")
+#setwd(work.dir)
 
 
 ##-----------------------------DATA ----------------------------------##

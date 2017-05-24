@@ -1,17 +1,21 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "YEAR"
-site <- "SITE"
-stade <- "STADE"
+year <- "2016"
+site <- "Oir"
+stade <- "smolt"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")
 #setwd(work.dir)
 
 
-
 ##-----------------------------DATA ----------------------------------##
-data.dir <- paste("data/data-",stade,"-",year,".txt",sep="")
-data <- read.bugsdata(data.dir)
+fish <- read.bugsdata(paste("data/data_",stade,".txt",sep=""))
+eff_MC <- read.bugsdata(paste("data/data_effort.txt",sep=""))
+Q_MC <- read.bugsdata(paste("data/data_flow.txt",sep=""))
 
+data <- c(fish
+          ,eff_MC
+          ,Q_MC
+          )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep=""))

@@ -2,9 +2,9 @@
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "YEAR"
-site <- "SITE"
-stade <- "STADE"
+year <- "2016"
+site <- "Bresle"
+stade <- "smolt"
 
 
 ## WORKING DIRECTORY:

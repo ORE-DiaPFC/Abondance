@@ -4,9 +4,9 @@ library(rjags)
 library(coda)
 
 ##-----------------------------INFO ----------------------------------##
-year <- "YEAR"
-site <- "SITE"
-stade <- "STADE"
+year <- "2016"
+site <- "Bresle"
+stade <- "adult"
 
 
 ## WORKING DIRECTORY:

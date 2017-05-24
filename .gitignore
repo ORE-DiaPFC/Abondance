@@ -3,8 +3,9 @@
 /GT
 /doc
 /*/raw
-/*/*/bugs
 /*/*/bugs/*
+bugs/*
+
 
 # Formats
 *.zip

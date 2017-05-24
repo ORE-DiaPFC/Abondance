@@ -19,7 +19,7 @@ stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/home/basp-meco88/Documents/RESEARCH/PROJECTS/ORE/Abundance",site,stade,sep="/")
+work.dir<-paste("/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -27,7 +27,7 @@ system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
-source(paste('data/data_',stade,'.R',sep="")) # creation du fichier Rdata
+source(paste('data/data_',stade,'_TMP.R',sep="")) # creation du fichier Rdata
 load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
 
 
@@ -60,8 +60,8 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
-nthin=5 # Number of steps to "thin" (1=keep every step).
+nstore=50000 # Total number of steps in chains to save.
+nthin=10 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -119,7 +119,12 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
-write.table(fit$summary,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=";")
+
+mydf <- as.matrix(fit$summary)
+mydf <- cbind(rownames(mydf), mydf)
+rownames(mydf) <- NULL
+colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))
+write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=",", row.names = FALSE)
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
@@ -138,10 +143,14 @@ cat("=============================\n")
 cat("DIAGNOSTICS\n")
 cat("=============================\n")
 
+cat("Number of chains: ", fit$n.chains,"\n")
+cat("Number of iterations: ", fit$n.keep,"\n")
+
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
   gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
 }
+cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
 
 cat("\n---------------------------\n")

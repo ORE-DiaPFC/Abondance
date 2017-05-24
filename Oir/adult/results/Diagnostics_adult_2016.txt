@@ -5,15 +5,16 @@ Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
              Point est. Upper C.I.
-shape_lambda          1          1
-rate_lambda           1          1
-p_MC90_1SW            1          1
-p_MC90_MSW            1          1
-lambda0               1          1
+shape_lambda          1       1.01
+rate_lambda           1       1.01
+p_MC90_1SW            1       1.00
+p_MC90_MSW            1       1.00
+lambda0               1       1.00
 
 Multivariate psrf
 
 1
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
 Heidelberger and Welch's convergence diagnostic
@@ -26,37 +27,37 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.953  
-rate_lambda  passed       1         0.818  
-p_MC90_1SW   passed       1         0.514  
-p_MC90_MSW   passed       1         0.919  
-lambda0      passed       1         0.817  
+shape_lambda passed       1         0.342  
+rate_lambda  passed       1         0.205  
+p_MC90_1SW   passed       1         0.635  
+p_MC90_MSW   passed       1         0.901  
+lambda0      passed       1         0.111  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      3.8174 0.039148 
-rate_lambda  passed      0.0175 0.000192 
-p_MC90_1SW   passed      0.1249 0.002114 
-p_MC90_MSW   passed      0.3107 0.006255 
-lambda0      passed    221.6969 2.331400 
+shape_lambda passed      3.8279 0.029131 
+rate_lambda  passed      0.0175 0.000142 
+p_MC90_1SW   passed      0.1253 0.001659 
+p_MC90_MSW   passed      0.3113 0.004501 
+lambda0      passed    220.1381 1.771291 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.142  
-rate_lambda  passed       1         0.205  
-p_MC90_1SW   passed       1         0.349  
-p_MC90_MSW   passed       1         0.608  
-lambda0      passed       1         0.613  
+shape_lambda passed       1         0.4566 
+rate_lambda  passed       1         0.3361 
+p_MC90_1SW   passed       1         0.0678 
+p_MC90_MSW   passed       1         0.6603 
+lambda0      passed       1         0.1198 
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      3.8107 0.034399 
-rate_lambda  passed      0.0175 0.000172 
-p_MC90_1SW   passed      0.1261 0.002122 
-p_MC90_MSW   passed      0.3093 0.005722 
-lambda0      passed    218.9082 2.276849 
+shape_lambda passed      3.7944 0.026900 
+rate_lambda  passed      0.0174 0.000135 
+p_MC90_1SW   passed      0.1250 0.001619 
+p_MC90_MSW   passed      0.3079 0.004540 
+lambda0      passed    220.2220 1.821291 
 
 
 ---------------------------
@@ -74,7 +75,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
-     -0.0826       0.0986      -1.5012      -0.3209      -0.3973 
+   -0.034940     0.087897    -1.807765     0.008798     1.064555 
 
 
 [[2]]
@@ -83,7 +84,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
-      -1.350       -1.168        0.375        0.996        0.753 
+      0.4392       0.7079       0.9182       1.7018       0.5070 
 
 
 
@@ -97,11 +98,11 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 30       40080 3746         10.70     
- rate_lambda  30       43750 3746         11.70     
- p_MC90_1SW   60       67545 3746         18.00     
- p_MC90_MSW   40       49710 3746         13.30     
- lambda0      20       24575 3746          6.56     
+ shape_lambda 30       43470 3746         11.60     
+ rate_lambda  45       58785 3746         15.70     
+ p_MC90_1SW   60       64995 3746         17.40     
+ p_MC90_MSW   45       58830 3746         15.70     
+ lambda0      20       25355 3746          6.77     
 
 
 [[2]]
@@ -112,10 +113,10 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 20       24635 3746          6.58     
- rate_lambda  20       24495 3746          6.54     
- p_MC90_1SW   30       42400 3746         11.30     
- p_MC90_MSW   40       49440 3746         13.20     
- lambda0      20       23825 3746          6.36     
+ shape_lambda 20       25320 3746          6.76     
+ rate_lambda  20       25530 3746          6.82     
+ p_MC90_1SW   60       74355 3746         19.80     
+ p_MC90_MSW   30       46370 3746         12.40     
+ lambda0      30       42050 3746         11.20     
 
 
