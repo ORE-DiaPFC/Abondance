@@ -60,8 +60,8 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=25000 # Total number of steps in chains to save.
-nthin=5 # Number of steps to "thin" (1=keep every step).
+nstore=50000 # Total number of steps in chains to save.
+nthin=10 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -142,6 +142,9 @@ sink(paste('results/Diagnostics_',stade,"_",year,'.txt',sep=""))
 cat("=============================\n")
 cat("DIAGNOSTICS\n")
 cat("=============================\n")
+
+cat("Number of chains: ", fit$n.chains,"\n")
+cat("Number of iterations: ", fit$n.keep,"\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
