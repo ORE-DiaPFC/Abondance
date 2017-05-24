@@ -27,7 +27,7 @@ system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
-source(paste('data/data_',stade,'.R',sep="")) # creation du fichier Rdata
+source(paste('data/data_',stade,'_TMP.R',sep="")) # creation du fichier Rdata
 load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
 
 
@@ -142,6 +142,9 @@ sink(paste('results/Diagnostics_',stade,"_",year,'.txt',sep=""))
 cat("=============================\n")
 cat("DIAGNOSTICS\n")
 cat("=============================\n")
+
+cat("Number of chains: ", fit$n.chains,"\n")
+cat("Number of iterations: ", fit$n.keep,"\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
