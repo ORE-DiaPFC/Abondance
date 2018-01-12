@@ -79,8 +79,16 @@ Les packages R suivant doivent également être installés:
 > install.packages(c("R2OpenBUGS", "rjags", "coda", "mcmcplots"))
 
 Pour lancer les analyses:
+
+- Sur tous les sites:
 1. Ouvrir le fichier "run.sh" et faire les modifications nécessaires (nb d'itérations,...)
 2. Dans un terminal (linux): ./run.sh 
+
+- Pour un site:
+1. Ouvrir le script analyse_stade.R dans le dossier correspondant (ex: /SITE/adult/)
+2. Modifier le chemin du répertoire (localisation du fichier)
+3. Lancer le script dans R
+
 
 ___
 ## DONNEES
