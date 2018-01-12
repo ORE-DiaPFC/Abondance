@@ -8,7 +8,7 @@ BURNIN=5000 # Number of steps to "burn-in" the samplers.
 ITER=50000 # Total number of steps in chains to save.
 THIN=10 # Number of steps to "thin" (1=keep every step).
 
-
+# Change repos here:
 REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance"
 #"/media/ORE/Abundance" 
 
@@ -44,7 +44,7 @@ cd $REPbase/$SITE
     sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
      
 
-   # R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]
