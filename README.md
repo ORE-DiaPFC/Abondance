@@ -85,7 +85,7 @@ Pour lancer les analyses:
 2. Dans un terminal (linux): ./run.sh 
 
 - Pour un site:
-1. Ouvrir le script analyse_stade.R dans le dossier correspondant (ex: /SITE/adult/)
+1. Ouvrir le script *analyse_stade.R* dans le dossier correspondant (ex: /SITE/adult/)
 2. Modifier le chemin du répertoire (localisation du fichier)
 3. Lancer le script dans R
 
