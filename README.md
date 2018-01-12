@@ -74,7 +74,7 @@ Abundance/ # dossier contenant les analyses des indices d'abondances
 ___
 ## ANALYSES
 
-Les analyses se font sous [http://www.openbugs.net/w/Downloads](OpenBUGS) via le logiciel R. Openbugs et R doivent donc être préalablement  installés.  
+Les analyses se font sous [OpenBUGS](http://www.openbugs.net/w/Downloads) via le logiciel R. Openbugs et R doivent donc être préalablement  installés.  
 Les packages R suivant doivent également être installés:  
 > install.packages(c("R2OpenBUGS", "rjags", "coda", "mcmcplots"))
 
