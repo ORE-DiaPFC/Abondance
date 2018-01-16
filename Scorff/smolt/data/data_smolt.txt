@@ -26,7 +26,8 @@ NA,
 393,
 2372,
 1478,
-3203),
+3203 # 2016
+),
 
 # Annual number of smolt marked and released downstream Moulin de Lesl?
 Cm_ML = c(
@@ -51,7 +52,8 @@ Cm_ML = c(
 365,
 2351,
 1291,
-3204),
+3204 # 2016
+),
 
 # Annual number of smolt captured at Moulin de Lesl? and released unmarked downstream Moulin de Lesl?
 Cum_ML = c(
@@ -76,7 +78,8 @@ NA,
 28,
 21,
 186,
-1),
+1 # 2016
+),
 
 # Annual number of dead smolt at Moulin de Lesl?
 D_ML = c(
@@ -101,7 +104,7 @@ NA,
 1,
 17,
 2,
-2
+2 # 2016
 ),
 
 # Annual number of marked smolt captured at Moulin des Princes
@@ -127,7 +130,8 @@ Cm_MP = c(
 29,
 225,
 117,
-393),
+393 # 2016
+),
 
 # Annual number of unmarked smolt captured at Moulin des Princes
 Cum_MP = c(
@@ -152,7 +156,8 @@ NA ,
 698,
 766,
 488,
-805),
+805 # 2016
+),
 
 # Annual number of dead smolt at Moulin des Princes
 D_MP = c(
@@ -177,7 +182,8 @@ D_MP = c(
 1,
 25,
 13,
-2),
+2 # 2016
+),
 
 # No update (data from 1995 and 1996 when Lesl? was not installed yet)
 C_MP = c(594,336)
