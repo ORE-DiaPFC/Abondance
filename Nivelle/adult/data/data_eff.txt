@@ -33,7 +33,8 @@ NA	,
 0.867754909	,
 0.831322451	,
 0.824503311	,
-0.853420195	),
+0.853420195	# 2016
+),
 
 ## eff_Ol is the ratio of the number of trapping nights over the mean number of nights of trapping from 1994 to 2011 (excluded 1992,1993,2000, mean = 294)
 eff_Ol = c(NA	,
@@ -68,6 +69,7 @@ NA,
 0.891156463,
 0.853741497,
 0.833333333,
-0.856677524)
+0.856677524 # 2016
+)
 
 )
