@@ -1,5 +1,5 @@
 #################################################################################################################################################################
-## Ce fichier n'a pas besoin d'?tre mis ? jour
+## Ce fichier n'a pas besoin d'etre mis a jour
 ## Surface en 100m? de radier/rapide des stations ?chantillonn?es par enl?vement successif et qui ont servi dans la construction de la relation d'intercalibration				
 #################################################################################################################################################################
 Srr_inter[]		
