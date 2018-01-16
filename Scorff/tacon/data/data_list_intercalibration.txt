@@ -1,8 +1,6 @@
 # PAS DE MISE A JOUR
-# Il s'agit ici des stations qui ont été échantillonnées à la fois par IA et par enlèvements successifs
+# Il s'agit ici des stations qui ont Ã©tÃ© Ã©chantillonnÃ©es Ã  la fois par IA et par enlÃ¨vements successifs
 # Ces stations servent pour construire la relation d'intercalibration
 list(
-
 Ninter = 52
-
 )
