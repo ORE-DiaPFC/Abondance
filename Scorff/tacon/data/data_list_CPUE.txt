@@ -2,7 +2,7 @@ list(
 
 # Nombre d'ann?es de suivi depuis 1993
 # Devra ?tre mis ? jour
-Nyear = 24,
+Nyear = 24, # 2016
 
 # Q est la moyenne pond?r?e du d?bit annuel (m3/s). 
 # Pond?r? par le nombre de stations ?chantillonn?es un jour X une ann?e Y
@@ -32,7 +32,8 @@ Q = c(2.178947368	,
 0.615307692	,
 0.752692308	,
 1.1185,
-0.61),
+0.61 # 2016
+),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995 et 2010
 # Utilisation pour corriger la densit? observ?e
@@ -60,7 +61,8 @@ Q95_10 = c(1.197947368	,
 0.670285714	,
 0.670285714	,
 0.670285714	,
-0.670285714	),
+0.670285714	# 2016
+),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995
 # Utilisation pour corriger la densit? observ?e
@@ -88,7 +90,8 @@ Q95 = c(1.197947368	,
 1.197947368	,
 1.197947368	,
 1.197947368	,
-1.197947368	),
+1.197947368 # 2016
+),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1996
 # Utilisation pour corriger la densit? observ?e
@@ -116,7 +119,8 @@ Q96 = c(0.794666667	,
 0.794666667	,
 0.794666667	,
 0.794666667	,
-0.794666667	),
+0.794666667	# 2016
+),
 
 # Nombre de stations suivies par CPUE sur le Scorff et ses affluents
 # Pas de mise ? jour
