@@ -1,7 +1,7 @@
 list(
 
-### Nombre d'ann?es de suivi
-## Devra ?tre mis ? jour
+### Nombre d'annees de suivi
+## Devra etre mis a jour
 Nyear = 30,
 
 ## Nombre de donn?es (nombre de lignes) pour les pr?l?vements successifs (soit PE ou PTE)
@@ -19,11 +19,11 @@ Nyear = 30,
 # NIAinter = 117, # fait dans le script data_tacon.R
 
 ## Nombre de groupes (secteurs regroupant diff?rentes stations)
-## Pas de mise ? jour
+## Pas de mise a jour
 Ngroup = 13,
 
 ## Nombre de sites ?chantillonn?es par IA
-## Pas de mise ? jour
+## Pas de mise a jour
 NIA = 11,
 
 ## Nombre de sites sur lesquels sont fait des indices d'abondance et des p?ches par enl?vements successifs
