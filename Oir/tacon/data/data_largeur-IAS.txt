@@ -1,5 +1,5 @@
 ############################################################
-# Ce fichier n'a pas besoin d'?tre mis ? jour
+# Ce fichier n'a pas besoin d'etre mis a jour
 # W_Oir est la largeur moyenne en m?tre des stations suivies par IAS
 ############################################################# 
 W_Oir[]	
