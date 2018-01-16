@@ -1,6 +1,6 @@
-## Mettre à jour en recopiant les 17 dernières lignes pour les colonnes Z, S, H /!\ Conserver l'ordre;;;;;;;
-## Y est l'année donc ajouter le nouvel index de l'année (17 lignes);;;;;;;
-## Site: mettre à jour en incrémentant de un en un (17 lignes);;;;;;;
+## Mettre Ã  jour en recopiant les 17 derniÃ¨res lignes pour les colonnes Z, S, H /!\ Conserver l'ordre;;;;;;;
+## Y est l'annÃ©e donc ajouter le nouvel index de l'annÃ©e (17 lignes);;;;;;;
+## Site: mettre Ã  jour en incrÃ©mentant de un en un (17 lignes);;;;;;;
 ## Nat: idem que Site;;;;;;;
 Site;Nat;Comp;Res;Y;Z;S;H
 1;1;;;2;3;362;1
@@ -599,7 +599,7 @@ Site;Nat;Comp;Res;Y;Z;S;H
 594;351;;;30;5;230;1
 595;352;;;30;5;325;1
 596;353;;;30;5;931;1
-597;354;;;31;3;449;1
+597;354;;;31;3;449;1 # 2016 begin
 598;355;;;31;3;341;1
 599;356;;;31;3;462;1
 600;357;;;31;3;1462;1
@@ -615,4 +615,4 @@ Site;Nat;Comp;Res;Y;Z;S;H
 610;367;;;31;4;660;1
 611;368;;;31;5;230;1
 612;369;;;31;5;325;1
-613;370;;;31;5;931;1
+613;370;;;31;5;931;1 # 2016 end
