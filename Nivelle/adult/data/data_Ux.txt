@@ -36,5 +36,5 @@ C_U[,1]	C_U[,2]	C_U[,3]	C_U[,4]	Cum_U[,1]	Cum_U[,2]	Cum_U[,3]	Cum_U[,4]	Cm_U[,1]
 24	29	6	21	NA	NA	NA	NA	24	29	6	21
 22	5	5	27	NA	NA	NA	NA	22	5	5	27
 15	10	4	20	NA	NA	NA	NA	15	10	4	20
-19	5	2	14	NA	NA	NA	NA	19	5	2	14
+19	5	2	14	NA	NA	NA	NA	19	5	2	14 # 2016
 #END											
