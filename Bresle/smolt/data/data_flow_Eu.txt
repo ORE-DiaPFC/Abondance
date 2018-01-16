@@ -1,7 +1,7 @@
 list(
 
-#### D?bit pour Eu (l/s). Moyenne sur la p?riode 1 avril - 10 mai
-#### Ne sont indiqu?s que les ann?es o? il y a eu du pi?geage (n=20 years)
+#### Debit pour Eu (l/s). Moyenne sur la periode 1 avril - 10 mai
+#### Ne sont indiques que les annees ou il y a eu du piegeage (n=20 years)
 #### Covariate is standardized within WinBUGS
 
 Q_Eu = c(			
