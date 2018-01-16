@@ -1,6 +1,6 @@
 ################################################################################
-## Ce fichier n'a pas besoin d'?tre mis ? jour
-## Surface au 100m? en radier/rapide et en plat pour chaque secteur (group) consid?r?				
+## Ce fichier n'a pas besoin d'etre mis a jour
+## Surface au 100m2 en radier/rapide et en plat pour chaque secteur (group) considere				
 ################################################################################				
 StotPC[]	StotRR[]			
 32.67065	4.65871	#	Group 1	Oir1.2, 1.3, 1.4, IAS02
