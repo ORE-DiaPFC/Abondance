@@ -1,5 +1,5 @@
 ## PAS DE MISE A JOUR
-## Il s'agit ici des donn?es d'intercalibration (donn?es de l'article de Pr?vost & Nihouarn 1999)
+## Il s'agit ici des donnees d'intercalibration (donn?es de l'article de Pr?vost & Nihouarn 1999)
 ## C1 is the number fo fish captured during the first pass of successive removals				
 ## C2 is the number fo fish captured during the second pass of successive removals				
 ## S is the surface of each station in 100 m? euivalent rapid				
