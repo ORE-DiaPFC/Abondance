@@ -1,5 +1,5 @@
 ################################################################################
-### THIS FILE DOES NOT NEED TO BE UPDATED
+### /!\THIS FILE DOES NOT NEED TO BE UPDATED
 ## R_EF[t,g]: Annual number of fish removed for experiment by electric fishing between Uxondoa and Olha per breeding category (from 1984 to 1991);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
 ## M_EF[t,g]: Annual number of fish removed between Uxondoa and Olha and moved upstream Olha per breeding category (1990 & 1991);  1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW
 ## Cm_EF[t,g]: Annual number of marked fish captured by EF, angling or found dead between Uxondoa and Olha per breeding category (from 1984 to 1991); 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW 
