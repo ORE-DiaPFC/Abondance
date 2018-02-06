@@ -13,6 +13,9 @@ Procedure pour mettre à jour les données
 
 ![photo1](shot2.png)
 
-4. Enregistrer en rentrant un message pour décrire les changements - ici, "update 2017" - puis en cliquant sur le bouton vert "Commit changes".
+4. Enregistrer en rentrant un message pour décrire les changements - ici, "update 2017". 
+Si des corrections ont été apportées et qui concerneraient éventuellement les données avant 2017, merci de décrire les changements effectués dans la section "*Add an optional extended description...*"
+
+5. Valider en cliquant sur le bouton vert "Commit changes".
 
 Si il y un le mondre problème ou question, me contacter: mathieu.buoro@inra.fr
