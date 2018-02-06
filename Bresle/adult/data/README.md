@@ -6,7 +6,7 @@ Procedure pour mettre à jour les données
 
 ![photo1](shot1.png)
 
-3. Ajouter les données en bas à la suite de 2016
+3. Ajouter les données en bas (à la suite de 2016)
 
 ![photo1](shot2.png)
 
