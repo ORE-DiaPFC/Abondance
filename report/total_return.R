@@ -48,7 +48,7 @@ rownames(total) <- years
 write.csv(total, file=paste('report/Total_return_all.csv',sep=""),row.names = FALSE)
 
 
-png("report/total_return.png",width = 480, height = 480)
+png("report/total_return.png",width = 780, height = 480)
 mycol=c("#787878", "#1E90FF", "#FF6A6A", "#BCEE68")
 plot(NULL,xlim=c(1,length(years)),ylim=range(total,na.rm = TRUE),bty="n",ylab="Annual total number of fish",xaxt="n",xlab="Year of return")
 axis(side=1,line=1,labels = years,at=1:length(years))
