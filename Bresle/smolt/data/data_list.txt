@@ -1,12 +1,12 @@
 list(
 
-#Nyears: Length of time series from 1982 to 2016  
-Nyears = 35,
+#Nyears: Length of time series from 1982 to 2017  
+Nyears = 36,
 
 # NBeau: Number of years with trapping in Beauchamps 
-NBeau = 30,
+NBeau = 31,
 
 # NEu: Number of years with trapping in Eu           
-NEu = 22
+NEu = 23
 
 )
