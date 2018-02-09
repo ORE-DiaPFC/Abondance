@@ -5,15 +5,12 @@ year=2016
 sites <- c("Bresle", "Oir","Nivelle", "Scorff")
 stade <- "adult"
 
-# Nivelle: start 1984
-# Oir: 1984
-# Bresle: 1984 to now)
 years <- seq(1984, year, 1)
 res=list()
 total=NULL
  for (site in sites){
    table <- array(, dim=c(length(years), 4))
-   colnames(table) <- c( "Year of return","n_1SW", 	"n_MSW",	"n_tot")
+   colnames(table) <- c( "Year of return","1SW", 	"MSW",	"Total")
    rownames(table) <- years
    
    # load results
@@ -47,10 +44,10 @@ colnames(total) <- c(sites)
 rownames(total) <- years
 write.csv(total, file=paste('report/Total_return_all.csv',sep=""),row.names = FALSE)
 
-
+### Figures
 png("report/total_return.png",width = 780, height = 480)
 mycol=c("#787878", "#1E90FF", "#FF6A6A", "#BCEE68")
-plot(NULL,xlim=c(1,length(years)),ylim=range(total,na.rm = TRUE),bty="n",ylab="Annual total number of fish",xaxt="n",xlab="Year of return")
+plot(NULL,xlim=c(1,length(years)),ylim=range(total,na.rm = TRUE),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:4) {
   lines(total[,site],lty=1,lwd=3,col=mycol[site])  
