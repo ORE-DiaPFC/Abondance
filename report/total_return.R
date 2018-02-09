@@ -39,13 +39,13 @@ total=NULL
    #res[[paste0(site)]] <- table
    total <- cbind(total, tmp)
 
-write.csv(table, file=paste('report/Total_return_',site,'.csv',sep=""))
+write.csv(table, file=paste('report/Total_return_',site,'.csv',sep=""),row.names = FALSE)
 }
 
 #total <- data.frame(total)
 colnames(total) <- c(sites)
 rownames(total) <- years
-write.csv(total, file=paste('report/Total_return_all.csv',sep=""))
+write.csv(total, file=paste('report/Total_return_all.csv',sep=""),row.names = FALSE)
 
 
 png("report/total_return.png",width = 480, height = 480)
