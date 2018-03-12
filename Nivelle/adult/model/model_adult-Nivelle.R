@@ -436,9 +436,9 @@ for (g in 1:2) {
      lpi_Ol[17,g] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
      logit_pi_Ol[17,g] ~ dnorm(lpi_Ol[17,g],precpi_Ol[g])
      pi_Ol[17,g]<- exp(logit_pi_Ol[17,g])/(1+exp(logit_pi_Ol[17,g])) # back-transformation on the probability scale 
-     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_ol[17,g]) / sigmapi_Ol[g] # standardized residuals
+     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_Ol[17,g]) / sigmapi_Ol[g] # standardized residuals
      varpi_Ol[g] <- (sigmapi_Ol[g])*(sigmapi_Ol[g]) # residual variance of probability of capture at Olha
-     precpi_OL[g] <- 1/(varpi_OL[g]) # precision
+     precpi_Ol[g] <- 1/(varpi_Ol[g]) # precision
 
     
      Cm_O[17,g] ~ dbin(pi_Ol[17,g],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
@@ -456,7 +456,7 @@ for (g in 1:2) {
      lpi_Ol[t,g] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
      logit_pi_Ol[t,g] ~ dnorm(lpi_Ol[t,g],precpi_Ol[g])
      pi_Ol[t,g]<- exp(logit_pi_Ol[t,g])/(1+exp(logit_pi_Ol[t,g])) # back-transformation on the probability scale 
-     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_ol[t,g]) / sigmapi_Ol[g] # standardized residuals
+     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_Ol[t,g]) / sigmapi_Ol[g] # standardized residuals
     
       Cm_O[t,g] ~ dbin(pi_Ol[t,g],nm_2[t,g])
       Cum_O[t,g] ~ dbin(pi_Ol[t,g],num_2[t,g])
