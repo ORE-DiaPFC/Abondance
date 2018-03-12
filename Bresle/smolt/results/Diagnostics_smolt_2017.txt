@@ -1,0 +1,195 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  5000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+mu_B                1.04       1.11
+sigmap_B            1.87       3.70
+logit_int_Eu        1.08       1.31
+logit_flow_Eu       1.00       1.01
+sigmap_Eu           1.00       1.01
+p_B95               1.86       7.81
+p_B00               2.21       4.92
+p_B02               1.02       1.07
+shape_lambda        1.05       1.21
+rate_lambda         1.06       1.24
+mean_gamma          1.01       1.03
+var_gamma           1.06       1.23
+test                1.02       1.03
+R2                  1.02       1.04
+
+Multivariate psrf
+
+2.11
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                             
+              Stationarity start     p-value 
+              test         iteration         
+mu_B          passed       1501      0.106599
+sigmap_B      passed          1      0.488061
+logit_int_Eu  failed         NA      0.015083
+logit_flow_Eu passed          1      0.103210
+sigmap_Eu     passed       2001      0.296054
+p_B95         passed       2001      0.463574
+p_B00         passed       1001      0.086527
+p_B02         passed          1      0.684486
+shape_lambda  passed       2001      0.274739
+rate_lambda   passed       2001      0.187214
+mean_gamma    failed         NA      0.000284
+var_gamma     passed       2001      0.078446
+test          passed          1      0.169365
+R2            passed          1      0.090833
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+mu_B          passed     3.10e-01 4.05e-03 
+sigmap_B      passed     1.05e+00 4.42e-02 
+logit_int_Eu  <NA>             NA       NA 
+logit_flow_Eu passed    -8.67e-02 8.30e-03 
+sigmap_Eu     passed     3.09e-01 6.84e-03 
+p_B95         failed     2.11e-01 8.95e-02 
+p_B00         passed     8.52e-01 4.33e-02 
+p_B02         failed     4.86e-01 1.19e-01 
+shape_lambda  passed     2.39e+00 6.73e-02 
+rate_lambda   passed     7.07e-04 2.21e-05 
+mean_gamma    <NA>             NA       NA 
+var_gamma     passed     5.36e+06 1.95e+05 
+test          failed     1.20e-01 2.22e-02 
+R2            failed     4.13e-02 2.05e-02 
+
+[[2]]
+                                             
+              Stationarity start     p-value 
+              test         iteration         
+mu_B          failed         NA      9.64e-06
+sigmap_B      failed         NA      1.85e-04
+logit_int_Eu  passed       1501      7.14e-02
+logit_flow_Eu passed          1      8.18e-02
+sigmap_Eu     passed       1001      7.71e-02
+p_B95         passed          1      7.27e-02
+p_B00         passed          1      5.20e-02
+p_B02         passed          1      4.54e-01
+shape_lambda  failed         NA      9.37e-07
+rate_lambda   failed         NA      6.14e-07
+mean_gamma    failed         NA      1.81e-03
+var_gamma     failed         NA      1.80e-04
+test          passed          1      1.09e-01
+R2            passed          1      2.56e-01
+                                         
+              Halfwidth Mean    Halfwidth
+              test                       
+mu_B          <NA>           NA      NA  
+sigmap_B      <NA>           NA      NA  
+logit_int_Eu  passed    -2.4566 0.00881  
+logit_flow_Eu passed    -0.0925 0.00654  
+sigmap_Eu     passed     0.3085 0.00712  
+p_B95         failed     0.1395 0.06720  
+p_B00         failed     0.5401 0.09689  
+p_B02         failed     0.3690 0.11103  
+shape_lambda  <NA>           NA      NA  
+rate_lambda   <NA>           NA      NA  
+mean_gamma    <NA>           NA      NA  
+var_gamma     <NA>           NA      NA  
+test          failed     0.0972 0.01513  
+R2            failed     0.0580 0.01274  
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
+      11.1101       -0.5923        3.3603        1.1711       -5.5690 
+        p_B95         p_B00         p_B02  shape_lambda   rate_lambda 
+      -2.0935      -13.3387       -0.3226       -6.9212       -3.9572 
+   mean_gamma     var_gamma          test            R2 
+     -13.0734        2.0596       -0.6321       -0.4574 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
+       6.2395        6.8499        2.0414        2.7385       -1.6787 
+        p_B95         p_B00         p_B02  shape_lambda   rate_lambda 
+       9.5108       -0.7696        0.8431       -3.6616       -1.8340 
+   mean_gamma     var_gamma          test            R2 
+     -11.8782       -0.1241        2.1311       -1.4894 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ mu_B          4        4816   3746          1.290    
+ sigmap_B      9        13434  3746          3.590    
+ logit_int_Eu  3        4657   3746          1.240    
+ logit_flow_Eu 2        3866   3746          1.030    
+ sigmap_Eu     8        9748   3746          2.600    
+ p_B95         66       70170  3746         18.700    
+ p_B00         114      110823 3746         29.600    
+ p_B02         154      140462 3746         37.500    
+ shape_lambda  10       10758  3746          2.870    
+ rate_lambda   7        8120   3746          2.170    
+ mean_gamma    2        3767   3746          1.010    
+ var_gamma     12       13138  3746          3.510    
+ test          6        40954  3746         10.900    
+ R2            2        3741   3746          0.999    
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ mu_B          4        4636   3746          1.240    
+ sigmap_B      4        4660   3746          1.240    
+ logit_int_Eu  2        4020   3746          1.070    
+ logit_flow_Eu 2        3995   3746          1.070    
+ sigmap_Eu     5        6078   3746          1.620    
+ p_B95         116      129436 3746         34.600    
+ p_B00         95       93765  3746         25.000    
+ p_B02         40       38752  3746         10.300    
+ shape_lambda  8        8766   3746          2.340    
+ rate_lambda   10       11144  3746          2.970    
+ mean_gamma    2        3646   3746          0.973    
+ var_gamma     8        10468  3746          2.790    
+ test          3        15452  3746          4.120    
+ R2            3        4198   3746          1.120    
+
+
