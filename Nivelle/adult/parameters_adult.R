@@ -10,6 +10,10 @@ parameters <-c(
   ,"mupi_U"
   ,"sigmapi_U"
   
+  # standard deviation of the probabilities to be captured at Ohla
+  ,"sigmapi_Ol"
+  ,"eps_Ol" # standardized residuals in probability to be captured at Ohla
+  
   # Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
   ,"mupi_EF"
   ,"sigmapi_EF"
@@ -32,9 +36,11 @@ parameters <-c(
   ,"pi_EF" # Probabilities to be Re-captured by EF, angling or found dead
   
   ,"p_n12" # Probabilities to move from LN2 
-  ,"eps_Ol" # standardized residuals in probability of moving from LN2
+  ,"eps_12" # standardized residuals in probability of moving from LN2
   
   ,"p_21" # Probabilities to stay in UN  
+  
+  ,"pi_Ol" # annual probability to be captured at Ohla since 1984 given sea age (1:1SW vs 2:MSW
   
   
   ### TESTS for probability of moving from LN2
