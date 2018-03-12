@@ -1,7 +1,7 @@
-###############################################################################################################################
-## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  
-## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW
-###############################################################################################################################    
+###############################################################################################################################			
+## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  			
+## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW			
+###############################################################################################################################    			
 Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 3	0	14	20
 39	3	10	2
@@ -25,5 +25,6 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 13	2	16	5
 38	4	18	8
 18	10	34	20
-9	2	24	8 # 2016
+9	2	24	8
+13	6	23	7 # 2017
 #END			
