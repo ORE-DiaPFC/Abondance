@@ -34,7 +34,8 @@ C_MC = c(508,
 572,
 739,
 1248,
-508 # 2016
+508,
+899 # 2017
 ),
 
 #Annual number of smolt marked and released upstream from Moulin de Cerisel
@@ -68,7 +69,8 @@ Cm_MC = c(89,
 268,
 264,
 360,
-189 # 2016
+189,
+320 # 2017
 ),
 
 # Annual number of marked smolt recaptured at the trap
@@ -102,7 +104,8 @@ Cm_R = c(61,
 117,
 122,
 193,
-44 # 2016
+44,
+172 # 2017
 ),
 
 # Annual number of dead smolt (marked or unmarked, death at the trap)
@@ -136,7 +139,8 @@ D_MC = c(1,
 0,
 0,
 0,
-1 # 2016
+1,
+0 # 2017
 )
 
 )
