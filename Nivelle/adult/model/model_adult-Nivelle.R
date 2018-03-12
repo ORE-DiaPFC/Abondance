@@ -224,7 +224,7 @@ for (g in 1:4) {
   for (t in 9:Y) { ## 1_p_12: Exchangeable from 1992 to now on
     logit_p_n12[t,g] ~ dnorm(logit_mup_n12[g],precp_12[g])
     p_n12[t,g] <- exp(logit_p_n12[t,g])/(1+exp(logit_p_n12[t,g]))  # back-transformation on the probability scale
-    eps_Ol[t,g] <- (logit_p_n12[t,g] - logit_mup_n12[g]) / sigmap_12[g] # standardized residuals
+    eps_12[t,g] <- (logit_p_n12[t,g] - logit_mup_n12[g]) / sigmap_12[g] # standardized residuals
     } ## End of loop over years
   } # end of loop over breeding categories
   
@@ -436,9 +436,9 @@ for (g in 1:2) {
      lpi_Ol[17,g] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
      logit_pi_Ol[17,g] ~ dnorm(lpi_Ol[17,g],precpi_Ol[g])
      pi_Ol[17,g]<- exp(logit_pi_Ol[17,g])/(1+exp(logit_pi_Ol[17,g])) # back-transformation on the probability scale 
-     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_ol[17,g]) / sigmapi_Ol[a] # standardized residuals
-     varpi_Ol[a] <- (sigmapi_Ol[a])*(sigmapi_Ol[a]) # residual variance of probability of capture at Olha
-     precpi_OL[a] <- 1/(varpi_OL[a]) # precision
+     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_ol[17,g]) / sigmapi_Ol[g] # standardized residuals
+     varpi_Ol[g] <- (sigmapi_Ol[g])*(sigmapi_Ol[g]) # residual variance of probability of capture at Olha
+     precpi_OL[g] <- 1/(varpi_OL[g]) # precision
 
     
      Cm_O[17,g] ~ dbin(pi_Ol[17,g],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
@@ -456,7 +456,7 @@ for (g in 1:2) {
      lpi_Ol[t,g] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
      logit_pi_Ol[t,g] ~ dnorm(lpi_Ol[t,g],precpi_Ol[g])
      pi_Ol[t,g]<- exp(logit_pi_Ol[t,g])/(1+exp(logit_pi_Ol[t,g])) # back-transformation on the probability scale 
-     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_ol[t,g]) / sigmapi_Ol[a] # standardized residuals
+     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_ol[t,g]) / sigmapi_Ol[g] # standardized residuals
     
       Cm_O[t,g] ~ dbin(pi_Ol[t,g],nm_2[t,g])
       Cum_O[t,g] ~ dbin(pi_Ol[t,g],num_2[t,g])
