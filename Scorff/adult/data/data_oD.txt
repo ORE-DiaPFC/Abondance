@@ -1,7 +1,7 @@
-######################################################################################################################################
-##  Cm_D[t,a]: Annual number of marked fish recaptured dead (not from fishing) per sea age category
-##  Cum_D[t,a]: Annual number of unmarked fish recaptured dead (not from fishing) per sea age category
-######################################################################################################################################
+######################################################################################################################################			
+##  Cm_D[t,a]: Annual number of marked fish recaptured dead (not from fishing) per sea age category			
+##  Cum_D[t,a]: Annual number of unmarked fish recaptured dead (not from fishing) per sea age category			
+######################################################################################################################################			
 Cm_D[,1]	Cm_D[,2]	Cum_D[,1]	Cum_D[,2]
 0	0	0	1
 7	11	0	2
@@ -25,5 +25,6 @@ Cm_D[,1]	Cm_D[,2]	Cum_D[,1]	Cum_D[,2]
 0	0	0	0
 0	0	0	0
 4	0	1	1
-14	2	6	0 # 2016
+14	2	6	0
+25	0	7	1 # 2017
 #END			

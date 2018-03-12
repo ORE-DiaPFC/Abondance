@@ -1,8 +1,8 @@
-######################################################################################################################################
-##  C_MP[t,a]: Annual number of fish captured at Moulin des Princes per sea age category; 1:1SW, 2:MSW
-##  Cum_MP[t,a]: Annual number of fish captured at Moulin des Princes and released unmarked per sea age category (happened only once in 1995 for 1SW); 1:1SW, 2:MSW
-##  Cm_MP[t,a]: Annual number of fish captured and marked at Moulin des Princes per sea age category; 1:1SW, 2:MSW
-######################################################################################################################################
+######################################################################################################################################					
+##  C_MP[t,a]: Annual number of fish captured at Moulin des Princes per sea age category; 1:1SW, 2:MSW					
+##  Cum_MP[t,a]: Annual number of fish captured at Moulin des Princes and released unmarked per sea age category (happened only once in 1995 for 1SW); 1:1SW, 2:MSW					
+##  Cm_MP[t,a]: Annual number of fish captured and marked at Moulin des Princes per sea age category; 1:1SW, 2:MSW					
+######################################################################################################################################					
 C_MP[,1]	C_MP[,2]	Cm_MP[,1]	Cm_MP[,2]	Cum_MP[,1]	Cum_MP[,2]
 157	7	156	7	0	0
 508	43	500	42	1	0
@@ -26,5 +26,6 @@ C_MP[,1]	C_MP[,2]	Cm_MP[,1]	Cm_MP[,2]	Cum_MP[,1]	Cum_MP[,2]
 394	43	393	43	0	0
 433	76	433	76	0	0
 391	72	391	72	0	0
-386	39	385	39	1	0 # 2016
+386	39	385	39	1	0
+762	93	756	93	6	0 # 2017
 #END					
