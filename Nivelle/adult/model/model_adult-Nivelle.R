@@ -1,14 +1,14 @@
 ################################################################################
 ###           Model of CMR data to estimate spawners population size         ###
 ###                 of Salmo salar in Nivelle river.                         ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne PrÃ©vost                      ###
 ###                          December 2014                                   ###
 ################################################################################
 
 model {
 
 ##########################################################################################
-## Differences compare to Mélanie Brun's model:
+## Differences compare to MÃ©lanie Brun's model:
 ## - Correction for calculating number of eggs (there was a mistake, fecundity was applied to both males and females)
 ## - Hierarchy on lambda over breeding category
 ## - Tried to incorporate a flow effect in probability of capture at Uxondoa. But the effect of flow was non significant so it is not included. Selected temporal window was:
@@ -113,8 +113,9 @@ mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 ~ dunif(0,10)  # from 1984 to 1991
 mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 ~ dunif(0,10) # from 1992 to now on
 
 ### Mean and standard deviation of the probabilities to be captured at Uxondoa. Depend on sea age.
+### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
-  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] ~ dunif(0.01,10)
+  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] ~ dunif(0.01,10); sigmapi_Ol[a] ~ dunif(0.01,10)
   } ## End of loop over fish ages
 
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
@@ -431,8 +432,17 @@ for (g in 1:2) {
   nm_2[17,g] ~ dbin(p_n12[17,g],Cm_U[17,g])
   num_2[17,g] ~ dbin(p_n12[17,g],n_um[17,g])
   
-  Cm_O[17,g] ~ dbin(eff_Ol[17],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
-  Cum_O[17,g] ~ dbin(eff_Ol[17],num_2[17,g])
+# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
+     lpi_Ol[17,g] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
+     logit_pi_Ol[17,g] ~ dnorm(lpi_Ol[17,g],precpi_Ol[g])
+     pi_Ol[17,g]<- exp(logit_pi_Ol[17,g])/(1+exp(logit_pi_Ol[17,g])) # back-transformation on the probability scale 
+     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_ol[17,g]) / sigmapi_Ol[a] # standardized residuals
+     varpi_Ol[a] <- (sigmapi_Ol[a])*(sigmapi_Ol[a]) # residual variance of probability of capture at Olha
+     precpi_OL[a] <- 1/(varpi_OL[a]) # precision
+
+    
+     Cm_O[17,g] ~ dbin(pi_Ol[17,g],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
+     Cum_O[17,g] ~ dbin(pi_Ol[17,g],num_2[17,g])
   
   for (t in 18:28) { # from 2001 to 2011
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
@@ -442,9 +452,14 @@ for (g in 1:2) {
   for (t in 29:Y) { # from 2012 to now on (reduced trapping effort)
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
       num_2[t,g] ~ dbin(p_n12[t,g],n_um[t,g])
-      
-      Cm_O[t,g] ~ dbin(eff_Ol[t],nm_2[t,g])
-      Cum_O[t,g] ~ dbin(eff_Ol[t],num_2[t,g])
+# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
+     lpi_Ol[t,g] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
+     logit_pi_Ol[t,g] ~ dnorm(lpi_Ol[t,g],precpi_Ol[g])
+     pi_Ol[t,g]<- exp(logit_pi_Ol[t,g])/(1+exp(logit_pi_Ol[t,g])) # back-transformation on the probability scale 
+     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_ol[t,g]) / sigmapi_Ol[a] # standardized residuals
+    
+      Cm_O[t,g] ~ dbin(pi_Ol[t,g],nm_2[t,g])
+      Cum_O[t,g] ~ dbin(pi_Ol[t,g],num_2[t,g])
       } # end of loop over years
   } ## End of loop over 1SW breeding category
 
@@ -784,7 +799,7 @@ a_MSW[5] ~ dexp(0.25) T(0.02,) # Second spawning
 
 #######################################################################
 ########################################################################  
-### Retour (total et par age de mer) par année de naissance (cohorte c)
+### Retour (total et par age de mer) par annÃ©e de naissance (cohorte c)
 ## -----------------------------------------------------------------------
 ## c_1SW[t]: number of 1SW (either 1R or 2R)
 ## c_2SW[t]: annual number of 2SW (either 1R or 2R)
