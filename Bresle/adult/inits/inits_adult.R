@@ -6,13 +6,13 @@ invlogit<-function(x) {1/(1+exp(-(x)))}
 logit<-function(x) {log(x/(1-x))}
 
 ##-----------------------------DATA ----------------------------------##
-year <- 2016
+#year <- 2016
 site <- "Bresle"
 stade <- "adult"
 
 ## WORKING DIRECTORY:
-work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/',site,stade,sep="/")
-setwd(work.dir)
+#work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/',site,stade,sep="/")
+#setwd(work.dir)
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
