@@ -31,8 +31,8 @@ Q = c(2.178947368	,
 1.122564103	,
 0.615307692	,
 0.752692308	,
-1.1185,
-0.61 # 2016
+1.1185		,
+0.61 		,0,75# 2017
 ),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995 et 2010
@@ -61,7 +61,8 @@ Q95_10 = c(1.197947368	,
 0.670285714	,
 0.670285714	,
 0.670285714	,
-0.670285714	# 2016
+0.670285714	,
+0.670285714	# 2017
 ),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995
@@ -90,8 +91,8 @@ Q95 = c(1.197947368	,
 1.197947368	,
 1.197947368	,
 1.197947368	,
-1.197947368 # 2016
-),
+1.197947368	,
+1.197947368 # 20167),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1996
 # Utilisation pour corriger la densit? observ?e
@@ -119,7 +120,8 @@ Q96 = c(0.794666667	,
 0.794666667	,
 0.794666667	,
 0.794666667	,
-0.794666667	# 2016
+0.794666667	,
+0.794666667	# 2017
 ),
 
 # Nombre de stations suivies par CPUE sur le Scorff et ses affluents
