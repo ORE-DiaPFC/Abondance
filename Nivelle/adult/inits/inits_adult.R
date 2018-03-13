@@ -243,8 +243,10 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   #   25, 15, 10, 25),
   #   .Dim = c(32,4)),
   
-  n.tmp = data$C_U[data$Y,] / 0.4
+  n.tmp = data$C_U[data$Y,] / 0.1
+  #n.tmp = data$C_U / 0.1
   n = rbind(inits0$n, ceiling(n.tmp))
+  n[33,2]<-20
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
   # n_11 = structure(.Data = c(
