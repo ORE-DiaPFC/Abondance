@@ -131,7 +131,7 @@ write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep
 fit.mcmc <- as.mcmc(fit) # using bugs
 
 # DIAGNOSTICS:
-parameterstotest <-parameters # all parameters
+parameterstotest <- parameters # all parameters
 # parameterstotest <- c(
 #   "epsilon_p"
 # )
