@@ -92,6 +92,9 @@ Pour lancer les analyses:
 > R CMD BATCH analyse_adult.R
 
 
+library(MCMCvis)
+MCMCplot(fit, params = "pi_Ol")
+
 ___
 ## DONNEES
 
