@@ -1,7 +1,7 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2016"
-site <- "Oir"
-stade <- "adult"
+#year <- "2017"
+#site <- "Oir"
+#stade <- "adult"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")

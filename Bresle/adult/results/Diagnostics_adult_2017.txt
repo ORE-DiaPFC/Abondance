@@ -1,0 +1,110 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  5000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+shape_lambda       1.02       1.07
+rate_lambda        1.03       1.12
+lambda_tot0        1.01       1.05
+
+Multivariate psrf
+
+1.03
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.407  
+rate_lambda  passed       1         0.597  
+lambda_tot0  passed       1         0.438  
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+shape_lambda passed      2.8771 0.088180 
+rate_lambda  passed      0.0176 0.000532 
+lambda_tot0  passed    182.2584 6.547014 
+
+[[2]]
+                                            
+             Stationarity start     p-value 
+             test         iteration         
+shape_lambda failed       NA        0.000805
+rate_lambda  failed       NA        0.004172
+lambda_tot0  passed        1        0.340805
+                                     
+             Halfwidth Mean Halfwidth
+             test                    
+shape_lambda <NA>       NA    NA     
+rate_lambda  <NA>       NA    NA     
+lambda_tot0  passed    172  5.91     
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda  lambda_tot0 
+       1.686        1.431        0.671 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda  lambda_tot0 
+       2.722        3.282       -1.433 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 10       10758 3746         2.87      
+ rate_lambda  18       18300 3746         4.89      
+ lambda_tot0  15       19275 3746         5.15      
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 16       17504 3746         4.67      
+ rate_lambda  14       16258 3746         4.34      
+ lambda_tot0  12       12492 3746         3.33      
+
+
