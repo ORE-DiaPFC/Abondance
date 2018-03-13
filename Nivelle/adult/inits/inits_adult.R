@@ -351,7 +351,6 @@ num_2 = e_21
 inits_updated <- list(
   alpha_1=alpha_1,
   alpha_2=alpha_2,
-  e_2=e_2.tmp,
   e_21=e_21,
   logit_p_11_2=logit_p_11_2,
   logit_p_21=logit_p_21,
@@ -361,8 +360,8 @@ inits_updated <- list(
   n_11=n_11,
   p_1.1SW=p_1.1SW,
   no_ech_1.1SW=no_ech_1.1SW,
-  no_ech_MSW = no_ech_MSW
-  #num_2 =num_2
+  no_ech_MSW = no_ech_MSW,
+  num_2 =num_2
 )
 
 inits <- list(c( inits_fix,inits_updated))
