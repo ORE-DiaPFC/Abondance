@@ -48,7 +48,7 @@ inits_fix <- list(
   sigmapi_EF = 0.52,
   sigmapi_U = c( 0.7341,0.5641),
   sigmapi_Ol = 0.6,
-  logit_pi_Ol = log(data$eff_Ol / 1 - data$eff_Ol)
+  logit_pi_Ol = log(data$eff_Ol / (1 - data$eff_Ol))
 )
 
 
@@ -117,13 +117,13 @@ inits_fix <- list(
   #   3.0,2.0,1.0,3.0),
   #   .Dim = c(32,4)),
   
-e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ]
+e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ] +1
 e_21.tmp = ceiling(e_2.tmp / 2)
 e_21 = rbind(inits0$e_21, e_21.tmp)
 
-num_2.tmp <- data$C_U #cbind(rowSums(data$C_U[,1:2]), rowSums(data$C_U[,3:4]))
-num_2 <- array(NA,dim=c(data$Y,4))
-num_2[c(17,29:data$Y),] <- num_2.tmp[c(17,29:data$Y),]
+#num_2.tmp <- data$C_U #cbind(rowSums(data$C_U[,1:2]), rowSums(data$C_U[,3:4]))
+#num_2 <- array(NA,dim=c(data$Y,4))
+#num_2[c(29:data$Y),] <- num_2.tmp[c(29:data$Y),]
  
   ## METTRE A JOUR
   # logit_p_11_2 = c(
@@ -354,8 +354,8 @@ inits_updated <- list(
   n_11=n_11,
   p_1.1SW=p_1.1SW,
   no_ech_1.1SW=no_ech_1.1SW,
-  no_ech_MSW = no_ech_MSW,
-  num_2 =num_2
+  no_ech_MSW = no_ech_MSW
+  #num_2 =num_2
 )
 
 inits <- list(c( inits_fix,inits_updated))
