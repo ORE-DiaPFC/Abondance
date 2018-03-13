@@ -1,0 +1,156 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  5000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+sd_prem             1.01       1.03
+mup_rem             1.00       1.00
+int_width           1.01       1.03
+width_coef          1.00       1.00
+rate_lcpu           1.00       1.00
+sigma_dOir          1.00       1.00
+sigma_yOir          1.01       1.02
+sigma_gryrOir       1.00       1.01
+coef_PC             1.08       1.24
+
+Multivariate psrf
+
+1.04
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed       1         0.6472 
+mup_rem       passed       1         0.4332 
+int_width     passed       1         0.5329 
+width_coef    passed       1         0.5795 
+rate_lcpu     passed       1         0.0506 
+sigma_dOir    passed       1         0.0986 
+sigma_yOir    passed       1         0.2925 
+sigma_gryrOir passed       1         0.5276 
+coef_PC       passed       1         0.5730 
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.568 0.03814  
+mup_rem       passed     0.802 0.00139  
+int_width     passed    -0.784 0.02243  
+width_coef    passed     0.801 0.01660  
+rate_lcpu     passed     0.585 0.01787  
+sigma_dOir    passed     0.731 0.00193  
+sigma_yOir    passed     1.261 0.01593  
+sigma_gryrOir passed     0.898 0.00486  
+coef_PC       passed     0.127 0.00457  
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed          1      0.0644 
+mup_rem       passed       1501      0.3145 
+int_width     passed          1      0.1374 
+width_coef    passed          1      0.3779 
+rate_lcpu     passed          1      0.9326 
+sigma_dOir    passed          1      0.3208 
+sigma_yOir    passed          1      0.8935 
+sigma_gryrOir passed          1      0.7458 
+coef_PC       passed          1      0.2049 
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.584 0.04551  
+mup_rem       passed     0.802 0.00154  
+int_width     passed    -0.790 0.02138  
+width_coef    passed     0.805 0.01568  
+rate_lcpu     passed     0.572 0.01492  
+sigma_dOir    passed     0.733 0.00153  
+sigma_yOir    passed     1.245 0.01357  
+sigma_gryrOir passed     0.901 0.00469  
+coef_PC       passed     0.128 0.00699  
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
+       3.2484        0.3570        0.9466       -0.6116        0.6419 
+   sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
+      -2.4927       -1.1699        0.3440        0.7128 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
+     4.374312     -3.188394      0.009571     -0.449674      1.535085 
+   sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
+     1.854908      1.541234     -1.114334     -1.596132 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ sd_prem       555      805778 3746         215.00    
+ mup_rem       21       21735  3746           5.80    
+ int_width     52       57986  3746          15.50    
+ width_coef    20       21085  3746           5.63    
+ rate_lcpu     6        6756   3746           1.80    
+ sigma_dOir    7        7542   3746           2.01    
+ sigma_yOir    4        4816   3746           1.29    
+ sigma_gryrOir 5        6096   3746           1.63    
+ coef_PC       39       42399  3746          11.30    
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ sd_prem       445      779039 3746         208.00    
+ mup_rem       16       18198  3746           4.86    
+ int_width     46       50250  3746          13.40    
+ width_coef    26       27784  3746           7.42    
+ rate_lcpu     12       13906  3746           3.71    
+ sigma_dOir    5        6185   3746           1.65    
+ sigma_yOir    4        4955   3746           1.32    
+ sigma_gryrOir 10       12978  3746           3.46    
+ coef_PC       52       54364  3746          14.50    
+
+

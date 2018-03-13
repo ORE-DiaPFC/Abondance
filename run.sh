@@ -14,7 +14,7 @@ REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in  Bresle #Oir Scorff Nivelle Bresle  
+for SITE in   Nivelle #Oir #Scorff  Bresle  
 do
      
 cd $REPbase/$SITE
