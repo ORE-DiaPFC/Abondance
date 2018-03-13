@@ -124,7 +124,7 @@ inits_fix <- list(
   # num_2[c(29:data$Y),] <- num_2.tmp[c(29:data$Y),]
   
   
-e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ]
+e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ] +1
 e_21.tmp = ceiling(e_2.tmp / 2)
 e_21 = rbind(inits0$e_21, e_21.tmp)
 
@@ -361,8 +361,8 @@ inits_updated <- list(
   n_11=n_11,
   p_1.1SW=p_1.1SW,
   no_ech_1.1SW=no_ech_1.1SW,
-  no_ech_MSW = no_ech_MSW,
-  num_2 =num_2
+  no_ech_MSW = no_ech_MSW
+  #num_2 =num_2
 )
 
 inits <- list(c( inits_fix,inits_updated))
