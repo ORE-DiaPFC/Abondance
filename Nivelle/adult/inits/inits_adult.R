@@ -48,7 +48,7 @@ inits_fix <- list(
   sigmapi_EF = 0.52,
   sigmapi_U = c( 0.7341,0.5641),
   sigmapi_Ol = 0.6,
-  logit_pi_Ol = log(data$eff_Ol / 1 - data$eff_Ol)
+  logit_pi_Ol = log(data$eff_Ol / (1 - data$eff_Ol))
 )
 
 
@@ -116,14 +116,20 @@ inits_fix <- list(
   #   3.0,9.0,1.0,3.0,
   #   3.0,2.0,1.0,3.0),
   #   .Dim = c(32,4)),
+
+  ## nm_2[t,g]: Annual number of marked fish captured at Olha per breeding category (when trapping is total, globally from 92 to 2011)
+  ## num_2[t,g]: Annual number of unmarked fish captured at Olha per breeding category (when trapping is total, globally from 92 to 2011)
+  # num_2.tmp <- data$C_U #cbind(rowSums(data$C_U[,1:2]), rowSums(data$C_U[,3:4]))
+  # num_2 <- array(NA,dim=c(data$Y,4))
+  # num_2[c(29:data$Y),] <- num_2.tmp[c(29:data$Y),]
+  
   
 e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ]
 e_21.tmp = ceiling(e_2.tmp / 2)
 e_21 = rbind(inits0$e_21, e_21.tmp)
 
-num_2.tmp <- data$C_U #cbind(rowSums(data$C_U[,1:2]), rowSums(data$C_U[,3:4]))
-num_2 <- array(NA,dim=c(data$Y,4))
-num_2[c(17,29:data$Y),] <- num_2.tmp[c(17,29:data$Y),]
+num_2 = e_21
+
  
   ## METTRE A JOUR
   # logit_p_11_2 = c(
@@ -345,6 +351,7 @@ num_2[c(17,29:data$Y),] <- num_2.tmp[c(17,29:data$Y),]
 inits_updated <- list(
   alpha_1=alpha_1,
   alpha_2=alpha_2,
+  e_2=e_2.tmp,
   e_21=e_21,
   logit_p_11_2=logit_p_11_2,
   logit_p_21=logit_p_21,
