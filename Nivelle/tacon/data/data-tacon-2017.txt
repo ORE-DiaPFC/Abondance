@@ -3,7 +3,7 @@ list(
 Y_last=34, # 2017
 
 # Index dernier site. Add 17 per year because now only CPUE are done on 17 stations
-I=647,
+I=664, # 2017
 
 # Donnees de CPUE en sequence
 # Seules les dernieres ann?es sont par paquets de 17 stations.
