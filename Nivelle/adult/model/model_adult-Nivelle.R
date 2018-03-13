@@ -115,9 +115,9 @@ mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 ~ dunif(0,10) # from 1992 to now on
 ### Mean and standard deviation of the probabilities to be captured at Uxondoa. Depend on sea age.
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
-  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] ~ dunif(0.01,10); sigmapi_Ol[a] ~ dunif(0.01,10)
+  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] ~ dunif(0.01,10)
   } ## End of loop over fish ages
-
+  sigmapi_Ol ~ dunif(0.01,10)
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
 mupi_EF ~ dbeta(1,1) ; sigmapi_EF ~ dunif(0.01,10)
 
@@ -148,7 +148,7 @@ test_p_12[6] <- step(diff_12[6])
 
 #################################################################################
 ################################################################################
-## PROBABILITY DISTRIBUTIONS
+## PROBABILITY OF SPATIAL DISTRIBUTION AND CAPTURE
 ## -------------------------
 ## p_11_1[t]: annual probability to stay in LN1 from 1984 to 1991
 ## p_11_2[t]: annual probability to stay in LN1 since 1992
@@ -422,6 +422,22 @@ for (t in 1:Y) {
 ## 1/ Number of fish passing in HC zone = number of fish captured at Olah until 2011 except few years
 ################################
 ## Male or female 1SW
+
+# In 2000 (17) and from 2012 (29) trapping is not continuous at Olha
+# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
+     lpi_Ol[17] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
+     logit_pi_Ol[17] ~ dnorm(lpi_Ol[17],precpi_Ol)
+     pi_Ol[17]<- exp(logit_pi_Ol[17])/(1+exp(logit_pi_Ol[17])) # back-transformation on the probability scale 
+     eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
+     varpi_Ol <- (sigmapi_Ol)*(sigmapi_Ol) # residual variance of probability of capture at Olha
+     precpi_Ol <- 1/(varpi_Ol) # precision
+  for (t in 29:Y) {
+     lpi_Ol[t] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
+     logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
+     pi_Ol[t]<- exp(logit_pi_Ol[t])/(1+exp(logit_pi_Ol[t])) # back-transformation on the probability scale 
+     eps_Ol[t] <- (logit_pi_Ol[t] - lpi_Ol[t]) / sigmapi_Ol # standardized residuals
+     }
+
 for (g in 1:2) { 
   for (t in 9:16) { # from 1992 to 1999
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
@@ -429,20 +445,10 @@ for (g in 1:2) {
       } # end of loop over years
   
   # Year 2000 (reduced trapping effort)
-  nm_2[17,g] ~ dbin(p_n12[17,g],Cm_U[17,g])
-  num_2[17,g] ~ dbin(p_n12[17,g],n_um[17,g])
-  
-# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
-     lpi_Ol[17,g] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
-     logit_pi_Ol[17,g] ~ dnorm(lpi_Ol[17,g],precpi_Ol[g])
-     pi_Ol[17,g]<- exp(logit_pi_Ol[17,g])/(1+exp(logit_pi_Ol[17,g])) # back-transformation on the probability scale 
-     eps_Ol[17,g] <- (logit_pi_Ol[17,g] - lpi_Ol[17,g]) / sigmapi_Ol[g] # standardized residuals
-     varpi_Ol[g] <- (sigmapi_Ol[g])*(sigmapi_Ol[g]) # residual variance of probability of capture at Olha
-     precpi_Ol[g] <- 1/(varpi_Ol[g]) # precision
-
-    
-     Cm_O[17,g] ~ dbin(pi_Ol[17,g],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
-     Cum_O[17,g] ~ dbin(pi_Ol[17,g],num_2[17,g])
+      nm_2[17,g] ~ dbin(p_n12[17,g],Cm_U[17,g])
+      num_2[17,g] ~ dbin(p_n12[17,g],n_um[17,g])
+      Cm_O[17,g] ~ dbin(pi_Ol[17],nm_2[17,g]) # eff_Ol[t] is a ratio (data)
+      Cum_O[17,g] ~ dbin(pi_Ol[17],num_2[17,g])
   
   for (t in 18:28) { # from 2001 to 2011
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
@@ -452,14 +458,8 @@ for (g in 1:2) {
   for (t in 29:Y) { # from 2012 to now on (reduced trapping effort)
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
       num_2[t,g] ~ dbin(p_n12[t,g],n_um[t,g])
-# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
-     lpi_Ol[t,g] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
-     logit_pi_Ol[t,g] ~ dnorm(lpi_Ol[t,g],precpi_Ol[g])
-     pi_Ol[t,g]<- exp(logit_pi_Ol[t,g])/(1+exp(logit_pi_Ol[t,g])) # back-transformation on the probability scale 
-     eps_Ol[t,g] <- (logit_pi_Ol[t,g] - lpi_Ol[t,g]) / sigmapi_Ol[g] # standardized residuals
-    
-      Cm_O[t,g] ~ dbin(pi_Ol[t,g],nm_2[t,g])
-      Cum_O[t,g] ~ dbin(pi_Ol[t,g],num_2[t,g])
+      Cm_O[t,g] ~ dbin(pi_Ol[t],nm_2[t,g])
+      Cum_O[t,g] ~ dbin(pi_Ol[t],num_2[t,g])
       } # end of loop over years
   } ## End of loop over 1SW breeding category
 
@@ -478,6 +478,7 @@ nm_2[16,3] ~ dbin(p_n12[16,3],Cm_U[16,3])
 
 # Year 2000
 nm_2[17,3] ~ dbin(p_n12[17,3],Cm_U[17,3])
+Cm_O[17,3] ~ dbin(pi_Ol[17],nm_2[17,3])
 
 # Between 2001 and 2004
 for (t in 18:21) {
@@ -497,7 +498,7 @@ for (t in 27:28) {
 # from 2012 to now on (reduced trapping effort)
 for (t in 29:Y) {
     nm_2[t,3] ~ dbin(p_n12[t,3],Cm_U[t,3])
-    Cm_O[t,3] ~ dbin(eff_Ol[t],nm_2[t,3])
+    Cm_O[t,3] ~ dbin(pi_Ol[t],nm_2[t,3])
     } ## End of loop over years 
   
 ##########################
@@ -509,7 +510,7 @@ for (t in 9:16) {
 
 # Year 2000 (reduced trapping effort)
 num_2[17,3] ~ dbin(p_n12[17,3],n_um[17,3]) 
-Cum_O[17,3] ~ dbin(eff_Ol[17],num_2[17,3])
+Cum_O[17,3] ~ dbin(pi_Ol[17],num_2[17,3])
 
 for (t in 18:28) { # from 2001 to 2011
     num_2[t,3] ~ dbin(p_n12[t,3],n_um[t,3])
@@ -517,7 +518,7 @@ for (t in 18:28) { # from 2001 to 2011
 
 for (t in 29:Y) { # from 2012 to now on (reduced trapping effort)
     num_2[t,3] ~ dbin(p_n12[t,3],n_um[t,3]) 
-    Cum_O[t,3] ~ dbin(eff_Ol[t],num_2[t,3])
+    Cum_O[t,3] ~ dbin(pi_Ol[t],num_2[t,3])
     } ## End of loop over years
   
 ##########################
@@ -531,8 +532,8 @@ for (t in 9:16) {
 # Year 2000 (reduced trapping effort)
 nm_2[17,4] ~ dbin(p_n12[17,4],Cm_U[17,4])
 num_2[17,4] ~ dbin(p_n12[17,4],n_um[17,4]) 
-Cm_O[17,4] ~ dbin(eff_Ol[17],nm_2[17,4])
-Cum_O[17,4] ~ dbin(eff_Ol[17],num_2[17,4])
+Cm_O[17,4] ~ dbin(pi_Ol[17],nm_2[17,4])
+Cum_O[17,4] ~ dbin(pi_Ol[17],num_2[17,4])
 
 for (t in 18:28) { # from 2001 to 2011
     nm_2[t,4] ~ dbin(p_n12[t,4],Cm_U[t,4])
@@ -542,8 +543,8 @@ for (t in 18:28) { # from 2001 to 2011
 for (t in 29:Y) { # from 2012 to now on
   nm_2[t,4] ~ dbin(p_n12[t,4],Cm_U[t,4])
   num_2[t,4] ~ dbin(p_n12[t,4],n_um[t,4])  
-  Cm_O[t,4] ~ dbin(eff_Ol[t],nm_2[t,4])
-  Cum_O[t,4] ~ dbin(eff_Ol[t],num_2[t,4])
+  Cm_O[t,4] ~ dbin(pi_Ol[t],nm_2[t,4])
+  Cum_O[t,4] ~ dbin(pi_Ol[t],num_2[t,4])
   } ## End of loop over years  
 
 ##############################
