@@ -29,6 +29,8 @@ bugs/*
 
 /*/*/CODAindex.txt
 /*/*/CODAchain1.txt
+*chain1.txt
+*chain2.txt
 
 # Example code in package build process
 *-Ex.R
