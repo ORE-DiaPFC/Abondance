@@ -108,26 +108,29 @@ model {
 ## HYPERPRIORS ON PROBABILITIES
 ## ------
 #################################################################################
+###Shape and rate of the hyperprior on the precisions
+shape_prec ~ dgamma(0.005,0.005)
+rate_prec ~ dgamma(0.005,0.005)
 ### Mean and standard deviation of the probability to stay in LN1
-mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 ~ dunif(0.01,10)  # from 1984 to 1991
-mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 ~ dunif(0.01,10) # from 1992 to now on
+mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 <- sqrt(1/precp_11_1) ; precp_11_1 ~ dgamma(shape_prec,rate_prec)  # from 1984 to 1991
+mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 <- sqrt(1/precp_11_2) ; precp_11_2 ~ dgamma(shape_prec,rate_prec) # from 1992 to now on
 
 ### Mean and standard deviation of the probabilities to be captured at Uxondoa. Depend on sea age.
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
-  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] ~ dunif(0.01,10)
+  mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] <- sqrt(1/precpi_U[a]) ; precpi_U[a] ~ dgamma(shape_prec,rate_prec)
   } ## End of loop over fish ages
-  sigmapi_Ol ~ dunif(0.01,10)
+  sigmapi_Ol <- sqrt(1/precpi_Ol) ; precpi_Ol ~ dgamma(shape_prec,rate_prec)
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
-mupi_EF ~ dbeta(1,1) ; sigmapi_EF ~ dunif(0.01,10)
+mupi_EF ~ dbeta(1,1) ; sigmapi_EF <- sqrt(1/precpi_EF) ; precpi_EF ~ dgamma(shape_prec,rate_prec)
 
 ### Mean and standard deviation of the probabilities to move from LN2 (not stay in LN2). Depends on breeding categories.
   for (g in 1:4) {
-  mup_n12[g] ~ dbeta(1,1) ; sigmap_12[g] ~ dunif(0.01,10)
+  mup_n12[g] ~ dbeta(1,1) ; sigmap_12[g] <- sqrt(1/precp_12[g]) ; precp_12[g] ~ dgamma(shape_prec,rate_prec)
   } ## End of loop over breeding categories
 
 ### Mean and standard deviation of the probabilities to stay in UN
-mup_21 ~ dbeta(1,1) ; sigmap_21 ~ dunif(0.01,10)
+mup_21 ~ dbeta(1,1) ; sigmap_21 <- sqrt(1/precp_21) ; precp_21 ~ dgamma(shape_prec,rate_prec)
 
 ### Test for
 ## 1/ DIFFERENCES in probabilities to move from LN2
@@ -161,8 +164,6 @@ test_p_12[6] <- step(diff_12[6])
 #################################################################################
 ### Probability to stay in LN1 (Time dependent). Distinction between before and after 1992
 logit_mup_11_1 <- log(mup_11_1/(1-mup_11_1)) # logit transformation
-varp_11_1 <- (sigmap_11_1)*(sigmap_11_1) 
-precp_11_1 <- 1/(varp_11_1) # precision
 
 for (t in 1:8) { ## p_11_1: Exchangeable from 1984 to 1991
   logit_p_11_1[t] ~ dnorm(logit_mup_11_1,precp_11_1)
@@ -170,8 +171,6 @@ for (t in 1:8) { ## p_11_1: Exchangeable from 1984 to 1991
   } ## End of loop over years
 
 logit_mup_11_2 <- log(mup_11_2/(1-mup_11_2)) # logit transformation
-varp_11_2 <- (sigmap_11_2)*(sigmap_11_2)
-precp_11_2 <- 1/(varp_11_2) # precision
 
 for (t in 9:Y) { ## p_11_2: Exchangeable from 1992 to now on
   logit_p_11_2[t] ~ dnorm(logit_mup_11_2,precp_11_2)
@@ -182,8 +181,6 @@ for (t in 9:Y) { ## p_11_2: Exchangeable from 1992 to now on
 ### Probabilities to be captured at Uxondoa (time and sea age dependent)
 for (a in 1:2) {
   logit_mupi_U[a] <- log(mupi_U[a]/(1-mupi_U[a])) # logit transformation
-  varpi_U[a] <- (sigmapi_U[a])*(sigmapi_U[a]) 
-  precpi_U[a] <- 1/(varpi_U[a]) # precision
    
   for (t in 1:28) { ## pi_U: Exchangeable from 1984 to now on
     logit_pi_U[t,a] ~ dnorm(logit_mupi_U[a],precpi_U[a])
@@ -206,8 +203,6 @@ for (a in 1:2) {
 ######################################        
 ### Probabilities to be Re-captured by EF, angling or found dead (time dependent)
 logit_mupi_EF <- log(mupi_EF/(1-mupi_EF)) # logit transformation
-varpi_EF <- (sigmapi_EF)*(sigmapi_EF) 
-precpi_EF <- 1/(varpi_EF) # precision
   
 for (t in 1:8) { ## pi_EF: Exchangeable from 1984 to 1991
   logit_pi_EF[t] ~ dnorm(logit_mupi_EF,precpi_EF)
@@ -218,8 +213,6 @@ for (t in 1:8) { ## pi_EF: Exchangeable from 1984 to 1991
 ### Probabilities to move from LN2 (not stay in LN2) (depend on time and breeding categories). /!\ only possible since 1992
 for (g in 1:4) {
   logit_mup_n12[g] <- log(mup_n12[g]/(1-mup_n12[g])) # logit transformation
-  varp_12[g] <- (sigmap_12[g])*(sigmap_12[g]) 
-  precp_12[g] <- 1/(varp_12[g]) # precision
   
   for (t in 9:Y) { ## 1_p_12: Exchangeable from 1992 to now on
     logit_p_n12[t,g] ~ dnorm(logit_mup_n12[g],precp_12[g])
@@ -231,8 +224,6 @@ for (g in 1:4) {
 ##############################################
 ### Probabilities to stay in UN  (time dependent). /!\ Possible since 1990 and not 1992 because some spawners were released up from Olha
 logitp_21 <- log(mup_21/(1-mup_21)) # logit transformation
-varp_21 <- (sigmap_21)*(sigmap_21)
-precp_21 <- 1/(varp_21) # precision
   
 for (t in 7:Y) { ## p_21: Exchangeable from 1990 to now on (Spawners in HC)
   logit_p_21[t] ~ dnorm(logitp_21,precp_21)
@@ -429,8 +420,6 @@ for (t in 1:Y) {
      logit_pi_Ol[17] ~ dnorm(lpi_Ol[17],precpi_Ol)
      pi_Ol[17]<- exp(logit_pi_Ol[17])/(1+exp(logit_pi_Ol[17])) # back-transformation on the probability scale 
      eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
-     varpi_Ol <- (sigmapi_Ol)*(sigmapi_Ol) # residual variance of probability of capture at Olha
-     precpi_Ol <- 1/(varpi_Ol) # precision
   for (t in 29:Y) {
      lpi_Ol[t] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
      logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
