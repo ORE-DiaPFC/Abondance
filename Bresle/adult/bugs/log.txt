@@ -57,7 +57,11 @@ monitor set
 monitor set
 monitor set
 <<<<<<< HEAD
+<<<<<<< HEAD
 5000 updates took 11 s
+=======
+5000 updates took 12 s
+>>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d
 =======
 5000 updates took 12 s
 >>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d

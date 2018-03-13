@@ -1,0 +1,67 @@
+OpenBUGS version 3.2.3 rev 1012
+model is syntactically correct
+data loaded
+model compiled
+initial values loaded but chain contain uninitialized variables
+initial values loaded but chain contain uninitialized variables
+initial values generated, model initialized
+update error for node <n[34,2]> algorithm discrete slice updater error can not sample node  too many iterations 
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+monitor set
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+inference can not be made when sampler is in adaptive phase
+update error for node <n[34,2]> algorithm discrete slice updater error can not sample node  too many iterations 
+inference can not be made when sampler is in adaptive phase
+no monitors set
