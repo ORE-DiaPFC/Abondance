@@ -176,7 +176,7 @@ eta_gamma_dj = c(NA, NA, NA, 10, 10),
 #   6.159,5.084,5.997,7.287,6.321,6.201,6.038,5.097,5.432,3.634,5.924,5.735,7.943,7.21,5.118,5.908,6.679, 
 #   5.912, 6.237, 5.464, 6.830, 5.236, 5.961, 5.193, 6.806, 5.680, 5.742, 5.864, 5.514, 5.079, 6.463, 5.820, 6.442, 5.168)#,
 
-LS_rec <- c(inits0$LS_rec, tail(inits0$LS_rec,n=17)) # repliquer les 17 dernieres valeurs
+LS_rec <- c(inits0$LS_rec, tail(inits0$LS_rec, n=17)) # repliquer les 17 dernieres valeurs
 
 
 # METTRE A JOUR (1 valeur par an)
