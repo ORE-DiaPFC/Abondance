@@ -128,7 +128,9 @@ e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) 
 e_21.tmp = ceiling(e_2.tmp / 2)
 e_21 = rbind(inits0$e_21, e_21.tmp)
 
-num_2 = e_21
+num_2 <- array(NA,dim=c(data$Y,4))
+num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
+#num_2[17,1]<-
 
  
   ## METTRE A JOUR
@@ -241,7 +243,7 @@ num_2 = e_21
   #   25, 15, 10, 25),
   #   .Dim = c(32,4)),
   
-  n.tmp = data$C_U[data$Y,] / 0.6
+  n.tmp = data$C_U[data$Y,] / 0.4
   n = rbind(inits0$n, ceiling(n.tmp))
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
@@ -351,7 +353,6 @@ num_2 = e_21
 inits_updated <- list(
   alpha_1=alpha_1,
   alpha_2=alpha_2,
-  e_2=e_2.tmp,
   e_21=e_21,
   logit_p_11_2=logit_p_11_2,
   logit_p_21=logit_p_21,
@@ -361,8 +362,8 @@ inits_updated <- list(
   n_11=n_11,
   p_1.1SW=p_1.1SW,
   no_ech_1.1SW=no_ech_1.1SW,
-  no_ech_MSW = no_ech_MSW
-  #num_2 =num_2
+  no_ech_MSW = no_ech_MSW,
+  num_2 =num_2
 )
 
 inits <- list(c( inits_fix,inits_updated))

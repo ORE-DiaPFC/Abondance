@@ -2,9 +2,9 @@ OpenBUGS version 3.2.3 rev 1012
 model is syntactically correct
 data loaded (variables not in the model: Dm_12, Dum_12, Am_12, Aum_12)
 model compiled
-expected key word structure error pos 2090 (error on line 1)
-expected key word structure error pos 2090 (error on line 1)
-unable to generate initial values for node <lambda_tot0> of type UpdaterGamma.Updater
+initial values loaded but chain contain uninitialized variables
+initial values loaded but chain contain uninitialized variables
+error for node num_2[33,2] of type GraphBinomial.Node node invalid integer value given
 model must be initialized before updating
 model must be initialized before monitors used
 model must be initialized before monitors used
