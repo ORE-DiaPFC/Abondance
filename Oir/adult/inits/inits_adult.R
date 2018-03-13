@@ -156,10 +156,10 @@ logit_p_recap = logit((data$Cm_R+1) / (data$C_MC+2))
 #   .Dim = c(32,4)) 
 
 n <- array(,dim=c(data$Nyears,4))
-n[,1] = as.integer((data$C_MC[,1]/invlogit(logit_pi_eff[,1])))+ 5
-n[,2] = as.integer((data$C_MC[,2]/invlogit(logit_pi_eff[,1])))+ 5
-n[,3] = as.integer((data$C_MC[,3]/invlogit(logit_pi_eff[,2])))+ 5
-n[,4] = as.integer((data$C_MC[,4]/invlogit(logit_pi_eff[,2])))+ 5
+n[,1] = as.integer((data$C_MC[,1]/invlogit(logit_pi_eff[,1])))+ 50
+n[,2] = as.integer((data$C_MC[,2]/invlogit(logit_pi_eff[,1])))+ 50
+n[,3] = as.integer((data$C_MC[,3]/invlogit(logit_pi_eff[,2])))+ 50
+n[,4] = as.integer((data$C_MC[,4]/invlogit(logit_pi_eff[,2])))+ 50
 
 inits_updated <- list(
   lambda = lambda
