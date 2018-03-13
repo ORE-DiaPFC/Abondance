@@ -56,7 +56,7 @@ monitor set
 monitor set
 monitor set
 monitor set
-5000 updates took 12 s
+5000 updates took 11 s
 CODA files written
 Summary statistics
 		mean	sd	val2.5pc	median	val97.5pc	sample
