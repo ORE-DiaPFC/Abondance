@@ -109,8 +109,8 @@ model {
 ## ------
 #################################################################################
 ### Mean and standard deviation of the probability to stay in LN1
-mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 ~ dunif(0,10)  # from 1984 to 1991
-mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 ~ dunif(0,10) # from 1992 to now on
+mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 ~ dunif(0.01,10)  # from 1984 to 1991
+mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 ~ dunif(0.01,10) # from 1992 to now on
 
 ### Mean and standard deviation of the probabilities to be captured at Uxondoa. Depend on sea age.
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
