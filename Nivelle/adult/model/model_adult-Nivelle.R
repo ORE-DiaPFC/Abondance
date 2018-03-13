@@ -119,8 +119,10 @@ mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 <- sqrt(1/precp_11_2) ; precp_11_2 ~ dgamma(
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
   mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] <- sqrt(1/precpi_U[a]) ; precpi_U[a] ~ dgamma(shape_prec,rate_prec)
+  d_pi_U[a] ~ dunif(-5,5) # diffrential in the probability of capture since 2012
   } ## End of loop over fish ages
   sigmapi_Ol <- sqrt(1/precpi_Ol) ; precpi_Ol ~ dgamma(shape_prec,rate_prec)
+  d_pi_Ol ~ dunif(-5,5) # diffrential in the probability of capture since 2012
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
 mupi_EF ~ dbeta(1,1) ; sigmapi_EF <- sqrt(1/precpi_EF) ; precpi_EF ~ dgamma(shape_prec,rate_prec)
 
@@ -189,11 +191,10 @@ for (a in 1:2) {
     } ## End of loop over years
 
   for (t in 29:Y) { ## from 2012 to now. Partial trapping
-     pi_U_mupi[t,a] <- exp(logit_mupi_U[a])/(1+exp(logit_mupi_U[a]))  # back-transformation on the probability scale
-     
+     pi_U_mupi[t,a] <- exp(logit_mupi_U[a])/(1+exp(logit_mupi_U[a]))  # back-transformation on the probability scale    
      pi_U_eff[t,a] <- pi_U_mupi[t,a] *  eff_Ux[t]  # eff_Ux is a ratio (data)
-     lpi_U[t,a] <- log(pi_U_eff[t,a]/(1-pi_U_eff[t,a])) #logit transformation
-     
+ #logit transformation of the probability of capture with a systematic diffrential
+     lpi_U[t,a] <- log(pi_U_eff[t,a]/(1-pi_U_eff[t,a]))+d_pi_U[a]        
      logit_pi_U[t,a] ~ dnorm(lpi_U[t,a],precpi_U[a])
      pi_U[t,a] <- exp(logit_pi_U[t,a])/(1+exp(logit_pi_U[t,a])) # back-transformation on the probability scale 
      eps_U[t,a] <- (logit_pi_U[t,a] - lpi_U[t,a]) / sigmapi_U[a] # standardized residuals
@@ -421,7 +422,8 @@ for (t in 1:Y) {
      pi_Ol[17]<- exp(logit_pi_Ol[17])/(1+exp(logit_pi_Ol[17])) # back-transformation on the probability scale 
      eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
   for (t in 29:Y) {
-     lpi_Ol[t] <- log(eff_Ol[t]/(1-eff_Ol[t])) # logit transformation of eff_Ux which is a ratio (data)
+# logit transformation of probability of capture at Olha wher eff_Ux which is a ratio (data) and d_pi_Ol is a systematic differential    
+     lpi_Ol[t] <- log(eff_Ol[t]/(1-eff_Ol[t]))+d_pi_Ol
      logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
      pi_Ol[t]<- exp(logit_pi_Ol[t])/(1+exp(logit_pi_Ol[t])) # back-transformation on the probability scale 
      eps_Ol[t] <- (logit_pi_Ol[t] - lpi_Ol[t]) / sigmapi_Ol # standardized residuals
