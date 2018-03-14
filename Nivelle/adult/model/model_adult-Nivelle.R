@@ -20,8 +20,11 @@ model {
 # Since 2012, not every fish is captured (and so for 2000). Data observed are Cm_O and Cum_O.
 # Until 2011, escapment was perfectly known which is not the case since 2012. We're introducing new data corresponding to the sum of the fish removed from the population (e.g., removed for experiment) or added to the population (case of 2000 for instance) = net balance.
 # Introducing new data corresponding to the ratio of the number of nights of trapping realized every year since 2012 (and 2000) over the mean number of nights of trapping over the period (1994 to 2011 without 2000). 1992 and 1993 are not included because captures were not done during the full period but effort is considered to be one for those two years because the trap was working when fish are passing in UN.
+# Since 2018 the reduction in trapping effort is modeled hiererchically with a variation and a systematic diffrential between 
+# the proportion of days with trapping and the actual probability of capture. 
+# The differntial do not apply to 2000 for Olha as that year is not equivalent to the others : very few days of trappinga and targeting on days with favourable flows     
 ############################################################################################
-
+# Since 2018 all the precison parameters are modeled herarchically with a common gamma distribution
 ##########################################################################################
 # Used indices:
 ## t: year; 1 to Y - from 1984 to Y
