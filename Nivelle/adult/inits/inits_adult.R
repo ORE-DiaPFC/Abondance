@@ -41,13 +41,15 @@ inits_fix <- list(
   mupi_EF = 0.16,
   mupi_U = c(0.8689,0.8146),
   rho = 0.79,
-  sigmap_11_1 = 0.21,
-  sigmap_11_2 = 0.09,
-  sigmap_12 = c( 0.55,0.41,0.29,0.4),
-  sigmap_21 = 0.43,
-  sigmapi_EF = 0.52,
-  sigmapi_U = c( 0.7341,0.5641),
-  sigmapi_Ol = 0.6,
+  precp_11_1 = 1,
+  precp_11_2 = 1,
+  precp_12 = c( 1, 1, 1, 1),
+  precp_21 = 1,
+  precpi_EF = 1,
+  precpi_U = c( 1, 1),
+  precpi_Ol = 1,
+  shape_prec = 30,
+  rate_prec = 10,
   logit_pi_Ol = log(data$eff_Ol / (1 - data$eff_Ol))
 )
 
@@ -130,7 +132,7 @@ e_21 = rbind(inits0$e_21, e_21.tmp)
 
 num_2 <- array(NA,dim=c(data$Y,4))
 num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
-#num_2[17,1]<-
+
 
  
   ## METTRE A JOUR
