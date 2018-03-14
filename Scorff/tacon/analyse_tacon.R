@@ -13,13 +13,13 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2016"
+year <- "2017"
 site <- "Scorff"
 stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance",site,stade,sep="/")
+work.dir<-paste("/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -59,9 +59,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=25000 # Total number of steps in chains to save.
-nthin=5 # Number of steps to "thin" (1=keep every step).
+nburnin=1000 # Number of steps to "burn-in" the samplers.
+nstore=5000 # Total number of steps in chains to save.
+nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -78,6 +78,9 @@ fit <- bugs(
   ,codaPkg = FALSE, clearWD=FALSE
   #,debug=TRUE
   ,working.directory=paste(work.dir,"bugs",sep="/")
+  # If Macos:
+  , OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
+  , useWINE = TRUE
 )
 
 ## cleaning
@@ -142,6 +145,9 @@ sink(paste('results/Diagnostics_',stade,"_",year,'.txt',sep=""))
 cat("=============================\n")
 cat("DIAGNOSTICS\n")
 cat("=============================\n")
+
+cat("Number of chains: ", fit$n.chains,"\n")
+cat("Number of iterations: ", fit$n.keep,"\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
