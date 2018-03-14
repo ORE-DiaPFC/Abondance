@@ -3,28 +3,28 @@ list(
 ## Covariate is standardized within WinBUGS
 ## In 94 and 95, it's the number of nights for which some fishes are recaptured (not the total number of nights)
 eff_R = c(4,              
-14
-8
-6
-10
-12
-6
-13
-12
-12
-13
-11
-17
-11
-11
-7
-10
-10
-8
-9
-13
-12
-8
+14,
+8,
+6,
+10,
+12,
+6,
+13,
+12,
+12,
+13,
+11,
+17,
+11,
+11,
+7,
+10,
+10,
+8,
+9,
+13,
+12,
+8, # 2016
 10 # 2017
 )  
 )       
