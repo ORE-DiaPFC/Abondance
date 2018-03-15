@@ -19,7 +19,7 @@ stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning

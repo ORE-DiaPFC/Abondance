@@ -57,7 +57,7 @@
 #52	SA812	Reau St Caradec																					
 #53	SA813	Reau St Caradec MIN TRIOULIN																					
 ##################################################################################################################################################																							
-CPUE_Sc[,1]	CPUE_Sc[,2]	CPUE_Sc[,3]	CPUE_Sc[,4]	CPUE_Sc[,5]	CPUE_Sc[,6]	CPUE_Sc[,7]	CPUE_Sc[,8]	CPUE_Sc[,9]	CPUE_Sc[,10]	CPUE_Sc[,11]	CPUE_Sc[,12]	CPUE_Sc[,13]	CPUE_Sc[,14]	CPUE_Sc[,15]	CPUE_Sc[,16]	CPUE_Sc[,17]	CPUE_Sc[,18]	CPUE_Sc[,19]	CPUE_Sc[,20]	CPUE_Sc[,21]	CPUE_Sc[,22]	CPUE_Sc[,23]	CPUE_Sc[,24]
+CPUE_Sc[,1]	CPUE_Sc[,2]	CPUE_Sc[,3]	CPUE_Sc[,4]	CPUE_Sc[,5]	CPUE_Sc[,6]	CPUE_Sc[,7]	CPUE_Sc[,8]	CPUE_Sc[,9]	CPUE_Sc[,10]	CPUE_Sc[,11]	CPUE_Sc[,12]	CPUE_Sc[,13]	CPUE_Sc[,14]	CPUE_Sc[,15]	CPUE_Sc[,16]	CPUE_Sc[,17]	CPUE_Sc[,18]	CPUE_Sc[,19]	CPUE_Sc[,20]	CPUE_Sc[,21]	CPUE_Sc[,22]	CPUE_Sc[,23]	CPUE_Sc[,24]  CPUE_Sc[,25]
 8	22	25	26	9	13	5	9	14	16	38	24	18	4	7	11	7	10	1	25	18	5	4	2	3
 NA	14	1	14	18	8	23	33	3	28	29	14	35	11	24	27	36	18	24	35	16	27	29	10	14
 11	8	12	40	86	26	28	28	7	64	91	47	86	25	49	57	76	40	81	67	59	66	39	54	59

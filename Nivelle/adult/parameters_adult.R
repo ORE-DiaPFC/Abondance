@@ -75,6 +75,9 @@ parameters <-c(
   ,"lambda_tot0"# Initiate lambda distribution 
   ,"Plambda0" # Initiation proportion distribution
   
+  ,"shape_prec"# Shape parameter of gamma distribution
+  ,"rate_prec" # Rate parameter of gamma distribution
+  
   , "s" # Dirichlet parameter
   
   ,"n_tot" # Total number of adults entering in the river

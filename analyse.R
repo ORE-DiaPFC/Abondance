@@ -78,6 +78,9 @@ fit <- bugs(
   ,codaPkg = FALSE, clearWD=FALSE
   #,debug=TRUE
   ,working.directory=paste(work.dir,"bugs",sep="/")
+  # If Macos:
+  , OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
+  , useWINE = TRUE
 )
 
 ## cleaning

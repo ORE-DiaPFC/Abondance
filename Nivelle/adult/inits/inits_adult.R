@@ -134,7 +134,7 @@ e_21 = rbind(inits0$e_21, e_21.tmp)
 
 num_2 <- array(NA,dim=c(data$Y,4))
 num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
-#num_2[17,1]<-
+
 
  
   ## METTRE A JOUR

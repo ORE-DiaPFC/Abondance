@@ -16,6 +16,7 @@ bugs/*
 *.pdf
 *.xlsx
 *.xls
+*.odc
 
 # History files
 .Rhistory
