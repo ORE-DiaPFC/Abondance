@@ -1,0 +1,142 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  50000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+logit_int_MC           1          1
+logit_flow_MC          1          1
+log_cess_MC            1          1
+shape_lambda           1          1
+rate_lambda            1          1
+mean_gamma             1          1
+var_gamma              1          1
+
+Multivariate psrf
+
+1
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int_MC  passed       20001     0.1836 
+logit_flow_MC passed           1     0.7010 
+log_cess_MC   passed           1     0.5851 
+shape_lambda  passed           1     0.4750 
+rate_lambda   passed           1     0.1725 
+mean_gamma    passed           1     0.0854 
+var_gamma     passed           1     0.0706 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int_MC  passed     4.83e-01 1.34e-03 
+logit_flow_MC passed    -5.21e-02 1.07e-03 
+log_cess_MC   passed     8.24e-02 2.56e-03 
+shape_lambda  passed     2.49e+00 6.31e-03 
+rate_lambda   passed     2.05e-03 5.74e-06 
+mean_gamma    passed     1.23e+03 1.31e+00 
+var_gamma     passed     6.59e+05 2.52e+03 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int_MC  passed       1         0.465  
+logit_flow_MC passed       1         0.909  
+log_cess_MC   passed       1         0.429  
+shape_lambda  passed       1         0.897  
+rate_lambda   passed       1         0.687  
+mean_gamma    passed       1         0.297  
+var_gamma     passed       1         0.407  
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int_MC  passed     4.85e-01 1.07e-03 
+logit_flow_MC passed    -5.22e-02 1.09e-03 
+log_cess_MC   passed     8.33e-02 2.60e-03 
+shape_lambda  passed     2.49e+00 6.23e-03 
+rate_lambda   passed     2.04e-03 5.61e-06 
+mean_gamma    passed     1.23e+03 1.31e+00 
+var_gamma     passed     6.62e+05 2.43e+03 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
+       0.9327       -0.5275        0.6127        1.2429        1.8735 
+   mean_gamma     var_gamma 
+      -1.7347       -1.9634 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
+     0.006458     -0.447672     -0.254667     -1.151616     -1.294754 
+   mean_gamma     var_gamma 
+     0.677551      1.118927 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+               Burn-in  Total Lower bound  Dependence
+               (M)      (N)   (Nmin)       factor (I)
+ logit_int_MC  20       37310 3746          9.96     
+ logit_flow_MC 20       37370 3746          9.98     
+ log_cess_MC   20       37960 3746         10.10     
+ shape_lambda  20       39010 3746         10.40     
+ rate_lambda   20       38520 3746         10.30     
+ mean_gamma    20       37680 3746         10.10     
+ var_gamma     20       39630 3746         10.60     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+               Burn-in  Total Lower bound  Dependence
+               (M)      (N)   (Nmin)       factor (I)
+ logit_int_MC  20       38240 3746         10.2      
+ logit_flow_MC 20       37770 3746         10.1      
+ log_cess_MC   20       38590 3746         10.3      
+ shape_lambda  20       38870 3746         10.4      
+ rate_lambda   20       39170 3746         10.5      
+ mean_gamma    10       37480 3746         10.0      
+ var_gamma     20       39510 3746         10.5      
+
+

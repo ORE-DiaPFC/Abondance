@@ -3,23 +3,7 @@ list(
 Y_last=34, # 2017
 
 # Index dernier site. Add 17 per year because now only CPUE are done on 17 stations
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 I=664, # 2017
-=======
-I=647,
->>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d
-=======
-I=647,
->>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d
-=======
-I=647,
->>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d
-=======
-I=647,
->>>>>>> aed24ea7a460c66aec8f079c13b216ec699b602d
 
 # Donnees de CPUE en sequence
 # Seules les dernieres ann?es sont par paquets de 17 stations.

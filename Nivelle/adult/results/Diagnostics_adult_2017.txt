@@ -2,34 +2,36 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  25000 
+Number of iterations:  50000 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
              Point est. Upper C.I.
 mup_11_1           1.00       1.00
 sigmap_11_1        1.00       1.00
-mup_11_2           1.04       1.17
-sigmap_11_2        1.05       1.15
+mup_11_2           1.00       1.00
+sigmap_11_2        1.00       1.00
 sigmapi_Ol         1.00       1.01
 mupi_EF            1.00       1.00
-sigmapi_EF         1.00       1.01
+sigmapi_EF         1.00       1.00
 mup_21             1.00       1.00
 sigmap_21          1.00       1.00
 k_1                1.00       1.00
-k_2                1.00       1.01
+k_2                1.00       1.00
 eta_1              1.00       1.00
 eta_2              1.00       1.00
-rho                1.01       1.02
-shape_lambda       1.00       1.02
-rate_lambda        1.01       1.03
-lambda_tot0        1.00       1.01
-a_1.1SW            1.00       1.01
-a_2.1SW            1.00       1.01
+rho                1.00       1.00
+shape_lambda       1.00       1.00
+rate_lambda        1.00       1.00
+lambda_tot0        1.00       1.00
+shape_prec         1.01       1.05
+rate_prec          1.01       1.05
+a_1.1SW            1.00       1.00
+a_2.1SW            1.00       1.00
 
 Multivariate psrf
 
-1.05
+1.01
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -43,93 +45,101 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-mup_11_1     passed       7501      0.0584 
-sigmap_11_1  passed          1      0.9250 
-mup_11_2     passed          1      0.0948 
-sigmap_11_2  passed          1      0.1916 
-sigmapi_Ol   passed          1      0.7348 
-mupi_EF      passed          1      0.0963 
-sigmapi_EF   passed          1      0.4965 
-mup_21       passed          1      0.2767 
-sigmap_21    passed          1      0.4865 
-k_1          passed       2501      0.4033 
-k_2          passed          1      0.1315 
-eta_1        passed          1      0.3691 
-eta_2        passed          1      0.2918 
-rho          passed          1      0.1179 
-shape_lambda passed          1      0.1199 
-rate_lambda  passed       7501      0.0860 
-lambda_tot0  passed          1      0.2544 
-a_1.1SW      passed          1      0.4154 
-a_2.1SW      passed          1      0.5137 
+mup_11_1     passed       1         0.394  
+sigmap_11_1  passed       1         0.600  
+mup_11_2     passed       1         0.273  
+sigmap_11_2  passed       1         0.627  
+sigmapi_Ol   passed       1         0.117  
+mupi_EF      passed       1         0.346  
+sigmapi_EF   passed       1         0.158  
+mup_21       passed       1         0.276  
+sigmap_21    passed       1         0.752  
+k_1          passed       1         0.280  
+k_2          passed       1         0.353  
+eta_1        passed       1         0.544  
+eta_2        passed       1         0.472  
+rho          passed       1         0.335  
+shape_lambda passed       1         0.756  
+rate_lambda  passed       1         0.754  
+lambda_tot0  passed       1         0.704  
+shape_prec   passed       1         0.875  
+rate_prec    passed       1         0.921  
+a_1.1SW      passed       1         0.246  
+a_2.1SW      passed       1         0.371  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-mup_11_1     passed      0.2449 0.003384 
-sigmap_11_1  passed      0.4667 0.032402 
-mup_11_2     passed      0.1205 0.001890 
-sigmap_11_2  failed      0.3192 0.037261 
-sigmapi_Ol   passed      1.9987 0.036338 
-mupi_EF      passed      0.2478 0.001027 
-sigmapi_EF   passed      0.7585 0.010052 
-mup_21       passed      0.6474 0.001069 
-sigmap_21    passed      0.5470 0.008354 
-k_1          passed      1.1834 0.025020 
-k_2          passed      2.3151 0.044308 
-eta_1        passed      3.1633 0.028251 
-eta_2        passed      7.1749 0.065640 
-rho          passed      0.9411 0.002659 
-shape_lambda passed      2.8914 0.031424 
-rate_lambda  passed      0.0154 0.000212 
-lambda_tot0  passed    140.3719 2.114589 
-a_1.1SW      passed     10.4250 0.116995 
-a_2.1SW      passed      3.0029 0.032444 
+mup_11_1     passed      0.2397 7.41e-04 
+sigmap_11_1  passed      0.5480 1.68e-03 
+mup_11_2     passed      0.1137 2.76e-04 
+sigmap_11_2  passed      0.5377 2.13e-03 
+sigmapi_Ol   passed      0.5978 2.66e-03 
+mupi_EF      passed      0.2452 3.89e-04 
+sigmapi_EF   passed      0.5721 1.35e-03 
+mup_21       passed      0.6476 3.09e-04 
+sigmap_21    passed      0.5544 1.25e-03 
+k_1          passed      1.1646 5.07e-03 
+k_2          passed      2.1529 8.82e-03 
+eta_1        passed      3.2539 1.06e-02 
+eta_2        passed      7.7021 2.39e-02 
+rho          passed      0.9461 5.26e-04 
+shape_lambda passed      2.9960 8.48e-03 
+rate_lambda  passed      0.0159 4.78e-05 
+lambda_tot0  passed    138.7258 5.51e-01 
+shape_prec   failed     52.3209 1.14e+01 
+rate_prec    failed     16.4289 3.82e+00 
+a_1.1SW      passed     10.3734 2.88e-02 
+a_2.1SW      passed      2.9884 7.87e-03 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-mup_11_1     passed       7501      0.485  
-sigmap_11_1  passed       7501      0.284  
-mup_11_2     passed          1      0.147  
-sigmap_11_2  passed          1      0.324  
-sigmapi_Ol   passed          1      0.363  
-mupi_EF      passed          1      0.546  
-sigmapi_EF   passed          1      0.325  
-mup_21       passed          1      0.220  
-sigmap_21    passed          1      0.921  
-k_1          passed          1      0.414  
-k_2          passed          1      0.892  
-eta_1        passed          1      0.117  
-eta_2        passed          1      0.175  
-rho          passed          1      0.862  
-shape_lambda passed          1      0.257  
-rate_lambda  passed          1      0.423  
-lambda_tot0  passed          1      0.798  
-a_1.1SW      passed          1      0.123  
-a_2.1SW      passed          1      0.123  
+mup_11_1     passed       1         0.7127 
+sigmap_11_1  passed       1         0.6531 
+mup_11_2     passed       1         0.3840 
+sigmap_11_2  passed       1         0.7527 
+sigmapi_Ol   passed       1         0.7713 
+mupi_EF      passed       1         0.5790 
+sigmapi_EF   passed       1         0.4324 
+mup_21       passed       1         0.8565 
+sigmap_21    passed       1         0.9540 
+k_1          passed       1         0.0779 
+k_2          passed       1         0.0842 
+eta_1        passed       1         0.9480 
+eta_2        passed       1         0.6759 
+rho          passed       1         0.0502 
+shape_lambda passed       1         0.9641 
+rate_lambda  passed       1         0.8565 
+lambda_tot0  passed       1         0.4684 
+shape_prec   passed       1         0.9045 
+rate_prec    passed       1         0.9313 
+a_1.1SW      passed       1         0.0935 
+a_2.1SW      passed       1         0.3459 
                                          
              Halfwidth Mean     Halfwidth
              test                        
-mup_11_1     passed      0.2461 0.003262 
-sigmap_11_1  passed      0.4534 0.036603 
-mup_11_2     passed      0.1189 0.001328 
-sigmap_11_2  passed      0.3253 0.030429 
-sigmapi_Ol   passed      1.9572 0.040761 
-mupi_EF      passed      0.2475 0.001102 
-sigmapi_EF   passed      0.7403 0.010532 
-mup_21       passed      0.6476 0.001052 
-sigmap_21    passed      0.5554 0.008560 
-k_1          passed      1.1856 0.018874 
-k_2          passed      2.3098 0.038426 
-eta_1        passed      3.1863 0.026885 
-eta_2        passed      7.2282 0.064526 
-rho          passed      0.9410 0.002242 
-shape_lambda passed      2.9117 0.030056 
-rate_lambda  passed      0.0156 0.000169 
-lambda_tot0  passed    139.2169 2.053191 
-a_1.1SW      passed     10.3656 0.113102 
-a_2.1SW      passed      2.9865 0.030533 
+mup_11_1     passed      0.2400 7.48e-04 
+sigmap_11_1  passed      0.5488 1.72e-03 
+mup_11_2     passed      0.1136 2.73e-04 
+sigmap_11_2  passed      0.5391 2.35e-03 
+sigmapi_Ol   passed      0.5944 2.87e-03 
+mupi_EF      passed      0.2448 3.91e-04 
+sigmapi_EF   passed      0.5702 1.39e-03 
+mup_21       passed      0.6478 3.05e-04 
+sigmap_21    passed      0.5550 1.28e-03 
+k_1          passed      1.1627 5.08e-03 
+k_2          passed      2.1481 9.08e-03 
+eta_1        passed      3.2617 1.01e-02 
+eta_2        passed      7.6796 2.38e-02 
+rho          passed      0.9463 5.49e-04 
+shape_lambda passed      2.9918 8.18e-03 
+rate_lambda  passed      0.0159 4.79e-05 
+lambda_tot0  passed    138.8379 5.54e-01 
+shape_prec   failed     65.2116 1.19e+01 
+rate_prec    failed     20.3944 3.76e+00 
+a_1.1SW      passed     10.3706 2.87e-02 
+a_2.1SW      passed      2.9882 7.88e-03 
 
 
 ---------------------------
@@ -147,13 +157,13 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
     mup_11_1  sigmap_11_1     mup_11_2  sigmap_11_2   sigmapi_Ol      mupi_EF 
-    -1.47622     -0.03975     -3.46391      2.29042     -0.93041      0.33693 
+    -1.10622     -0.34868     -1.00543     -0.14691     -2.12930      0.57155 
   sigmapi_EF       mup_21    sigmap_21          k_1          k_2        eta_1 
-    -0.51765      1.42698      0.56817      2.48991      1.58350     -0.15393 
-       eta_2          rho shape_lambda  rate_lambda  lambda_tot0      a_1.1SW 
-    -1.28977     -1.63078      0.60122      0.97475      0.11258      0.87412 
-     a_2.1SW 
-     0.87853 
+    -2.44723     -0.24209     -0.31483      1.17959      1.19096      0.68015 
+       eta_2          rho shape_lambda  rate_lambda  lambda_tot0   shape_prec 
+    -0.50299     -1.05498     -0.26675     -0.03604      0.28304      0.95495 
+   rate_prec      a_1.1SW      a_2.1SW 
+     0.90182     -1.26609     -1.30349 
 
 
 [[2]]
@@ -162,13 +172,13 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
     mup_11_1  sigmap_11_1     mup_11_2  sigmap_11_2   sigmapi_Ol      mupi_EF 
-     -3.3632      -1.5922      -1.2469      -0.6269       1.6222      -1.3628 
+     1.02190     -0.14913     -0.37872     -0.52188      0.11228      0.59914 
   sigmapi_EF       mup_21    sigmap_21          k_1          k_2        eta_1 
-      0.4852      -1.5169       0.2358       1.6945       0.7881       0.6900 
-       eta_2          rho shape_lambda  rate_lambda  lambda_tot0      a_1.1SW 
-      1.3892      -1.1372      -2.8995      -2.6776       0.2116       1.4055 
-     a_2.1SW 
-      1.3880 
+     0.04012     -0.76716     -0.53736     -1.83069     -0.91835      0.15492 
+       eta_2          rho shape_lambda  rate_lambda  lambda_tot0   shape_prec 
+    -0.39079      1.31776     -1.09979     -0.42627      0.94551     -0.01453 
+   rate_prec      a_1.1SW      a_2.1SW 
+    -0.02605      1.18967      0.81331 
 
 
 
@@ -182,25 +192,27 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- mup_11_1     16       19384  3746           5.17    
- sigmap_11_1  200      205570 3746          54.90    
- mup_11_2     28       31619  3746           8.44    
- sigmap_11_2  528      531564 3746         142.00    
- sigmapi_Ol   12       17104  3746           4.57    
- mupi_EF      6        8022   3746           2.14    
- sigmapi_EF   12       15720  3746           4.20    
- mup_21       8        9338   3746           2.49    
- sigmap_21    54       58416  3746          15.60    
- k_1          70       70959  3746          18.90    
- k_2          80       80144  3746          21.40    
- eta_1        6        8424   3746           2.25    
- eta_2        4        5038   3746           1.34    
- rho          112      128366 3746          34.30    
- shape_lambda 12       15408  3746           4.11    
- rate_lambda  15       16968  3746           4.53    
- lambda_tot0  12       14478  3746           3.86    
- a_1.1SW      12       12436  3746           3.32    
- a_2.1SW      12       16248  3746           4.34    
+ mup_11_1     40       85120  3746         22.7      
+ sigmap_11_1  160      178000 3746         47.5      
+ mup_11_2     60       88400  3746         23.6      
+ sigmap_11_2  200      250950 3746         67.0      
+ sigmapi_Ol   60       82000  3746         21.9      
+ mupi_EF      20       38450  3746         10.3      
+ sigmapi_EF   90       126780 3746         33.8      
+ mup_21       20       38320  3746         10.2      
+ sigmap_21    120      175600 3746         46.9      
+ k_1          160      198760 3746         53.1      
+ k_2          160      213800 3746         57.1      
+ eta_1        20       38420  3746         10.3      
+ eta_2        20       38610  3746         10.3      
+ rho          150      170070 3746         45.4      
+ shape_lambda 30       40110  3746         10.7      
+ rate_lambda  20       39740  3746         10.6      
+ lambda_tot0  20       38670  3746         10.3      
+ shape_prec   280      333970 3746         89.2      
+ rate_prec    280      302260 3746         80.7      
+ a_1.1SW      20       38580  3746         10.3      
+ a_2.1SW      20       39350  3746         10.5      
 
 
 [[2]]
@@ -211,24 +223,26 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- mup_11_1     15       20605  3746          5.50     
- sigmap_11_1  187      195619 3746         52.20     
- mup_11_2     20       22350  3746          5.97     
- sigmap_11_2  150      152920 3746         40.80     
- sigmapi_Ol   9        13704  3746          3.66     
- mupi_EF      6        8830   3746          2.36     
- sigmapi_EF   24       27336  3746          7.30     
- mup_21       12       15435  3746          4.12     
- sigmap_21    63       73892  3746         19.70     
- k_1          110      112541 3746         30.00     
- k_2          80       78110  3746         20.90     
- eta_1        4        4872   3746          1.30     
- eta_2        4        5004   3746          1.34     
- rho          66       65466  3746         17.50     
- shape_lambda 12       13902  3746          3.71     
- rate_lambda  12       15252  3746          4.07     
- lambda_tot0  12       18748  3746          5.00     
- a_1.1SW      12       12436  3746          3.32     
- a_2.1SW      10       11838  3746          3.16     
+ mup_11_1     40       76260  3746          20.4     
+ sigmap_11_1  240      275940 3746          73.7     
+ mup_11_2     60       81280  3746          21.7     
+ sigmap_11_2  280      344120 3746          91.9     
+ sigmapi_Ol   60       85820  3746          22.9     
+ mupi_EF      20       38380  3746          10.2     
+ sigmapi_EF   90       124020 3746          33.1     
+ mup_21       20       39260  3746          10.5     
+ sigmap_21    150      214300 3746          57.2     
+ k_1          120      150630 3746          40.2     
+ k_2          160      221000 3746          59.0     
+ eta_1        20       38240  3746          10.2     
+ eta_2        20       38210  3746          10.2     
+ rho          180      183510 3746          49.0     
+ shape_lambda 30       40160  3746          10.7     
+ rate_lambda  30       40500  3746          10.8     
+ lambda_tot0  20       39860  3746          10.6     
+ shape_prec   250      311100 3746          83.0     
+ rate_prec    350      407260 3746         109.0     
+ a_1.1SW      20       38840  3746          10.4     
+ a_2.1SW      20       38700  3746          10.3     
 
 

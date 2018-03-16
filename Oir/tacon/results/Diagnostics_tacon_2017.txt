@@ -2,24 +2,24 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  5000 
+Number of iterations:  11694 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
               Point est. Upper C.I.
-sd_prem             1.01       1.03
-mup_rem             1.00       1.00
-int_width           1.01       1.03
-width_coef          1.00       1.00
-rate_lcpu           1.00       1.00
-sigma_dOir          1.00       1.00
-sigma_yOir          1.01       1.02
-sigma_gryrOir       1.00       1.01
-coef_PC             1.08       1.24
+sd_prem                1       1.02
+mup_rem                1       1.01
+int_width              1       1.00
+width_coef             1       1.01
+rate_lcpu              1       1.00
+sigma_dOir             1       1.01
+sigma_yOir             1       1.00
+sigma_gryrOir          1       1.00
+coef_PC                1       1.00
 
 Multivariate psrf
 
-1.04
+1.01
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -33,53 +33,53 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
               Stationarity start     p-value
               test         iteration        
-sd_prem       passed       1         0.6472 
-mup_rem       passed       1         0.4332 
-int_width     passed       1         0.5329 
-width_coef    passed       1         0.5795 
-rate_lcpu     passed       1         0.0506 
-sigma_dOir    passed       1         0.0986 
-sigma_yOir    passed       1         0.2925 
-sigma_gryrOir passed       1         0.5276 
-coef_PC       passed       1         0.5730 
+sd_prem       passed          1      0.1404 
+mup_rem       passed          1      0.8349 
+int_width     passed          1      0.1040 
+width_coef    passed          1      0.0614 
+rate_lcpu     passed          1      0.4251 
+sigma_dOir    passed       2340      0.2742 
+sigma_yOir    passed          1      0.4694 
+sigma_gryrOir passed          1      0.4299 
+coef_PC       passed          1      0.7342 
                                         
               Halfwidth Mean   Halfwidth
               test                      
-sd_prem       passed     0.568 0.03814  
-mup_rem       passed     0.802 0.00139  
-int_width     passed    -0.784 0.02243  
-width_coef    passed     0.801 0.01660  
-rate_lcpu     passed     0.585 0.01787  
-sigma_dOir    passed     0.731 0.00193  
-sigma_yOir    passed     1.261 0.01593  
-sigma_gryrOir passed     0.898 0.00486  
-coef_PC       passed     0.127 0.00457  
+sd_prem       passed     0.555 0.013742 
+mup_rem       passed     0.801 0.000352 
+int_width     passed    -0.784 0.004879 
+width_coef    passed     0.802 0.003704 
+rate_lcpu     passed     0.576 0.004270 
+sigma_dOir    passed     0.732 0.000543 
+sigma_yOir    passed     1.256 0.005026 
+sigma_gryrOir passed     0.902 0.001316 
+coef_PC       passed     0.129 0.001153 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-sd_prem       passed          1      0.0644 
-mup_rem       passed       1501      0.3145 
-int_width     passed          1      0.1374 
-width_coef    passed          1      0.3779 
-rate_lcpu     passed          1      0.9326 
-sigma_dOir    passed          1      0.3208 
-sigma_yOir    passed          1      0.8935 
-sigma_gryrOir passed          1      0.7458 
-coef_PC       passed          1      0.2049 
+sd_prem       passed        1        0.16142
+mup_rem       passed        1        0.81463
+int_width     passed        1        0.73635
+width_coef    passed        1        0.99968
+rate_lcpu     failed       NA        0.00343
+sigma_dOir    passed        1        0.47111
+sigma_yOir    passed        1        0.34637
+sigma_gryrOir passed        1        0.34687
+coef_PC       passed        1        0.24760
                                         
               Halfwidth Mean   Halfwidth
               test                      
-sd_prem       passed     0.584 0.04551  
-mup_rem       passed     0.802 0.00154  
-int_width     passed    -0.790 0.02138  
-width_coef    passed     0.805 0.01568  
-rate_lcpu     passed     0.572 0.01492  
-sigma_dOir    passed     0.733 0.00153  
-sigma_yOir    passed     1.245 0.01357  
-sigma_gryrOir passed     0.901 0.00469  
-coef_PC       passed     0.128 0.00699  
+sd_prem       passed     0.565 0.013777 
+mup_rem       passed     0.800 0.000335 
+int_width     passed    -0.788 0.004670 
+width_coef    passed     0.804 0.003620 
+rate_lcpu     <NA>          NA       NA 
+sigma_dOir    passed     0.731 0.000504 
+sigma_yOir    passed     1.257 0.004950 
+sigma_gryrOir passed     0.900 0.001315 
+coef_PC       passed     0.130 0.001175 
 
 
 ---------------------------
@@ -97,9 +97,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
-       3.2484        0.3570        0.9466       -0.6116        0.6419 
+     -1.59444      -0.04464      -0.92723       0.94426       0.11801 
    sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
-      -2.4927       -1.1699        0.3440        0.7128 
+     -1.33527       0.03349      -0.49517      -0.78220 
 
 
 [[2]]
@@ -108,9 +108,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
-     4.374312     -3.188394      0.009571     -0.449674      1.535085 
+      0.30751       0.40845       0.26996      -0.21286       0.29997 
    sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
-     1.854908      1.541234     -1.114334     -1.596132 
+      0.39273       0.52197       0.08809      -0.56935 
 
 
 
@@ -121,18 +121,18 @@ Raftery and Lewis's diagnostic
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                      
-               Burn-in  Total  Lower bound  Dependence
-               (M)      (N)    (Nmin)       factor (I)
- sd_prem       555      805778 3746         215.00    
- mup_rem       21       21735  3746           5.80    
- int_width     52       57986  3746          15.50    
- width_coef    20       21085  3746           5.63    
- rate_lcpu     6        6756   3746           1.80    
- sigma_dOir    7        7542   3746           2.01    
- sigma_yOir    4        4816   3746           1.29    
- sigma_gryrOir 5        6096   3746           1.63    
- coef_PC       39       42399  3746          11.30    
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ sd_prem       1000     1143400 3746         305.0     
+ mup_rem       40       48740   3746          13.0     
+ int_width     100      112740  3746          30.1     
+ width_coef    80       98700   3746          26.3     
+ rate_lcpu     30       40590   3746          10.8     
+ sigma_dOir    20       39470   3746          10.5     
+ sigma_yOir    30       40480   3746          10.8     
+ sigma_gryrOir 20       39080   3746          10.4     
+ coef_PC       100      104220  3746          27.8     
 
 
 [[2]]
@@ -143,14 +143,14 @@ Probability (s) = 0.95
                                                       
                Burn-in  Total  Lower bound  Dependence
                (M)      (N)    (Nmin)       factor (I)
- sd_prem       445      779039 3746         208.00    
- mup_rem       16       18198  3746           4.86    
- int_width     46       50250  3746          13.40    
- width_coef    26       27784  3746           7.42    
- rate_lcpu     12       13906  3746           3.71    
- sigma_dOir    5        6185   3746           1.65    
- sigma_yOir    4        4955   3746           1.32    
- sigma_gryrOir 10       12978  3746           3.46    
- coef_PC       52       54364  3746          14.50    
+ sd_prem       760      826670 3746         221.0     
+ mup_rem       40       46940  3746          12.5     
+ int_width     80       106100 3746          28.3     
+ width_coef    80       99100  3746          26.5     
+ rate_lcpu     20       39630  3746          10.6     
+ sigma_dOir    20       38380  3746          10.2     
+ sigma_yOir    20       39360  3746          10.5     
+ sigma_gryrOir 20       39470  3746          10.5     
+ coef_PC       80       97100  3746          25.9     
 
 

@@ -9,12 +9,12 @@ ITER=50000 # Total number of steps in chains to save.
 THIN=10 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
-REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
+REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
 #"/media/ORE/Abundance" 
 
 COUNTER=0
 
-for SITE in Scorff #Nivelle Oir Bresle  
+for SITE in Scorff Nivelle Oir Bresle  
 do
      
 cd $REPbase/$SITE

@@ -9,7 +9,9 @@ Potential scale reduction factors:
              Point est. Upper C.I.
 shape_lambda          1          1
 rate_lambda           1          1
-lambda_tot0           1          1
+p_MC90_1SW            1          1
+p_MC90_MSW            1          1
+lambda0               1          1
 
 Multivariate psrf
 
@@ -27,29 +29,37 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed          1      0.375  
-rate_lambda  passed       5001      0.256  
-lambda_tot0  passed       5001      0.526  
+shape_lambda passed       1         0.953  
+rate_lambda  passed       1         0.949  
+p_MC90_1SW   passed       1         0.640  
+p_MC90_MSW   passed       1         0.270  
+lambda0      passed       1         0.816  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      2.8871 1.28e-02 
-rate_lambda  passed      0.0173 9.04e-05 
-lambda_tot0  passed    178.9748 8.20e-01 
+shape_lambda passed      3.9201 1.55e-02 
+rate_lambda  passed      0.0178 7.67e-05 
+p_MC90_1SW   passed      0.1251 8.64e-04 
+p_MC90_MSW   passed      0.3075 2.43e-03 
+lambda0      passed    219.1240 9.49e-01 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.557  
-rate_lambda  passed       1         0.123  
-lambda_tot0  passed       1         0.136  
+shape_lambda passed       1         0.216  
+rate_lambda  passed       1         0.269  
+p_MC90_1SW   passed       1         0.303  
+p_MC90_MSW   passed       1         0.839  
+lambda0      passed       1         0.270  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      2.8738 1.30e-02 
-rate_lambda  passed      0.0173 8.42e-05 
-lambda_tot0  passed    179.3686 7.60e-01 
+shape_lambda passed      3.9175 1.66e-02 
+rate_lambda  passed      0.0178 8.12e-05 
+p_MC90_1SW   passed      0.1248 8.25e-04 
+p_MC90_MSW   passed      0.3090 2.40e-03 
+lambda0      passed    219.3500 9.46e-01 
 
 
 ---------------------------
@@ -66,8 +76,8 @@ The Z-score is calculated under the assumption that the two parts of the chain a
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-shape_lambda  rate_lambda  lambda_tot0 
-       1.032       -3.241        5.280 
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+      0.3246       0.1232      -1.8823       1.6363       0.3293 
 
 
 [[2]]
@@ -75,8 +85,8 @@ shape_lambda  rate_lambda  lambda_tot0
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-shape_lambda  rate_lambda  lambda_tot0 
-      0.1136       1.3146       0.1417 
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+     0.09357     -0.02658     -1.66610      0.89652      1.25230 
 
 
 
@@ -90,9 +100,11 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 30       42290 3746         11.3      
- rate_lambda  40       77640 3746         20.7      
- lambda_tot0  30       40540 3746         10.8      
+ shape_lambda 60       82540 3746         22.0      
+ rate_lambda  30       43020 3746         11.5      
+ p_MC90_1SW   60       87960 3746         23.5      
+ p_MC90_MSW   60       84640 3746         22.6      
+ lambda0      30       41450 3746         11.1      
 
 
 [[2]]
@@ -103,8 +115,10 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 40       74880 3746         20.0      
- rate_lambda  40       78420 3746         20.9      
- lambda_tot0  30       40020 3746         10.7      
+ shape_lambda 60       80020 3746         21.4      
+ rate_lambda  30       43520 3746         11.6      
+ p_MC90_1SW   60       86180 3746         23.0      
+ p_MC90_MSW   60       80340 3746         21.4      
+ lambda0      30       41690 3746         11.1      
 
 
