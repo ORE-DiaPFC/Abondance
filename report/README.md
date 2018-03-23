@@ -7,3 +7,10 @@ The file "Total_return_all.csv" combines the estimates of the total number of re
 
 ![Figure1](total_return.png)  
 Figure1: Total number of return (only medians from the posetrior distributions are reported; before fishing)
+
+
+![Figure2](prop_MSW_return.png)  
+
+![Figure3](total_smolt.png) 
+
+![Figure4](total_tacon.png) 
