@@ -60,5 +60,9 @@ cd $REPbase/$SITE
     done
  done   
     
+wait
+
+   R CMD BATCH --no-save --no-restore CIEM/Script_CIEM.R & # analyse dans R
+   
 
 
