@@ -227,7 +227,7 @@ for (site in sites){
   
   
   if (site == "Nivelle"){ 
-    sum <- read.table(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/YOY_tot.txt"), h=TRUE)
+    sum <- read.table(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/YOYnat.txt"), h=TRUE)
     
     table[3:nrow(table),1:3] <- as.matrix(sum[1:nrow(sum),c(3,6,9)])
   }
