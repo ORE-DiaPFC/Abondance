@@ -13,7 +13,7 @@ Figure1: Total number of anadromous adults returning to the river (medians and 9
 
 ![Figure2](prop_MSW_return.png)  
 
-Figure2: Proportion of Multiple Sea Winter returning to the river (only medians are reported; BEFORE fishing)
+Figure2: Proportion of Multiple Sea Winter returning to the river (only medians are reported)
 
 
 # SMOLTS
