@@ -829,6 +829,11 @@ write.table(YOY_tot_q,file="results/YOY_tot.txt", row.names=F, col.names=cnames,
 write.table(YOYnat_q,file="results/YOYnat.txt", row.names=F, col.names=cnames, sep = "\t")
 write.table(YOYcomp_q,file="results/YOYcomp.txt", row.names=F, col.names=cnames, sep = "\t")
 write.table(YOYres_q,file="results/YOYres.txt", row.names=F, col.names=cnames, sep = "\t")
+#write.csv(YOY_tot_q,file="results/YOY_tot.csv", row.names=F, col.names=cnames)#, sep = "\t")
+#write.table(YOYnat_q,file="results/YOYnat.txt", row.names=F, col.names=cnames, sep = "\t")
+#write.table(YOYcomp_q,file="results/YOYcomp.txt", row.names=F, col.names=cnames, sep = "\t")
+#write.table(YOYres_q,file="results/YOYres.txt", row.names=F, col.names=cnames, sep = "\t")
+
 
 ##########################################################################
 ##########################################################################

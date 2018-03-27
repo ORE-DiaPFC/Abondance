@@ -134,6 +134,10 @@ write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep
 # EXAMINE THE RESULTS
 fit.mcmc <- as.mcmc(fit) # using bugs
 
+## To check chains and distributions:
+# traplot(fit, "junk")
+# denplot(fit, "junk")
+
 # DIAGNOSTICS:
 parameterstotest <-parameters # all parameters
 # parameterstotest <- c(
