@@ -1,7 +1,8 @@
 
+setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/")
 
 ## ADULTS
-year=2016
+year=2017
 sites <- c("Bresle", "Oir","Nivelle", "Scorff")
 stade <- "adult"
 
@@ -14,7 +15,7 @@ total=NULL
    rownames(table) <- years
    
    # load results
-    load(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
+    load(paste0(site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
 
     n_tot <- ceiling(fit$median$n_tot) #annual total number of fish
     n_1SW <- ceiling(fit$median$n_1SW) # annual total number of fish 1SW
