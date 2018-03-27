@@ -1,4 +1,4 @@
-Estimates
+Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC
 ======
 
 Estimates of the number of returns (fish of 1 Sea Winter, 2 Sea Winter and Total) are provided for each sites: see csv files.
@@ -9,7 +9,7 @@ The file "Total_return_all.csv" combines the estimates of the total number of re
 
 ![Figure1](total_return.png)  
 
-Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported; BEFORE fishing)
+Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported)
 
 ![Figure2](prop_MSW_return.png)  
 
