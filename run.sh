@@ -6,7 +6,7 @@ YEAR=2017
 CHAINS=2
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
 ITER=50000 # Total number of steps in chains to save.
-THIN=10 # Number of steps to "thin" (1=keep every step).
+THIN=20 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
