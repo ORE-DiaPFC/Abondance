@@ -8,11 +8,6 @@ COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
 
   
 ## ADULTS
-<<<<<<< HEAD
-year=2017
-sites <- c("Bresle", "Oir","Nivelle", "Scorff")
-=======
->>>>>>> c282adc0640fd268ecee36f98e12b2484f610dd9
 stade <- "adult"
 years <- seq(1984, year, 1)
 sites <- c("Bresle", "Oir","Nivelle", "Scorff")
@@ -22,20 +17,12 @@ mycol <- COL
 SW=returns=list()
 total=NULL
  for (site in sites){
-<<<<<<< HEAD
-   table <- array(, dim=c(length(years), 4))
-   colnames(table) <- c( "Year of return","1SW", 	"MSW",	"Total")
-   rownames(table) <- years
-   
-   # load results
-    load(paste0(site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
-=======
+
    table <- array(, dim=c(length(years), 4)); colnames(table) <- c( "Year of return","1SW", 	"MSW",	"Total"); rownames(table) <- years
    quant <- array(, dim=c(length(years), 3)); colnames(quant) <- c("2.5%","50%","97.5%"); rownames(quant) <- years
 
     ### LOAD RESULTS
     load(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
->>>>>>> c282adc0640fd268ecee36f98e12b2484f610dd9
 
     
     ### QUANTILES
