@@ -7,7 +7,9 @@ year=2017
 COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
 
   
-## ADULTS
+###################################################################################################################
+######## ADULTS
+###################################################################################################################
 stade <- "adult"
 years <- seq(1984, year, 1)
 sites <- c("Bresle", "Oir","Nivelle", "Scorff")
@@ -109,6 +111,62 @@ for (site in 1:4) {
 }
 legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
 dev.off()
+
+
+
+
+######## Table 7 - Exploitation rate in the rivers Scorff ######
+## SCORFF
+site <- "Scorff"
+stade <- "adult"
+
+# load dataset
+load(paste(site,"/",stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
+
+
+## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  
+## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW
+C_F_1SW <- data$Cm_F[,1] + data$Cum_F[,1] # marked + unmarked 1SW fish caugth by fishing
+C_F_MSW <- data$Cm_F[,2] + data$Cum_F[,2] # marked + unmarked MSW fish caugth by fishing
+
+# /!\ Annual number of fish caught by fishing per sea age category from 1994 to 2002 / Not all reported then
+#data$C_F # 94 -> 2002
+C_F_1SW[1:length(data$C_F[,1])] <- data$C_F[,1]
+C_F_MSW[1:length(data$C_F[,2])] <- data$C_F[,2]
+
+# load estimations of size popualtions
+load(paste0(site,"/",stade,"/results/Results_adult_",year,".RData"))
+n_1SW <- fit$median$n_1SW # medians
+n_MSW <- fit$median$n_MSW # medians
+
+Expl_rate <- cbind(
+  Expl_rate_1SW = (C_F_1SW / n_1SW)*100,
+  Expl_rate_MSW = (C_F_MSW / n_MSW)*100  
+)
+
+#Expl_rate <- rbind(Expl_rate,colMeans(Expl_rate))
+
+rowname <- c(seq(1994,year,1))#, "Average")
+Expl_rate <- cbind(rowname,Expl_rate)
+colnames(Expl_rate) <- c("Year","1SW (%)", "MSW (%)")
+Expl_rate <- as.data.frame(Expl_rate)
+
+png("report/exploitation_Scorff.png",width = 780, height = 480)
+plot(NULL,xlim=c(1,nrow(Expl_rate)),ylim=c(0, 40),bty="n",ylab="Exploitation rate (%)",xaxt="n",xlab="Year")
+axis(side=1,line=1,labels = Expl_rate$Year,at=1:nrow(Expl_rate))
+    lines(Expl_rate$`1SW (%)`,lty=1,lwd=3,col=paste0(mycol[4],"50")) 
+    lines(Expl_rate$`MSW (%)`,lty=1,lwd=3,col=mycol[4]) 
+    #lower <- smolts[[site]][,"2.5%"]
+    #upper <- smolts[[site]][,"97.5%"]
+    #xx <- c(1:length(years),rev(1:length(years)))
+    #yy<-c(lower, rev(upper))
+    #polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+    legend("topright", legend=c("1SW", "MSW"), col=c(paste0(mycol[4],"50"), mycol[4]),lty=1,lwd=3,bty="n")
+dev.off()
+
+
+
+
 
 
 

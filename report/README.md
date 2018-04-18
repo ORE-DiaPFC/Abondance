@@ -16,13 +16,17 @@ Figure1: Total number of anadromous adults returning to the river (medians and 9
 Figure2: Proportion of Multiple Sea Winter returning to the river (only medians are reported)
 
 
-# SMOLTS
-![Figure3](total_smolt.png) 
+![Figure3](exploitation_Scorff.png) 
 
-Figure3: Total number of smolts (medians and 95% credible intervals are reported).
+Figure3: Exploitation rate in the rivers Scorff (only medians are reported)
+
+# SMOLTS
+![Figure4](total_smolt.png) 
+
+Figure4: Total number of smolts (medians and 95% credible intervals are reported).
 
 
 # PARR
-![Figure4](total_tacon.png) 
+![Figure5](total_tacon.png) 
 
-Figure4: Total number of parr (medians and 95% credible intervals are reported).
+Figure5: Total number of parr (medians and 95% credible intervals are reported).
