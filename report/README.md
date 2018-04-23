@@ -9,24 +9,24 @@ The file "Total_return_all.csv" combines the estimates of the total number of re
 
 ![Figure1](total_return.png)  
 
-Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported)
+Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported). Evolution trend by loess smoothing.
 
 ![Figure2](prop_MSW_return.png)  
 
-Figure2: Proportion of Multiple Sea Winter returning to the river (only medians are reported)
+Figure2: Proportion of Multiple Sea Winter returning to the river (only medians are reported). Evolution trend by loess smoothing.
 
 
 ![Figure3](exploitation_Scorff.png) 
 
-Figure3: Exploitation rate in the rivers Scorff (only medians are reported)
+Figure3: Exploitation rate in the rivers Scorff (only medians are reported) Evolution trend by loess smoothing.
 
 # SMOLTS
 ![Figure4](total_smolt.png) 
 
-Figure4: Total number of smolts (medians and 95% credible intervals are reported).
+Figure4: Total number of smolts (medians and 95% credible intervals are reported). Evolution trend by loess smoothing.
 
 
 # PARR
 ![Figure5](total_tacon.png) 
 
-Figure5: Total number of parr (medians and 95% credible intervals are reported).
+Figure5: Total number of parr (medians and 95% credible intervals are reported). Evolution trend by loess smoothing.

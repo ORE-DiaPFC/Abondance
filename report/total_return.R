@@ -91,12 +91,19 @@ plot(NULL,xlim=c(1,length(years)),ylim=c(0,1500),bty="n",ylab="Total number of f
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:4) {
   #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
-  lines(returns[[site]][,"50%"],lty=1,lwd=3,col=mycol[site]) 
+  lines(returns[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site], 50)) 
   lower <- returns[[site]][,"2.5%"]
   upper <- returns[[site]][,"97.5%"]
   xx <- c(1:length(years),rev(1:length(years)))
   yy<-c(lower, rev(upper))
-  polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+  polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+  
+  #scatter.smooth(years, returns[[site]][,"50%"], span = 2/3, degree = 2)
+  df <- data.frame(x=years, y= returns[[site]][,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  if (site == 4){ pred<-c(rep(NA,10),pred) }
+  lines(pred,col=mycol[site],lwd=4)
 }
 legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
 dev.off()
@@ -107,7 +114,13 @@ png("report/prop_MSW_return.png",width = 780, height = 480)
 plot(NULL,xlim=c(1,length(years)),ylim=c(0,1),bty="n",ylab="Proprotion of MSW",xaxt="n",xlab="Year of return")
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:4) {
-  lines(SW[[site]][,"MSW"]/SW[[site]][,"Total"],lty=1,lwd=3,col=mycol[site])  
+  lines(SW[[site]][,"MSW"]/SW[[site]][,"Total"],lty=1,lwd=2,col=paste0(mycol[site], 50))  
+  
+  df <- data.frame(x=years, y= SW[[site]][,"MSW"]/SW[[site]][,"Total"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  if (site == 4){ pred<-c(rep(NA,10),pred) }
+  lines(pred,col=mycol[site],lwd=4)
 }
 legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
 dev.off()
@@ -154,13 +167,23 @@ Expl_rate <- as.data.frame(Expl_rate)
 png("report/exploitation_Scorff.png",width = 780, height = 480)
 plot(NULL,xlim=c(1,nrow(Expl_rate)),ylim=c(0, 40),bty="n",ylab="Exploitation rate (%)",xaxt="n",xlab="Year")
 axis(side=1,line=1,labels = Expl_rate$Year,at=1:nrow(Expl_rate))
-    lines(Expl_rate$`1SW (%)`,lty=1,lwd=3,col=paste0(mycol[4],"50")) 
-    lines(Expl_rate$`MSW (%)`,lty=1,lwd=3,col=mycol[4]) 
+    lines(Expl_rate$`1SW (%)`,lty=1,lwd=2,col=paste0(mycol[4],"50")) 
+    lines(Expl_rate$`MSW (%)`,lty=1,lwd=2,col=paste0(mycol[4],"90")) 
     #lower <- smolts[[site]][,"2.5%"]
     #upper <- smolts[[site]][,"97.5%"]
     #xx <- c(1:length(years),rev(1:length(years)))
     #yy<-c(lower, rev(upper))
     #polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+    
+    df <- data.frame(x=years, y1sw= c(rep(NA,10),Expl_rate$`1SW (%)`), yMsw= c(rep(NA,10),Expl_rate$`MSW (%)`))
+    lw1 <- loess(y1sw ~ x,span = 0.75, degree = 2, data=df)
+    lw2 <- loess(yMsw ~ x,span = 0.75, degree = 2, data=df)
+    pred1 <- predict(lw1);pred2 <- predict(lw2)
+      #pred1<-c(rep(NA,10),pred1)
+      #pred2<-c(rep(NA,10),pred2)
+    lines(pred1,col=paste0(mycol[4],"50"),lwd=4)
+    lines(pred2,col=paste0(mycol[4]),lwd=4)
+    
     legend("topright", legend=c("1SW", "MSW"), col=c(paste0(mycol[4],"50"), mycol[4]),lty=1,lwd=3,bty="n")
 dev.off()
 
@@ -227,19 +250,38 @@ plot(NULL,xlim=c(1,length(years)),ylim=c(0, 15000),bty="n",ylab="Total number of
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:3) {
   if (site == 1){ # Bresle
-  lines(smolts[[site]][,"50%"],lty=1,lwd=3,col=mycol[site]) 
+  lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
   lower <- smolts[[site]][22:length(years),"2.5%"]
   upper <- smolts[[site]][22:length(years),"97.5%"]
   xx <- c(22:length(years),rev(22:length(years)))
   yy<-c(lower, rev(upper))
-  polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+  polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+  
+  df <- data.frame(x=years, y= smolts[[site]][,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  tmp <- predict(lw1)
+  pred <- rep(NA, length(years))
+  pred[1:6]<-tmp[1:6]
+  pred[11:19]<-tmp[7:15]
+  pred[21:length(years)]<-tmp[16:length(tmp)]
+  
+  #pred<-c(rep(NA,21),pred) # Bresle
+  lines(pred,col=mycol[site],lwd=4)
+  
   } else {
-    lines(smolts[[site]][,"50%"],lty=1,lwd=3,col=mycol[site]) 
+    lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
     lower <- smolts[[site]][,"2.5%"]
     upper <- smolts[[site]][,"97.5%"]
     xx <- c(1:length(years),rev(1:length(years)))
     yy<-c(lower, rev(upper))
-    polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+    polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+    
+    df <- data.frame(x=years, y= smolts[[site]][,"50%"])
+    lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+    pred <- predict(lw1)
+    if (site == 2){ pred<-c(rep(NA,4),pred) } # Oir
+    if (site == 3){ pred<-c(rep(NA,13),pred) } # Scorff
+    lines(pred,col=mycol[site],lwd=4)
   }
 
 }
@@ -310,14 +352,21 @@ for (site in 1:3) {
   #   yy<-c(lower, rev(upper))
   #   polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
   # } else {
-    lines(tacon[[site]][,"50%"],lty=1,lwd=3,col=mycol[site]) 
+    lines(tacon[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
     lower <- tacon[[site]][,"2.5%"]
     upper <- tacon[[site]][,"97.5%"]
     xx <- c(1:length(years),rev(1:length(years)))
     yy<-c(lower, rev(upper))
-    polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
+    polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
   #}
   
+    df <- data.frame(x=years, y= tacon[[site]][,"50%"])
+    lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+    pred <- predict(lw1)
+    if (site == 1){ pred<-c(rep(NA,5),pred) }
+    if (site == 2){ pred<-c(rep(NA,3),pred) }
+    if (site == 3){ pred<-c(rep(NA,11),pred) }
+    lines(pred,col=mycol[site],lwd=4)
 }
 legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
 dev.off()
