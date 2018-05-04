@@ -8,6 +8,7 @@ Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (/!\ par
 Adult numbers refer to the smolt year N: runs of N+1 and N+2 (N+2 an N+3 respectively for r. Nivelle)
 These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
 Stocking is considered to adjust numbers
+- Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers
 
 # Conservation limits (millions) used: 
 
