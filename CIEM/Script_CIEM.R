@@ -449,15 +449,15 @@ years <- seq(1994, year, 1)
 # load dataset
 load(paste("Abundance/",site,"/",stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 
-table <- cbind(data$C_MP, rowSums(data$C_MP))
+table <- cbind(years, data$C_MP, rowSums(data$C_MP))
 rownames(table)<-years
-colnames(table)<- c("1SW", "MSW", "Total")
+colnames(table)<- c("Years","1SW", "MSW", "Total")
 
 con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")
- Nota : We only considered fish captured at Moulin des Princes"
-                 ,sep=""), con)
-write.csv( table, con, row.names = TRUE)
+# writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")
+#  Nota : We only considered fish captured at Moulin des Princes"
+#                  ,sep=""), con)
+write.csv( table, con, row.names = FALSE)
 close(con)
 
 
@@ -470,13 +470,13 @@ years <- seq(1984, year, 1)
 # load dataset
 load(paste("Abundance/",site,"/",stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 
-table <- cbind(data$C_Eu + data$Cum_B, rowSums(data$C_Eu + data$Cum_B))
+table <- cbind(years,data$C_Eu + data$Cum_B, rowSums(data$C_Eu + data$Cum_B))
 rownames(table)<-years
-colnames(table)<- c("1SW", "MSW", "Total")
+colnames(table)<- c("Years","1SW", "MSW", "Total")
 
 con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
-write.csv( table, con, row.names = TRUE)
+# writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
+write.csv( table, con, row.names = FALSE)
 close(con)
 
 
@@ -490,13 +490,13 @@ load(paste("Abundance/",site,"/",stade,"/data/data_",stade,"_",year,'.Rdata',sep
 
 sw1 <- rowSums(data$C_U[,1:2], na.rm=TRUE) + rowSums(data$Cum_O[,1:2], na.rm=TRUE)
 swm <- rowSums(data$C_U[,3:4], na.rm=TRUE) + rowSums(data$Cum_O[,3:4], na.rm=TRUE)
-table <- cbind(sw1, swm, (sw1 + swm))
+table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
-colnames(table)<- c("1SW", "MSW", "Total")
+colnames(table)<- c("Years","1SW", "MSW", "Total")
 
 con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
-write.csv( table, con, row.names = TRUE)
+# writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
+write.csv( table, con, row.names = FALSE)
 close(con)
 
 ## OIR
@@ -509,12 +509,12 @@ load(paste("Abundance/",site,"/",stade,"/data/data_",stade,"_",year,'.Rdata',sep
 
 sw1 <- rowSums(data$C_MC[,1:2], na.rm=TRUE) + rowSums(data$Cum_R[,1:2], na.rm=TRUE)
 swm <- rowSums(data$C_MC[,3:4], na.rm=TRUE) + rowSums(data$Cum_R[,3:4], na.rm=TRUE)
-table <- cbind(sw1, swm, (sw1 + swm))
+table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
-colnames(table)<- c("1SW", "MSW", "Total")
+colnames(table)<- c("Years","1SW", "MSW", "Total")
 
 con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
-writeLines(paste(
-"# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")" ,sep=""), con)
-write.csv( table, con, row.names = TRUE)
+# writeLines(paste(
+# "# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")" ,sep=""), con)
+write.csv( table, con, row.names = FALSE)
 close(con)
