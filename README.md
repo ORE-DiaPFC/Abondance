@@ -6,7 +6,7 @@ Estimer la taille des populations de saumon atlantique (*Salmo salar*) et leurs 
 et ce, à différents stades de vie, est crucial pour étudier leurs dynamiques et proposer des stratégies
 raisonnables de gestion aussi bien au niveau local qu’international. Les séries chronologiques
 d’abondance du saumon atlantique en France, collectées sur les cours d’eau de l’Observatoire de
-Recherche en Environnement sur les Poissons Diadromes dans les Petits Fleuves Côtiers (ORE DiaPFC),
+Recherche en Environnement sur les Poissons Diadromes dans les Petits Fleuves Côtiers (ORE DiaPFC, https://www6.inra.fr/diapfc),
 constituent le support observationnel sur lequel se fonde le système de régulation de l’exploitation du
 saumon sur le bassin de l’Adour – Nivelle, en Bretagne et en Basse-Normandie. Au niveau international,
 les rivières de l’ORE DiaPFC contribuent au réseau des rivières « index » dont les séries temporelles
@@ -101,6 +101,11 @@ ___
 Lange F., Guéraud F., Huchet E., Rives J. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Nivelle river (France). [doi:10.15468/alsjvy](http://www.gbif.org/dataset/e96db990-bd86-4a79-89a2-446844a27811)
 
 Jeannot N., Azam D., Guilloux Y. and Prévost E. 2017. Abundances and biological traits of the juveniles salmon sampled in the survey of Salmon abundance Indices in the Scorff river (France). [doi:10.15468/mz4lyw](http://www.gbif.org/dataset/89064e3a-aa3c-495d-b236-092e1dae7042)
+
+Marchand F., Azam D., Delanoë R., Destouches J.-P., Tremblay J., and Prévost E. 2017. Abundances indices and biological traits of juvenile salmon sampled in the Oir river (France). [doi:10.15468/cjsjrj](http://www.gbif.org/dataset/5ea28eaa-7e0c-417c-b525-9c737d18823f)
+
+Marchand F., Beaulaton L., Prévost E., Delanoë R., Destouches J.-P., Gueraud F., Guilloux Y., Jeannot N., Huchet E., Lange F., Rives J., Trembaly J., Herrard N. and Azam D. 2017. Abundance indices and biological traits of juvenile salmon (Salmo salar) sampled in three rivers on the Atlantic and Channel coasts (France). Biodiversity Data Journal, 5: e15125. (https://bdj.pensoft.net/articles.php?id=15125)
+
 
 
 ___
