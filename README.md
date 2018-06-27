@@ -6,7 +6,7 @@ Estimer la taille des populations de saumon atlantique (*Salmo salar*) et leurs 
 et ce, à différents stades de vie, est crucial pour étudier leurs dynamiques et proposer des stratégies
 raisonnables de gestion aussi bien au niveau local qu’international. Les séries chronologiques
 d’abondance du saumon atlantique en France, collectées sur les cours d’eau de l’Observatoire de
-Recherche en Environnement sur les Poissons Diadromes dans les Petits Fleuves Côtiers (ORE DiaPFC, https://www6.inra.fr/diapfc),
+Recherche en Environnement sur les Poissons Diadromes dans les Petits Fleuves Côtiers ([ORE DiaPFC](https://www6.inra.fr/diapfc)),
 constituent le support observationnel sur lequel se fonde le système de régulation de l’exploitation du
 saumon sur le bassin de l’Adour – Nivelle, en Bretagne et en Basse-Normandie. Au niveau international,
 les rivières de l’ORE DiaPFC contribuent au réseau des rivières « index » dont les séries temporelles
