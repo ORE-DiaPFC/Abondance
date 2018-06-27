@@ -104,7 +104,7 @@ Jeannot N., Azam D., Guilloux Y. and Prévost E. 2017. Abundances and biological
 
 Marchand F., Azam D., Delanoë R., Destouches J.-P., Tremblay J., and Prévost E. 2017. Abundances indices and biological traits of juvenile salmon sampled in the Oir river (France). [doi:10.15468/cjsjrj](http://www.gbif.org/dataset/5ea28eaa-7e0c-417c-b525-9c737d18823f)
 
-Marchand F., Beaulaton L., Prévost E., Delanoë R., Destouches J.-P., Gueraud F., Guilloux Y., Jeannot N., Huchet E., Lange F., Rives J., Trembaly J., Herrard N. and Azam D. 2017. Abundance indices and biological traits of juvenile salmon (Salmo salar) sampled in three rivers on the Atlantic and Channel coasts (France). Biodiversity Data Journal, 5: e15125. (https://bdj.pensoft.net/articles.php?id=15125)
+Marchand F., Beaulaton L., Prévost E., Delanoë R., Destouches J.-P., Gueraud F., Guilloux Y., Jeannot N., Huchet E., Lange F., Rives J., Trembaly J., Herrard N. and Azam D. 2017. Abundance indices and biological traits of juvenile salmon (Salmo salar) sampled in three rivers on the Atlantic and Channel coasts (France). Biodiversity Data Journal, 5: [e15125](https://bdj.pensoft.net/articles.php?id=15125).
 
 
 
