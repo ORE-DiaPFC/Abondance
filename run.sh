@@ -2,19 +2,20 @@
 #$ -S /bin/sh
 
 #SITE=Scorff # Nivelle Oir Bresle
-YEAR=2017
+YEAR=2018
 CHAINS=2
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
-ITER=50000 # Total number of steps in chains to save.
-THIN=20 # Number of steps to "thin" (1=keep every step).
+ITER=5000 # Total number of steps in chains to save.
+THIN=2 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
-REPbase="/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
+#REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
+REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
 #"/media/ORE/Abundance" 
 
 COUNTER=0
 
-for SITE in Scorff Nivelle Oir Bresle  
+for SITE in Nivelle #Scorff Nivelle Oir Bresle  
 do
      
 cd $REPbase/$SITE
@@ -44,7 +45,7 @@ cd $REPbase/$SITE
     sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
      
 
-   R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   #R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]
@@ -62,7 +63,7 @@ cd $REPbase/$SITE
     
 wait
 
-   R CMD BATCH --no-save --no-restore CIEM/Script_CIEM.R & # analyse dans R
+# R CMD BATCH --no-save --no-restore CIEM/Script_CIEM.R & # analyse dans R
    
 
 

@@ -13,13 +13,13 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2017"
+year <- "2018"
 site <- "Nivelle"
 stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/home/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -61,8 +61,8 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=50000 # Total number of steps in chains to save.
-nthin=20 # Number of steps to "thin" (1=keep every step).
+nstore=5000 # Total number of steps in chains to save.
+nthin=2 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
