@@ -19,7 +19,7 @@ stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("/media/hdd/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning

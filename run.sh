@@ -10,12 +10,12 @@ THIN=2 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 #REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
-REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
+REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 #"/media/ORE/Abundance" 
 
 COUNTER=0
 
-for SITE in Nivelle #Scorff Nivelle Oir Bresle  
+for SITE in Nivelle Bresle #Scorff Nivelle Oir   
 do
      
 cd $REPbase/$SITE
