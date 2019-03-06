@@ -1,7 +1,7 @@
 list(
 
 #Nyears: Length of time series from 1995 to now on  
-Nyears = 23, # 2017
+Nyears = 24, # 2018
 
 # Annual number of smolt captured at Moulin de Lesl?
 C_ML = c(
@@ -27,7 +27,8 @@ NA,
 2372,
 1478,
 3203,
-1345 # 2017
+1345, 
+1307 # 2018
 ),
 
 # Annual number of smolt marked and released downstream Moulin de Lesl?
@@ -54,7 +55,8 @@ Cm_ML = c(
 2351,
 1291,
 3204,
-1345 # 2017
+1345,
+1200 # 2018
 ),
 
 # Annual number of smolt captured at Moulin de Lesl? and released unmarked downstream Moulin de Lesl?
@@ -81,7 +83,8 @@ NA,
 21,
 186,
 1,
-0 # 2017
+0,
+0 # 2018
 ),
 
 # Annual number of dead smolt at Moulin de Lesl?
@@ -108,7 +111,8 @@ NA,
 17,
 2,
 2,
-0 # 2017
+0,
+107 # 2018 (29 dead + 78 marked fish with acoustic tag - SAMARCH project)
 ),
 
 # Annual number of marked smolt captured at Moulin des Princes
@@ -135,7 +139,8 @@ Cm_MP = c(
 225,
 117,
 393,
-135 # 2017
+135,
+70 # 2018
 ),
 
 # Annual number of unmarked smolt captured at Moulin des Princes
@@ -162,7 +167,8 @@ NA ,
 766,
 488,
 805,
-501 # 2017
+501,
+214 # 2018
 ),
 
 # Annual number of dead smolt at Moulin des Princes
@@ -189,7 +195,8 @@ D_MP = c(
 25,
 13,
 2,
-16 # 2017
+16,
+0 # 2018
 ),
 
 # No update (data from 1995 and 1996 when Lesl? was not installed yet)

@@ -1,3 +1,4 @@
+
 ###############################################################################################################################			
 ## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  			
 ## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW			
@@ -27,4 +28,5 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 18	10	34	20
 9	2	24	8
 20	8	16	5 # 2017 (42% of marked fish on declared unmarked fish)
-#END			
+10	2	4	13
+#END 

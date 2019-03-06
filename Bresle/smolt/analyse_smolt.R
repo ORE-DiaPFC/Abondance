@@ -19,7 +19,7 @@ stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -77,11 +77,11 @@ fit <- bugs(
   ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
   ,DIC=FALSE
   ,codaPkg = FALSE, clearWD=FALSE
-  #,debug=TRUE
+  ,debug=TRUE
   #,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:
-  #, OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
-  #, useWINE = TRUE
+  , OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
+  , useWINE = TRUE
 )
 
 ## cleaning

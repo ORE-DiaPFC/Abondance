@@ -1,7 +1,7 @@
 ################################################################################
 ###           Model of CMR data to estimate smolt population size         ###
 ###                 of Salmo salar in Bresle river.                         ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                          March 2015                                  ###
 ################################################################################
 
@@ -127,7 +127,7 @@ for (t in 1:NEu) {  # For years when Eu is installed
 
 test <- step(logit_flow_Eu) # is logit_flow >=0 ?
 
-#Calculating R² = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
+#Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
 # See Gelman & Pardoe 2006
 sdeps_Eu <- sd(eps_Eu[])
 vareps_Eu <- sdeps_Eu * sdeps_Eu
@@ -194,7 +194,7 @@ C_B[21] ~ dbin (p_Btot[16],Ntot[21]) # number of fish captured at Beauchamps
 Nesc[21] <- Ntot[21] - D_B[21]
 
 # From 2003 to now on: capture at Beauchamps and recapture at Eu
-for (t in 22:Nyears) {
+for (t in 22:36) {
     C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
     num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
 
@@ -203,6 +203,40 @@ for (t in 22:Nyears) {
 
     Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
     } # end of loop over years
+
+# Year 2018: marked with blue + pit
+C_B[37] ~ dbin (p_Btot[37-5],Ntot[37]) # number of fish captured at Beauchamps
+num_B[37] <- Ntot[37] - C_B[37] + Cum_B[37] # total unmarked fish
+
+Cm_Eu[37] ~ dbin(p_Eu[37-13],Cm_B_bis) # marked fish
+Cum_Eu[37] ~ dbin(p_Eu[37-13], num_B_bis) #unmarked fish
+
+# marked fish
+Cm_B_bis <- Cm_B_p + Cm_B_b_bis
+Cm_B_b_bis ~ dbin(p_keep, Cm_B_b)
+
+num_B_bis <- num_B[37] + Cm_B_b - Cm_B_b_bis
+
+# p_Eu[24] <- (Cm_B_b * p_keep + Cm_B_p)/(Cm_B_b + Cm_B_p) 
+Cm_B_b <- 180 # Cm_B_b : marked fish with blue at Beauchamps
+Cm_B_p <- 357 # Cm_B_p : marked fish with PIT at Beauchamps
+p_keep ~ dbeta(10,2) # probability of not losing blue marks (10 captured blue and pit marked)
+
+Nesc[37] <- Cm_B[37] + num_B[37]  ### Total number of smolt escaping the river
+
+
+
+
+# # From 2003 to now on: capture at Beauchamps and recapture at Eu
+# for (t in 38:Nyears) {
+#   C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
+#   num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
+#   
+#   Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
+#   Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+#   
+#   Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
+# } # end of loop over years
 
 } # end of the model
 
