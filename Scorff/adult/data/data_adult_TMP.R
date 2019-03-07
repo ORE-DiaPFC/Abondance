@@ -89,4 +89,3 @@ data <- list( Y=Y$Y,eff_R=eff_R$eff_R
               ,C_F=C_F,Cm_F=Cm_F,Cum_F=Cum_F)
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données
-bugs.data(data,digits=3, data.file = paste0('data/data_',stade,"_",year,'.txt'))

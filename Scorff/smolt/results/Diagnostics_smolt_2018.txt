@@ -1,0 +1,149 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  50000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+rho                 1.00       1.01
+l_ML_dim            1.01       1.01
+sigmap_ML_dim       1.04       1.13
+junk                1.02       1.02
+shape_lambda        1.00       1.00
+rate_lambda         1.00       1.00
+mean_gamma          1.00       1.00
+var_gamma           1.00       1.00
+
+Multivariate psrf
+
+1.02
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+rho           passed       20001     0.0724 
+l_ML_dim      passed       15001     0.0536 
+sigmap_ML_dim passed        5001     0.1448 
+junk          passed           1     0.4414 
+shape_lambda  passed           1     0.0549 
+rate_lambda   passed           1     0.0927 
+mean_gamma    passed           1     0.6457 
+var_gamma     passed           1     0.2098 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+rho           passed     4.66e-01 9.69e-03 
+l_ML_dim      failed     1.13e+00 2.50e-01 
+sigmap_ML_dim passed     1.21e+00 8.85e-02 
+junk          failed    -4.50e-03 3.00e-02 
+shape_lambda  passed     3.72e+00 1.78e-02 
+rate_lambda   passed     4.83e-04 2.40e-06 
+mean_gamma    passed     7.79e+03 9.83e+00 
+var_gamma     passed     1.80e+07 1.07e+05 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+rho           failed         NA      0.00393
+l_ML_dim      passed          1      0.23782
+sigmap_ML_dim passed          1      0.11515
+junk          passed          1      0.35433
+shape_lambda  passed       5001      0.11705
+rate_lambda   passed       5001      0.14380
+mean_gamma    passed          1      0.92766
+var_gamma     passed       5001      0.18474
+                                          
+              Halfwidth Mean     Halfwidth
+              test                        
+rho           <NA>            NA       NA 
+l_ML_dim      failed    1.37e+00 2.14e-01 
+sigmap_ML_dim passed    9.93e-01 9.55e-02 
+junk          failed    5.91e-03 2.19e-02 
+shape_lambda  passed    3.73e+00 1.83e-02 
+rate_lambda   passed    4.85e-04 2.55e-06 
+mean_gamma    passed    7.79e+03 9.31e+00 
+var_gamma     passed    1.80e+07 1.15e+05 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
+       9.7962       -2.6378        9.6571        0.3610       -1.5616 
+  rate_lambda    mean_gamma     var_gamma 
+      -1.3340       -0.6219        1.0371 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+          rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
+      -3.0363       -2.5146       -2.1944       -0.1566       -2.2268 
+  rate_lambda    mean_gamma     var_gamma 
+      -1.9907        0.3395        2.3924 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ rho           40       51720   3746          13.80    
+ l_ML_dim      45       58470   3746          15.60    
+ sigmap_ML_dim 1170     1104870 3746         295.00    
+ junk          225      273060  3746          72.90    
+ shape_lambda  20       24290   3746           6.48    
+ rate_lambda   30       40780   3746          10.90    
+ mean_gamma    10       18970   3746           5.06    
+ var_gamma     30       43600   3746          11.60    
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ rho           40       48010   3746          12.80    
+ l_ML_dim      120      177240  3746          47.30    
+ sigmap_ML_dim 1530     1687560 3746         450.00    
+ junk          140      167650  3746          44.80    
+ shape_lambda  30       41750   3746          11.10    
+ rate_lambda   30       42190   3746          11.30    
+ mean_gamma    10       18580   3746           4.96    
+ var_gamma     30       44040   3746          11.80    
+
+

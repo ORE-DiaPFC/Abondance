@@ -1,0 +1,156 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  50000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+int_width          1.00       1.00
+width_coef         1.00       1.00
+rate_lcpu          1.02       1.08
+sigma_dSc          1.04       1.18
+int_ydSc           1.00       1.01
+log_flow           1.00       1.00
+sigma_ySc          1.00       1.00
+sigma_siteSc       1.00       1.00
+test               1.05       1.05
+
+Multivariate psrf
+
+1.03
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+             Stationarity start     p-value 
+             test         iteration         
+int_width    passed          1      3.22e-01
+width_coef   passed          1      4.73e-01
+rate_lcpu    failed         NA      6.57e-06
+sigma_dSc    failed         NA      1.95e-06
+int_ydSc     passed          1      9.06e-01
+log_flow     passed          1      9.42e-02
+sigma_ySc    failed         NA      1.72e-03
+sigma_siteSc passed       5001      8.69e-02
+test         passed          1      6.68e-01
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+int_width    passed    -0.15567 9.00e-03 
+width_coef   passed     0.41755 3.42e-03 
+rate_lcpu    <NA>            NA       NA 
+sigma_dSc    <NA>            NA       NA 
+int_ydSc     passed     1.79614 1.64e-02 
+log_flow     passed    -0.44788 9.71e-04 
+sigma_ySc    <NA>            NA       NA 
+sigma_siteSc passed     0.67764 3.73e-03 
+test         failed     0.00004 5.54e-05 
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+int_width    passed       1         0.712  
+width_coef   passed       1         0.454  
+rate_lcpu    passed       1         0.850  
+sigma_dSc    passed       1         0.920  
+int_ydSc     passed       1         0.620  
+log_flow     passed       1         0.650  
+sigma_ySc    passed       1         0.220  
+sigma_siteSc passed       1         0.720  
+test         passed       1         0.543  
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+int_width    passed    -0.15735 8.38e-03 
+width_coef   passed     0.41557 3.51e-03 
+rate_lcpu    passed     0.64862 1.47e-02 
+sigma_dSc    passed     0.40507 2.53e-03 
+int_ydSc     passed     1.79837 2.11e-02 
+log_flow     passed    -0.44870 9.61e-04 
+sigma_ySc    passed     0.49756 9.22e-04 
+sigma_siteSc passed     0.68199 3.57e-03 
+test         failed     0.00004 5.54e-05 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
+    -0.15033     -0.88191      2.75279      3.01835      0.05464     -1.40072 
+   sigma_ySc sigma_siteSc         test 
+     1.57633      1.56753      0.78442 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
+      1.0066      -0.5611      -0.6944      -0.8532       1.1579       0.5969 
+   sigma_ySc sigma_siteSc         test 
+      0.2052       0.9174      -1.4142 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ int_width    260      370630 3746         98.9000   
+ width_coef   100      116975 3746         31.2000   
+ rate_lcpu    60       81760  3746         21.8000   
+ sigma_dSc    180      187890 3746         50.2000   
+ int_ydSc     300      353580 3746         94.4000   
+ log_flow     10       18940  3746          5.0600   
+ sigma_ySc    20       37840  3746         10.1000   
+ sigma_siteSc 75       105575 3746         28.2000   
+ test         5        40     3746          0.0107   
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ int_width    175      210420 3746          56.2000  
+ width_coef   125      140075 3746          37.4000  
+ rate_lcpu    60       92940  3746          24.8000  
+ sigma_dSc    200      253900 3746          67.8000  
+ int_ydSc     475      509485 3746         136.0000  
+ log_flow     10       19025  3746           5.0800  
+ sigma_ySc    10       19430  3746           5.1900  
+ sigma_siteSc 60       86220  3746          23.0000  
+ test         5        40     3746           0.0107  
+
+

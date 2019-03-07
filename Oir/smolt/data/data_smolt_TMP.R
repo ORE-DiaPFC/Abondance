@@ -19,4 +19,3 @@ data <- c(fish
           )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep=""))
-bugs.data(data,digits=3, data.file = paste0('data/data_',stade,"_",year,'.txt'))

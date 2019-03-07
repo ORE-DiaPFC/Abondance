@@ -1,0 +1,177 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  50000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+sigmapi_MP         1.05       1.22
+sigmapi_R          1.00       1.01
+mupi_oF            1.00       1.00
+sigmapi_oF         1.00       1.00
+diffF_1SW          1.01       1.04
+diffF_MSW          1.02       1.07
+diff1SW            1.00       1.00
+diffMSW            1.00       1.00
+pi_oD              1.04       1.19
+shape_lambda       1.00       1.01
+rate_lambda        1.00       1.00
+lambda_tot0        1.00       1.01
+
+Multivariate psrf
+
+1.08
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+sigmapi_MP   passed       1         0.1926 
+sigmapi_R    passed       1         0.2187 
+mupi_oF      passed       1         0.1936 
+sigmapi_oF   passed       1         0.8753 
+diffF_1SW    passed       1         0.8514 
+diffF_MSW    passed       1         0.0742 
+diff1SW      passed       1         0.7422 
+diffMSW      passed       1         0.4832 
+pi_oD        passed       1         0.6485 
+shape_lambda passed       1         0.9722 
+rate_lambda  passed       1         0.9526 
+lambda_tot0  passed       1         0.5096 
+                                          
+             Halfwidth Mean      Halfwidth
+             test                         
+sigmapi_MP   passed      0.33117 2.08e-03 
+sigmapi_R    passed      0.26980 9.89e-04 
+mupi_oF      passed      0.64280 5.57e-04 
+sigmapi_oF   passed      0.71713 2.73e-03 
+diffF_1SW    passed     -0.35600 2.55e-03 
+diffF_MSW    passed     -0.73097 5.59e-03 
+diff1SW      passed      0.42269 1.31e-02 
+diffMSW      passed      0.77327 1.40e-02 
+pi_oD        passed      0.22954 4.11e-03 
+shape_lambda passed      5.88491 3.39e-02 
+rate_lambda  passed      0.00924 5.45e-05 
+lambda_tot0  passed    594.90049 4.03e+00 
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+sigmapi_MP   passed       1         0.6474 
+sigmapi_R    passed       1         0.2515 
+mupi_oF      passed       1         0.9083 
+sigmapi_oF   passed       1         0.9922 
+diffF_1SW    passed       1         0.9540 
+diffF_MSW    passed       1         0.3928 
+diff1SW      passed       1         0.7953 
+diffMSW      passed       1         0.1221 
+pi_oD        passed       1         0.0923 
+shape_lambda passed       1         0.5951 
+rate_lambda  passed       1         0.5269 
+lambda_tot0  passed       1         0.5298 
+                                          
+             Halfwidth Mean      Halfwidth
+             test                         
+sigmapi_MP   passed      0.35703 2.13e-03 
+sigmapi_R    passed      0.27444 1.05e-03 
+mupi_oF      passed      0.64318 5.51e-04 
+sigmapi_oF   passed      0.71705 2.63e-03 
+diffF_1SW    passed     -0.37670 2.79e-03 
+diffF_MSW    passed     -0.77476 5.87e-03 
+diff1SW      passed      0.42961 1.26e-02 
+diffMSW      passed      0.75688 1.51e-02 
+pi_oD        passed      0.20861 4.16e-03 
+shape_lambda passed      6.00302 3.56e-02 
+rate_lambda  passed      0.00939 5.86e-05 
+lambda_tot0  passed    609.94203 4.01e+00 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
+     -0.9386       0.2392      -1.8443       0.2528       0.9853       0.6291 
+     diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
+     -0.6413      -1.1998       0.6488       0.9391       0.7998      -0.7649 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+  sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
+     0.77083     -0.06226      0.71090     -0.14596      0.62896      1.25641 
+     diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
+    -0.31097      2.94930     -1.99872      0.14796      0.16155     -1.06204 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ sigmapi_MP   125      143425 3746          38.30    
+ sigmapi_R    40       48740  3746          13.00    
+ mupi_oF      10       19240  3746           5.14    
+ sigmapi_oF   15       20270  3746           5.41    
+ diffF_1SW    15       20780  3746           5.55    
+ diffF_MSW    30       43090  3746          11.50    
+ diff1SW      60       72420  3746          19.30    
+ diffMSW      45       59805  3746          16.00    
+ pi_oD        420      469490 3746         125.00    
+ shape_lambda 40       49540  3746          13.20    
+ rate_lambda  40       50070  3746          13.40    
+ lambda_tot0  40       49510  3746          13.20    
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ sigmapi_MP   125      152750 3746          40.80    
+ sigmapi_R    40       49180  3746          13.10    
+ mupi_oF      10       19450  3746           5.19    
+ sigmapi_oF   15       20710  3746           5.53    
+ diffF_1SW    30       59940  3746          16.00    
+ diffF_MSW    45       66105  3746          17.60    
+ diff1SW      60       82725  3746          22.10    
+ diffMSW      45       58065  3746          15.50    
+ pi_oD        540      626940 3746         167.00    
+ shape_lambda 45       59055  3746          15.80    
+ rate_lambda  40       45990  3746          12.30    
+ lambda_tot0  40       48290  3746          12.90    
+
+
