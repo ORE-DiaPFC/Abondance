@@ -7,8 +7,9 @@ rm(list=ls())   # Clear memory
 # - OIR: chercher les données de surface de production accessible aux spawners dans les données de juvéniles
 # ' Bresle: vérifier tx fecondité et sex-ratio
 
-setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
-year <- 2017
+#setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
+setwd("/media/hdd/mbuoro/ORE-DiaPFC/")
+year <- 2018
 
 
 
@@ -54,7 +55,7 @@ colnames(Expl_rate) <- c("Year","1SW (%)", "MSW (%)")
 #write.csv(round(Expl_rate,1), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""))
 
 
-con <- file(paste('CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
 #con <- file(paste('CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
 #writeLines(paste("# Table 7 - Exploitation rate in the river Scorff - 1994-",year,")",sep=""), con)
 write.csv( round(Expl_rate,1), con, row.names = FALSE)
@@ -89,7 +90,7 @@ table[,"eggs (million)"] <- fit$median$eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- table[,"eggs (million)"] / CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 #writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
                  #             Conservation Limit = 1.44 (millions)
                  # ",sep=""), con)
@@ -136,7 +137,7 @@ table[,"eggs (million)"] <- c(rep(NA,10),eggs_tot / 1e6) # depose eggs
 table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                  Conservation Limit = ",round(mean(CL_eggs/1e6),2)," (milliions / using 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
 #                  ",sep=""), con)
@@ -197,7 +198,7 @@ table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                                   Conservation Limit =",CL_eggs," (millions)
 #                  ",sep=""), con)
@@ -249,7 +250,7 @@ table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                                   Conservation Limit =",CL_eggs," (millions)
 #                  ",sep=""), con)
@@ -336,7 +337,7 @@ for (y in 1:(nrow(table))){
 table[,4] <- (table[,3] / table[,2])*100 
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -379,7 +380,7 @@ for (y in 1:(nrow(table))){
 table[,4] <- (table[,3] / table[,2])*100 
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -422,7 +423,7 @@ for (y in 1:(nrow(table))){
 table[,4] <- (table[,3] / table[,2])*100 
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -453,7 +454,7 @@ table <- cbind(years, data$C_MP, rowSums(data$C_MP))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")
 #  Nota : We only considered fish captured at Moulin des Princes"
 #                  ,sep=""), con)
@@ -474,7 +475,7 @@ table <- cbind(years,data$C_Eu + data$Cum_B, rowSums(data$C_Eu + data$Cum_B))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
 write.csv( table, con, row.names = FALSE)
 close(con)
@@ -513,7 +514,7 @@ table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste(
 # "# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")" ,sep=""), con)
 write.csv( table, con, row.names = FALSE)

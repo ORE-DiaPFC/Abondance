@@ -22,7 +22,7 @@ do
 cd $REPbase/$SITE
      echo $SITE
      
-     for STADE in tacon #adult tacon smolt   
+     for STADE in adult tacon smolt   
      do
       if [ -d "$STADE" ]; then # if directory exists...
   # Control will enter here if $DIRECTORY exists.
