@@ -133,6 +133,7 @@ e_21.tmp = ceiling(e_2.tmp / 2)
 e_21 = rbind(inits0$e_21, e_21.tmp)
 #e_21 = e_21.tmp
 #ifelse(e_21==0, NA, e_21) # get error if = 0
+e_21[33,3]<-1 # e_21[33,3] cannot be 0!!!
 
 num_2 <- array(NA,dim=c(data$Y,4))
 num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
@@ -253,6 +254,7 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   #n.tmp = data$C_U / 0.1
   n = rbind(inits0$n, ceiling(n.tmp))
   n[33,2]<-20
+  n[33,3]<- n[33,3] + 10 # need to be > to escapment
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
   # n_11 = structure(.Data = c(
