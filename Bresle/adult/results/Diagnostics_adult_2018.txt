@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
@@ -24,32 +24,32 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
 [[1]]
-                                           
-             Stationarity start     p-value
-             test         iteration        
-shape_lambda passed       1         0.168  
-rate_lambda  passed       1         0.339  
-lambda_tot0  passed       1         0.905  
-                                         
-             Halfwidth Mean     Halfwidth
-             test                        
-shape_lambda passed      3.0459 0.017262 
-rate_lambda  passed      0.0186 0.000115 
-lambda_tot0  passed    177.1648 0.960469 
+                                            
+             Stationarity start     p-value 
+             test         iteration         
+shape_lambda passed        1        7.61e-01
+rate_lambda  passed        1        8.47e-01
+lambda_tot0  failed       NA        6.91e-07
+                                       
+             Halfwidth Mean   Halfwidth
+             test                      
+shape_lambda passed    3.0375 0.027140 
+rate_lambda  passed    0.0185 0.000181 
+lambda_tot0  <NA>          NA       NA 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.791  
-rate_lambda  passed       1         0.472  
-lambda_tot0  passed       1         0.157  
+shape_lambda passed       1         0.567  
+rate_lambda  passed       1         0.863  
+lambda_tot0  passed       1         0.245  
                                          
              Halfwidth Mean     Halfwidth
              test                        
-shape_lambda passed      3.0569 0.019172 
-rate_lambda  passed      0.0188 0.000121 
-lambda_tot0  passed    177.2229 1.042449 
+shape_lambda passed      3.0357 0.027161 
+rate_lambda  passed      0.0186 0.000165 
+lambda_tot0  passed    178.1145 1.601805 
 
 
 ---------------------------
@@ -67,7 +67,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda  lambda_tot0 
-      -2.269       -1.746       -1.391 
+       1.073        0.755       -1.022 
 
 
 [[2]]
@@ -76,7 +76,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda  lambda_tot0 
-      0.0583      -0.7768       0.6159 
+     -0.2080      -0.3358       0.4205 
 
 
 
@@ -90,9 +90,9 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 60       79100 3746         21.10     
- rate_lambda  45       57765 3746         15.40     
- lambda_tot0  15       22200 3746          5.93     
+ shape_lambda 60       81780 3746         21.8      
+ rate_lambda  30       45200 3746         12.1      
+ lambda_tot0  30       41290 3746         11.0      
 
 
 [[2]]
@@ -103,8 +103,8 @@ Probability (s) = 0.95
                                                     
               Burn-in  Total Lower bound  Dependence
               (M)      (N)   (Nmin)       factor (I)
- shape_lambda 30       42570 3746         11.4      
- rate_lambda  30       42170 3746         11.3      
- lambda_tot0  20       39340 3746         10.5      
+ shape_lambda 30       41760 3746         11.1      
+ rate_lambda  30       43020 3746         11.5      
+ lambda_tot0  30       40950 3746         10.9      
 
 

@@ -297,7 +297,7 @@ table[y,3] <- n_1SW[y+2] + n_MSW[y+3] # Parr 0+ become 1SW 2 years later / MSW 3
 table[,4] <- (table[,3] / table[,2])*100
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste('CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -495,7 +495,7 @@ table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste('CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste('Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
 write.csv( table, con, row.names = FALSE)
 close(con)

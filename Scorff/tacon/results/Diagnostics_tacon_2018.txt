@@ -2,24 +2,24 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
              Point est. Upper C.I.
 int_width          1.00       1.00
 width_coef         1.00       1.00
-rate_lcpu          1.02       1.08
-sigma_dSc          1.04       1.18
-int_ydSc           1.00       1.01
+rate_lcpu          1.04       1.13
+sigma_dSc          1.03       1.14
+int_ydSc           1.01       1.04
 log_flow           1.00       1.00
 sigma_ySc          1.00       1.00
-sigma_siteSc       1.00       1.00
-test               1.05       1.05
+sigma_siteSc       1.01       1.05
+test               1.29       1.30
 
 Multivariate psrf
 
-1.03
+1.04
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -33,53 +33,53 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
              Stationarity start     p-value 
              test         iteration         
-int_width    passed          1      3.22e-01
-width_coef   passed          1      4.73e-01
-rate_lcpu    failed         NA      6.57e-06
-sigma_dSc    failed         NA      1.95e-06
-int_ydSc     passed          1      9.06e-01
-log_flow     passed          1      9.42e-02
-sigma_ySc    failed         NA      1.72e-03
-sigma_siteSc passed       5001      8.69e-02
-test         passed          1      6.68e-01
-                                         
-             Halfwidth Mean     Halfwidth
-             test                        
-int_width    passed    -0.15567 9.00e-03 
-width_coef   passed     0.41755 3.42e-03 
-rate_lcpu    <NA>            NA       NA 
-sigma_dSc    <NA>            NA       NA 
-int_ydSc     passed     1.79614 1.64e-02 
-log_flow     passed    -0.44788 9.71e-04 
-sigma_ySc    <NA>            NA       NA 
-sigma_siteSc passed     0.67764 3.73e-03 
-test         failed     0.00004 5.54e-05 
+int_width    passed          1      7.14e-01
+width_coef   passed          1      5.14e-01
+rate_lcpu    failed         NA      8.97e-06
+sigma_dSc    failed         NA      2.08e-06
+int_ydSc     passed          1      1.29e-01
+log_flow     passed          1      8.29e-01
+sigma_ySc    passed          1      5.52e-01
+sigma_siteSc passed       4001      1.86e-01
+test         failed         NA            NA
+                                       
+             Halfwidth Mean   Halfwidth
+             test                      
+int_width    failed    -0.167 0.01690  
+width_coef   passed     0.416 0.00576  
+rate_lcpu    <NA>          NA      NA  
+sigma_dSc    <NA>          NA      NA  
+int_ydSc     passed     1.805 0.03205  
+log_flow     passed    -0.447 0.00217  
+sigma_ySc    passed     0.498 0.00175  
+sigma_siteSc passed     0.675 0.00646  
+test         <NA>          NA      NA  
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-int_width    passed       1         0.712  
-width_coef   passed       1         0.454  
-rate_lcpu    passed       1         0.850  
-sigma_dSc    passed       1         0.920  
-int_ydSc     passed       1         0.620  
-log_flow     passed       1         0.650  
-sigma_ySc    passed       1         0.220  
-sigma_siteSc passed       1         0.720  
-test         passed       1         0.543  
-                                         
-             Halfwidth Mean     Halfwidth
-             test                        
-int_width    passed    -0.15735 8.38e-03 
-width_coef   passed     0.41557 3.51e-03 
-rate_lcpu    passed     0.64862 1.47e-02 
-sigma_dSc    passed     0.40507 2.53e-03 
-int_ydSc     passed     1.79837 2.11e-02 
-log_flow     passed    -0.44870 9.61e-04 
-sigma_ySc    passed     0.49756 9.22e-04 
-sigma_siteSc passed     0.68199 3.57e-03 
-test         failed     0.00004 5.54e-05 
+int_width    passed       1         0.3916 
+width_coef   passed       1         0.6534 
+rate_lcpu    passed       1         0.8286 
+sigma_dSc    passed       1         0.7685 
+int_ydSc     passed       1         0.3570 
+log_flow     passed       1         0.5694 
+sigma_ySc    passed       1         0.1749 
+sigma_siteSc passed       1         0.0571 
+test         passed       1         0.5435 
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+int_width    passed    -0.1647 0.013460 
+width_coef   passed     0.4180 0.005420 
+rate_lcpu    passed     0.6685 0.028606 
+sigma_dSc    passed     0.4065 0.004270 
+int_ydSc     passed     1.7956 0.025644 
+log_flow     passed    -0.4494 0.001976 
+sigma_ySc    passed     0.4977 0.001843 
+sigma_siteSc passed     0.6840 0.004943 
+test         failed     0.0001 0.000196 
 
 
 ---------------------------
@@ -97,9 +97,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
    int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
-    -0.15033     -0.88191      2.75279      3.01835      0.05464     -1.40072 
+     0.26398      0.02889      3.12894      4.33214     -1.95138      0.54537 
    sigma_ySc sigma_siteSc         test 
-     1.57633      1.56753      0.78442 
+     0.64296      1.86374          NaN 
 
 
 [[2]]
@@ -108,9 +108,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
    int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
-      1.0066      -0.5611      -0.6944      -0.8532       1.1579       0.5969 
+      1.0456       1.3456      -1.2054      -1.8422      -0.3680       0.4335 
    sigma_ySc sigma_siteSc         test 
-      0.2052       0.9174      -1.4142 
+     -0.5314      -2.1638      -1.0000 
 
 
 
@@ -124,15 +124,15 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- int_width    260      370630 3746         98.9000   
- width_coef   100      116975 3746         31.2000   
- rate_lcpu    60       81760  3746         21.8000   
- sigma_dSc    180      187890 3746         50.2000   
- int_ydSc     300      353580 3746         94.4000   
- log_flow     10       18940  3746          5.0600   
- sigma_ySc    20       37840  3746         10.1000   
- sigma_siteSc 75       105575 3746         28.2000   
- test         5        40     3746          0.0107   
+ int_width    180      220110 3746          58.8     
+ width_coef   100      110660 3746          29.5     
+ rate_lcpu    90       139740 3746          37.3     
+ sigma_dSc    120      141320 3746          37.7     
+ int_ydSc     630      625680 3746         167.0     
+ log_flow     20       38020  3746          10.1     
+ sigma_ySc    20       38020  3746          10.1     
+ sigma_siteSc 40       47320  3746          12.6     
+ test         <NA>     <NA>   3746            NA     
 
 
 [[2]]
@@ -143,14 +143,14 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- int_width    175      210420 3746          56.2000  
- width_coef   125      140075 3746          37.4000  
- rate_lcpu    60       92940  3746          24.8000  
- sigma_dSc    200      253900 3746          67.8000  
- int_ydSc     475      509485 3746         136.0000  
- log_flow     10       19025  3746           5.0800  
- sigma_ySc    10       19430  3746           5.1900  
- sigma_siteSc 60       86220  3746          23.0000  
- test         5        40     3746           0.0107  
+ int_width    180      219090 3746         58.5000   
+ width_coef   140      148120 3746         39.5000   
+ rate_lcpu    60       80360  3746         21.5000   
+ sigma_dSc    120      138900 3746         37.1000   
+ int_ydSc     250      298550 3746         79.7000   
+ log_flow     20       37230  3746          9.9400   
+ sigma_ySc    20       37670  3746         10.1000   
+ sigma_siteSc 60       83300  3746         22.2000   
+ test         10       170    3746          0.0454   
 
 

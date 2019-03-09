@@ -119,4 +119,7 @@ parameters <-c(
   ,"c_tot" # annual number per cohorte
   ,"P_1SW" # annual proportion of 1SW
   ,"P_MSW" # annual proportion of MSW
+  
+  ,"d_pi_Ol"
+  ,"d_pi_U"
 )

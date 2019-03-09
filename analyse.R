@@ -191,10 +191,29 @@ sink()
 
 ## Plot the chains:
 pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
-#for (i in 1:5){
+
+# if(site == "Bresle" && stade == "smolt") {
+# parameters.trend <- c("Ntot","Nesc","lambda","p_B","p_Btot","epsilon_B","p_Eu","epsilon_Eu")
+# }
+# if(site == "Bresle" && stade == "adult") {
+#   parameters.trend <- c("n_tot","n_1SW","n_MSW","pi_B","lambda_tot","Plambda","pi_Eu","epsilon_Eu")
+# }
+# if(site == "Oir" && stade == "adult") {
+#   parameters.trend <- c("n_tot","n_1SW","n_MSW","n","Nesc_1SW","Nesc_MSW","Nesc_tot","pi_MC","lambda_n","lambda","p_recap","epsilon_MC")
+# }
+# if(site == "Oir" && stade == "smolt") {
+#   parameters.trend <- c("Ntot","Nesc","p_MC","lambda","alpha_MC","beta_MC","overdisp_MC","mean_MC")
+# }
+
+# for (i in 1:length(parameters.trend)){
+#   caterplot(fit.mcmc,parameters.trend[i], reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# }
+
+caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
 traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
-# caterplot(fit.mcmc,parameters[i]) 
-#}
+
 gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 dev.off()
 

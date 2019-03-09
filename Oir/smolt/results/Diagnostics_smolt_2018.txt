@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
@@ -31,45 +31,45 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int_MC  passed       1         0.832  
-logit_flow_MC passed       1         0.471  
-log_cess_MC   passed       1         0.837  
-shape_lambda  passed       1         0.922  
-rate_lambda   passed       1         0.967  
-mean_gamma    passed       1         0.673  
-var_gamma     passed       1         0.954  
+logit_int_MC  passed          1      0.160  
+logit_flow_MC passed          1      0.354  
+log_cess_MC   passed       3001      0.342  
+shape_lambda  passed          1      0.813  
+rate_lambda   passed          1      0.987  
+mean_gamma    passed          1      0.407  
+var_gamma     passed          1      1.000  
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int_MC  passed     3.92e-01 1.20e-03 
-logit_flow_MC passed    -1.71e-01 1.26e-03 
-log_cess_MC   passed    -2.03e-01 2.83e-03 
-shape_lambda  passed     2.47e+00 7.88e-03 
-rate_lambda   passed     1.98e-03 7.05e-06 
-mean_gamma    passed     1.27e+03 1.45e+00 
-var_gamma     passed     7.01e+05 3.21e+03 
+logit_int_MC  passed     3.95e-01 2.84e-03 
+logit_flow_MC passed    -1.67e-01 2.57e-03 
+log_cess_MC   passed    -2.05e-01 6.11e-03 
+shape_lambda  passed     2.47e+00 1.33e-02 
+rate_lambda   passed     1.98e-03 1.17e-05 
+mean_gamma    passed     1.27e+03 2.92e+00 
+var_gamma     passed     6.98e+05 5.44e+03 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int_MC  passed       1         0.3963 
-logit_flow_MC passed       1         0.7077 
-log_cess_MC   passed       1         0.2866 
-shape_lambda  passed       1         0.0581 
-rate_lambda   passed       1         0.1147 
-mean_gamma    passed       1         0.8404 
-var_gamma     passed       1         0.2403 
+logit_int_MC  passed       1         0.548  
+logit_flow_MC passed       1         0.536  
+log_cess_MC   passed       1         0.359  
+shape_lambda  passed       1         0.664  
+rate_lambda   passed       1         0.720  
+mean_gamma    passed       1         0.727  
+var_gamma     passed       1         0.784  
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int_MC  passed     3.92e-01 1.19e-03 
-logit_flow_MC passed    -1.71e-01 1.24e-03 
-log_cess_MC   passed    -2.02e-01 3.09e-03 
-shape_lambda  passed     2.47e+00 7.84e-03 
-rate_lambda   passed     1.98e-03 6.96e-06 
-mean_gamma    passed     1.27e+03 1.44e+00 
-var_gamma     passed     7.01e+05 3.23e+03 
+logit_int_MC  passed     3.93e-01 2.64e-03 
+logit_flow_MC passed    -1.73e-01 2.57e-03 
+log_cess_MC   passed    -2.03e-01 5.56e-03 
+shape_lambda  passed     2.46e+00 1.36e-02 
+rate_lambda   passed     1.96e-03 1.22e-05 
+mean_gamma    passed     1.27e+03 3.12e+00 
+var_gamma     passed     7.08e+05 5.95e+03 
 
 
 ---------------------------
@@ -87,9 +87,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
-     -1.45579      -1.15893      -1.61049      -0.08412      -0.07227 
+       1.0541        1.3329        1.1170       -0.7711       -0.1370 
    mean_gamma     var_gamma 
-      0.07380      -0.33202 
+      -0.8790        0.2172 
 
 
 [[2]]
@@ -98,9 +98,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
-     -2.64140      -0.18416      -0.06637      -0.67568      -0.86468 
+     -0.32695      -0.32954      -0.07734      -0.21182      -0.40244 
    mean_gamma     var_gamma 
-      0.70739       0.85984 
+      0.56097       0.70296 
 
 
 
@@ -114,13 +114,13 @@ Probability (s) = 0.95
                                                      
                Burn-in  Total Lower bound  Dependence
                (M)      (N)   (Nmin)       factor (I)
- logit_int_MC  10       18840 3746          5.03     
- logit_flow_MC 10       18855 3746          5.03     
- log_cess_MC   10       19120 3746          5.10     
- shape_lambda  30       41960 3746         11.20     
- rate_lambda   15       21735 3746          5.80     
- mean_gamma    10       18755 3746          5.01     
- var_gamma     30       40680 3746         10.90     
+ logit_int_MC  20       37710 3746         10.10     
+ logit_flow_MC 20       37410 3746          9.99     
+ log_cess_MC   20       39100 3746         10.40     
+ shape_lambda  20       39920 3746         10.70     
+ rate_lambda   20       38680 3746         10.30     
+ mean_gamma    20       38290 3746         10.20     
+ var_gamma     30       40610 3746         10.80     
 
 
 [[2]]
@@ -131,12 +131,12 @@ Probability (s) = 0.95
                                                      
                Burn-in  Total Lower bound  Dependence
                (M)      (N)   (Nmin)       factor (I)
- logit_int_MC  10       18970 3746          5.06     
- logit_flow_MC 10       19025 3746          5.08     
- log_cess_MC   10       19085 3746          5.09     
- shape_lambda  15       21975 3746          5.87     
- rate_lambda   15       21820 3746          5.82     
- mean_gamma    10       18695 3746          4.99     
- var_gamma     20       39730 3746         10.60     
+ logit_int_MC  20       36930 3746          9.86     
+ logit_flow_MC 20       36800 3746          9.82     
+ log_cess_MC   20       36800 3746          9.82     
+ shape_lambda  20       39420 3746         10.50     
+ rate_lambda   30       40610 3746         10.80     
+ mean_gamma    20       38240 3746         10.20     
+ var_gamma     20       39940 3746         10.70     
 
 

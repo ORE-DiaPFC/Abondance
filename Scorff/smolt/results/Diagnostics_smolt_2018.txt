@@ -2,15 +2,15 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
               Point est. Upper C.I.
-rho                 1.00       1.01
-l_ML_dim            1.01       1.01
-sigmap_ML_dim       1.04       1.13
-junk                1.02       1.02
+rho                 1.00       1.00
+l_ML_dim            1.11       1.41
+sigmap_ML_dim       1.07       1.07
+junk                1.02       1.03
 shape_lambda        1.00       1.00
 rate_lambda         1.00       1.00
 mean_gamma          1.00       1.00
@@ -18,7 +18,7 @@ var_gamma           1.00       1.00
 
 Multivariate psrf
 
-1.02
+1.07
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -29,52 +29,52 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
 [[1]]
-                                            
-              Stationarity start     p-value
-              test         iteration        
-rho           passed       20001     0.0724 
-l_ML_dim      passed       15001     0.0536 
-sigmap_ML_dim passed        5001     0.1448 
-junk          passed           1     0.4414 
-shape_lambda  passed           1     0.0549 
-rate_lambda   passed           1     0.0927 
-mean_gamma    passed           1     0.6457 
-var_gamma     passed           1     0.2098 
+                                             
+              Stationarity start     p-value 
+              test         iteration         
+rho           failed         NA      0.000115
+l_ML_dim      passed          1      0.378715
+sigmap_ML_dim failed         NA      0.008193
+junk          passed          1      0.921954
+shape_lambda  passed          1      0.919780
+rate_lambda   passed          1      0.662402
+mean_gamma    passed       3001      0.549528
+var_gamma     passed          1      0.180518
                                            
               Halfwidth Mean      Halfwidth
               test                         
-rho           passed     4.66e-01 9.69e-03 
-l_ML_dim      failed     1.13e+00 2.50e-01 
-sigmap_ML_dim passed     1.21e+00 8.85e-02 
-junk          failed    -4.50e-03 3.00e-02 
-shape_lambda  passed     3.72e+00 1.78e-02 
-rate_lambda   passed     4.83e-04 2.40e-06 
-mean_gamma    passed     7.79e+03 9.83e+00 
-var_gamma     passed     1.80e+07 1.07e+05 
+rho           <NA>             NA       NA 
+l_ML_dim      failed     1.38e+00 2.99e-01 
+sigmap_ML_dim <NA>             NA       NA 
+junk          failed    -2.70e-02 3.44e-02 
+shape_lambda  passed     3.75e+00 2.85e-02 
+rate_lambda   passed     4.87e-04 3.99e-06 
+mean_gamma    passed     7.80e+03 2.19e+01 
+var_gamma     passed     1.79e+07 1.86e+05 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-rho           failed         NA      0.00393
-l_ML_dim      passed          1      0.23782
-sigmap_ML_dim passed          1      0.11515
-junk          passed          1      0.35433
-shape_lambda  passed       5001      0.11705
-rate_lambda   passed       5001      0.14380
-mean_gamma    passed          1      0.92766
-var_gamma     passed       5001      0.18474
+rho           passed       1         0.594  
+l_ML_dim      passed       1         0.806  
+sigmap_ML_dim passed       1         0.154  
+junk          passed       1         0.141  
+shape_lambda  passed       1         0.633  
+rate_lambda   passed       1         0.769  
+mean_gamma    passed       1         0.573  
+var_gamma     passed       1         0.992  
                                           
               Halfwidth Mean     Halfwidth
               test                        
-rho           <NA>            NA       NA 
-l_ML_dim      failed    1.37e+00 2.14e-01 
-sigmap_ML_dim passed    9.93e-01 9.55e-02 
-junk          failed    5.91e-03 2.19e-02 
-shape_lambda  passed    3.73e+00 1.83e-02 
-rate_lambda   passed    4.85e-04 2.55e-06 
-mean_gamma    passed    7.79e+03 9.31e+00 
-var_gamma     passed    1.80e+07 1.15e+05 
+rho           passed    5.05e-01 1.64e-02 
+l_ML_dim      failed    8.36e-01 2.60e-01 
+sigmap_ML_dim failed    1.33e+00 1.80e-01 
+junk          failed    4.83e-02 8.03e-02 
+shape_lambda  passed    3.74e+00 2.93e-02 
+rate_lambda   passed    4.86e-04 4.12e-06 
+mean_gamma    passed    7.80e+03 1.79e+01 
+var_gamma     passed    1.80e+07 1.93e+05 
 
 
 ---------------------------
@@ -92,9 +92,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
           rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
-       9.7962       -2.6378        9.6571        0.3610       -1.5616 
+      -1.4371       -0.6869       -1.9947        0.5569        0.9740 
   rate_lambda    mean_gamma     var_gamma 
-      -1.3340       -0.6219        1.0371 
+       0.9709       -0.1242       -1.4200 
 
 
 [[2]]
@@ -103,9 +103,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
           rho      l_ML_dim sigmap_ML_dim          junk  shape_lambda 
-      -3.0363       -2.5146       -2.1944       -0.1566       -2.2268 
+      1.88625      -0.70252      -0.04163      -1.51656      -1.08475 
   rate_lambda    mean_gamma     var_gamma 
-      -1.9907        0.3395        2.3924 
+     -0.90745      -0.47215       0.18792 
 
 
 
@@ -119,14 +119,14 @@ Probability (s) = 0.95
                                                        
                Burn-in  Total   Lower bound  Dependence
                (M)      (N)     (Nmin)       factor (I)
- rho           40       51720   3746          13.80    
- l_ML_dim      45       58470   3746          15.60    
- sigmap_ML_dim 1170     1104870 3746         295.00    
- junk          225      273060  3746          72.90    
- shape_lambda  20       24290   3746           6.48    
- rate_lambda   30       40780   3746          10.90    
- mean_gamma    10       18970   3746           5.06    
- var_gamma     30       43600   3746          11.60    
+ rho           40       47920   3746          12.80    
+ l_ML_dim      160      201040  3746          53.70    
+ sigmap_ML_dim 1310     1467390 3746         392.00    
+ junk          100      121780  3746          32.50    
+ shape_lambda  30       40410   3746          10.80    
+ rate_lambda   30       41880   3746          11.20    
+ mean_gamma    20       37360   3746           9.97    
+ var_gamma     30       44100   3746          11.80    
 
 
 [[2]]
@@ -134,16 +134,16 @@ Probability (s) = 0.95
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                       
-               Burn-in  Total   Lower bound  Dependence
-               (M)      (N)     (Nmin)       factor (I)
- rho           40       48010   3746          12.80    
- l_ML_dim      120      177240  3746          47.30    
- sigmap_ML_dim 1530     1687560 3746         450.00    
- junk          140      167650  3746          44.80    
- shape_lambda  30       41750   3746          11.10    
- rate_lambda   30       42190   3746          11.30    
- mean_gamma    10       18580   3746           4.96    
- var_gamma     30       44040   3746          11.80    
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ rho           40       49540  3746          13.20    
+ l_ML_dim      20       39290  3746          10.50    
+ sigmap_ML_dim 840      940220 3746         251.00    
+ junk          200      224520 3746          59.90    
+ shape_lambda  30       40260  3746          10.70    
+ rate_lambda   30       41130  3746          11.00    
+ mean_gamma    20       37410  3746           9.99    
+ var_gamma     30       44960  3746          12.00    
 
 
