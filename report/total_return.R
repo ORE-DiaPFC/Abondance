@@ -1,8 +1,8 @@
 
-setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/")
+#setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
+setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
 
-
-year=2017
+year=2018
 #mycol=c("#787878", "#1E90FF", "#FF6A6A", "#a1dab4")
 COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
 
@@ -24,33 +24,33 @@ total=NULL
    quant <- array(, dim=c(length(years), 3)); colnames(quant) <- c("2.5%","50%","97.5%"); rownames(quant) <- years
 
     ### LOAD RESULTS
-    load(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
+    load(paste0(site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
 
     
     ### QUANTILES
     tmp <- as.matrix(fit$sims.matrix)
     
     if (site == "Bresle"){ 
-    mcmc <- as.matrix(tmp[,paste0("n_tot[",1:34,"]")]) # 1984 to now)
+    mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
     sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
     quant[1:length(years),] <- sum
     }
     
     if (site == "Oir"){ 
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:34,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[1:length(years),] <- sum
     }
     
     if (site == "Scorff"){
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:24,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:25,"]")]) # 1984 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[11:length(years),] <- sum
     }
     
     
     if (site == "Nivelle"){ 
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:34,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[1:length(years),] <- sum
     }
@@ -208,7 +208,7 @@ for (site in sites){
   rownames(table) <- years
   
   # load results
-  load(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
+  load(paste0(site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
   
   Nesc <- ceiling(fit$median$Nesc) ## escapement from river
   tmp <- as.matrix(fit$sims.matrix)
@@ -224,7 +224,7 @@ for (site in sites){
 
   
   if (site == "Scorff"){ 
-    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:23,"]")])    
+    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:24,"]")])    
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[14:nrow(table),] <- t(sum) # 1995 to now
@@ -232,7 +232,7 @@ for (site in sites){
   
   
   if (site == "Oir"){ 
-    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:32,"]")])
+    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:33,"]")])
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[5:nrow(table),] <- t(sum) # capture of smolts started in 1986
@@ -305,13 +305,13 @@ for (site in sites){
   rownames(table) <- years
   
   # load results
-  load(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
+  load(paste0(site,"/",stade,"/results/Results_",stade,"_",year,".RData"))
   
   
   if (site == "Scorff"){ 
     ntot_Sc <- ceiling(fit$median$ntot_Sc)
     tmp <- as.matrix(fit$sims.matrix)
-    mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:25,"]")])    
+    mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:26,"]")])    
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[12:nrow(table),] <- t(sum) # 1995 to now
@@ -321,7 +321,7 @@ for (site in sites){
   if (site == "Oir"){ 
     ntot_Oir <- ceiling(fit$median$ntot_Oir)
     tmp <- as.matrix(fit$sims.matrix)
-    mcmc <- as.matrix(tmp[,paste0("ntot_Oir[",1:31,"]")])
+    mcmc <- as.matrix(tmp[,paste0("ntot_Oir[",1:32,"]")])
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[6:nrow(table),] <- t(sum) # capture of smolts started in 1986
@@ -329,7 +329,7 @@ for (site in sites){
   
   
   if (site == "Nivelle"){ 
-    sum <- read.table(paste0("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",stade,"/results/YOYnat.txt"), h=TRUE)
+    sum <- read.table(paste0(site,"/",stade,"/results/YOYnat.txt"), h=TRUE)
     
     table[3:nrow(table),1:3] <- as.matrix(sum[1:nrow(sum),c(3,6,9)])
   }
