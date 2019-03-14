@@ -172,7 +172,7 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("Nesc_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 
-prop.female <- read.csv(paste("Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
+prop.female <- read.csv2(paste("Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
 fec_1SW = prop.female[,2] * 4635 # fecondité 1SW # Prevost 1996
 fec_MSW = prop.female[,3] * 7965 # fecondite MSW # prevost 1996
 
