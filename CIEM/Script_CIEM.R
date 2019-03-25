@@ -67,6 +67,8 @@ close(con)
 ######## Table 8 - Index rivers :spawning stock, egg deposition and attainment of CLs ######
 ###################################################################################################################
 
+RATIO_EGGS_CL <- list()
+
 ##________________________NIVELLE (starting in 1984)
 site <- "Nivelle"
 stade <- "adult"
@@ -96,6 +98,8 @@ con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="w
                  # ",sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
+
+RATIO_EGGS_CL[[paste0(site)]] <- table[,"eggs/CL"]
 
 ##________________________ SCORFF (starting in 1994)
 site <- "Scorff"
@@ -144,6 +148,7 @@ con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="w
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
+RATIO_EGGS_CL[[paste0(site)]] <- table[,"eggs/CL"]
 
 ##_______________________________ OIR (starting in 1984)
 site <- "Oir"
@@ -172,7 +177,7 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("Nesc_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 
-prop.female <- read.csv2(paste("Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
+prop.female <- read.csv(paste("Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
 fec_1SW = prop.female[,2] * 4635 # fecondité 1SW # Prevost 1996
 fec_MSW = prop.female[,3] * 7965 # fecondite MSW # prevost 1996
 
@@ -205,7 +210,7 @@ con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="w
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
 
-
+RATIO_EGGS_CL[[paste0(site)]] <- table[,"eggs/CL"]
 
 ##_______________________________ BRESLE (starting in 1984)
 site <- "Bresle"
@@ -256,6 +261,41 @@ con <- file(paste('Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="w
 #                  ",sep=""), con)
 write.csv( round(table,2), con, row.names = FALSE)
 close(con)
+
+
+RATIO_EGGS_CL[[paste0(site)]] <- table[,"eggs/CL"]
+
+
+#mycol=c("#787878", "#1E90FF", "#FF6A6A", "#a1dab4")
+COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
+
+years <- seq(1984, year, 1)
+sites <- c("Bresle", "Oir","Nivelle", "Scorff")
+mycol <- COL
+
+### Total number of returns
+png(paste0("Abundance/CIEM/ratio_eggs_CL.png"),width = 780, height = 480)
+plot(NULL,xlim=c(1,length(years)),ylim=c(0,10),bty="n",ylab="Ratio Eggs production / CL",xaxt="n",xlab="Year of return")
+axis(side=1,line=1,labels = years,at=1:length(years))
+j=0
+for (site in sites) {
+  j=j+1
+  #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
+  lines(RATIO_EGGS_CL[[paste0(site)]],lty=1,lwd=2,col=paste0(mycol[j], 50)) 
+  
+  #scatter.smooth(years, returns[[site]][,"50%"], span = 2/3, degree = 2)
+  df <- data.frame(x=years, y= RATIO_EGGS_CL[[paste0(site)]])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  #if (site == 1){ pred<-c(rep(NA,5),pred) }
+  if (site == "Scorff"){ pred<-c(rep(NA,10),pred) }
+  #if (site == 3){ pred<-c(rep(NA,11),pred) }
+  #if (site == 4){ pred<-c(rep(NA,10),pred) }
+  lines(pred,col=mycol[j],lwd=4)
+}
+legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
+abline(h=1,lty=2)
+dev.off()
 
 
 

@@ -16,3 +16,8 @@ Stocking is considered to adjust numbers
 - Scorff: 0.63 /!\ revised from data in 2016 by Buoro & Prévost (using 3 eggs/m²)
 - Oir: 0.12
 - Bresle: 0.36
+
+
+##### SYNTHESIS #####
+
+![Figure1](ratio_eggs_CL.png) 
