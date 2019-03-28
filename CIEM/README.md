@@ -21,3 +21,6 @@ Stocking is considered to adjust numbers
 ##### SYNTHESIS #####
 
 ![Figure1](ratio_eggs_CL.png) 
+
+![Figure2](return_rates.png) 
+
