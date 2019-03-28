@@ -4,16 +4,18 @@ setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
 
 year=2018
 #mycol=c("#787878", "#1E90FF", "#FF6A6A", "#a1dab4")
-COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
+#COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
 
-  
+COL <- c("yellowgreen","steelblue1","hotpink2","tomato")
+#mycol <- paste0(COL, 50)
+mycol <- COL
+
 ###################################################################################################################
 ######## ADULTS
 ###################################################################################################################
 stade <- "adult"
 years <- seq(1984, year, 1)
 sites <- c("Bresle", "Oir","Nivelle", "Scorff")
-mycol <- COL
 
 
 SW=returns=list()
@@ -55,6 +57,7 @@ total=NULL
       quant[1:length(years),] <- sum
     }
     
+    rownames(quant)<- 1984:year
     returns[[paste0(site)]] <- quant
 
     
@@ -77,8 +80,10 @@ total=NULL
     SW[[paste0(site)]] <- table
     tmp <- table[,4]
     total <- cbind(total, tmp)
-    write.csv(table, file=paste('report/Total_return_',site,'.csv',sep=""),row.names = FALSE)
-}
+    write.csv(table, file=paste('report/Total_return_byage_',site,'.csv',sep=""),row.names = TRUE)
+    write.csv(returns[[paste0(site)]], file=paste('report/Total_return_',site,'.csv',sep=""),row.names = TRUE)
+    
+    }
 
 #total <- data.frame(total)
 colnames(total) <- c(sites)
@@ -90,13 +95,17 @@ png("report/total_return.png",width = 780, height = 480)
 plot(NULL,xlim=c(1,length(years)),ylim=c(0,1500),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:4) {
-  #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
-  lines(returns[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site], 50)) 
-  lower <- returns[[site]][,"2.5%"]
-  upper <- returns[[site]][,"97.5%"]
-  xx <- c(1:length(years),rev(1:length(years)))
-  yy<-c(lower, rev(upper))
-  polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+  segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
+  lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+  points(1:length(years),returns[[site]][,"50%"],col=mycol[site],pch=21,bg=paste0(mycol[site]))
+  
+  # #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
+  # lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site]) 
+  # lower <- returns[[site]][,"2.5%"]
+  # upper <- returns[[site]][,"97.5%"]
+  # xx <- c(1:length(years),rev(1:length(years)))
+  # yy<-c(lower, rev(upper))
+  # polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
   
   #scatter.smooth(years, returns[[site]][,"50%"], span = 2/3, degree = 2)
   df <- data.frame(x=years, y= returns[[site]][,"50%"])
@@ -111,10 +120,10 @@ dev.off()
 
 ### Proportion MSW
 png("report/prop_MSW_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,length(years)),ylim=c(0,1),bty="n",ylab="Proprotion of MSW",xaxt="n",xlab="Year of return")
+plot(NULL,xlim=c(1,length(years)),ylim=c(0,.8),bty="n",ylab="Proprotion of MSW",xaxt="n",xlab="Year of return")
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:4) {
-  lines(SW[[site]][,"MSW"]/SW[[site]][,"Total"],lty=1,lwd=2,col=paste0(mycol[site], 50))  
+  lines(SW[[site]][,"MSW"]/SW[[site]][,"Total"],lty=1,lwd=2,col=mycol[site])  
   
   df <- data.frame(x=years, y= SW[[site]][,"MSW"]/SW[[site]][,"Total"])
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
@@ -249,6 +258,7 @@ png("report/total_smolt.png",width = 780, height = 480)
 plot(NULL,xlim=c(1,length(years)),ylim=c(0, 15000),bty="n",ylab="Total number of smolt",xaxt="n",xlab="Year")
 axis(side=1,line=1,labels = years,at=1:length(years))
 for (site in 1:3) {
+  
   if (site == 1){ # Bresle
   lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
   lower <- smolts[[site]][22:length(years),"2.5%"]
