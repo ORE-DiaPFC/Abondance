@@ -483,6 +483,26 @@ close(con)
 SURVIVAL[[paste0(site)]] <- table[,4]
 
 
+## Table return rate for CIEM
+table <- array(, dim=c(length(years), 4));rownames(table)<-1984:year
+colnames(table) <- sites
+j=0
+for (site in sites) {
+j=j+1
+pred=NULL
+pred <-SURVIVAL[[paste0(site)]]
+if (site == "Bresle"){ pred <-SURVIVAL[["Bresle"]][paste0(1984:year)] }
+table[,j] <- pred
+}
+
+#write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
+con <- file(paste('Abundance/CIEM/T3.3.6.1.csv',sep=""), open="wt")
+# writeLines(paste("# Table 3.3.6.1. Estimated survival of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area."
+#                  ,sep=""), con)
+write.csv( round(table,2), con, row.names = TRUE)
+close(con)
+
+
 
 #mycol=c("#787878", "#1E90FF", "#FF6A6A", "#a1dab4")
 COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
