@@ -7,22 +7,22 @@ Convergence: gelman-Rubin R test
 Potential scale reduction factors:
 
              Point est. Upper C.I.
-sigmapi_MP         1.01       1.03
-sigmapi_R          1.02       1.07
+sigmapi_MP         1.03       1.13
+sigmapi_R          1.03       1.14
 mupi_oF            1.00       1.00
 sigmapi_oF         1.00       1.00
-diffF_1SW          1.23       1.76
-diffF_MSW          1.03       1.11
+diffF_1SW          1.27       1.87
+diffF_MSW          1.03       1.08
 diff1SW            1.00       1.00
 diffMSW            1.00       1.00
-pi_oD              1.01       1.04
+pi_oD              1.08       1.31
 shape_lambda       1.00       1.00
 rate_lambda        1.00       1.00
-lambda_tot0        1.00       1.02
+lambda_tot0        1.01       1.03
 
 Multivariate psrf
 
-1.16
+1.22
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -36,65 +36,65 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-sigmapi_MP   passed          1      0.613  
-sigmapi_R    passed       3001      0.302  
-mupi_oF      passed          1      0.550  
-sigmapi_oF   passed          1      0.795  
-diffF_1SW    passed          1      0.302  
-diffF_MSW    passed          1      0.483  
-diff1SW      passed          1      0.639  
-diffMSW      passed          1      0.260  
-pi_oD        passed          1      0.210  
-shape_lambda passed          1      0.207  
-rate_lambda  passed          1      0.231  
-lambda_tot0  passed          1      0.963  
+sigmapi_MP   passed       1         0.129  
+sigmapi_R    passed       1         0.761  
+mupi_oF      passed       1         0.588  
+sigmapi_oF   passed       1         0.933  
+diffF_1SW    passed       1         0.538  
+diffF_MSW    passed       1         0.547  
+diff1SW      passed       1         0.570  
+diffMSW      passed       1         0.848  
+pi_oD        passed       1         0.134  
+shape_lambda passed       1         0.181  
+rate_lambda  passed       1         0.214  
+lambda_tot0  passed       1         0.244  
                                           
              Halfwidth Mean      Halfwidth
              test                         
-sigmapi_MP   passed      0.32972 3.31e-03 
-sigmapi_R    passed      0.26802 1.91e-03 
-mupi_oF      passed      0.64272 1.18e-03 
-sigmapi_oF   passed      0.71411 5.30e-03 
-diffF_1SW    passed     -0.35007 3.90e-03 
-diffF_MSW    passed     -0.72883 9.36e-03 
-diff1SW      passed      0.43340 2.08e-02 
-diffMSW      passed      0.77589 2.10e-02 
-pi_oD        passed      0.22921 6.30e-03 
-shape_lambda passed      5.89504 5.58e-02 
-rate_lambda  passed      0.00928 9.18e-05 
-lambda_tot0  passed    588.16694 6.48e+00 
+sigmapi_MP   passed      0.35157 2.56e-03 
+sigmapi_R    passed      0.26009 1.30e-03 
+mupi_oF      passed      0.64384 1.18e-03 
+sigmapi_oF   passed      0.71671 5.12e-03 
+diffF_1SW    passed     -0.30016 3.91e-03 
+diffF_MSW    passed     -0.70074 7.23e-03 
+diff1SW      passed      0.43770 1.45e-02 
+diffMSW      passed      0.77570 1.65e-02 
+pi_oD        passed      0.22068 5.07e-03 
+shape_lambda passed      5.95880 4.22e-02 
+rate_lambda  passed      0.00936 6.95e-05 
+lambda_tot0  passed    576.68300 4.81e+00 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-sigmapi_MP   passed       1         0.726  
-sigmapi_R    passed       1         0.406  
-mupi_oF      passed       1         0.997  
-sigmapi_oF   passed       1         0.445  
-diffF_1SW    passed       1         0.384  
-diffF_MSW    passed       1         0.774  
-diff1SW      passed       1         0.258  
-diffMSW      passed       1         0.594  
-pi_oD        passed       1         0.841  
-shape_lambda passed       1         0.746  
-rate_lambda  passed       1         0.542  
-lambda_tot0  passed       1         0.758  
+sigmapi_MP   passed       1         0.8942 
+sigmapi_R    passed       1         0.5549 
+mupi_oF      passed       1         0.6806 
+sigmapi_oF   passed       1         0.5715 
+diffF_1SW    passed       1         0.1105 
+diffF_MSW    passed       1         0.0728 
+diff1SW      passed       1         0.8970 
+diffMSW      passed       1         0.9822 
+pi_oD        passed       1         0.2941 
+shape_lambda passed       1         0.3601 
+rate_lambda  passed       1         0.5495 
+lambda_tot0  passed       1         0.8959 
                                           
              Halfwidth Mean      Halfwidth
              test                         
-sigmapi_MP   passed      0.32277 0.00363  
-sigmapi_R    passed      0.27820 0.00163  
-mupi_oF      passed      0.64251 0.00120  
-sigmapi_oF   passed      0.71849 0.00543  
-diffF_1SW    passed     -0.44984 0.00410  
-diffF_MSW    passed     -0.78854 0.00974  
-diff1SW      passed      0.42065 0.01861  
-diffMSW      passed      0.77539 0.02152  
-pi_oD        passed      0.21798 0.00550  
-shape_lambda passed      5.99315 0.06277  
-rate_lambda  passed      0.00939 0.00010  
-lambda_tot0  passed    612.46937 6.66842  
+sigmapi_MP   passed      0.36893 2.42e-03 
+sigmapi_R    passed      0.27465 1.40e-03 
+mupi_oF      passed      0.64303 1.19e-03 
+sigmapi_oF   passed      0.71680 5.09e-03 
+diffF_1SW    passed     -0.40933 3.46e-03 
+diffF_MSW    passed     -0.75133 7.58e-03 
+diff1SW      passed      0.43447 1.52e-02 
+diffMSW      passed      0.78157 1.91e-02 
+pi_oD        passed      0.20531 4.16e-03 
+shape_lambda passed      6.04264 4.51e-02 
+rate_lambda  passed      0.00944 7.17e-05 
+lambda_tot0  passed    601.54710 4.98e+00 
 
 
 ---------------------------
@@ -112,9 +112,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
   sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
-      1.0101      -0.1190      -0.5714      -0.5183      -0.4149       0.9140 
+     2.02039     -0.10315     -0.19011     -0.15228      0.06082      1.18671 
      diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
-     -0.2988       1.0230       0.8824      -0.5949      -0.8110      -0.7553 
+    -0.45806     -0.74449     -1.14196      0.13754     -0.08787     -2.21512 
 
 
 [[2]]
@@ -123,9 +123,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
   sigmapi_MP    sigmapi_R      mupi_oF   sigmapi_oF    diffF_1SW    diffF_MSW 
-     1.17924     -0.09048     -0.15236      0.31722     -0.01773     -0.90937 
+    -0.43714      0.68732      0.03385      0.77921      1.55785     -2.48267 
      diff1SW      diffMSW        pi_oD shape_lambda  rate_lambda  lambda_tot0 
-    -1.08133      0.91322      0.03265      1.38118      1.61243     -0.86423 
+    -0.11278      1.03816     -0.13402      0.58903      0.46431      0.78725 
 
 
 
@@ -139,18 +139,18 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- sigmapi_MP   100      114500 3746         30.60     
- sigmapi_R    40       49960  3746         13.30     
- mupi_oF      20       36760  3746          9.81     
- sigmapi_oF   20       37100  3746          9.90     
- diffF_1SW    20       38970  3746         10.40     
- diffF_MSW    30       42630  3746         11.40     
- diff1SW      80       100500 3746         26.80     
- diffMSW      40       48320  3746         12.90     
- pi_oD        350      363000 3746         96.90     
- shape_lambda 30       43740  3746         11.70     
- rate_lambda  30       45580  3746         12.20     
- lambda_tot0  40       48320  3746         12.90     
+ sigmapi_MP   160      195520 3746          52.2     
+ sigmapi_R    60       85580  3746          22.8     
+ mupi_oF      40       73600  3746          19.6     
+ sigmapi_oF   40       74220  3746          19.8     
+ diffF_1SW    40       78580  3746          21.0     
+ diffF_MSW    60       81600  3746          21.8     
+ diff1SW      60       91160  3746          24.3     
+ diffMSW      60       85340  3746          22.8     
+ pi_oD        560      628000 3746         168.0     
+ shape_lambda 40       79280  3746          21.2     
+ rate_lambda  60       80620  3746          21.5     
+ lambda_tot0  60       83940  3746          22.4     
 
 
 [[2]]
@@ -161,17 +161,17 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- sigmapi_MP   120      126540 3746          33.8     
- sigmapi_R    40       46470  3746          12.4     
- mupi_oF      20       37100  3746           9.9     
- sigmapi_oF   20       40070  3746          10.7     
- diffF_1SW    20       38020  3746          10.1     
- diffF_MSW    60       80900  3746          21.6     
- diff1SW      50       53900  3746          14.4     
- diffMSW      40       46740  3746          12.5     
- pi_oD        640      702560 3746         188.0     
- shape_lambda 30       45020  3746          12.0     
- rate_lambda  40       48110  3746          12.8     
- lambda_tot0  30       43740  3746          11.7     
+ sigmapi_MP   160      206320 3746          55.1     
+ sigmapi_R    60       84280  3746          22.5     
+ mupi_oF      40       74460  3746          19.9     
+ sigmapi_oF   40       74200  3746          19.8     
+ diffF_1SW    40       73600  3746          19.6     
+ diffF_MSW    60       87480  3746          23.4     
+ diff1SW      60       91160  3746          24.3     
+ diffMSW      60       86400  3746          23.1     
+ pi_oD        480      609280 3746         163.0     
+ shape_lambda 40       76040  3746          20.3     
+ rate_lambda  40       76040  3746          20.3     
+ lambda_tot0  60       81220  3746          21.7     
 
 
