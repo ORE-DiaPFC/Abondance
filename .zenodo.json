@@ -1,0 +1,39 @@
+{
+    "description": "Estimation and standardization of Atlantic salmon abundance time series on DiaPFC ORE rivers
+
+", 
+    "license": " GNU GPL v3.0 license", 
+    "title": "ORE-DiaPFC/Abondance: Models with number of nights trapping adjustment (Nivelle)", 
+    "version": "v1.0", 
+    "upload_type": "software", 
+    "publication_date": "2019-07-09", 
+    "creators": [
+        {
+            "affiliation": "INRA", 
+            "name": "Mathieu Buoro"
+        }, 
+        {
+            "name": "Sabrina Servanty"
+        }, 
+        {
+            "name": "Etienne Pr\u00e9vost"
+        }, 
+        {
+            "affiliation": "Agence Fran\u00e7aise pour la Biodiversit\u00e9", 
+            "name": "BEAULATON Laurent"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/ORE-DiaPFC/Abondance/tree/v1.0", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.3275147", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
