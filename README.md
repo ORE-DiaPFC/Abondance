@@ -1,5 +1,7 @@
 # Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC
 
+Updating and standardization of Atlantic salmon abundance time series on DiaPFC ORE rivers
+
 ___
 
 Estimer la taille des populations de saumon atlantique (*Salmo salar*) et leurs incertitudes associées
