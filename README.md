@@ -29,6 +29,8 @@ ___
 
 Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35)
 
+[![DOI](https://zenodo.org/badge/84212065.svg)](https://zenodo.org/badge/latestdoi/84212065)
+
 ___
 
 ## MEMBRES
