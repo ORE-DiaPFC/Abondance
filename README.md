@@ -27,12 +27,8 @@ temporelles). Ils permettent également de transférer de l’information entre 
 données vers les années pauvres en données.
 
 ___
-## REFERENCES
-
-Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35)
-
 ## HOW TO CITE
-Buoro Mathieu, Servanty Sabrina, & Prévost Etienne. (2019, July 9). Estimation and standardisation of Atlantic salmon abundance time series on DiaPFC ORE rivers (Version v1.0).  http://doi.org/10.5281/zenodo.3275148
+Buoro Mathieu, Servanty Sabrina, Beaulaton Laurent, & Prévost Etienne. (2019, July 9). Estimation and standardisation of Atlantic salmon abundance time series on DiaPFC ORE rivers (Version v1.0). http://doi.org/10.5281/zenodo.3275148
 [![DOI](https://zenodo.org/badge/84212065.svg)](https://zenodo.org/badge/latestdoi/84212065)
 
 ___
@@ -44,11 +40,14 @@ Responsables:
 Ecobiop, INRA, Univ. Pau & Pays de l’Adour, Aquapôle INRA, 64310 Saint-Pée-sur-Nivelle
 INRA, Pôle GEST’AQUA, 64310 Saint-Pée-sur-Nivelle
 
+Travail initié par Sabrina Servanty & Étienne Prévost:
+Sabrina Servanty & Étienne Prévost (2016). Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC et la Bresle. Rapport final, février 2016. Fiche action ONEMA – INRA 2013-2015 (action n° 35). 
+
 Avec la participation de :  
 Gilles Euzenat, Jean-Louis Fagard, Françoise Fournel ; AFB, Pôle GEST’AQUA, 76260 Eu  
 Laurent Beaulaton ; AFB, Pôle GEST’AQUA, 35042 Rennes  
 Richard Delanoë ; AFB, Pôle GEST’AQUA, 50220 Ducey  
-Quentin Josset; AFB, Pôle GEST’AQUA, Bresle
+Quentin Josset; AFB, Pôle GEST’AQUA, Bresle. 
 Etienne Rivot, Marie Nevoux ; ESE, AgroCampus, INRA, 35042 Rennes  
 Frédéric Marchand ; INRA, U3E, Pôle GEST’AQUA, 35042 Rennes  
 Nicolas Jeannot ; INRA, U3E, Pôle GEST’AQUA, 56620 Pont-Scorff  
