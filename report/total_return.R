@@ -80,8 +80,8 @@ total=NULL
     SW[[paste0(site)]] <- table
     tmp <- table[,4]
     total <- cbind(total, tmp)
-    write.csv(table, file=paste('report/Total_return_byage_',site,'.csv',sep=""),row.names = TRUE)
-    write.csv(returns[[paste0(site)]], file=paste('report/Total_return_',site,'.csv',sep=""),row.names = TRUE)
+    #write.csv(table, file=paste('report/Total_return_byage_',site,'.csv',sep=""),row.names = TRUE)
+    #write.csv(returns[[paste0(site)]], file=paste('report/Total_return_',site,'.csv',sep=""),row.names = TRUE)
     
     }
 
@@ -116,6 +116,107 @@ for (site in 1:4) {
 }
 legend("topright", legend=sites, col=mycol,lty=1,lwd=2,bty="n")
 dev.off()
+
+
+
+
+### CAPTURED
+png("report/capturedVsestimated_return.png",width = 780, height = 480)
+par(mfrow=c(2,2)) 
+i=0
+for (site in sites){
+i=i+1
+data=NULL
+load(paste0(site,"/",stade,"/data/data_",stade,"_",year,".Rdata"))
+
+ymax=max(returns[[site]][,"97.5%"]+20,na.rm=TRUE)
+
+  plot(NULL,xlim=c(1,length(years)),ylim=c(0,ymax),bty="n",ylab="Total number of fish",xaxt="n",xlab="", main=site)
+  axis(side=1,line=1,labels = years,at=1:length(years),cex=.5, las=2)
+  segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[i]))
+  lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+  points(1:length(years),returns[[site]][,"50%"],col=mycol[i],pch=21,bg=paste0(mycol[i]))
+  text(1:length(years),returns[[site]][,"97.5%"]+20,labels=returns[[site]][,"50%"],cex=.75, srt = 45, col=mycol[i]) # Uxondoa
+  legend("topright", legend=c("# Captured", "# Estimated"), col=c("black",paste0(mycol[i])),bty="n", pch=21)
+  
+if (site == "Bresle"){ 
+  # plot(NULL,xlim=c(1,length(years)),ylim=c(0,700),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
+  # axis(side=1,line=1,labels = years,at=1:length(years))
+  # segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
+  # lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+  # points(1:length(years),returns[[site]][,"50%"],col=mycol[site],pch=21,bg=paste0(mycol[site]))
+  # text(1:length(years),returns[[site]][,"97.5%"]+20,labels=returns[[site]][,"50%"],cex=.75, srt = 45, col=mycol[site]) # Uxondoa
+  # 
+  
+  tmp <- data.frame(rowSums(data$C_Eu), rowSums(data$Cum_B))# , rowSums(data$Cm_B))
+  capt <- apply(tmp,1, sum,na.rm=T)
+  #points(1:length(years),rowSums(data$C_U), pch = 1) # Uxondoa
+  segments(1:length(years),0,1:length(years),capt)
+  points(1:length(years),capt, pch = 21, col=1,bg="white") # Uxondoa
+  text(1:length(years),capt+20,labels=capt,cex=.75, srt = 45) # Uxondoa
+  #points(1:length(years),rowSums(data$Cum_O), pch = 1) # Uxondoa
+}
+  
+  
+  if (site == "Oir"){ 
+    # plot(NULL,xlim=c(1,length(years)),ylim=c(0,700),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
+    # axis(side=1,line=1,labels = years,at=1:length(years))
+    # segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
+    # lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+    # points(1:length(years),returns[[site]][,"50%"],col=mycol[site],pch=21,bg=paste0(mycol[site]))
+    # text(1:length(years),returns[[site]][,"97.5%"]+20,labels=returns[[site]][,"50%"],cex=.75, srt = 45, col=mycol[site]) # Uxondoa
+    # 
+    
+    tmp <- data.frame(rowSums(data$C_MC), rowSums(data$Cum_R))# , rowSums(data$Cm_R))
+    capt <- apply(tmp,1, sum,na.rm=T)
+    #points(1:length(years),rowSums(data$C_U), pch = 1) # Uxondoa
+    segments(1:length(years),0,1:length(years),capt)
+    points(1:length(years),capt, pch = 21, col=1,bg="white") # Uxondoa
+    text(1:length(years),capt+20,labels=capt,cex=.75, srt = 45) # Uxondoa
+    #points(1:length(years),rowSums(data$Cum_O), pch = 1) # Uxondoa
+  }
+  
+  
+  if (site == "Scorff"){ 
+    # plot(NULL,xlim=c(1,length(years)),ylim=c(0,1500),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
+    # axis(side=1,line=1,labels = years,at=1:length(years))
+    # segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
+    # lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+    # points(1:length(years),returns[[site]][,"50%"],col=mycol[site],pch=21,bg=paste0(mycol[site]))
+    # text(1:length(years),returns[[site]][,"97.5%"]+20,labels=returns[[site]][,"50%"],cex=.75, srt = 45, col=mycol[site]) # Uxondoa
+    # 
+    
+    tmp <- data.frame(rowSums(data$C_MP), rowSums(data$Cum_R))# , rowSums(data$Cm_R))
+    capt <- apply(tmp,1, sum,na.rm=T)
+    #points(1:length(years),rowSums(data$C_U), pch = 1) # Uxondoa
+    segments(11:length(years),0,11:length(years),capt)
+    points(11:length(years),capt, pch = 21, col=1,bg="white") # Uxondoa
+    text(11:length(years),capt+20,labels=capt,cex=.75, srt = 45) # Uxondoa
+    #points(1:length(years),rowSums(data$Cum_O), pch = 1) # Uxondoa
+  }
+  
+
+if (site == "Nivelle"){ 
+  # plot(NULL,xlim=c(1,length(years)),ylim=c(0,700),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
+  # axis(side=1,line=1,labels = years,at=1:length(years))
+  #   segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
+  #   lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
+  #   points(1:length(years),returns[[site]][,"50%"],col=mycol[site],pch=21,bg=paste0(mycol[site]))
+  #   text(1:length(years),returns[[site]][,"97.5%"]+20,labels=returns[[site]][,"50%"],cex=.75, srt = 45, col=mycol[site]) # Uxondoa
+  #   
+    
+    tmp <- data.frame(rowSums(data$C_U), rowSums(data$Cum_O))# , rowSums(data$Cm_O))
+    capt <- apply(tmp,1, sum,na.rm=T)
+    #points(1:length(years),rowSums(data$C_U), pch = 1) # Uxondoa
+    segments(1:length(years),0,1:length(years),capt)
+    points(1:length(years),capt, pch = 21, col=1,bg="white") # Uxondoa
+    text(1:length(years),capt+25,labels=capt,cex=.75, srt = 45) # Uxondoa
+    #points(1:length(years),rowSums(data$Cum_O), pch = 1) # Uxondoa
+}
+
+} # loop sites
+dev.off()
+
 
 
 ### Proportion MSW

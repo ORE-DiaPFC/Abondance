@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 Mise à jour et standardisation des séries chronologiques d'abondance du saumon atlantique sur les cours d'eau de l'ORE DiaPFC
 ======
@@ -15,6 +15,10 @@ The file "Total_return_all.csv" combines the estimates of the total number of re
 ![Figure1](total_return.png)  
 
 Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported). Evolution trend by loess smoothing.
+
+![Figure1b](capturedVsestimated_return.png)  
+
+Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported) and total number of anadromous adults captured at traps.
 
 ![Figure2](prop_MSW_return.png)  
 

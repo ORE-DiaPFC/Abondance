@@ -1,10 +1,10 @@
-rm(list=ls())   # Clear memory
+#rm(list=ls())   # Clear memory
 
 #setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
 wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
-year <- 2018
+#year <- 2018
 
 ##________________________SCORFF (starting in 1994)
 site <- "Scorff"

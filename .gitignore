@@ -1,5 +1,5 @@
-nohup.out
-
+*.out
+out.txt
 # Folders
 /GT
 /doc
