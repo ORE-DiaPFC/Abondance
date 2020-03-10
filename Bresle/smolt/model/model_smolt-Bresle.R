@@ -1,8 +1,10 @@
 ################################################################################
 ###           Model of CMR data to estimate smolt population size         ###
 ###                 of Salmo salar in Bresle river.                         ###
-###                  Sabrina Servanty & Etienne Pr?vost                      ###
-###                          March 2015                                  ###
+###                  Sabrina Servanty & Etienne Prévost                      ###
+###                          March 2015                                      ###
+###               Modified by Mathieu Buoro and Etienne Prévost              ###
+###                          March 2020                                      ###
 ################################################################################
 
 model {
@@ -11,10 +13,13 @@ model {
 # Considering effect of flow from 1rst April to 10 May in probability of capture in Eu
 # Adding a decrease in the probability of capture in Beauchamps for:
 ###### - 1995
-###### - 2000
+###### - 2000   (Removed in 2020, see below))
 ###### - 2002
 #####################################################################
-
+# Addition of a similar decrease in the probability of capture in Beauchamps for: 
+##### - 1996
+##### - 1999
+# For 2000, the decrease in probability is removed because it is not justified by the data
 ######################################################################
 #  DATA:
 # Nyears: Length of time series from 1982 to 2014
@@ -47,7 +52,9 @@ varp_B <- (sigmap_B)*(sigmap_B)
 precp_B <- 1/(varp_B) # precision
 
 p_B95 ~ dbeta(1,1) # decrease for year 1995
-p_B00 ~ dbeta(1,1) # decrease for year 2000
+p_B96 ~ dbeta(1,1) # decrease for year 1996
+p_B99 ~ dbeta(1,1) # decrease for year 1999
+# p_B00 ~ dbeta(1,1) # decrease for year 2000
 p_B02 ~ dbeta(1,1) # decrease for year 2002
 
 ## Mean and standard deviation of trap efficiency at Eu
@@ -101,12 +108,15 @@ for (t in 1:9) { # from 1982 to 1994
     } #end of loop over years
 
 p_Btot[10] <- p_B[10] * p_B95 #year 1995
+p_Btot[11] <- p_B[11] * p_B96 #year 1996
 
-for (t in 11:14) { # from 1996 to 1999
+for (t in 12:13) { # from 1997 to 1998
     p_Btot[t] <- p_B[t]
     } #end of loop over years
 
-p_Btot[15] <- p_B[15] * p_B00 #year 2000
+p_Btot[14] <- p_B[14] * p_B99 #year 1996
+p_Btot[15] <- p_B[15]# p_Btot[15] <- p_B[15] * p_B00 #year 2000
+# pas d'estimation en 2001 (pas de données)
 p_Btot[16] <- p_B[16] * p_B02 #year 2002
 
 for (t in 17:NBeau) { #from 2003 to now on
