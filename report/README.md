@@ -18,7 +18,7 @@ Figure1: Total number of anadromous adults returning to the river (medians and 9
 
 ![Figure1b](capturedVsestimated_return.png)  
 
-Figure1: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported) and total number of anadromous adults captured at traps.
+Figure1b: Total number of anadromous adults returning to the river (medians and 95% credible intervals are reported) and total number of anadromous adults captured at traps.
 
 ![Figure2](prop_MSW_return.png)  
 
