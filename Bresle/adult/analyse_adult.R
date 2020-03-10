@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2018"
+year <- "2019"
 site <- "Bresle"
 stade <- "adult"
 
@@ -60,7 +60,7 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=5000 # Number of steps to "burn-in" the samplers.
+nburnin=10000 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
 nthin=10 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
@@ -139,7 +139,7 @@ fit.mcmc <- as.mcmc(fit) # using bugs
 # denplot(fit, "junk")
 
 # DIAGNOSTICS:
-parameterstotest <-parameters # all parameters
+#parameterstotest <-parameters # all parameters
 # parameterstotest <- c(
 #   "epsilon_p"
 # )
@@ -156,8 +156,9 @@ cat("Number of iterations: ", fit$n.keep,"\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
-  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-}
+  gelman.diag(fit.mcmc[,parameterstotest],multivariate=TRUE)
+  #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  }
 cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
 
@@ -168,7 +169,8 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 \n")
-heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
+heidel.diag(fit.mcmc[,parameterstotest], eps=0.1, pvalue=0.05)
+#heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
 
 cat("\n---------------------------\n")
 cat("Geweke's convergence diagnostic\n")
@@ -179,11 +181,13 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 \n")
-geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
+geweke.diag(fit.mcmc[,parameterstotest], frac1 = 0.1, frac2 = 0.5)
+#geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
 
 cat("\n---------------------------\n")
 cat("Raftery and Lewis's diagnostic\n")
-raftery.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], q=0.025, r=0.005, s=0.95, converge.eps=0.001)
+raftery.diag(fit.mcmc[,parameterstotest], q=0.025, r=0.005, s=0.95, converge.eps=0.001)
+#raftery.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], q=0.025, r=0.005, s=0.95, converge.eps=0.001)
 
 # Stop writing to the file
 sink()
@@ -209,12 +213,16 @@ pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
 #   caterplot(fit.mcmc,parameters.trend[i], reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 # }
 
-caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
+#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 
-traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
-
-gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
+#gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
+for (par in parameterstotest){
+  traplot(fit.mcmc,par) 
+  denplot(fit.mcmc,par) 
+  gelman.plot(fit.mcmc[,parameterstotest])
+}
 dev.off()
 
 

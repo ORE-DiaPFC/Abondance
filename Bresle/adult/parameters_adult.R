@@ -15,6 +15,7 @@ parameters <-c(
   ,"p_Eu00_tot" # Global probability of capture in Eu in 2000
   ,"p_Eu01_tot" # Global probability of capture in Eu in 2001
   ,"pi_B" # Probability of capture in Beauchamps
+  ,"logit_pi_B" # Probability of capture in Beauchamps logit scale
   
   # STATISTICS
   ## 1: is logit_flow >=0 for 1SW?
@@ -41,3 +42,25 @@ parameters <-c(
   ,"lambda_tot" # Poisson parameter
   ,"Plambda" # Proportion distribution
 )
+
+
+parameterstotest <-c(
+  "pi_Eu00" # decrease in probability of capture in Eu in 2000
+  ,"pi_Eu01" # decrease in probability of capture in Eu in 2001
+  ,"logit_int_Eu" # intercept
+  ,"logit_flow_Eu" # slope of flow effect
+  ,"lflow_fall_Eu" # slope of flow effect in fall
+  ,"sigmapi_Eu" # standard deviation in probability of capture in Eu
+  ,"epsilon_Eu" # standardized residuals of probability of capture in Eu
+  
+  #, paste0("epsilon_Eu[",1:36,",1]")
+  #, paste0("epsilon_Eu[",1:36,",2]")
+  #, paste0("logit_pi_B[",1:36,",1]")
+  #, paste0("logit_pi_B[",1:36,",2]")
+  
+  ,"mupi_B" # mean probability of capture in Beauchamps
+  ,"sigmapi_B" # standard deviation in probability of capture in Beauchamps
+  
+  ,"shape_lambda" # Shape parameter of gamma distribution
+  ,"rate_lambda" # Rate parameter of gamma distribution
+) 

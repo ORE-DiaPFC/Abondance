@@ -201,9 +201,10 @@ for (t in 22:36) {
     Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
     Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
 
-    Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
+    Nesc[t] <- Cm_B[t] + num_B[t] ### Total number of smolt escaping the river
     } # end of loop over years
 
+# /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
 # Year 2018: marked with blue + pit
 C_B[37] ~ dbin (p_Btot[37-5],Ntot[37]) # number of fish captured at Beauchamps
 num_B[37] <- Ntot[37] - C_B[37] + Cum_B[37] # total unmarked fish
@@ -218,25 +219,25 @@ Cm_B_b_bis ~ dbin(p_keep, Cm_B_b)
 num_B_bis <- num_B[37] + Cm_B_b - Cm_B_b_bis
 
 # p_Eu[24] <- (Cm_B_b * p_keep + Cm_B_p)/(Cm_B_b + Cm_B_p) 
-Cm_B_b <- 180 # Cm_B_b : marked fish with blue at Beauchamps
-Cm_B_p <- 357 # Cm_B_p : marked fish with PIT at Beauchamps
+Cm_B_b <- 178  # Cm_B_b : marked fish with blue at Beauchamps
+Cm_B_p <- 356 # Cm_B_p : marked fish with PIT at Beauchamps
 p_keep ~ dbeta(10,2) # probability of not losing blue marks (10 captured blue and pit marked)
 
 Nesc[37] <- Cm_B[37] + num_B[37]  ### Total number of smolt escaping the river
+# /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
 
 
 
+# From 2019 to now on: capture at Beauchamps and recapture at Eu using PIT-Tags
+for (t in 38:Nyears) {
+  C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
+  num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
 
-# # From 2003 to now on: capture at Beauchamps and recapture at Eu
-# for (t in 38:Nyears) {
-#   C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
-#   num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
-#   
-#   Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
-#   Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
-#   
-#   Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
-# } # end of loop over years
+  Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
+  Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+
+  Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
+} # end of loop over years
 
 } # end of the model
 

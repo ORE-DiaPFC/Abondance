@@ -139,7 +139,7 @@ fit.mcmc <- as.mcmc(fit) # using bugs
 # denplot(fit, "junk")
 
 # DIAGNOSTICS:
-parameterstotest <-parameters # all parameters
+#parameterstotest <-parameters # all parameters
 # parameterstotest <- c(
 #   "epsilon_p"
 # )
@@ -156,7 +156,8 @@ cat("Number of iterations: ", fit$n.keep,"\n")
 
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
-  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  gelman.diag(fit.mcmc[,parameterstotest],multivariate=TRUE)
 }
 cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
@@ -168,7 +169,8 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 \n")
-heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
+#heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
+heidel.diag(fit.mcmc[,parameterstotest], eps=0.1, pvalue=0.05)
 
 cat("\n---------------------------\n")
 cat("Geweke's convergence diagnostic\n")
@@ -179,7 +181,8 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 \n")
-geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
+#geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
+geweke.diag(fit.mcmc[,parameterstotest], frac1 = 0.1, frac2 = 0.5)
 
 cat("\n---------------------------\n")
 cat("Raftery and Lewis's diagnostic\n")
@@ -209,12 +212,16 @@ pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
 #   caterplot(fit.mcmc,parameters.trend[i], reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 # }
 
-caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
+#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 
-traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
+#gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 
-gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
+for (par in hyperparameters){
+  traplot(fit.mcmc,par) 
+  denplot(fit.mcmc,par) 
+}
 dev.off()
 
 

@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2018"
+year <- "2019"
 site <- "Bresle"
 stade <- "smolt"
 

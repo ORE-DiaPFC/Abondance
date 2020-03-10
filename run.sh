@@ -2,7 +2,7 @@
 #$ -S /bin/sh
 
 #SITE=Scorff # Nivelle Oir Bresle
-YEAR=2018
+YEAR=2019
 CHAINS=2
 BURNIN=5000 # Number of steps to "burn-in" the samplers.
 ITER=10000 # Total number of steps in chains to save.
@@ -16,7 +16,7 @@ REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in Nivelle #Oir Scorff Bresle    
+for SITE in Bresle #Nivelle #Oir Scorff Bresle    
 do
      
 cd $REPbase/$SITE
@@ -64,7 +64,7 @@ cd $REPbase/$SITE
     
 wait
 
-R CMD BATCH --no-save --no-restore CIEM/Script_CIEM.R & # analyse dans R
+#R CMD BATCH --no-save --no-restore CIEM/Script_CIEM.R & # analyse dans R
    
 
 
