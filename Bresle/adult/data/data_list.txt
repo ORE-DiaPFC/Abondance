@@ -3,7 +3,7 @@
 ##  Q2pic[t]: Annual mean flow associated to the second peak of migration (1 octobre - 30 november)
 ## Flow data (l/s) are standardized within the model.   
 #####################################################################################################
-list(Y=35,
+list(Y=36,
 
 Q2pic = c(
 6466.290,
@@ -40,7 +40,8 @@ Q2pic = c(
 6001.967,
 6428.361, #2016
 5647.869,       #2017
-6050.164     #2018
+6050.164,     #2018
+5568.689        #2019
 )       
 )       
         
