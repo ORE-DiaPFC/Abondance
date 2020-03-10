@@ -1,7 +1,7 @@
 ################################################################################
 ###           Model of CMR data to estimate spawners population size         ###
 ###                 of Salmo salar in Oir river.                             ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                          December 2014                                   ###
 ################################################################################
 
@@ -52,9 +52,10 @@ for (a in 1:2){
   
   logit_int_MC[a] ~ dunif(-10,10)    #intercept 
   logit_flow_MC[a] ~ dunif(-10,10)  #slope for flow data depends on sea age (same flow used: 15 october -31 december)
-  sigmap_eff[a] ~ dunif(0.001,20)
-  
-  varp_eff[a] <- (sigmap_eff[a])*(sigmap_eff[a]) 
+  #sigmap_eff[a] ~ dunif(0.001,20)
+  #varp_eff[a] <- (sigmap_eff[a])*(sigmap_eff[a]) 
+  sigmap_eff[a] <- sqrt(varp_eff[a])
+  varp_eff[a] ~ dchisqr(4) # k=4 degree of freedom
   precp_eff[a] <- 1/(varp_eff[a]) # precision
   } # end of loop over sea age
 
@@ -65,10 +66,12 @@ test[2] <- step(logit_flow_MC[2]) # is logit_flow >=0 for MSW?
 ### Mean and standard deviation of the probabilities to be Re-captured #######################
 for (g in 1:4) {
   mup_recap[g] ~ dbeta(1,1) 
-  sigmap_recap[g] ~ dunif(0.01,30)
-
+  #sigmap_recap[g] ~ dunif(0.01,30)
+  sigmap_recap[g] <- sqrt(varp_recap[g])
+  varp_recap[g] ~ dchisqr(4) # k=4 degree of freedom
+  
   logit_mup_recap[g] <- log(mup_recap[g]/(1-mup_recap[g])) # logit transformation
-  varp_recap[g] <- (sigmap_recap[g])*(sigmap_recap[g]) 
+  #varp_recap[g] <- (sigmap_recap[g])*(sigmap_recap[g]) 
   precp_recap[g] <- 1/(varp_recap[g]) # precision  
   } # end of loop over breeding categories
 

@@ -1,0 +1,124 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  10000 
+Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+             Point est. Upper C.I.
+shape_lambda       1.01       1.02
+rate_lambda        1.01       1.02
+p_MC90_1SW         1.00       1.00
+p_MC90_MSW         1.00       1.00
+lambda0            1.00       1.01
+
+Multivariate psrf
+
+1
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed          1      0.9903 
+rate_lambda  passed          1      0.9643 
+p_MC90_1SW   passed          1      0.0567 
+p_MC90_MSW   passed          1      0.1430 
+lambda0      passed       1001      0.0763 
+                                         
+             Halfwidth Mean     Halfwidth
+             test                        
+shape_lambda passed      4.0340 0.09781  
+rate_lambda  passed      0.0182 0.00048  
+p_MC90_1SW   passed      0.1198 0.00501  
+p_MC90_MSW   passed      0.2577 0.01231  
+lambda0      passed    223.4916 7.07150  
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.561  
+rate_lambda  passed       1         0.617  
+p_MC90_1SW   passed       1         0.427  
+p_MC90_MSW   passed       1         0.873  
+lambda0      passed       1         0.374  
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+shape_lambda passed      4.187 0.092043 
+rate_lambda  passed      0.019 0.000468 
+p_MC90_1SW   passed      0.121 0.003939 
+p_MC90_MSW   passed      0.260 0.012712 
+lambda0      passed    221.833 5.981254 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+      0.1767       0.4549      -1.3408      -1.7311      -1.9649 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda   p_MC90_1SW   p_MC90_MSW      lambda0 
+     -0.2875      -0.4079      -0.3583      -0.8588      -0.2820 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 21       20265 3746         5.41      
+ rate_lambda  24       27207 3746         7.26      
+ p_MC90_1SW   14       15094 3746         4.03      
+ p_MC90_MSW   18       17337 3746         4.63      
+ lambda0      18       20196 3746         5.39      
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ shape_lambda 18       21408 3746         5.71      
+ rate_lambda  25       29365 3746         7.84      
+ p_MC90_1SW   16       16704 3746         4.46      
+ p_MC90_MSW   12       13175 3746         3.52      
+ lambda0      15       16887 3746         4.51      
+
+
