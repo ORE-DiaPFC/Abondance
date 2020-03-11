@@ -99,6 +99,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
   mu_p_srem ~ dbeta(1,1) # Mean capture probability by successive removal
   sd_logit_p_srem ~ dunif(0,10) # Standard deviation of the logit transformed capture probability
+  epsilon_p ~ dnorm(0,0.001)I(0,) # decrease of efficiency between successive passes
 
 ## PROBABILITY DISTRIBUTIONS
 ## -------------------------
@@ -297,7 +298,6 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
    sd_s_rec ~ dunif(0,10)
    v_s_rec <- sd_s_rec * sd_s_rec # variance of the recent surface
    prec_s_rec <- 1/v_s_rec # precision
-   epsilon_p ~ dnorm(0,0.001)I(0,) # decrease of efficiency between successive passes
 
 ############################
 ## PROBABILITY DISTRIBUTIONS
