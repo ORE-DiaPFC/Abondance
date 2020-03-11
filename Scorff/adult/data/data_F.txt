@@ -29,4 +29,5 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 9	2	24	8
 20	8	16	5 # 2017 (42% of marked fish on declared unmarked fish)
 10	2	4	13
+5	3	5	7
 #END 
