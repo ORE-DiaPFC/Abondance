@@ -6,15 +6,15 @@ parameters <-c(
   ,"sigmap" # standard deviation of probability of capture
   ,"rho" # correlation coefficient between probability of capture at the two traps
   
-  ,"l_ML_dim" # mean decrease in probability of capture when Lesl? is not working
-  ,"sigmap_ML_dim" # standard deviation of decrease in probability of capture when Lesl? is not working
-  ,"junk" # variance of decrease in probability of capture when Lesl? is not working
+  #,"l_ML_dim" # mean decrease in probability of capture when Lesl? is not working
+ # ,"sigmap_ML_dim" # standard deviation of decrease in probability of capture when Lesl? is not working
+ # ,"junk" # variance of decrease in probability of capture when Lesl? is not working
   
   ## PROBABILITIES
   ,"p" # probability of capture at the 2 traps (1: MP; 2: ML 
   ,"epsilon" # standardized residuals of probability of capture
   
-  ,"pi_ML_dim" # decrease in the probability of capture at Lesl?
+  #,"pi_ML_dim" # decrease in the probability of capture at Lesl?
   #,"epsML_dim" # standardized residuals of the decrease in the probability of capture
   
   ,"p_MP" # capture probability at Moulin des Princes
@@ -37,5 +37,5 @@ parameters <-c(
   # 1: is logit_flow at MP >=0 ?
   # 2: is logit_flow at ML >=0 ?
   ,"test" 
-  ,"R2"
+ # ,"R2"
 ) # percentage of variation explained by flow
