@@ -1,8 +1,10 @@
 ################################################################################
-###           Model of CMR data to estimate smolt population size         ###
-###                 of Salmo salar in Scorff river.                         ###
+###           Model of CMR data to estimate smolt population size            ###
+###                 of Salmo salar in Scorff river.                          ###
 ###                  Sabrina Servanty & Etienne Pr?vost                      ###
-###                          March 2015                                  ###
+###                          March 2015                                      ###
+###                Modified by Mathieu Buoro & Etienne Prévost               ###
+###                         March 2020                                       ###
 ################################################################################
 
 ################################################################################
@@ -14,6 +16,8 @@
 # - add one line of code: p[x,2] * pi_ML_dim[y]
 ######### where x is the index of the last year (=Nyear) and y is the upper index of the loop that was changed at the previous step
 ######### add it after L.182
+#   This option for years with trapping interruption has been removed
+#   because it cause pb of MCMC convergance with no gain in estimation quality 
 ################################################################################
 
 ######################################################################
@@ -62,13 +66,13 @@ covmat[2,1] <- rho * sigmap[1] * sigmap[2]  # covariance
 covmat[2,2] <- varp[2] # variance of the probability of capture at ML
        
 ### Mean and standard deviation for years when Lesl? is either stopped during several days due to flow or not installed whereas migration already begun (7 years)
-junk ~ dt(0,1,1)  # Cauchy distribution
-sigmap_ML_dim <- abs(junk)  # half-Cauchy distribution
-precp_ML_dim <- pow(sigmap_ML_dim,-2)
+#junk ~ dt(0,1,1)  # Cauchy distribution
+#sigmap_ML_dim <- abs(junk)  # half-Cauchy distribution
+#precp_ML_dim <- pow(sigmap_ML_dim,-2)
 
 #sigmap_ML_dim <- pow(precp_ML_dim,-0.5)
 #precp_ML_dim ~ dgamma(7,7) # precision
-l_ML_dim ~ dt(0,0.4077711,7.763) # mean 
+#l_ML_dim ~ dt(0,0.4077711,7.763) # mean 
 
 ############################################################################################
 ###############             Hyperparameters for Ntot       ##################
@@ -125,31 +129,32 @@ for (t in 3:Nyears) {
 test[1] <- step(logit_flow[1]) # is logit_flow at MP >=0 ?
 test[2] <- step(logit_flow[2]) # is logit_flow at ML >=0 ?
 
+# This part is removed because it is wrong and useless (2020)
 #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities))) for Moulin des Princes
 # See Gelman & Pardoe 2006
-sdeps_MP <- sd(eps[,1]) 
-vareps_MP <- sdeps_MP * sdeps_MP
+#sdeps_MP <- sd(eps[,1]) 
+#vareps_MP <- sdeps_MP * sdeps_MP
 
-sdlpi_MP <- sd(logit_pi[,1])
-varlpi_MP <- sdlpi_MP * sdlpi_MP
+#sdlpi_MP <- sd(logit_pi[,1])
+#varlpi_MP <- sdlpi_MP * sdlpi_MP
 
-R2[1] <- 1 - (mean(vareps_MP)/mean(varlpi_MP)) 
+#R2[1] <- 1 - (mean(vareps_MP)/mean(varlpi_MP)) 
 
 #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities))) for Moulin de Lesl?
 # See Gelman & Pardoe 2006
-sdeps_ML <- sd(eps[3:Nyears,2]) 
-vareps_ML <- sdeps_ML * sdeps_ML
+#sdeps_ML <- sd(eps[3:Nyears,2]) 
+#vareps_ML <- sdeps_ML * sdeps_ML
 
-sdlpi_ML <- sd(logit_pi[3:Nyears,2])
-varlpi_ML <- sdlpi_ML * sdlpi_ML
+#sdlpi_ML <- sd(logit_pi[3:Nyears,2])
+#varlpi_ML <- sdlpi_ML * sdlpi_ML
 
-R2[2] <- 1 - (mean(vareps_ML)/mean(varlpi_ML)) 
+#R2[2] <- 1 - (mean(vareps_ML)/mean(varlpi_ML)) 
        
 ###### Setting up probability of capture in Lesl? for years when Lesl? is stopped due to flow problem
-for (j in 1:7) { # for years when Lesl? was stopped during several days due to flow or installed after migration has begun (total of 7 years)
-  lp_ML_dim[j] ~ dnorm(l_ML_dim,precp_ML_dim)
-  pi_ML_dim[j] <- exp(lp_ML_dim[j])/(1+exp(lp_ML_dim[j]))  # back-transformation on the probability scale
-  } # end of loop over specific years
+#for (j in 1:7) { # for years when Lesl? was stopped during several days due to flow or installed after migration has begun (total of 7 years)
+#  lp_ML_dim[j] ~ dnorm(l_ML_dim,precp_ML_dim)
+#  pi_ML_dim[j] <- exp(lp_ML_dim[j])/(1+exp(lp_ML_dim[j]))  # back-transformation on the probability scale
+#  } # end of loop over specific years
 
 ###### Setting up total probability of capture 
 ## Moulin des Princes 
@@ -158,24 +163,24 @@ for (t in 1:Nyears) {
     } # end of loop over years
 
 # Lesl?(in specific years, probabilities are set to be smaller)  
-p_ML[3] <- p[3,2] * pi_ML_dim[1] # probability in 97
-p_ML[4] <- p[4,2]
-p_ML[5] <- p[5,2] * pi_ML_dim[2] # 1999
-p_ML[6] <- p[6,2] * pi_ML_dim[3] # 2000
-p_ML[7] <- p[7,2] * pi_ML_dim[4] # 2001
+p_ML[3] <- p[3,2]# * pi_ML_dim[1] # probability in 97
+p_ML[4] <- p[4,2]#
+p_ML[5] <- p[5,2]# * pi_ML_dim[2] # 1999
+p_ML[6] <- p[6,2]# * pi_ML_dim[3] # 2000
+p_ML[7] <- p[7,2]# * pi_ML_dim[4] # 2001
 
 for (t in 8:11) { # from 2002 to 2005
     p_ML[t] <- p[t,2]
     } # end of loop over years
     
-p_ML[12] <- p[12,2] * pi_ML_dim[5] # probability in 2006 is set to be smaller
+p_ML[12] <- p[12,2]# * pi_ML_dim[5] # probability in 2006 is set to be smaller
 
 for (t in 13:17) { # from 2007 to 2011
     p_ML[t] <- p[t,2]
     } # end of loop over years
     
-p_ML[18] <- p[18,2] * pi_ML_dim[6] #2012
-p_ML[19] <- p[19,2] * pi_ML_dim[7] #2013
+p_ML[18] <- p[18,2]# * pi_ML_dim[6] #2012
+p_ML[19] <- p[19,2]# * pi_ML_dim[7] #2013
 
 p_ML[20] <- p[20,2]  # 2014
 
@@ -184,6 +189,7 @@ p_ML[21] <- p[21,2]  # 2015
 p_ML[22] <- p[22,2]  # 2016
 p_ML[23] <- p[23,2]  # 2017
 p_ML[24] <- p[24,2]  # 2018
+p_ML[25] <- p[25,2]  # 2018
 
 ######################### Population process ###########################################
 # Nyears : from 1995 to now on (migration year)	
