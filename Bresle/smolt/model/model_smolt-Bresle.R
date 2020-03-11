@@ -137,15 +137,16 @@ for (t in 1:NEu) {  # For years when Eu is installed
 
 test <- step(logit_flow_Eu) # is logit_flow >=0 ?
 
+# Section on R2 is removed because wrong and useless
 #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
 # See Gelman & Pardoe 2006
-sdeps_Eu <- sd(eps_Eu[])
-vareps_Eu <- sdeps_Eu * sdeps_Eu
+#sdeps_Eu <- sd(eps_Eu[])
+#vareps_Eu <- sdeps_Eu * sdeps_Eu
 
-sdlpi_Eu <- sd(logit_pi_Eu[])
-varlpi_Eu <- sdlpi_Eu * sdlpi_Eu
+#sdlpi_Eu <- sd(logit_pi_Eu[])
+#varlpi_Eu <- sdlpi_Eu * sdlpi_Eu
 
-R2 <- 1 - (mean(vareps_Eu)/mean(varlpi_Eu))
+#R2 <- 1 - (mean(vareps_Eu)/mean(varlpi_Eu))
 
 ###################                 LIKELIHOOD               #######################
 # from 1982 to 1985 : only capture at Beauchamps
