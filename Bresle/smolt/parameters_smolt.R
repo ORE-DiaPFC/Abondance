@@ -10,7 +10,9 @@ parameters <-c(
   ## PROBABILITIES
   ,"p_B" # probabilities of capture in Beauchamps (without the decrease
   ,"p_B95" # decrease in probabilities of capture in Beauchamps in 1995
-  ,"p_B00" # decrease in probabilities of capture in Beauchamps in 2000
+  ,"p_B96" # decrease in probabilities of capture in Beauchamps in 1996
+  ,"p_B99" # decrease in probabilities of capture in Beauchamps in 1999
+  #,"p_B00" # decrease in probabilities of capture in Beauchamps in 2000
   ,"p_B02" # decrease in probabilities of capture in Beauchamps in 2002
   ,"p_Btot" # global probabilities of capture in Beauchamps
   ,"epsilon_B" # standardized residuals in probability of capture in Beauchamps
