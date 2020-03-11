@@ -17,12 +17,14 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 ###################################################
 inits_fix <- list(
   # NO UPDATE
-  sigmap_eff = c(0.1,0.2),
+  #sigmap_eff = c(0.1,0.2),
+  varp_eff = c(0.1,0.2)^2,
   shape_lambda = 5,
   rate_lambda = 0.01,
   lambda0=500,
   mup_recap = c(0.3,0.5,0.3,0.5),     
-  sigmap_recap=c(0.1,0.1,0.2,0.3)   
+  #sigmap_recap=c(0.1,0.1,0.2,0.3)   
+  varp_recap=c(0.1,0.1,0.2,0.3)^2
 )
 
 

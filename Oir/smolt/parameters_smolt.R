@@ -15,7 +15,8 @@ parameters <-c(
 ,"lambda" # Poisson parameter
 ,"Ntot" # Number of smolt 
 ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
-  
+
+,"eps_pi_MC"
 ,"overdisp_MC" # Annual overdispersion of capture probability
 ,"mean_MC" # Mean capture probability
 ,"p_MC" # Annual capture of probability

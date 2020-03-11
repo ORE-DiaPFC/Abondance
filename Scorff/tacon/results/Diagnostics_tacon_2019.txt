@@ -1,0 +1,88 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  10000 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow    sigma_ySc 
+     -0.1237       0.4192      -1.3524      -0.6818      -2.7426       1.0745       2.3050 
+sigma_siteSc         test 
+     -1.0598       1.0000 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow    sigma_ySc 
+     0.92002     -1.61053     -0.09749      0.47125     -0.37877      0.19168      0.28847 
+sigma_siteSc         test 
+     0.09750          NaN 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ int_width    33       38232  3746         10.2000   
+ width_coef   104      129344 3746         34.5000   
+ rate_lcpu    15       17670  3746          4.7200   
+ sigma_dSc    64       69288  3746         18.5000   
+ int_ydSc     25       28390  3746          7.5800   
+ log_flow     2        3975   3746          1.0600   
+ sigma_ySc    4        4660   3746          1.2400   
+ sigma_siteSc 12       14205  3746          3.7900   
+ test         1        48     3746          0.0128   
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                    
+              Burn-in  Total Lower bound  Dependence
+              (M)      (N)   (Nmin)       factor (I)
+ int_width    42       43320 3746         11.60     
+ width_coef   60       50280 3746         13.40     
+ rate_lcpu    20       21875 3746          5.84     
+ sigma_dSc    68       76588 3746         20.40     
+ int_ydSc     9        14526 3746          3.88     
+ log_flow     2        3897  3746          1.04     
+ sigma_ySc    3        4245  3746          1.13     
+ sigma_siteSc 9        12975 3746          3.46     
+ test         <NA>     <NA>  3746            NA     
+
+

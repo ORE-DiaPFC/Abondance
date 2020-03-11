@@ -4,6 +4,8 @@ parameters <-c(
   ,"width_coef" # proportional coefficient with width
   ,"rate_lcpu" # inverse scale of gamma distribution
   
+  
+  
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS
   ,"sigma_dSc" # overall standard deviation in density
@@ -15,6 +17,8 @@ parameters <-c(
   
   # Site effect (log scale
   ,"sigma_siteSc" # standard deviation
+  
+  , "eps_ydSc" 
   
   ####################
   # DENSITY

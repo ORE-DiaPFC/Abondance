@@ -38,5 +38,5 @@ C_MC[,1]	C_MC[,2]	C_MC[,3]	C_MC[,4]	Cm_MC[,1]	Cm_MC[,2]	Cm_MC[,3]	Cm_MC[,4]
 60	34	1	14	60	34	1	14
 11	1	0	2	11	1	0	2
 3	2	2	5	3	2	2	5
-41	19	3	11	41	19	3	11 # 2019
+41	19	3	11	41	19	3	11 # 2019 mise en place de la roue pour améliorer l'efficacite
 #END
