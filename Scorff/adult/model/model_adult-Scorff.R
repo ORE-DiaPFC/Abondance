@@ -109,10 +109,12 @@ model {
   ## -------------------------
   ## pi_MP94[a]:probability to be captured at Moulin des Princes given sea age for 1994 
   ## pi_MP[t,a]:annual probability to be captured at Moulin des Princes given sea age
-  ## pi_Dm[t,a]: annual probability for a marked fish to die from cause other than fishing given sea age
+  ## pi_D_1SW[t,a]: annual probability for a marked 1SW to die from cause other than fishing given marking
+  ## pi_D_MSW[t,a]: annual probability for a marked MSW to die from cause other than fishing given marking
   ## pi_Dum[t,a]: annual probability for a unmarked fish to die from cause other than fishing given sea age
   ## pi_oD: probability to recover a fish that die from other cause than fishing
-  ## pi_F[t,a]: annual probability to be recaptured by fishing given sea age
+  ## pi_F_1SW[t,a]: annual probability of a 1SW to be captured by fishing given marking
+  ## pi_F_MSW[t,a]: annual probability of a MSW to be captured by fishing given marking 
   ## pi_oF[t,a]: annual probability to recover a caught fish (exploitation). From 1994 to 2002.
   ## pi_R[t,a]: annual probability to be captured during or after reproduction given sea age
   ####################################################################################  
