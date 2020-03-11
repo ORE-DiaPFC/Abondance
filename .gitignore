@@ -8,6 +8,7 @@ out.txt
 bugs/*
 */*/Sab/*
 
+*.DS_Store
 
 # Formats
 *.zip

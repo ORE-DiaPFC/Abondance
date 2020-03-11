@@ -39,8 +39,10 @@ inits_fix <- list(
   rate_lambda = 0.04238,
   s = c(15.67,3.914),
   shape_lambda = 5.995,
-  sigmapi_B = c(0.644,0.6969),
-  sigmapi_Eu = c(1.019,0.8865)
+  #sigmapi_B = c(0.644,0.6969),
+  #sigmapi_Eu = c(1.019,0.8865)
+  varpi_B = c(0.414,0.485),
+  varpi_Eu = c(1.038,0.8865)
 )
 
 

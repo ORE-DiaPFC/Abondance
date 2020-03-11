@@ -1,7 +1,7 @@
 ################################################################################
 ###           Model of CMR data to estimate spawners population size         ###
 ###                 of Salmo salar in Bresle river.                         ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                          January 2015                                  ###
 ################################################################################
 
@@ -9,7 +9,7 @@ model {
 
 
 ############################################################################################
-## Difference with Sébastien's report (Delmotte et al. 2010):
+## Difference with S?bastien's report (Delmotte et al. 2010):
 ## - set probability of capture at Eu in 2000 and 2001 to be smaller than the other years (partial trapping)
 ## - didn't consider recapture probability in 1989 and 1993 because trap in Beauchamps was not working those years (and so in 2000 and 2001 as in the report)
 ## - adding a flow effect in pi_Eu. Considering a different temporal window depending on sea age. Flow data are standardized (ln(Q[t]) - mean(ln(Q)))/sd(ln(Q)) within the model. Residuals are standardized and followed.
@@ -17,7 +17,7 @@ model {
 ########### - 15 april - 30 june for MSW
 ## - adding another effect of flow corresponding to the second peak of migration.Flow data are standardized within the model.
 ########### Same temporal window for 1SW and MSW: 1 octobre - 30 november
-## - calculating calculating R² (% of variation explained by the two covariates in the probability of capture at Eu)
+## - calculating calculating R? (% of variation explained by the two covariates in the probability of capture at Eu)
 ###############################################################################################
 
 ############################################################################################
@@ -49,18 +49,25 @@ model {
   #################################################################################
   ### Mean and standard deviation of probabilities depending on sea age.
     # Probabilities to be captured at Eu.
+  
+  k <- 3 # k degree of freedom
+  
   for (a in 1:2) {
     pi_Eu00[a] ~ dbeta(1,1)  # year 2000 is considered to be different (partial trapping)
     pi_Eu01[a] ~ dbeta(1,1)  # year 2001 is considered to be different (partial trapping)
     logit_int_Eu[a] ~ dunif(-10,10)    #intercept 
     logit_flow_Eu[a] ~ dunif(-10,10) #slope for flow data (1SW at Eu: 15 june - 31 august, MSW: 15 april - 30 june)
-    sigmapi_Eu[a] ~ dunif(0,20)    
+    #sigmapi_Eu[a] ~ dunif(0,20)    
+    sigmapi_Eu[a] <- sqrt(varpi_Eu[a])
+    varpi_Eu[a]~dchisqr(k) # k degree of freedom
     
     lflow_fall_Eu[a] ~ dunif(-10,10) # slope for flow data, second peak of migration (same period for both 1SW and MSW)
         
     # Probability to be captured at Beauchamps (after reproduction)
     mupi_B[a] ~ dbeta(1,1)
-    sigmapi_B[a] ~ dunif(0,20)
+    #sigmapi_B[a] ~ dunif(0,20)
+    sigmapi_B[a] <- sqrt(varpi_B[a])
+    varpi_B[a]~dchisqr(k) # k degree of freedom
     }
                                  
   ################################################################################
@@ -77,7 +84,7 @@ model {
      } #end of loop over years
   
   for (a in 1:2) { 
-    varpi_Eu[a] <- (sigmapi_Eu[a])*(sigmapi_Eu[a]) 
+    #varpi_Eu[a] <- (sigmapi_Eu[a])*(sigmapi_Eu[a]) 
     precpi_Eu[a] <- 1/(varpi_Eu[a]) # precision 
         
         for (t in 1:Y) { #pi_Eu exchangeable from 1984 to 1999 
@@ -92,7 +99,7 @@ model {
             eps_Eu[t,a] <- logit_pi_Eu[t,a] - logit_mupi_Eu[t,a] # residuals not standardized
              } ## End of loop over years
              
-        #Calculating R² = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
+        #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
         # See Gelman & Pardoe 2006
         sdeps_Eu[a] <- sd(eps_Eu[,a]) 
         vareps_Eu[a] <- sdeps_Eu[a] * sdeps_Eu[a]
@@ -117,7 +124,7 @@ model {
    ### Probabilities to be captured at Beauchamps after reproduction (time and sea age dependent)
   for (a in 1:2) {
     logit_mupi_B[a] <- log(mupi_B[a]/(1-mupi_B[a])) # logit transformation
-    varpi_B[a] <- (sigmapi_B[a])*(sigmapi_B[a]) 
+    #varpi_B[a] <- (sigmapi_B[a])*(sigmapi_B[a]) 
     precpi_B[a] <- 1/(varpi_B[a]) # precision
     
     for (t in 1:5) { ## pi_B: Exchangeable from 1984 to 1988

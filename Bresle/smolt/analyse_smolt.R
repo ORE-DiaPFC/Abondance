@@ -217,6 +217,8 @@ traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 dev.off()
 
+### POSTERIOR
+source("posterior_check.R")
 
 #------------------------------------------------------------------------------
 ## SUMMARY
