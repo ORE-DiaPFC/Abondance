@@ -98,17 +98,18 @@ model {
             epsilon_Eu[t,a] <- (logit_pi_Eu[t,a] - logit_mupi_Eu[t,a]) / sigmapi_Eu[a] # standardized residuals
             eps_Eu[t,a] <- logit_pi_Eu[t,a] - logit_mupi_Eu[t,a] # residuals not standardized
              } ## End of loop over years
-             
+ 
+ # The following section is removed because R2 calculation is wrong and useless (March 2020)            
         #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
         # See Gelman & Pardoe 2006
-        sdeps_Eu[a] <- sd(eps_Eu[,a]) 
-        vareps_Eu[a] <- sdeps_Eu[a] * sdeps_Eu[a]
+        #sdeps_Eu[a] <- sd(eps_Eu[,a]) 
+        #vareps_Eu[a] <- sdeps_Eu[a] * sdeps_Eu[a]
         
-        sdlpi_Eu[a] <- sd(logit_pi_Eu[,a])
-        varlpi_Eu[a] <- sdlpi_Eu[a] * sdlpi_Eu[a]
+        #sdlpi_Eu[a] <- sd(logit_pi_Eu[,a])
+        #varlpi_Eu[a] <- sdlpi_Eu[a] * sdlpi_Eu[a]
         
-        R2[a] <- 1 - (mean(vareps_Eu[a])/mean(varlpi_Eu[a])) 
-        }# end of loop over sea age
+        #R2[a] <- 1 - (mean(vareps_Eu[a])/mean(varlpi_Eu[a])) 
+        #}# end of loop over sea age
                 
    test[1] <- step(logit_flow_Eu[1]) # is logit_flow >=0 for 1SW?
    test[2] <- step(logit_flow_Eu[2]) # is logit_flow >=0 for MSW?  
