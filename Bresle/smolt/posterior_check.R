@@ -1,9 +1,5 @@
 
-
-
-
-
-fit.mcmc <- as.mcmc(fit)
+#fit.mcmc <- as.mcmc(fit)
 
 
 ### JUV
@@ -40,7 +36,7 @@ hyperparameters <-c(
 ,"p_keep"
 )
 
-pdf(paste('results/Posterior_check_',stade,"_",year,'.pdf',sep=""))
+pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 #traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
 #traplot(fit.mcmc,"pi_Eu00")
 for (par in hyperparameters){

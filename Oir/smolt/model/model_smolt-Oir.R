@@ -1,7 +1,7 @@
 ################################################################################
 ###           Model of CMR data to estimate smolt population size         ###
 ###                 of Salmo salar in Oir river.                          ###
-###                  Sabrina Servanty & Etienne Prévost                   ###
+###                  Sabrina Servanty & Etienne Pr?vost                   ###
 ###                          April 2015                                   ###
 ################################################################################
 
@@ -70,7 +70,6 @@ for (t in 1:Nyears) {
   stlogQ_MC[t] <- (logQ_MC[t] - mean(logQ_MC[]))/sd(logQ_MC[]) # standardized covariate
   
   lmupi_MC[t] <- logit_int_MC + logit_flow_MC * stlogQ_MC[t]
-  eps_pi_MC <- logit(p_MC[t]) - lmupi_MC[t]
   mean_MC[t] <- exp(lmupi_MC[t])/(1+exp(lmupi_MC[t]))  # back-transformation on the probability scale
   
   ### Beta-binomiale 
@@ -78,7 +77,7 @@ for (t in 1:Nyears) {
   beta_MC[t] <- (1-mean_MC[t]) * overdisp_MC[t]
   p_MC[t] ~ dbeta(alpha_MC[t],beta_MC[t]) 
   
-  eps_p_MC <- logit(p_MC[t]) - lmupi_MC[t]  # résiduals logit scale (March 2020)
+  eps_p_MC[t] <- logit(p_MC[t]) - lmupi_MC[t]  # r?siduals logit scale (March 2020)
 ####################                 LIKELIHOOD               #######################  		
 	# Binomial for Recaptures 
   Cm_R[t] ~ dbin(p_MC[t],Cm_MC[t]) 

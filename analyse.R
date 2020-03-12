@@ -142,7 +142,7 @@ source("posterior_check.R")
 # denplot(fit, "junk")
 
 # DIAGNOSTICS:
-#parameterstotest <-parameters # all parameters
+parameterstotest <-parameters # all parameters
 # parameterstotest <- c(
 #   "epsilon_p"
 # )

@@ -109,7 +109,7 @@ model {
         #varlpi_Eu[a] <- sdlpi_Eu[a] * sdlpi_Eu[a]
         
         #R2[a] <- 1 - (mean(vareps_Eu[a])/mean(varlpi_Eu[a])) 
-        #}# end of loop over sea age
+        }# end of loop over sea age
                 
    test[1] <- step(logit_flow_Eu[1]) # is logit_flow >=0 for 1SW?
    test[2] <- step(logit_flow_Eu[2]) # is logit_flow >=0 for MSW?  

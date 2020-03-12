@@ -1,8 +1,3 @@
-
-
-
-
-
 fit.mcmc <- as.mcmc(fit)
 
 ##### BRESLE
@@ -51,25 +46,7 @@ caterplot(fit.mcmc,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain
 
 par(mfrow=c(1,1))
 caterplot(fit.mcmc,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-#caterplot(fit.mcmc,paste0("gamma_dj[",8:data$Y,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-#caterplot(fit.mcmc,paste0("gamma_dj[",8:data$Y,",5]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-# par(mfrow=c(2,1))
-# caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# 
-# par(mfrow=c(2,1))
-# caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# 
-# 
-# par(mfrow=c(2,1))
-# caterplot(fit.mcmc,paste0("eps_U[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# # 1SW
-# caterplot(fit.mcmc,paste0("eps_U[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# # MSW
-# par(mfrow=c(2,1))
-# caterplot(fit.mcmc,paste0("eps_Ol[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()
 

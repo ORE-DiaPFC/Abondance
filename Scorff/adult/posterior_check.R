@@ -1,9 +1,4 @@
-
-
-
-
-
-fit.mcmc <- as.mcmc(fit)
+#fit.mcmc <- as.mcmc(fit)
 
 ##### BRESLE
 

@@ -36,6 +36,6 @@ parameters <-c(
   #### TEST
   
   ,"test" # is logit_flow >=0 ?
-  ,"R2" # Percentage of variation explained by flow  
+  #,"R2" # Percentage of variation explained by flow  
   ,"p_keep" # probability to keep the blue tag on year 2018
 )

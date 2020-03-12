@@ -1,13 +1,6 @@
 
+#fit.mcmc <- as.mcmc(fit)
 
-
-
-
-fit.mcmc <- as.mcmc(fit)
-
-##### BRESLE
-
-#### ADU
 hyperparameters <-c(
   "pi_Eu00" # decrease in probability of capture in Eu in 2000
   ,"pi_Eu01" # decrease in probability of capture in Eu in 2001
@@ -23,7 +16,7 @@ hyperparameters <-c(
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
 ) 
-pdf(paste('results/Posterior_check',stade,"_",year,'.pdf',sep=""))
+pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 #traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
 #traplot(fit.mcmc,"pi_Eu00")
 for (par in hyperparameters){

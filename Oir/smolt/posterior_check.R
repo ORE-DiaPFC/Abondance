@@ -16,7 +16,7 @@ hyperparameters <-c(
   ,"lambda" # Poisson parameter
   #,"Ntot" # Number of smolt 
   #,"Nesc" # Number of smolt escaping the river (Ntot-Dead
-  ,"eps_pi_MC"
+  ,"eps_p_MC"
   ,"overdisp_MC" # Annual overdispersion of capture probability
   ,"mean_MC" # Mean capture probability
   ,"p_MC" # Annual capture of probability
@@ -35,14 +35,14 @@ for (par in hyperparameters){
 }
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc, "overdisp_MC")
-caterplot(fit.mcmc, "eps_pi_MC")
+caterplot(fit.mcmc, "overdisp_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc, "eps_p_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 #par(mfrow=c(2,1))
-caterplot(fit.mcmc, "mean_MC")
-caterplot(fit.mcmc, "p_MC")
+caterplot(fit.mcmc, "mean_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc, "p_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-caterplot(fit.mcmc, "alpha_MC")
-caterplot(fit.mcmc, "beta_MC")
+caterplot(fit.mcmc, "alpha_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc, "beta_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()
