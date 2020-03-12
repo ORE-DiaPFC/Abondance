@@ -111,9 +111,11 @@ model {
 ## HYPERPRIORS ON PROBABILITIES
 ## ------
 #################################################################################
-###Shape and rate of the hyperprior on the precisions
-shape_prec ~ dgamma(0.005,0.005)
-rate_prec ~ dgamma(0.005,0.005)
+###Shape and rate of the hyperprior on the precisions (modified by Buoro & Prévost March 2020)
+mean_var ~ dchisqr(3)
+mean_prec <- 1/mean_var
+rate_prec ~ dgamma(0.1,0.1)
+shape_prec <- mean_prec * rate_prec
 ### Mean and standard deviation of the probability to stay in LN1
 mup_11_1 ~ dbeta(1,1) ; sigmap_11_1 <- sqrt(1/precp_11_1) ; precp_11_1 ~ dgamma(shape_prec,rate_prec)  # from 1984 to 1991
 mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 <- sqrt(1/precp_11_2) ; precp_11_2 ~ dgamma(shape_prec,rate_prec) # from 1992 to now on
