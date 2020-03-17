@@ -86,8 +86,10 @@ The Z-score is calculated under the assumption that the two parts of the chain a
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
- logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda    mean_gamma     var_gamma 
-      0.23584       0.26586       0.42382      -0.17958       0.21396      -0.61110       0.05744 
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
+      0.23584       0.26586       0.42382      -0.17958       0.21396 
+   mean_gamma     var_gamma 
+     -0.61110       0.05744 
 
 
 [[2]]
@@ -95,8 +97,10 @@ Fraction in 2nd window = 0.5
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
- logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda    mean_gamma     var_gamma 
-      0.35122       0.07814      -0.09548       1.02341       1.79936      -1.53853      -1.11196 
+ logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
+      0.35122       0.07814      -0.09548       1.02341       1.79936 
+   mean_gamma     var_gamma 
+     -1.53853      -1.11196 
 
 
 
