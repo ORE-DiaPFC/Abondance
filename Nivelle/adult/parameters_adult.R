@@ -77,7 +77,7 @@ parameters <-c(
   
   ,"shape_prec"# Shape parameter of gamma distribution
   ,"rate_prec" # Rate parameter of gamma distribution
-  
+  ,"mean_prec"
   , "s" # Dirichlet parameter
   
   ,"n_tot" # Total number of adults entering in the river

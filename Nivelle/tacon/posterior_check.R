@@ -10,8 +10,8 @@ hyperparameters <-c(
   
   ## Density
   ,"beta_dj" # habitat effect 
-  ,"alpha_dj" # Year effect
-  ,"gamma_dj" # Interaction year X zone
+  #,"alpha_dj" # Year effect
+  #,"gamma_dj" # Interaction year X zone
   ,"pi_dj" # Density dependence effect when doing restocking
   ,"xi_dj" # Zone effect in density dependence when doing restocking
   ,"eta_dj" # Inverse scale of a Gamma distribution for density per zone
@@ -32,20 +32,18 @@ pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 #traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
 #traplot(fit.mcmc,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit.mcmc,par)
+  denplot(fit.mcmc,par)
 }
 
-# traplot(fit.mcmc, paste0("eps_U[",1:data$Y,",1]"))
-# traplot(fit.mcmc, paste0("eps_U[",1:data$Y,",2]"))
-# traplot(fit.mcmc, paste0("eps_Ol[",1:data$Y,"]"))
-# 
-par(mfrow=c(1,1))
-caterplot(fit.mcmc,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-
+#traplot(fit.mcmc, alpha_dj)
+#traplot(fit.mcmc, gamma_dj)
 
 par(mfrow=c(1,1))
-caterplot(fit.mcmc,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+par(mfrow=c(1,1))
+caterplot(fit.mcmc,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 
 dev.off()

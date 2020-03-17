@@ -4,3 +4,346 @@ DIAGNOSTICS
 Number of chains:  2 
 Number of iterations:  10000 
 Convergence: gelman-Rubin R test
+Potential scale reduction factors:
+
+              Point est. Upper C.I.
+logit_int[1]           1       1.00
+logit_int[2]           1       1.00
+logit_flow[1]          1       1.00
+logit_flow[2]          1       1.00
+sigmap[1]              1       1.00
+sigmap[2]              1       1.00
+rho                    1       1.00
+shape_lambda           1       1.00
+rate_lambda            1       1.00
+mean_gamma             1       1.00
+var_gamma              1       1.00
+lambda[1]              1       1.00
+lambda[2]              1       1.00
+lambda[3]              1       1.00
+lambda[4]              1       1.00
+lambda[5]              1       1.00
+lambda[6]              1       1.00
+lambda[7]              1       1.00
+lambda[8]              1       1.00
+lambda[9]              1       1.00
+lambda[10]             1       1.00
+lambda[11]             1       1.00
+lambda[12]             1       1.00
+lambda[13]             1       1.00
+lambda[14]             1       1.00
+lambda[15]             1       1.01
+lambda[16]             1       1.00
+lambda[17]             1       1.00
+lambda[18]             1       1.00
+lambda[19]             1       1.01
+lambda[20]             1       1.00
+lambda[21]             1       1.00
+lambda[22]             1       1.00
+lambda[23]             1       1.00
+lambda[24]             1       1.00
+lambda[25]             1       1.00
+
+Multivariate psrf
+
+1.01
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int[1]  passed          1      0.7730 
+logit_int[2]  passed          1      0.9787 
+logit_flow[1] passed          1      0.1253 
+logit_flow[2] passed          1      0.9692 
+sigmap[1]     passed          1      0.4993 
+sigmap[2]     passed          1      0.3749 
+rho           passed          1      0.2555 
+shape_lambda  passed          1      0.9012 
+rate_lambda   passed          1      0.8805 
+mean_gamma    passed       1001      0.0625 
+var_gamma     passed          1      0.2175 
+lambda[1]     passed          1      0.4561 
+lambda[2]     passed          1      0.6571 
+lambda[3]     passed          1      0.2620 
+lambda[4]     passed          1      0.1811 
+lambda[5]     passed          1      0.7609 
+lambda[6]     passed          1      0.0577 
+lambda[7]     passed          1      0.3399 
+lambda[8]     passed          1      0.7484 
+lambda[9]     passed          1      0.3169 
+lambda[10]    passed          1      0.5688 
+lambda[11]    passed          1      0.2986 
+lambda[12]    passed       1001      0.2647 
+lambda[13]    passed          1      0.2622 
+lambda[14]    passed          1      0.8010 
+lambda[15]    passed          1      0.4746 
+lambda[16]    passed          1      0.0580 
+lambda[17]    passed          1      0.6978 
+lambda[18]    passed          1      0.9013 
+lambda[19]    passed          1      0.5102 
+lambda[20]    passed          1      0.3883 
+lambda[21]    passed          1      0.3684 
+lambda[22]    passed          1      0.8734 
+lambda[23]    passed          1      0.2535 
+lambda[24]    passed          1      0.2953 
+lambda[25]    passed          1      0.7238 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int[1]  passed    -1.87e+00 2.22e-03 
+logit_int[2]  passed    -1.14e+00 2.79e-03 
+logit_flow[1] passed    -1.24e-01 2.18e-03 
+logit_flow[2] passed    -4.23e-01 2.95e-03 
+sigmap[1]     passed     5.35e-01 1.74e-03 
+sigmap[2]     passed     6.72e-01 2.49e-03 
+rho           passed     3.85e-01 3.77e-03 
+shape_lambda  passed     3.82e+00 2.14e-02 
+rate_lambda   passed     5.03e-04 3.01e-06 
+mean_gamma    passed     7.69e+03 1.73e+01 
+var_gamma     passed     1.71e+07 1.36e+05 
+lambda[1]     passed     6.31e+03 3.43e+01 
+lambda[2]     passed     2.04e+03 7.23e+00 
+lambda[3]     passed     1.00e+04 6.25e+00 
+lambda[4]     passed     4.90e+03 8.92e+00 
+lambda[5]     passed     2.65e+03 5.31e+00 
+lambda[6]     passed     3.07e+03 5.88e+00 
+lambda[7]     passed     1.19e+04 2.12e+01 
+lambda[8]     passed     1.26e+03 1.71e+00 
+lambda[9]     passed     1.02e+04 4.67e+00 
+lambda[10]    passed     7.89e+03 3.89e+00 
+lambda[11]    passed     1.08e+04 5.38e+00 
+lambda[12]    passed     7.19e+03 1.09e+01 
+lambda[13]    passed     7.58e+03 6.15e+00 
+lambda[14]    passed     1.06e+04 1.78e+01 
+lambda[15]    passed     1.37e+04 1.62e+01 
+lambda[16]    passed     1.06e+04 1.19e+01 
+lambda[17]    passed     8.89e+03 2.35e+01 
+lambda[18]    passed     8.30e+03 2.90e+01 
+lambda[19]    passed     8.47e+03 6.90e+01 
+lambda[20]    passed     1.03e+04 1.45e+01 
+lambda[21]    passed     6.66e+03 1.68e+01 
+lambda[22]    passed     9.78e+03 8.89e+00 
+lambda[23]    passed     6.28e+03 1.24e+01 
+lambda[24]    passed     5.15e+03 1.69e+01 
+lambda[25]    passed     5.30e+03 6.77e+00 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+logit_int[1]  passed          1      0.3482 
+logit_int[2]  passed          1      0.9829 
+logit_flow[1] passed          1      0.4951 
+logit_flow[2] passed          1      0.4840 
+sigmap[1]     passed          1      0.3861 
+sigmap[2]     passed          1      0.8959 
+rho           passed          1      0.9603 
+shape_lambda  passed          1      0.3639 
+rate_lambda   passed          1      0.3884 
+mean_gamma    passed          1      0.6887 
+var_gamma     passed          1      0.2368 
+lambda[1]     passed          1      0.5428 
+lambda[2]     passed          1      0.5437 
+lambda[3]     passed          1      0.5900 
+lambda[4]     passed          1      0.2941 
+lambda[5]     passed          1      0.5535 
+lambda[6]     passed          1      0.9109 
+lambda[7]     passed          1      0.4926 
+lambda[8]     passed          1      0.2817 
+lambda[9]     passed          1      0.5279 
+lambda[10]    passed          1      0.4778 
+lambda[11]    passed          1      0.9702 
+lambda[12]    passed          1      0.4471 
+lambda[13]    passed          1      0.4364 
+lambda[14]    passed       2001      0.0631 
+lambda[15]    passed          1      0.5162 
+lambda[16]    passed          1      0.7253 
+lambda[17]    passed          1      0.2723 
+lambda[18]    passed          1      0.9767 
+lambda[19]    passed          1      0.5454 
+lambda[20]    passed          1      0.2101 
+lambda[21]    passed          1      0.3382 
+lambda[22]    passed          1      0.3413 
+lambda[23]    passed          1      0.5403 
+lambda[24]    passed          1      0.1328 
+lambda[25]    passed          1      0.8953 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+logit_int[1]  passed    -1.87e+00 2.16e-03 
+logit_int[2]  passed    -1.14e+00 2.88e-03 
+logit_flow[1] passed    -1.25e-01 2.16e-03 
+logit_flow[2] passed    -4.21e-01 2.92e-03 
+sigmap[1]     passed     5.33e-01 1.74e-03 
+sigmap[2]     passed     6.69e-01 2.54e-03 
+rho           passed     3.79e-01 3.99e-03 
+shape_lambda  passed     3.81e+00 2.08e-02 
+rate_lambda   passed     5.02e-04 2.98e-06 
+mean_gamma    passed     7.68e+03 1.71e+01 
+var_gamma     passed     1.70e+07 1.33e+05 
+lambda[1]     passed     6.32e+03 3.63e+01 
+lambda[2]     passed     2.04e+03 7.31e+00 
+lambda[3]     passed     1.00e+04 6.49e+00 
+lambda[4]     passed     4.91e+03 9.13e+00 
+lambda[5]     passed     2.65e+03 5.26e+00 
+lambda[6]     passed     3.08e+03 5.65e+00 
+lambda[7]     passed     1.19e+04 2.06e+01 
+lambda[8]     passed     1.26e+03 1.71e+00 
+lambda[9]     passed     1.02e+04 4.55e+00 
+lambda[10]    passed     7.89e+03 3.86e+00 
+lambda[11]    passed     1.08e+04 5.37e+00 
+lambda[12]    passed     7.19e+03 1.05e+01 
+lambda[13]    passed     7.57e+03 6.19e+00 
+lambda[14]    passed     1.06e+04 1.97e+01 
+lambda[15]    passed     1.37e+04 1.68e+01 
+lambda[16]    passed     1.06e+04 1.22e+01 
+lambda[17]    passed     8.90e+03 2.29e+01 
+lambda[18]    passed     8.30e+03 2.77e+01 
+lambda[19]    passed     8.39e+03 7.12e+01 
+lambda[20]    passed     1.03e+04 1.58e+01 
+lambda[21]    passed     6.65e+03 1.57e+01 
+lambda[22]    passed     9.79e+03 8.81e+00 
+lambda[23]    passed     6.27e+03 1.22e+01 
+lambda[24]    passed     5.15e+03 1.68e+01 
+lambda[25]    passed     5.31e+03 6.62e+00 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int[1]  logit_int[2] logit_flow[1] logit_flow[2]     sigmap[1]     sigmap[2]           rho  shape_lambda   rate_lambda    mean_gamma     var_gamma     lambda[1] 
+     -0.81747      -0.77461      -1.42883      -0.36785      -0.74266       1.51602       0.65420       0.31636       0.06598       1.22618       0.91733      -1.26666 
+    lambda[2]     lambda[3]     lambda[4]     lambda[5]     lambda[6]     lambda[7]     lambda[8]     lambda[9]    lambda[10]    lambda[11]    lambda[12]    lambda[13] 
+     -0.61632       1.45745       0.93214       0.07999      -1.64617       1.93489       0.34840       0.03370      -0.72691       0.40288       2.70527      -0.79020 
+   lambda[14]    lambda[15]    lambda[16]    lambda[17]    lambda[18]    lambda[19]    lambda[20]    lambda[21]    lambda[22]    lambda[23]    lambda[24]    lambda[25] 
+      1.32045       1.56415       0.39787      -0.82546      -0.61391      -0.65554       1.37969       0.91622       0.03234      -1.18206      -1.86335       0.35132 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int[1]  logit_int[2] logit_flow[1] logit_flow[2]     sigmap[1]     sigmap[2]           rho  shape_lambda   rate_lambda    mean_gamma     var_gamma     lambda[1] 
+     0.780124      0.347332      1.084503      1.134368     -0.480118     -0.071795      0.557098      0.520222      0.429164     -0.228177     -0.697821     -1.980169 
+    lambda[2]     lambda[3]     lambda[4]     lambda[5]     lambda[6]     lambda[7]     lambda[8]     lambda[9]    lambda[10]    lambda[11]    lambda[12]    lambda[13] 
+    -0.602158     -0.001103      0.663821      0.788725     -0.252782     -1.261794      0.067710     -0.359843     -0.591276      0.242268      1.019781     -0.268400 
+   lambda[14]    lambda[15]    lambda[16]    lambda[17]    lambda[18]    lambda[19]    lambda[20]    lambda[21]    lambda[22]    lambda[23]    lambda[24]    lambda[25] 
+     1.723200      0.651461      0.751789     -0.060442     -0.493565     -0.708000     -1.376847      0.139355     -1.263941     -1.198638      1.248323      0.469017 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ logit_int[1]  200      377100 3746         101.0     
+ logit_int[2]  200      369300 3746          98.6     
+ logit_flow[1] 200      386000 3746         103.0     
+ logit_flow[2] 200      389700 3746         104.0     
+ sigmap[1]     200      380200 3746         101.0     
+ sigmap[2]     200      387800 3746         104.0     
+ rho           200      371000 3746          99.0     
+ shape_lambda  200      374100 3746          99.9     
+ rate_lambda   200      371000 3746          99.0     
+ mean_gamma    200      383400 3746         102.0     
+ var_gamma     200      392900 3746         105.0     
+ lambda[1]     400      467400 3746         125.0     
+ lambda[2]     300      404100 3746         108.0     
+ lambda[3]     200      383400 3746         102.0     
+ lambda[4]     200      398800 3746         106.0     
+ lambda[5]     300      408000 3746         109.0     
+ lambda[6]     200      385500 3746         103.0     
+ lambda[7]     300      447200 3746         119.0     
+ lambda[8]     200      371000 3746          99.0     
+ lambda[9]     200      372300 3746          99.4     
+ lambda[10]    200      378000 3746         101.0     
+ lambda[11]    200      391000 3746         104.0     
+ lambda[12]    300      406100 3746         108.0     
+ lambda[13]    200      392900 3746         105.0     
+ lambda[14]    300      442200 3746         118.0     
+ lambda[15]    300      431200 3746         115.0     
+ lambda[16]    300      435600 3746         116.0     
+ lambda[17]    600      899000 3746         240.0     
+ lambda[18]    400      734400 3746         196.0     
+ lambda[19]    800      865200 3746         231.0     
+ lambda[20]    300      418800 3746         112.0     
+ lambda[21]    300      447100 3746         119.0     
+ lambda[22]    200      392900 3746         105.0     
+ lambda[23]    300      409500 3746         109.0     
+ lambda[24]    400      468600 3746         125.0     
+ lambda[25]    200      389700 3746         104.0     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ logit_int[1]  200      377100 3746         101.0     
+ logit_int[2]  200      389100 3746         104.0     
+ logit_flow[1] 200      380200 3746         101.0     
+ logit_flow[2] 200      384700 3746         103.0     
+ sigmap[1]     200      369300 3746          98.6     
+ sigmap[2]     200      391000 3746         104.0     
+ rho           200      380400 3746         102.0     
+ shape_lambda  200      380200 3746         101.0     
+ rate_lambda   200      372300 3746          99.4     
+ mean_gamma    200      378400 3746         101.0     
+ var_gamma     200      383400 3746         102.0     
+ lambda[1]     400      535500 3746         143.0     
+ lambda[2]     300      414200 3746         111.0     
+ lambda[3]     200      377100 3746         101.0     
+ lambda[4]     200      389700 3746         104.0     
+ lambda[5]     200      392900 3746         105.0     
+ lambda[6]     200      381500 3746         102.0     
+ lambda[7]     300      491700 3746         131.0     
+ lambda[8]     200      379200 3746         101.0     
+ lambda[9]     200      368900 3746          98.5     
+ lambda[10]    200      385500 3746         103.0     
+ lambda[11]    200      390500 3746         104.0     
+ lambda[12]    200      395500 3746         106.0     
+ lambda[13]    200      374900 3746         100.0     
+ lambda[14]    300      412900 3746         110.0     
+ lambda[15]    300      431800 3746         115.0     
+ lambda[16]    200      380200 3746         101.0     
+ lambda[17]    400      467400 3746         125.0     
+ lambda[18]    400      471300 3746         126.0     
+ lambda[19]    600      971000 3746         259.0     
+ lambda[20]    300      428500 3746         114.0     
+ lambda[21]    400      463500 3746         124.0     
+ lambda[22]    200      378400 3746         101.0     
+ lambda[23]    300      426700 3746         114.0     
+ lambda[24]    400      468600 3746         125.0     
+ lambda[25]    300      412100 3746         110.0     
+
+

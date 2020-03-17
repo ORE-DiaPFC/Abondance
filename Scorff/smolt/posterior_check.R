@@ -8,9 +8,9 @@ fit.mcmc <- as.mcmc(fit)
 
 hyperparameters <-c(
   ## HYPER PARAMETERS 
-  "logit_int" # intercept (mean) probability of capture (1: MP; 2: ML)
-  ,"logit_flow" # slope for flow effect in probability of capture
-  ,"sigmap" # standard deviation of probability of capture
+  paste0("logit_int[",1:2,"]") # intercept (mean) probability of capture (1: MP; 2: ML)
+  ,paste0("logit_flow[",1:2,"]")  # slope for flow effect in probability of capture
+  ,paste0("sigmap[",1:2,"]") # standard deviation of probability of capture
   ,"rho" # correlation coefficient between probability of capture at the two traps
   
   #,"l_ML_dim" # mean decrease in probability of capture when Lesl? is not working
@@ -19,7 +19,7 @@ hyperparameters <-c(
   
   ## PROBABILITIES
  # ,"p" # probability of capture at the 2 traps (1: MP; 2: ML 
-  ,"epsilon" # standardized residuals of probability of capture
+ # ,"epsilon" # standardized residuals of probability of capture
   
   #,"pi_ML_dim" # decrease in the probability of capture at Lesl?
   #,"epsML_dim" # standardized residuals of the decrease in the probability of capture
@@ -36,7 +36,7 @@ hyperparameters <-c(
   ,"mean_gamma" # Mean parameter of gamma distribution
   ,"var_gamma" # Variance parameter of gamma distribution
   
-  ,"lambda" # Poisson parameter
+  ,paste0("lambda[",1:data$Nyears,"]") # Poisson parameter
   
 #  ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
   

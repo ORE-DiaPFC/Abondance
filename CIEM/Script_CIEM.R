@@ -9,7 +9,7 @@ rm(list=ls())   # Clear memory
 
 #setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
 setwd("/media/hdd/mbuoro/ORE-DiaPFC/")
-year <- 2018
+year <- 2019
 
 
 
@@ -44,7 +44,7 @@ n_MSW <- fit$median$n_MSW # medians
 Expl_rate <- cbind(
   Expl_rate_1SW = (C_F_1SW / n_1SW)*100,
   Expl_rate_MSW = (C_F_MSW / n_MSW)*100  
-    )
+)
 
 #Expl_rate <- rbind(Expl_rate,colMeans(Expl_rate))
 
@@ -150,6 +150,10 @@ close(con)
 
 RATIO_EGGS_CL[[paste0(site)]] <- table[,"eggs/CL"]
 
+
+
+
+
 ##_______________________________ OIR (starting in 1984)
 site <- "Oir"
 stade <- "adult"
@@ -177,7 +181,7 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("Nesc_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 
-prop.female <- read.csv(paste("Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
+prop.female <- read.csv(paste(dir,"Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
 fec_1SW = prop.female[,2] * 4635 # fecondité 1SW # Prevost 1996
 fec_MSW = prop.female[,3] * 7965 # fecondite MSW # prevost 1996
 

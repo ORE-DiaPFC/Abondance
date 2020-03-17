@@ -8,7 +8,7 @@ hyperparameters <-c(
   ,"logit_flow_Eu" # slope of flow effect
   ,"lflow_fall_Eu" # slope of flow effect in fall
   ,"sigmapi_Eu" # standard deviation in probability of capture in Eu
-  ,"epsilon_Eu" # standardized residuals of probability of capture in Eu
+  #,"epsilon_Eu" # standardized residuals of probability of capture in Eu
   
   ,"mupi_B" # mean probability of capture in Beauchamps
   ,"sigmapi_B" # standard deviation in probability of capture in Beauchamps

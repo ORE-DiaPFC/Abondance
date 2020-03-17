@@ -48,8 +48,10 @@ inits_fix <- list(
   precpi_EF = 1,
   precpi_U = c( 1, 1),
   precpi_Ol = 1,
-  shape_prec = 30,
-  rate_prec = 10,
+  #shape_prec = 30,
+  #rate_prec = 10,
+  mean_var = 5,
+  rate_prec = 2,
   d_pi_Ol = 0,
   d_pi_U = c(0, 0),
   logit_pi_Ol = log(data$eff_Ol / (1 - data$eff_Ol))

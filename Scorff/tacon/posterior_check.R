@@ -21,9 +21,9 @@ hyperparameters <-c(
   
   ####################
   # DENSITY
-  ,"eps_ydSc"
-  ,"year_dSc" # annual year effect in density (log scale
-  ,"site_Sc" # site effect in density (log scale
+  ,paste0("eps_ydSc[",1:data$Nyear,"]")
+ # ,paste0("year_dSc[",1:data$Nyear,"]") # annual year effect in density (log scale
+ # ,"site_Sc" # site effect in density (log scale
   
   # Annual density per site and year corrected by observed flow when habitat sampling was done
 #  ,"d_Sc_pred"  

@@ -16,7 +16,7 @@ REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in Bresle #Nivelle Oir Scorff     
+for SITE in Oir #Nivelle #Bresle   Scorff     
 do
      
 cd $REPbase/$SITE

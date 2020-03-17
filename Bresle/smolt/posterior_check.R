@@ -20,10 +20,10 @@ hyperparameters <-c(
 #,"p_B00" # decrease in probabilities of capture in Beauchamps in 2000
 ,"p_B02" # decrease in probabilities of capture in Beauchamps in 2002
 ,"p_Btot" # global probabilities of capture in Beauchamps
-,"epsilon_B" # standardized residuals in probability of capture in Beauchamps
+#,"epsilon_B" # standardized residuals in probability of capture in Beauchamps
 
 ,"p_Eu" # probabilites of capture in Eu
-,"epsilon_Eu" # standardized residuals in probability of capture in Eu
+#,"epsilon_Eu" # standardized residuals in probability of capture in Eu
 
 
 ## POPULATION

@@ -12,17 +12,17 @@ hyperparameters <-c(
   ,"sigma_dOir" # Overall standard deviation in density in Oir river
   ,"mu_ydOir" # Mean annual density
   ,"sigma_yOir" # Standard deviation of year effect in density
-  ,"year_dOir" # year effect in density 
+ # ,"year_dOir" # year effect in density 
   ,"sigma_gryrOir" # Standard deviation of interaction between group and year
   
   ,"coef_PC" # coefficient of proportionality for run.
   
   #,"n_Oir"  # annual abundance in Oir river 
-  , paste0("n_Oir[",1:data$Nyear,"]")
-  ,"n_MB" # annual abundance per group in Moulin du Bois
-  ,"n_PL" # annual abundance per group in Pont Levesque
-  ,"n_LR" # annual abundance per group in La Roche
-  ,"ntot_Oir" # total annual abundance (Oir + tributary rivers
+ # , paste0("n_Oir[",1:data$Nyear,"]")
+ # ,"n_MB" # annual abundance per group in Moulin du Bois
+ # ,"n_PL" # annual abundance per group in Pont Levesque
+ # ,"n_LR" # annual abundance per group in La Roche
+ # ,"ntot_Oir" # total annual abundance (Oir + tributary rivers
 ) 
 
 pdf(paste('results/PosteriorCheck_',site,"_",stade,"_",year,'.pdf',sep=""))
