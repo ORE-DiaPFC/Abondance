@@ -33,26 +33,26 @@ total=NULL
     tmp <- as.matrix(fit$sims.matrix)
     
     if (site == "Bresle"){ 
-    mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
+    mcmc <- as.matrix(tmp[,paste0("n_tot[",1:length(years),"]")]) # 1984 to now)
     sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
     quant[1:length(years),] <- sum
     }
     
     if (site == "Oir"){ 
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:length(years),"]")]) # 1984 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[1:length(years),] <- sum
     }
     
     if (site == "Scorff"){
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:25,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:(length(years)-10),"]")]) # 1993 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[11:length(years),] <- sum
     }
     
     
     if (site == "Nivelle"){ 
-      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:35,"]")]) # 1984 to now)
+      mcmc <- as.matrix(tmp[,paste0("n_tot[",1:length(years),"]")]) # 1984 to now)
       sum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
       quant[1:length(years),] <- sum
     }
@@ -80,8 +80,8 @@ total=NULL
     SW[[paste0(site)]] <- table
     tmp <- table[,4]
     total <- cbind(total, tmp)
-    #write.csv(table, file=paste('report/Total_return_byage_',site,'.csv',sep=""),row.names = TRUE)
-    #write.csv(returns[[paste0(site)]], file=paste('report/Total_return_',site,'.csv',sep=""),row.names = TRUE)
+    write.csv(table, file=paste('report/Total_return_byage_',site,'.csv',sep=""),row.names = TRUE)
+    write.csv(returns[[paste0(site)]], file=paste('report/Total_return_',site,'.csv',sep=""),row.names = TRUE)
     
     }
 
@@ -92,8 +92,9 @@ write.csv(total, file=paste('report/Total_return_all.csv',sep=""),row.names = TR
 
 ### Total number of returns
 png("report/total_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,length(years)),ylim=c(0,1500),bty="n",ylab="Total number of fish",xaxt="n",xlab="Year of return")
-axis(side=1,line=1,labels = years,at=1:length(years))
+plot(NULL,xlim=c(1,length(years)),ylim=c(0,1500),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:length(years), las=2)
+axis(side=1,line=3,labels = "Year of return",at=length(years)/2)
 for (site in 1:4) {
   segments(1:length(years),returns[[site]][,"2.5%"], 1:length(years),returns[[site]][,"97.5%"], col=paste0(mycol[site]))
   lines(returns[[site]][,"50%"],lty=1,lwd=2,col=mycol[site],type="o")
@@ -220,9 +221,11 @@ dev.off()
 
 
 ### Proportion MSW
+par(mfrow=c(1,1)) 
 png("report/prop_MSW_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,length(years)),ylim=c(0,.8),bty="n",ylab="Proprotion of MSW",xaxt="n",xlab="Year of return")
-axis(side=1,line=1,labels = years,at=1:length(years))
+plot(NULL,xlim=c(1,length(years)),ylim=c(0,.8),bty="n",ylab="Proprotion of MSW",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:length(years), las=2)
+axis(side=1,line=3,labels = "Year of return",at=length(years)/2)
 for (site in 1:4) {
   lines(SW[[site]][,"MSW"]/SW[[site]][,"Total"],lty=1,lwd=2,col=mycol[site])  
   
@@ -275,10 +278,11 @@ colnames(Expl_rate) <- c("Year","1SW (%)", "MSW (%)")
 Expl_rate <- as.data.frame(Expl_rate)
 
 png("report/exploitation_Scorff.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,nrow(Expl_rate)),ylim=c(0, 40),bty="n",ylab="Exploitation rate (%)",xaxt="n",xlab="Year")
-axis(side=1,line=1,labels = Expl_rate$Year,at=1:nrow(Expl_rate))
-    lines(Expl_rate$`1SW (%)`,lty=1,lwd=2,col=paste0(mycol[4],"50")) 
-    lines(Expl_rate$`MSW (%)`,lty=1,lwd=2,col=paste0(mycol[4],"90")) 
+plot(NULL,xlim=c(1,nrow(Expl_rate)),ylim=c(0, 40),bty="n",ylab="Exploitation rate (%)",xaxt="n",xlab="")
+axis(side=1,line=1,labels = Expl_rate$Year,at=1:nrow(Expl_rate), las=2)
+axis(side=1,line=3,labels = "Year of return",at=nrow(Expl_rate)/2)
+    lines(Expl_rate$`1SW (%)`,lty=1,lwd=2,col="steelblue2") 
+    lines(Expl_rate$`MSW (%)`,lty=1,lwd=2,col="steelblue4") 
     #lower <- smolts[[site]][,"2.5%"]
     #upper <- smolts[[site]][,"97.5%"]
     #xx <- c(1:length(years),rev(1:length(years)))
@@ -291,10 +295,10 @@ axis(side=1,line=1,labels = Expl_rate$Year,at=1:nrow(Expl_rate))
     pred1 <- predict(lw1);pred2 <- predict(lw2)
       #pred1<-c(rep(NA,10),pred1)
       #pred2<-c(rep(NA,10),pred2)
-    lines(pred1,col=paste0(mycol[4],"50"),lwd=4)
-    lines(pred2,col=paste0(mycol[4]),lwd=4)
+    lines(pred1,col="steelblue2",lwd=4)
+    lines(pred2,col="steelblue4",lwd=4)
     
-    legend("topright", legend=c("1SW", "MSW"), col=c(paste0(mycol[4],"50"), mycol[4]),lty=1,lwd=3,bty="n")
+    legend("topright", legend=c("1SW", "MSW"), col=c("steelblue2","steelblue4"),lty=1,lwd=3,bty="n")
 dev.off()
 
 
@@ -334,7 +338,7 @@ for (site in sites){
 
   
   if (site == "Scorff"){ 
-    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:24,"]")])    
+    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:(length(years)-13),"]")])    
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[14:nrow(table),] <- t(sum) # 1995 to now
@@ -342,7 +346,7 @@ for (site in sites){
   
   
   if (site == "Oir"){ 
-    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:33,"]")])
+    mcmc <- as.matrix(tmp[,paste0("Nesc[",1:(length(years)-4),"]")])
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[5:nrow(table),] <- t(sum) # capture of smolts started in 1986
@@ -356,17 +360,22 @@ for (site in sites){
 
 ### Total number of smolt
 png("report/total_smolt.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,length(years)),ylim=c(0, 15000),bty="n",ylab="Total number of smolt",xaxt="n",xlab="Year")
-axis(side=1,line=1,labels = years,at=1:length(years))
+plot(NULL,xlim=c(1,length(years)),ylim=c(0, 15000),bty="n",ylab="Total number of smolt",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:length(years), las=2)
+axis(side=1,line=3,labels = "Year",at=length(years)/2)
 for (site in 1:3) {
   
   if (site == 1){ # Bresle
-  lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
+    segments(
+    1:length(years),smolts[[site]][,"2.5%"],1:length(years),smolts[[site]][,"97.5%"]
+    ,col=paste0(mycol[site])) 
+  points(smolts[[site]][,"50%"],pch=21,type="b",col=paste0(mycol[site]),bg=paste0(mycol[site]))
+  #lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site])) 
   lower <- smolts[[site]][22:length(years),"2.5%"]
   upper <- smolts[[site]][22:length(years),"97.5%"]
   xx <- c(22:length(years),rev(22:length(years)))
   yy<-c(lower, rev(upper))
-  polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+  #polygon(xx,yy,col=paste0(mycol[site]),border="NA")
   
   df <- data.frame(x=years, y= smolts[[site]][,"50%"])
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
@@ -380,12 +389,16 @@ for (site in 1:3) {
   lines(pred,col=mycol[site],lwd=4)
   
   } else {
-    lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
+    segments(
+      1:length(years),smolts[[site]][,"2.5%"],1:length(years),smolts[[site]][,"97.5%"]
+      ,col=paste0(mycol[site])) 
+    points(smolts[[site]][,"50%"],pch=21,type="b",col=paste0(mycol[site]),bg=paste0(mycol[site])) 
+    #lines(smolts[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site])) 
     lower <- smolts[[site]][,"2.5%"]
     upper <- smolts[[site]][,"97.5%"]
     xx <- c(1:length(years),rev(1:length(years)))
     yy<-c(lower, rev(upper))
-    polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+    #polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
     
     df <- data.frame(x=years, y= smolts[[site]][,"50%"])
     lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
@@ -422,7 +435,7 @@ for (site in sites){
   if (site == "Scorff"){ 
     ntot_Sc <- ceiling(fit$median$ntot_Sc)
     tmp <- as.matrix(fit$sims.matrix)
-    mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:26,"]")])    
+    mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:length(ntot_Sc),"]")])    
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[12:nrow(table),] <- t(sum) # 1995 to now
@@ -432,7 +445,7 @@ for (site in sites){
   if (site == "Oir"){ 
     ntot_Oir <- ceiling(fit$median$ntot_Oir)
     tmp <- as.matrix(fit$sims.matrix)
-    mcmc <- as.matrix(tmp[,paste0("ntot_Oir[",1:32,"]")])
+    mcmc <- as.matrix(tmp[,paste0("ntot_Oir[",1:(length(ntot_Oir)),"]")])
     sum <- apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))
     
     table[6:nrow(table),] <- t(sum) # capture of smolts started in 1986
@@ -452,8 +465,9 @@ for (site in sites){
 
 ### Total number of smolt
 png("report/total_tacon.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,length(years)),ylim=c(0, 60000),bty="n",ylab="Total number of parr",xaxt="n",xlab="Year")
-axis(side=1,line=1,labels = years,at=1:length(years))
+plot(NULL,xlim=c(1,length(years)),ylim=c(0, 60000),bty="n",ylab="Total number of parr 0+",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:length(years), las=2)
+axis(side=1,line=3,labels = "Year",at=length(years)/2)
 for (site in 1:3) {
   # if (site == 1){ # Bresle
   #   lines(tacon[[site]][,"50%"],lty=1,lwd=3,col=mycol[site]) 
@@ -463,12 +477,19 @@ for (site in 1:3) {
   #   yy<-c(lower, rev(upper))
   #   polygon(xx,yy,col=paste0(mycol[site],"40"),border="NA")
   # } else {
-    lines(tacon[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site],50)) 
-    lower <- tacon[[site]][,"2.5%"]
-    upper <- tacon[[site]][,"97.5%"]
-    xx <- c(1:length(years),rev(1:length(years)))
-    yy<-c(lower, rev(upper))
-    polygon(xx,yy,col=paste0(mycol[site],"25"),border="NA")
+  
+  segments(
+    1:length(years),tacon[[site]][,"2.5%"],1:length(years),tacon[[site]][,"97.5%"]
+    ,col=paste0(mycol[site])) 
+  points(tacon[[site]][,"50%"],pch=21,type="b",col=paste0(mycol[site]),bg=paste0(mycol[site]))
+  
+  
+    #lines(tacon[[site]][,"50%"],lty=1,lwd=2,col=paste0(mycol[site])) 
+    #lower <- tacon[[site]][,"2.5%"]
+    #upper <- tacon[[site]][,"97.5%"]
+    #xx <- c(1:length(years),rev(1:length(years)))
+    #yy<-c(lower, rev(upper))
+   # polygon(xx,yy,col=paste0(mycol[site]),border="NA")
   #}
   
     df <- data.frame(x=years, y= tacon[[site]][,"50%"])

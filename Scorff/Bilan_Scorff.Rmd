@@ -459,6 +459,10 @@ points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 ```
 
 # Stock-Recruitement relationship
+
+Stock : number of anadromous adults escaped (available for reproduction)
+Recruitment: number of parr 0+
+
 ```{r SR, echo=FALSE}
 
 
