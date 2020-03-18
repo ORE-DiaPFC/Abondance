@@ -3,8 +3,9 @@ title: "Bilan_Scorff"
 author: "Mathieu Buoro & Etienne Prévost"
 date: "3/12/2020"
 output:
-  html_document: default
+  word_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -83,7 +84,7 @@ write.csv( table, con, row.names = FALSE)
 close(con)
 
 library(knitr)
-kable(table, row.names = FALSE, caption = "Tableau bilan pour le Scorff. Seules les valeurs médianes sont reportées")
+kable(table, row.names = FALSE, caption = paste0("Tableau bilan pour le ",site,". Seules les valeurs médianes sont reportées"))
 
 ```
 
