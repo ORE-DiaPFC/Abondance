@@ -5,26 +5,26 @@ hyperparameters <-c(
   ## HYPER PARAMETERS 
   paste0("logit_int_MP[",1:2,"]") # intercept (mean probability of capture at MP
   ,paste0("logit_flow_MP[",1:2,"]") # slope for flow data in probability of capture at MP
-  ,paste0("sigmapi_MP[",1:2,"]") # standard deviation of probability of capture at Moulin des Princes
-  
+  ,"sigmapi_MP" # standard deviation of probability of capture at Moulin des Princes
+
   ,paste0("mupi_F[",1:2,",",1,"]")
   ,paste0("mupi_F[",1:2,",",2,"]") # mean probability of dying from fishing
   ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
-  ,"rho_F" # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
-  
+  ,paste0("rho_F[",1:2,"]") # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
+
   ,paste0("logit_int_R[",1:2,"]") # intercept (mean probability of recapture during or after reproduction
-  ,paste0("logit_effort_MP[",1:2,"]") # slope for effort (number of nights in probability of recapture during reproduction
+  ,paste0("logit_effort_R[",1:2,"]") # slope for effort (number of nights in probability of recapture during reproduction
   ,paste0("logit_flow_R[",1:2,"]") # slope for flow data in probability of recapture during reproduction
   ,"sigmapi_R" # standard deviation of probabilty of recapture during reproduction
-  
-  ,paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
+
+  , paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
   ,paste0("mupi_D[",1:2,",2]") # mean probability to die from natural cause
   ,paste0("sigmapi_D[",1:2,"]") # standard deviation of probability of dying from natural cause 
   ,paste0("rho_D[",1:2,"]") # correlation coefficient between probability of dying between marked and unmarked depending on sea age
   
   ,"mupi_oF" # mean probability of recovering a caught fish (from fishing
   ,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
-  
+
   ### STATISTIC
   # 1: is logit_flow >=0 for 1SW?
   # 2: is logit_flow >=0 for MSW?
