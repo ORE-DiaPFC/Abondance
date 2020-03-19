@@ -25,6 +25,8 @@
 ## - Temporal residual variance for capture at Moulin des Princes is not sea age dependent. 
 ## - Including an effect of standardized ln(flow) from 25th november to 24th december in the probability of recapture during or after reproduction. Slope is sea age dependent.
 ## Fishing and natural mortality are set as a multinormal distribution depending on mark and sea age
+## This aspect has been simplified in 2020 with the use of a single cc for fishing exploitation between marked and unmarked (rhoF)
+## For the sake of consistency, the same approach is applied to the correlation among death rates (rhoD) 
 ############################################################################################
 
 model {
@@ -62,37 +64,52 @@ model {
     sigmapi_F[a] ~ dunif(0,20)
     varpi_F[a] <- sigmapi_F[a]*sigmapi_F[a]
     precpi_F[a] <- 1/(varpi_F[a]) # precision
-    
-    rho_F[a] ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
-    rho_D[a] ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
+ 
+ # Modified in 2020 : a sing cc is used whatever de the sae age category   
+ #   rho_F[a] ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
+ #   rho_D[a] ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
     }# end of loop over sea age
+   rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
+   rho_D ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
 
   # Building the matrix of variance-covariance for 1SW for fishing
   precmatF_1SW[1:2,1:2] <- inverse(covmatF_1SW[,])  # precision matrix
   covmatF_1SW[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
-  covmatF_1SW[1,2] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
-  covmatF_1SW[2,1] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
+#  covmatF_1SW[1,2] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
+#  covmatF_1SW[2,1] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
+# Modifed in 2020 : a single cc whatever the sea age
+  covmatF_1SW[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[1]  # covariance
+  covmatF_1SW[2,1] <- rho_F * sigmapi_F[1] * sigmapi_F[1]  # covariance
   covmatF_1SW[2,2] <- varpi_F[1] # variance of the probability of being fished for unmarked individual
 
   # Building the matrix of variance-covariance for MSW for fishing
   precmatF_MSW[1:2,1:2] <- inverse(covmatF_MSW[,])  # precision matrix
   covmatF_MSW[1,1] <- varpi_F[2] # variance of the probability of being fished for marked individual
-  covmatF_MSW[1,2] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
-  covmatF_MSW[2,1] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
+#  covmatF_MSW[1,2] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
+#  covmatF_MSW[2,1] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
+# Modifed in 2020 : a single cc whatever the sea age
+  covmatF_MSW[1,2] <- rho_F * sigmapi_F[2] * sigmapi_F[2]  # covariance
+  covmatF_MSW[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[2]  # covariance
   covmatF_MSW[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
   # Building the matrix of variance-covariance for 1SW for dying from natural causes
   precmatD_1SW[1:2,1:2] <- inverse(covmatD_1SW[,])  # precision matrix
   covmatD_1SW[1,1] <- varpi_D[1] # variance of the probability of dying from natural causes for marked individual
-  covmatD_1SW[1,2] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
-  covmatD_1SW[2,1] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
+#  covmatD_1SW[1,2] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
+#  covmatD_1SW[2,1] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
+# Modifed in 2020 : a single cc whatever the sea age
+  covmatD_1SW[1,2] <- rho_D * sigmapi_D[1] * sigmapi_D[1]  # covariance
+  covmatD_1SW[2,1] <- rho_D * sigmapi_D[1] * sigmapi_D[1]  # covariance
   covmatD_1SW[2,2] <- varpi_D[1] # variance of the probability of dying from natural causes for unmarked individual
 
   # Building the matrix of variance-covariance for MSW for dying from natural causes
   precmatD_MSW[1:2,1:2] <- inverse(covmatD_MSW[,])  # precision matrix
   covmatD_MSW[1,1] <- varpi_D[2] # variance of the probability of dying from natural causes for marked individual
-  covmatD_MSW[1,2] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
-  covmatD_MSW[2,1] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
+#  covmatD_MSW[1,2] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
+#  covmatD_MSW[2,1] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
+# Modifed in 2020 : a single cc whatever the sea age
+  covmatD_MSW[1,2] <- rho_D * sigmapi_D[2] * sigmapi_D[2]  # covariance
+  covmatD_MSW[2,1] <- rho_D * sigmapi_D[2] * sigmapi_D[2]  # covariance
   covmatD_MSW[2,2] <- varpi_D[2] # variance of the probability of dying from natural causes for unmarked individual
 
   sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
