@@ -1,14 +1,4 @@
----
-title: "Bilan_Scorff"
-author: "Mathieu Buoro & Etienne Prévost"
-date: "3/12/2020"
-output:
-  word_document: default
-  pdf_document: default
-  html_document: default
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE---------------------------------------------------------------------------------------------------------
 wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
@@ -23,12 +13,9 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 
 
-```
-
-### TABLEAU BILAN
 
 
-```{r, echo = FALSE}
+## ---- echo = FALSE----------------------------------------------------------------------------------------------------------------
 years <- seq(1993, year, 1)
 table <- array(, dim=c(length(years), 7))
 colnames(table) <- c( "Year","Parr 0+","Smolts","1SW (tot returns)",	"MSW (tot returns)", 	"1SW (escapment)",	"MSW (escapment)")
@@ -86,15 +73,9 @@ close(con)
 library(knitr)
 kable(table, row.names = FALSE, caption = paste0("Tableau bilan pour le ",site,". Seules les valeurs médianes sont reportées"))
 
-```
 
-## ADULTES
 
-Blablabla
-
-## Nombre total de retour et échappement
-
-```{r pressure, echo=FALSE}
+## ----pressure, echo=FALSE---------------------------------------------------------------------------------------------------------
 #### RETURNS
 
 stade <- "adult"
@@ -130,12 +111,9 @@ lines(e[,"50%"],lty=1,lwd=2,col=mycol[4],type="o")
 points(1:data$Y,e[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
 
 legend("topright", legend=c("Nombre total de retour", "Echappement"), col=mycol[3:4],lty=1,lwd=2,bty="n")
-```
 
 
-# Nombre total de retour par classe d'âge
-
-```{r, echo=FALSE}
+## ---- echo=FALSE------------------------------------------------------------------------------------------------------------------
 
 
 plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Total number of returns",xaxt="n",xlab="")
@@ -162,11 +140,9 @@ legend("topright", legend=c("1SW","MSW"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 #dev.off()
 
 
-```
 
-# Proportion de saumon capturés au Moulin des Princes
 
-```{r, echo=FALSE}
+## ---- echo=FALSE------------------------------------------------------------------------------------------------------------------
 
 #### CAPTURE AT MP ####
 par(mfrow=c(1,1)) 
@@ -192,15 +168,9 @@ points(1:data$Y,piMP_1SW[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 
 legend("topright", legend=c("1SW", "MSW"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 
-```
 
 
-
-# Taux d'exploitation 
-
-Ici, les taux d'exploitation sont estimés par classe d'âge et suivant si les individus ont été marqués préalablement au Moulin des Princes. On observe que les individus marqués ont une probabilité d'être capturés à la ligne inférieure à ceux non marqués.
-
-```{r, echo=FALSE}
+## ---- echo=FALSE------------------------------------------------------------------------------------------------------------------
 ## a: sea age; 
 ##    1-1SW (Grisle), 
 ##    2-MSW (salmon)
@@ -275,11 +245,9 @@ points(1:data$Y,piF_MSWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 
 legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 
-```
 
 
-
-```{r, echo=FALSE}
+## ---- echo=FALSE------------------------------------------------------------------------------------------------------------------
 
 #### PROB. DEAD ####
 par(mfrow=c(1,2)) 
@@ -332,12 +300,9 @@ points(1:data$Y,piD_MSWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 
 
-```
 
-# SMOLTS
 
-## Nombre de smolts estimés
-```{r smolt, echo=FALSE}
+## ----smolt, echo=FALSE------------------------------------------------------------------------------------------------------------
 
 stade <- "smolt"
 #dir <-  paste(wdir,site,"/",stade,sep="")
@@ -373,10 +338,9 @@ points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
 legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
-```
 
 
-```{r capt_smolt, echo=FALSE}
+## ----capt_smolt, echo=FALSE-------------------------------------------------------------------------------------------------------
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
@@ -399,11 +363,9 @@ lines(n[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
 legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"), col=mycol[1:2],lty=1,lwd=3,bty="n")
-```
 
 
-
-```{r env, echo=FALSE}
+## ----env, echo=FALSE--------------------------------------------------------------------------------------------------------------
 
 stade <- "smolt"
 #dir <-  paste(wdir,site,"/",stade,sep="")
@@ -425,11 +387,9 @@ lines(data$Q[,1],lty=1,lwd=2,col="steelblue1",type="o")
 
 #legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"),col=mycol[1:2],lty=1,lwd=2,bty="n")
 
-```
 
-# TACON
 
-```{r parr, echo=FALSE}
+## ----parr, echo=FALSE-------------------------------------------------------------------------------------------------------------
 
 # TACONS
 
@@ -457,14 +417,9 @@ n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Nyear,n[,"2.5%"], 1:data$Nyear,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-```
 
-# Stock-Recruitement relationship
 
-Stock : number of anadromous adults escaped (available for reproduction)
-Recruitment: number of parr 0+
-
-```{r SR, echo=FALSE}
+## ----SR, echo=FALSE---------------------------------------------------------------------------------------------------------------
 
 
 stade <- "adult"
@@ -497,4 +452,4 @@ segments(s[,"50%"], r[2:27,"2.5%"],e[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1
 points(s[1:26,"50%"],r[2:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 text(s[1:26,"50%"],r[2:27,"50%"]+2000,labels = years, cex=.5)
 
-```
+

@@ -43,6 +43,10 @@ for (par in hyperparameters){
   denplot(fit.mcmc,par) 
 }
 
+rate_lcpu <- as.vector(fit.mcmc[,"rate_lcpu"][[1]])
+sigma_dSc <-  as.vector(fit.mcmc[,"sigma_dSc"][[1]])
+plot(rate_lcpu, sigma_dSc)
+
 caterplot(fit.mcmc,"year_dSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit.mcmc,"site_Sc", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 caterplot(fit.mcmc,"eps_ydSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 

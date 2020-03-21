@@ -16,13 +16,13 @@ REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in Oir #Nivelle #Bresle   Scorff     
+for SITE in Scorff #Oir #Nivelle #Bresle        
 do
      
 cd $REPbase/$SITE
      echo $SITE
      
-     for STADE in adult tacon smolt   
+     for STADE in adult #tacon smolt   
      do
       if [ -d "$STADE" ]; then # if directory exists...
   # Control will enter here if $DIRECTORY exists.

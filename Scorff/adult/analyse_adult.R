@@ -134,15 +134,18 @@ write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep
 # EXAMINE THE RESULTS
 fit.mcmc <- as.mcmc(fit) # using bugs
 
-### POSTERIOR
-source("posterior_check.R")
+
 
 ## To check chains and distributions:
+source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
 
+
+
+
 # DIAGNOSTICS:
-#parameterstotest <-parameters # all parameters
+parameterstotest <- hyperparameters # all parameters
 # parameterstotest <- c(
 #   "epsilon_p"
 # )
@@ -160,7 +163,9 @@ cat("Number of iterations: ", fit$n.keep,"\n")
 if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
   #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-  gelman.diag(fit.mcmc[,parameterstotest],multivariate=TRUE)
+  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  test <- gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  
 }
 cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
@@ -173,7 +178,7 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 \n")
 #heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
-heidel.diag(fit.mcmc[,parameterstotest], eps=0.1, pvalue=0.05)
+heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
 
 cat("\n---------------------------\n")
 cat("Geweke's convergence diagnostic\n")
@@ -185,7 +190,7 @@ The test statistic is a standard Z-score: the difference between the two sample 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 \n")
 #geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
-geweke.diag(fit.mcmc[,parameterstotest], frac1 = 0.1, frac2 = 0.5)
+geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
 
 cat("\n---------------------------\n")
 cat("Raftery and Lewis's diagnostic\n")
@@ -196,7 +201,7 @@ sink()
 
 
 ## Plot the chains:
-pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
+#pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
 
 # if(site == "Bresle" && stade == "smolt") {
 # parameters.trend <- c("Ntot","Nesc","lambda","p_B","p_Btot","epsilon_B","p_Eu","epsilon_Eu")
@@ -221,11 +226,11 @@ pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
 
 #gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
 
-for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
-}
-dev.off()
+#for (par in hyperparameters){
+#  traplot(fit.mcmc,par) 
+#  denplot(fit.mcmc,par) 
+#}
+#dev.off()
 
 
 #------------------------------------------------------------------------------
@@ -233,11 +238,14 @@ dev.off()
 if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
+
 if(site == "Scorff"){
-setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance")
-f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
-f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
-f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")
+dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
+setwd(dir)
+f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
+f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
+f3 <- paste0(dir,"Scorff/adult/results/Results_adult","_",year,".RData")
 if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
-  source("script_bilan.R")
+ # source(paste0(dir,"Scorff/script_bilan.R"))
+source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
 }}
