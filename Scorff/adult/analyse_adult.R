@@ -238,14 +238,21 @@ sink()
 if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
-
 if(site == "Scorff"){
-dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
-setwd(dir)
-f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
-f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
-f3 <- paste0(dir,"Scorff/adult/results/Results_adult","_",year,".RData")
-if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
- # source(paste0(dir,"Scorff/script_bilan.R"))
-source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
-}}
+  dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
+  setwd(dir)
+  f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
+  f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
+  f3 <- paste0(dir,"Scorff/adult/results/Results_adult","_",year,".RData")
+  if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
+    # source(paste0(dir,"Scorff/script_bilan.R"))
+    source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
+  }}
+# if(site == "Scorff"){
+# setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance")
+# f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
+# f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
+# f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")
+# if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
+#   source("script_bilan.R")
+# }}

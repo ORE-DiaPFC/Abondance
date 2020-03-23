@@ -9,8 +9,9 @@ hyperparameters <-c(
 
   ,paste0("mupi_F[",1:2,",",1,"]")
   ,paste0("mupi_F[",1:2,",",2,"]") # mean probability of dying from fishing
-  ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
+#  ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
 #  ,paste0("rho_F[",1:2,"]") # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
+,"sigmapi_F"
 , "rho_F"
 
   ,paste0("logit_int_R[",1:2,"]") # intercept (mean probability of recapture during or after reproduction
@@ -20,8 +21,9 @@ hyperparameters <-c(
 
   , paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
   ,paste0("mupi_D[",1:2,",2]") # mean probability to die from natural cause
-  ,paste0("sigmapi_D[",1:2,"]") # standard deviation of probability of dying from natural cause 
+#  ,paste0("sigmapi_D[",1:2,"]") # standard deviation of probability of dying from natural cause 
  # ,paste0("rho_D[",1:2,"]") # correlation coefficient between probability of dying between marked and unmarked depending on sea age
+,"sigmapi_D"
 , "rho_D"
 
   ,"mupi_oF" # mean probability of recovering a caught fish (from fishing

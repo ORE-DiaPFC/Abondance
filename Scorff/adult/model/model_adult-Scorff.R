@@ -3,7 +3,7 @@
 ###                 of Salmo salar in Oir river.                             ###
 ###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                             June 2015                                    ###
-###                  Modified by Buoro M & Prévost E                         ###
+###                  Modified by Buoro M & Pr?vost E                         ###
 ###                             March 2020                                   ###
 ################################################################################
 
@@ -75,7 +75,8 @@ model {
 
   rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
   rho_D ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
-# The same option is implemented for the variance  sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
+# The same option is implemented for the variance  
+  sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
   sigmapi_R ~ dunif(0,20) # standard deviation of probabilty of recapture during reproduction
     
   sigmapi_D ~ dunif(0,20)
@@ -115,7 +116,7 @@ model {
 # Modifed in 2020 : a single cc whatever the sea age
   covmatD_1SW[1,2] <- rho_D * sigmapi_D * sigmapi_D  # covariance
   covmatD_1SW[2,1] <- rho_D * sigmapi_D * sigmapi_D  # covariance
-  covmatD_1SW[2,2] <- varpi_D[1] # variance of the probability of dying from natural causes for unmarked individual
+  covmatD_1SW[2,2] <- varpi_D # variance of the probability of dying from natural causes for unmarked individual
 
   # Building the matrix of variance-covariance for MSW for dying from natural causes
   precmatD_MSW[1:2,1:2] <- inverse(covmatD_MSW[,])  # precision matrix
