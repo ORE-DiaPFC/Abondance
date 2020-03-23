@@ -214,9 +214,14 @@ model {
     precpi_oF <- 1/(varpi_oF) # precision
   
     for (t in 1:9) { ## pi_oF: Exchangeable from 1994 to 2002 
-      logit_pi_oF[t] ~ dnorm(logit_mupi_oF,precpi_oF)
-      pi_oF[t] <- exp(logit_pi_oF[t])/(1+exp(logit_pi_oF[t]))  # back-transformation on the probability scale
-  } ## End of loop over years
+      for (a in 1:2) {
+#      logit_pi_oF[t] ~ dnorm(logit_mupi_oF,precpi_oF)
+#      pi_oF[t] <- exp(logit_pi_oF[t])/(1+exp(logit_pi_oF[t]))  # back-transformation on the probability scale
+# Changed in 2020 : the probability of observing a catch is allow to vary according to year an sea age (consistent with data)
+        logit_pi_oF[t,a] ~ dnorm(logit_mupi_oF,precpi_oF)
+        pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale      
+        }# end of loop over mark category  
+      } ## End of loop over years
   
   ### Probabilities to die from other cause than fishing (time, mark and sea age dependent)
   for (a in 1:2) {
@@ -384,9 +389,11 @@ model {
       ## --------------------------------
       ##  
       # Marked fish
-      Cm_F[t,a] ~ dbin(pi_oF[t],m_F[t,a])
+#      Cm_F[t,a] ~ dbin(pi_oF[t],m_F[t,a])
+      Cm_F[t,a] ~ dbin(pi_oF[t,a],m_F[t,a])  # Changed in March 2020
       ## Unmarked fish
-      Cum_F[t,a] ~ dbin(pi_oF[t],um_F[t,a])      
+#      Cum_F[t,a] ~ dbin(pi_oF[t],um_F[t,a])      
+      Cum_F[t,a] ~ dbin(pi_oF[t,a],um_F[t,a])  # Changed in March 2020    
       } # end of loop over sea age
    } # end of loop over years
   
