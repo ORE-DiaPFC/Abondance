@@ -220,6 +220,7 @@ model {
 # Changed in 2020 : the probability of observing a catch is allow to vary according to year an sea age (consistent with data)
         logit_pi_oF[t,a] ~ dnorm(logit_mupi_oF,precpi_oF)
         pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale
+    } ## End of loop over sea age
   } ## End of loop over years
   
   ### Probabilities to die from other cause than fishing (time, mark and sea age dependent)
