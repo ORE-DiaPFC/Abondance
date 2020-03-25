@@ -9,9 +9,9 @@ hyperparameters <-c(
 
   ,paste0("mupi_F[",1:2,",",1,"]")
   ,paste0("mupi_F[",1:2,",",2,"]") # mean probability of dying from fishing
-#  ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
+  ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
 #  ,paste0("rho_F[",1:2,"]") # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
-,"sigmapi_F"
+#,"sigmapi_F"
 , "rho_F"
 
   ,paste0("logit_int_R[",1:2,"]") # intercept (mean probability of recapture during or after reproduction
@@ -112,6 +112,9 @@ par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
+par(mfrow=c(2,1))
+caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("pi_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 

@@ -44,7 +44,7 @@ inits_fix <- list(
   s = c( 22.23,5.283),
   shape_lambda = 7.159,
   sigmapi_D = 1.651,#c( 1.651,0.2428),
-  sigmapi_F = 0.719,#c( 0.719,1.118),
+  sigmapi_F = c( 0.719,1.118),
   sigmapi_MP = 0.278,
   sigmapi_R = 0.1693,
   sigmapi_oF = 0.5865,

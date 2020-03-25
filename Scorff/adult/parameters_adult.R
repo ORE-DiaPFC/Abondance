@@ -3,10 +3,11 @@ parameters <-c(
   "logit_int_MP" # intercept (mean probability of capture at MP
   ,"logit_flow_MP" # slope for flow data in probability of capture at MP
   ,"sigmapi_MP" # standard deviation of probability of capture at Moulin des Princes
-  
+ 
   ,"mupi_F" # mean probability of dying from fishing
   ,"sigmapi_F" # standard deviation of probability of dying from fishing
   ,"rho_F" # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
+
   
   ,"logit_int_R" # intercept (mean probability of recapture during or after reproduction
   ,"logit_effort_R" # slope for effort (number of nights in probability of recapture during reproduction
