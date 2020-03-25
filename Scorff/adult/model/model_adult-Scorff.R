@@ -73,7 +73,6 @@ model {
  #   rho_D[a] ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
     }# end of loop over sea age
 
-  rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
   rho_D ~ dunif(-1,1) # prior for the correlation coefficient between probability of dying between marked and unmarked depending on sea age
 # The same option is implemented for the variance  
   sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
@@ -83,30 +82,44 @@ model {
   varpi_D <- (sigmapi_D)*(sigmapi_D)
   precpi_D <- 1/(varpi_D) # precision
     
-  sigmapi_F ~ dunif(0,20)
-  varpi_F <- sigmapi_F*sigmapi_F
-  precpi_F <- 1/(varpi_F) # precision
+  rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
+    for (u in 1:2) {
+      sigmapi_F[u] ~ dunif(0,20)
+      varpi_F[u] <- sigmapi_F[u]*sigmapi_F[u]
+      precpi_F[u] <- 1/(varpi_F[u]) # precision
+      } # End of loop over mark category
+#  sigmapi_F ~ dunif(0,20)
+#  varpi_F <- sigmapi_F*sigmapi_F
+#  precpi_F <- 1/(varpi_F) # precision
   
 
   # Building the matrix of variance-covariance for 1SW for fishing
   precmatF_1SW[1:2,1:2] <- inverse(covmatF_1SW[,])  # precision matrix
-  covmatF_1SW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
+#  covmatF_1SW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
+  covmatF_1SW[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
 #  covmatF_1SW[1,2] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
 #  covmatF_1SW[2,1] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
+  covmatF_1SW[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
+  covmatF_1SW[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
-  covmatF_1SW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
-  covmatF_1SW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
-  covmatF_1SW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
+#  covmatF_1SW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+#  covmatF_1SW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+#  covmatF_1SW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
+  covmatF_1SW[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
   # Building the matrix of variance-covariance for MSW for fishing
   precmatF_MSW[1:2,1:2] <- inverse(covmatF_MSW[,])  # precision matrix
-  covmatF_MSW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
+#  covmatF_MSW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
+  covmatF_MSW[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
 #  covmatF_MSW[1,2] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
 #  covmatF_MSW[2,1] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
+  covmatF_MSW[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
+  covmatF_MSW[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
-  covmatF_MSW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
-  covmatF_MSW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
-  covmatF_MSW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
+#  covmatF_MSW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+#  covmatF_MSW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+#  covmatF_MSW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
+  covmatF_MSW[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
   # Building the matrix of variance-covariance for 1SW for dying from natural causes
   precmatD_1SW[1:2,1:2] <- inverse(covmatD_1SW[,])  # precision matrix
