@@ -92,34 +92,30 @@ model {
 #  varpi_F <- sigmapi_F*sigmapi_F
 #  precpi_F <- 1/(varpi_F) # precision
   
+# Building the matrix of variance-covariance for fishing with different var for marked and unmarked
+  precmatF[1:2,1:2] <- inverse(covmatF[,])  # precision matrix
+  covmatF[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
+  covmatF[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
+  covmatF[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
+  covmatF[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
-  # Building the matrix of variance-covariance for 1SW for fishing
-  precmatF_1SW[1:2,1:2] <- inverse(covmatF_1SW[,])  # precision matrix
+# Building the matrix of variance-covariance for 1SW for fishing
 #  covmatF_1SW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
-  covmatF_1SW[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
 #  covmatF_1SW[1,2] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
 #  covmatF_1SW[2,1] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
-  covmatF_1SW[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
-  covmatF_1SW[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
 #  covmatF_1SW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
 #  covmatF_1SW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
 #  covmatF_1SW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
-  covmatF_1SW[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
-  # Building the matrix of variance-covariance for MSW for fishing
-  precmatF_MSW[1:2,1:2] <- inverse(covmatF_MSW[,])  # precision matrix
+# Building the matrix of variance-covariance for MSW for fishing
 #  covmatF_MSW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
-  covmatF_MSW[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
 #  covmatF_MSW[1,2] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
 #  covmatF_MSW[2,1] <- rho_F[2] * sigmapi_F[2] * sigmapi_F[2]  # covariance
-  covmatF_MSW[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
-  covmatF_MSW[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
 #  covmatF_MSW[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
 #  covmatF_MSW[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
 #  covmatF_MSW[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
-  covmatF_MSW[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
   # Building the matrix of variance-covariance for 1SW for dying from natural causes
   precmatD_1SW[1:2,1:2] <- inverse(covmatD_1SW[,])  # precision matrix
@@ -195,8 +191,11 @@ model {
 
     
   for (t in 1:9) { ## pi_F: Exchangeable from 1994 to 2002
-      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF_1SW[1:2,1:2])  # 1SW
-      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+#      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF_1SW[1:2,1:2])  # 1SW
+#      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+# A singme covariance matrix is used for both sea age
+      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF[1:2,1:2])  # 1SW
+      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF[1:2,1:2])  # MSW
 
       for (u in 1:2) {
       piF_1SW[t,u] <- exp(logit_piF_1SW[t,u])/(1+exp(logit_piF_1SW[t,u]))  # back-transformation on the probability scale 1SW
@@ -207,13 +206,16 @@ model {
   piF_1SW[10,1] <- 0 # No exploitation allowed on 1SW in 2003
   piF_1SW[10,2] <- 0 # No exploitation allowed on 1SW in 2003 
   
-  logit_piF_MSW[10,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+#  logit_piF_MSW[10,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+  logit_piF_MSW[10,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF[1:2,1:2])  # MSW
   piF_MSW[10,1] <- exp(logit_piF_MSW[10,1])/(1+exp(logit_piF_MSW[10,1]))  # back-transformation on the probability scale for marked MSW
   piF_MSW[10,2] <- exp(logit_piF_MSW[10,2])/(1+exp(logit_piF_MSW[10,2]))  # back-transformation on the probability scale for unmarked MSW
 
   for (t in 11:Y) { ## pi_F: Exchangeable from 2004 to now on
-      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF_1SW[1:2,1:2])  # 1SW
-      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+#      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF_1SW[1:2,1:2])  # 1SW
+#      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
+      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF[1:2,1:2])  # 1SW
+      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF[1:2,1:2])  # MSW
 
       for (u in 1:2) {
       piF_1SW[t,u] <- exp(logit_piF_1SW[t,u])/(1+exp(logit_piF_1SW[t,u]))  # back-transformation on the probability scale 1SW
