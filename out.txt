@@ -1,5 +1,0 @@
-[1] "model/model_adult-Scorff.R"
-Start of the run
-Sample analyzed after  36.78914  minutes
-null device 
-          1 
