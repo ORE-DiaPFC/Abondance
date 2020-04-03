@@ -3,7 +3,7 @@
 ###                 of Salmo salar in Oir river.                             ###
 ###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                             June 2015                                    ###
-###                  Modified by Buoro M & Pr?vost E                         ###
+###                  Modified by Buoro M & Prévost E                         ###
 ###                             March 2020                                   ###
 ################################################################################
 
@@ -59,10 +59,10 @@ model {
     # Probability of fishing (exploitation)
       mupi_F[a,u] ~ dbeta(1,1)
       } # End of loop over mark category
-    
-#    sigmapi_D[a] ~ dunif(0,20)
-#    varpi_D[a] <- (sigmapi_D[a])*(sigmapi_D[a])
-#    precpi_D[a] <- 1/(varpi_D[a]) # precision
+# Variance of mortality depends on sea age (reveal by data)    
+    sigmapi_D[a] ~ dunif(0,20)
+    varpi_D[a] <- (sigmapi_D[a])*(sigmapi_D[a])
+    precpi_D[a] <- 1/(varpi_D[a]) # precision
     
 #    sigmapi_F[a] ~ dunif(0,20)
 #    varpi_F[a] <- sigmapi_F[a]*sigmapi_F[a]
@@ -78,28 +78,32 @@ model {
   sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
   sigmapi_R ~ dunif(0,20) # standard deviation of probabilty of recapture during reproduction
     
-  sigmapi_D ~ dunif(0,20)
-  varpi_D <- (sigmapi_D)*(sigmapi_D)
-  precpi_D <- 1/(varpi_D) # precision
+#  sigmapi_D ~ dunif(0,20)
+#  varpi_D <- (sigmapi_D)*(sigmapi_D)
+#  precpi_D <- 1/(varpi_D) # precision
     
   rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked depending on sea age
-    for (u in 1:2) {
-      sigmapi_F[u] ~ dunif(0,20)
-      varpi_F[u] <- sigmapi_F[u]*sigmapi_F[u]
-      precpi_F[u] <- 1/(varpi_F[u]) # precision
-      } # End of loop over mark category
-#  sigmapi_F ~ dunif(0,20)
-#  varpi_F <- sigmapi_F*sigmapi_F
-#  precpi_F <- 1/(varpi_F) # precision
+#    for (u in 1:2) {
+#      sigmapi_F[u] ~ dunif(0,20)
+#      varpi_F[u] <- sigmapi_F[u]*sigmapi_F[u]
+#      precpi_F[u] <- 1/(varpi_F[u]) # precision
+#     } # End of loop over mark category
+  sigmapi_F ~ dunif(0,20)
+  varpi_F <- sigmapi_F*sigmapi_F
+  precpi_F <- 1/(varpi_F) # precision
   
 # Building the matrix of variance-covariance for fishing with different var for marked and unmarked
   precmatF[1:2,1:2] <- inverse(covmatF[,])  # precision matrix
-  covmatF[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
-  covmatF[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
-  covmatF[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
-  covmatF[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
+#  covmatF[1,1] <- varpi_F[1] # variance of the probability of being fished for marked individual
+#  covmatF[1,2] <- rho_F * sigmapi_F[1] * sigmapi_F[2]  # covariance
+#  covmatF[2,1] <- rho_F * sigmapi_F[2] * sigmapi_F[1]  # covariance
+#  covmatF[2,2] <- varpi_F[2] # variance of the probability of being fished for unmarked individual
 
-# Building the matrix of variance-covariance for 1SW for fishing
+# Modifed in 2020 : a single matrix of variance-covariance for fishing whatever sea age and mark status
+  covmatF[1,1] <- varpi_F # variance of the probability of being fished 
+  covmatF[1,2] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+  covmatF[2,1] <- rho_F * sigmapi_F * sigmapi_F  # covariance
+  covmatF[2,2] <- varpi_F # variance of the probability of being fished for unmarked individual
 #  covmatF_1SW[1,1] <- varpi_F # variance of the probability of being fished for marked individual
 #  covmatF_1SW[1,2] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
 #  covmatF_1SW[2,1] <- rho_F[1] * sigmapi_F[1] * sigmapi_F[1]  # covariance
@@ -119,23 +123,23 @@ model {
 
   # Building the matrix of variance-covariance for 1SW for dying from natural causes
   precmatD_1SW[1:2,1:2] <- inverse(covmatD_1SW[,])  # precision matrix
-  covmatD_1SW[1,1] <- varpi_D # variance of the probability of dying from natural causes for marked individual
+  covmatD_1SW[1,1] <- varpi_D[1] # variance of the probability of dying from natural causes for marked individual
 #  covmatD_1SW[1,2] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
 #  covmatD_1SW[2,1] <- rho_D[1] * sigmapi_D[1] * sigmapi_D[1]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
-  covmatD_1SW[1,2] <- rho_D * sigmapi_D * sigmapi_D  # covariance
-  covmatD_1SW[2,1] <- rho_D * sigmapi_D * sigmapi_D  # covariance
-  covmatD_1SW[2,2] <- varpi_D # variance of the probability of dying from natural causes for unmarked individual
+  covmatD_1SW[1,2] <- rho_D * sigmapi_D[1] * sigmapi_D[1]  # covariance
+  covmatD_1SW[2,1] <- rho_D * sigmapi_D[1] * sigmapi_D[1]  # covariance
+  covmatD_1SW[2,2] <- varpi_D[1] # variance of the probability of dying from natural causes for unmarked individual
 
   # Building the matrix of variance-covariance for MSW for dying from natural causes
   precmatD_MSW[1:2,1:2] <- inverse(covmatD_MSW[,])  # precision matrix
-  covmatD_MSW[1,1] <- varpi_D # variance of the probability of dying from natural causes for marked individual
+  covmatD_MSW[1,1] <- varpi_D[2] # variance of the probability of dying from natural causes for marked individual
 #  covmatD_MSW[1,2] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
 #  covmatD_MSW[2,1] <- rho_D[2] * sigmapi_D[2] * sigmapi_D[2]  # covariance
 # Modifed in 2020 : a single cc whatever the sea age
-  covmatD_MSW[1,2] <- rho_D * sigmapi_D * sigmapi_D  # covariance
-  covmatD_MSW[2,1] <- rho_D * sigmapi_D * sigmapi_D  # covariance
-  covmatD_MSW[2,2] <- varpi_D # variance of the probability of dying from natural causes for unmarked individual
+  covmatD_MSW[1,2] <- rho_D * sigmapi_D[2] * sigmapi_D[2]  # covariance
+  covmatD_MSW[2,1] <- rho_D * sigmapi_D[2] * sigmapi_D[2]  # covariance
+  covmatD_MSW[2,2] <- varpi_D[2] # variance of the probability of dying from natural causes for unmarked individual
 
 # Probability of recover a caught fish (exploitation)
   mupi_oF ~ dbeta(1,1) ; sigmapi_oF ~ dunif(0,20)
@@ -161,7 +165,7 @@ model {
     var_MP <- (sigmapi_MP)*(sigmapi_MP)
     prec_MP <- 1/(var_MP) #precision for residual temporal variance
         
-    for (t in 1:Y) { ## pi_MP: Exchangeable from 1984 to now on     
+    for (t in 1:Y) { ## pi_MP: Exchangeable from 1994 to now on     
         for (a in 1:2) {
             logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
             stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
@@ -193,7 +197,7 @@ model {
   for (t in 1:9) { ## pi_F: Exchangeable from 1994 to 2002
 #      logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF_1SW[1:2,1:2])  # 1SW
 #      logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF_MSW[1:2,1:2])  # MSW
-# A singme covariance matrix is used for both sea age
+# A single covariance matrix is used for both sea age
       logit_piF_1SW[t,1:2] ~ dmnorm(logit_mupi_F[1,1:2],precmatF[1:2,1:2])  # 1SW
       logit_piF_MSW[t,1:2] ~ dmnorm(logit_mupi_F[2,1:2],precmatF[1:2,1:2])  # MSW
 
@@ -223,7 +227,7 @@ model {
       } ## End of loop over mark category
   } ## End of loop over years
 
-  ### Probability that a caught fish is showed at Moulin des Princes (time dependent)
+  ### Probability that a caught fish is showed at Moulin des Princes (time and sea age dependent)
     logit_mupi_oF <- log(mupi_oF/(1-mupi_oF)) # logit transformation
     varpi_oF <- (sigmapi_oF)*(sigmapi_oF) 
     precpi_oF <- 1/(varpi_oF) # precision
@@ -234,7 +238,12 @@ model {
 #      pi_oF[t] <- exp(logit_pi_oF[t])/(1+exp(logit_pi_oF[t]))  # back-transformation on the probability scale
 # Changed in 2020 : the probability of observing a catch is allow to vary according to year an sea age (consistent with data)
         logit_pi_oF[t,a] ~ dnorm(logit_mupi_oF,precpi_oF)
-        pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale      
+        pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale  
+        pi_uoF[t,a] <- 1 - pi_oF[t,a]
+        Cuo_F[t,a] ~ dbin(pi_uoF[t,a],C_F[t,a])
+# The cut has been introduced because othewise pi_Of is not properly sampled
+# The small hierrachcal model above is used to generate "inforamtive priors"
+       cut_pi_oF[t,a] <- cut(pi_oF[t,a])  
         }# end of loop over mark category  
       } ## End of loop over years
   
@@ -298,7 +307,8 @@ model {
   ##  Cum_D[t,a]: Annual number of unmarked fish recaptured dead (not from fishing) per sea age category
   ##  C_F[t,a]: Annual number of fish caught by fishing per sea age category (from 1994 to 2002)
   ##  Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes
-  ##  Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes
+  ##  Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and shown at Moulin des Princes
+  ##  Cuo_F[t,a] :  Annual number of fish caught by fishing per sea age category and not shown at Moulin des Princes (new from 2020)
   ##  Cm_R[t,a]: Annual number of marked fish caught during or after reproduction per sea age category
   ##  Cum_R[t,a]: Annual number of unmarked fish caught during or after reproduction per sea age category
     
@@ -380,24 +390,101 @@ model {
     ## --------------------------------
     ## m_F[t,a]: annual number of marked fish caught by fishing per sea age
     ## um_F[t,a]: annual number of unmarked fish caught by fishing per sea age 
-    
-  for (t in 1:9) { # from 1994 to 2002
+
+# First year (1994)-> see explanations below
+      pi_moF[1,1] <- piF_1SW[1,1] * cut_pi_oF[1,1]
+      Cm_F[1,1] ~ dbin(pi_moF[1,1],Cm_MP[1,1])  # Changed in March 2020
+      pi_umoF[1,1] <- piF_1SW[1,2] * cut_pi_oF[1,1]
+      Cum_F[1,1] ~ dbin(pi_umoF[1,1],n_um[1,1])  # Changed in March 2020
+      pi_moF[1,2] <- piF_MSW[1,1] * cut_pi_oF[1,2]
+      Cm_F[1,2] ~ dbin(pi_moF[1,2],Cm_MP[1,2])  # Changed in March 2020
+      pi_umoF[1,2] <- piF_MSW[1,2] * cut_pi_oF[1,2]
+      Cum_F[1,2] ~ dbin(pi_umoF[1,2],n_um[1,2])  # Changed in March 2020
+      xuo_F[1,1] <- Cuo_F[1,1]-0.1  # Protection against 0 when all fish were presented
+      pi_muoF[1,1] <- (step(xuo_F[1,1])*(p_MP94_tot[1]*piF_1SW[1,1]) / (p_MP94_tot[1]*piF_1SW[1,1] + (1-p_MP94_tot[1])*piF_1SW[1,2])) + (1-step(xuo_F[1,1]))
+      uo_F[1,1] <- step(xuo_F[1,1])* Cuo_F[1,1] + (1-step(xuo_F[1,1])) 
+      Cmuo_F[1,1] ~ dbin(pi_muoF[1,1],uo_F[1,1])
+      xuo_F[1,2] <- Cuo_F[1,2]-0.1
+      pi_muoF[1,2] <- (step(xuo_F[1,2])*(p_MP94_tot[2]*piF_MSW[1,1]) / (p_MP94_tot[2]*piF_MSW[1,1] + (1-p_MP94_tot[2])*piF_MSW[1,2])) + (1-step(xuo_F[1,2]))
+      uo_F[1,2] <- step(xuo_F[1,2])* Cuo_F[1,2] + (1-step(xuo_F[1,2]))
+      Cmuo_F[1,2] ~ dbin(pi_muoF[1,2],uo_F[1,2])
+      pi_uo_F[1,1] <- ((Cm_MP[1,1]*piF_1SW[1,1] + n_um[1,1]*piF_1SW[1,2])/(Cm_MP[1,1] + n_um[1,1])) * (1-cut_pi_oF[1,1]) # 1SW
+      pi_uo_F[1,2] <- ((Cm_MP[1,2]*piF_MSW[1,1] + n_um[1,2]*piF_MSW[1,2])/(Cm_MP[1,2] + n_um[1,2])) * (1-cut_pi_oF[1,2]) # MSW
+     for (a in 1:2) {    
+      n_F[1,a] <- Cm_MP[1,a] + n_um[1,a]
+      C_uoF[1,a] ~ dbin(pi_uo_F[1,a],n_F[1,a])  # Changed in March 2020
+#      m_F[1,a] <- Cm_F[1,a] + step(xuo_F[1,a])*Cmuo_F[1,a]
+#      um_F[1,a] <- Cum_F[1,a] + Cuo_F[1,a] - step(xuo_F[1,a])*Cmuo_F[1,a]  
+      nv_m[1,a] <- Cm_MP[1,a] - Cm_F[1,a] - step(xuo_F[1,a])*Cmuo_F[1,a] # marked
+      nv_um[1,a] <- n_um[1,a] - Cum_F[1,a] - Cuo_F[1,a] + step(xuo_F[1,a])*Cmuo_F[1,a] #unmarked 
+      }
+
+#  for (t in 1:9) { # from 1994 to 2002
+# Major change of this section in 2020
+  for (t in 2:9) { # from 1995 to 2002
       # Marked fish
-      m_F[t,1] ~ dbin(piF_1SW[t,1],Cm_MP[t,1])  #1SW  
-      m_F[t,2] ~ dbin(piF_MSW[t,1],Cm_MP[t,2])  #MSW  
+#      m_F[t,1] ~ dbin(piF_1SW[t,1],Cm_MP[t,1])  #1SW  
+#      m_F[t,2] ~ dbin(piF_MSW[t,1],Cm_MP[t,2])  #MSW  
 
       ## Unmarked fish
-      um_F[t,1] ~ dbin(piF_1SW[t,2],n_um[t,1])  #1SW  
-      um_F[t,2] ~ dbin(piF_MSW[t,2],n_um[t,2])  #MSW  
+#      um_F[t,1] ~ dbin(piF_1SW[t,2],n_um[t,1])  #1SW  
+#      um_F[t,2] ~ dbin(piF_MSW[t,2],n_um[t,2])  #MSW  
             
+#    for (a in 1:2) {    
+#     # WINBUGS trick because dsum function is not available (available in JAGS)
+#     xC_F[t,a] <- m_F[t,a] + um_F[t,a]
+#      C_F[t,a] ~ dnorm(xC_F[t,a],100)
+#              
+#      ## Fish susceptible to die from other cause than fishing per sea age
+#      nv_m[t,a] <- Cm_MP[t,a] - m_F[t,a] # marked
+#      nv_um[t,a] <- n_um[t,a] - um_F[t,a] #unmarked 
+#     Probability of being fished and observed at MP for a 1SW marked fish
+      pi_moF[t,1] <- piF_1SW[t,1] * cut_pi_oF[t,1]
+      Cm_F[t,1] ~ dbin(pi_moF[t,1],Cm_MP[t,1])  # Changed in March 2020
+#     Probability of being fished and observed at MP for a 1SW unmarked fish
+      pi_umoF[t,1] <- piF_1SW[t,2] * cut_pi_oF[t,1]
+      Cum_F[t,1] ~ dbin(pi_umoF[t,1],n_um[t,1])  # Changed in March 2020
+#     Same structure for MSW fish
+      pi_moF[t,2] <- piF_MSW[t,1] * cut_pi_oF[t,2]
+      Cm_F[t,2] ~ dbin(pi_moF[t,2],Cm_MP[t,2])  # Changed in March 2020
+      pi_umoF[t,2] <- piF_MSW[t,2] * cut_pi_oF[t,2]
+      Cum_F[t,2] ~ dbin(pi_umoF[t,2],n_um[t,2])  # Changed in March 2020
+#     Modeling the number of marked fish among the 1SW fish not observed at MP
+      xuo_F[t,1] <- Cuo_F[t,1]-0.1  # Protection against 0 when all fish were presented
+#     Calculation of the probability of being marked among the fish not observed at MP
+#     When Cuo_F = 0, pi_muoF[t,1] = 1 & uo_F[t,1] = 1 
+      pi_muoF[t,1] <- (step(xuo_F[t,1])*(pi_MP[t,1]*piF_1SW[t,1]) / (pi_MP[t,1]*piF_1SW[t,1]+ (1-pi_MP[t,1])*piF_1SW[t,2])) + (1-step(xuo_F[t,1]))
+#     When Cuo_F = 0, uo_F[t,1] = 1  otherwise Cuo_F
+      uo_F[t,1] <- step(xuo_F[t,1])* Cuo_F[t,1] + (1-step(xuo_F[t,1])) 
+      Cmuo_F[t,1] ~ dbin(pi_muoF[t,1],uo_F[t,1])
+#     Same structure for MSW fish
+      xuo_F[t,2] <- Cuo_F[t,2]-0.1
+      pi_muoF[t,2] <- (step(xuo_F[t,2])*(pi_MP[t,2]*piF_MSW[t,1]) / (pi_MP[t,2]*piF_MSW[t,1]+ (1-pi_MP[t,2])*piF_MSW[t,2])) + (1-step(xuo_F[t,2]))
+      uo_F[t,2] <- step(xuo_F[t,2])* Cuo_F[t,2] + (1-step(xuo_F[t,2]))
+      Cmuo_F[t,2] ~ dbin(pi_muoF[t,2],uo_F[t,2])
+#     Probability of being fished and unobserved at MP
+      pi_uo_F[t,1] <- ((Cm_MP[t,1]*piF_1SW[t,1] + n_um[t,1]*piF_1SW[t,2])/(Cm_MP[t,1] + n_um[t,1])) * (1-cut_pi_oF[t,1]) # 1SW
+      pi_uo_F[t,2] <- ((Cm_MP[t,2]*piF_MSW[t,1] + n_um[t,2]*piF_MSW[t,2])/(Cm_MP[t,2] + n_um[t,2])) * (1-cut_pi_oF[t,2]) # MSW
+      
     for (a in 1:2) {    
      # WINBUGS trick because dsum function is not available (available in JAGS)
-     xC_F[t,a] <- m_F[t,a] + um_F[t,a]
-      C_F[t,a] ~ dnorm (xC_F[t,a],1000000)
+#     xC_F[t,a] <- m_F[t,a] - Cm_F[t,a] + um_F[t,a] - Cum_F[t,a]
+#     pi_uoF[t,a]<- 1 - pi_oF[t,a]
+#     Cuo_F[t,a] ~ dbin(pi_uoF[t,a],xC_F[t,a])
+
+#     Fish caught but unobserved à MP
+#     Total number of 1SW fish available to the fishery
+      n_F[t,a] <- Cm_MP[t,a] + n_um[t,a]
+      C_uoF[t,a] ~ dbin(pi_uoF[t,a],n_F[t,a])  # Changed in March 2020
               
+      # Marked fish
+#      m_F[t,a] <- Cm_F[t,a] + step(xuo_F[t,a])*Cmuo_F[t,a]
+      ## Unmarked fish
+#      um_F[t,a] <- Cum_F[t,a] + Cuo_F[t,a] - step(xuo_F[t,a])*Cmuo_F[t,a]    
+
       ## Fish susceptible to die from other cause than fishing per sea age
-      nv_m[t,a] <- Cm_MP[t,a] - m_F[t,a] # marked
-      nv_um[t,a] <- n_um[t,a] - um_F[t,a] #unmarked 
+      nv_m[t,a] <- Cm_MP[t,a] - Cm_F[t,a] - step(xuo_F[t,a])*Cmuo_F[t,a] # marked
+      nv_um[t,a] <- n_um[t,a] - Cum_F[t,a] - Cuo_F[t,a] + step(xuo_F[t,a])*Cmuo_F[t,a] #unmarked 
 
       ########################################
       ## RECOVERY OF DEAD FISH FROM FISHING (from 1994 to 2002)
@@ -405,10 +492,11 @@ model {
       ##  
       # Marked fish
 #      Cm_F[t,a] ~ dbin(pi_oF[t],m_F[t,a])
-      Cm_F[t,a] ~ dbin(pi_oF[t,a],m_F[t,a])  # Changed in March 2020
+#      Cm_F[t,a] ~ dbin(pi_oF[t,a],m_F[t,a])  # Changed in March 2020
       ## Unmarked fish
 #      Cum_F[t,a] ~ dbin(pi_oF[t],um_F[t,a])      
-      Cum_F[t,a] ~ dbin(pi_oF[t,a],um_F[t,a])  # Changed in March 2020    
+#      Cum_F[t,a] ~ dbin(pi_oF[t,a],um_F[t,a])  # Changed in March 2020    
+#      Cum_F[t,a] ~ dbin(pi_oF[t,a],um_F[t,a])  # Changed in March 2020    
       } # end of loop over sea age
    } # end of loop over years
   
