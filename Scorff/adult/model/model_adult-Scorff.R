@@ -336,12 +336,14 @@ model {
   
   #To be able to initiate lambda_tot ensuite
   lambda_tot0 ~ dgamma(shape_lambda,rate_lambda)
-  Plambda0[1:2] ~ ddirich(s[])
+#  Plambda0[1:2] ~ ddirich(s[])
+    Plambda0[1] ~ dbeta(s[1],s[2]) ; Plambda0[2] <- 1 - Plambda0[1]
   
   # Hyperprior for lambda_n
   for (t in 1:Y) {
     lambda_tot[t] ~ dgamma(shape_lambda,rate_lambda) 
-    Plambda[t,1:2] ~ ddirich(s[])
+#    Plambda[t,1:2] ~ ddirich(s[])
+    Plambda[t,1] ~ dbeta(s[1],s[2]) ; Plambda[t,2] <- 1 - Plambda[t,1]
   }
   
   for (a in 1:2) {
