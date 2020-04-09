@@ -76,4 +76,10 @@ parameters <-c(
   ,"e_1SW" # annual escapement of 1SW
   ,"e_MSW" # annual escapement of MSW
   
+  ,"nv_m" ## Fish susceptible to die from other cause than fishing per sea age / marked
+  ,"nv_um" ## Fish susceptible to die from other cause than fishing per sea age / unmarked
+  ,"Cmuo_F"
+  ,"m_D"
+  ,"um_D"
+  ,"pi_muoF"
 )

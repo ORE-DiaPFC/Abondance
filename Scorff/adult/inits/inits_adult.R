@@ -70,6 +70,7 @@ inits_fix <- list(
     0.06538,0.1012,0.1096,0.1179),
     .Dim = c(2,2))
   
+  #Cmuo_F = structure(.Data= c(12, 1, 13, 3, 30, 2, 5, 2, 7, 1, 2, 2, 2, 2, 6, 1, 6, 1), .Dim=c(9, 2))
 )
 inits_fix$m_F[]<-as.integer(inits_fix$m_F)
 inits_fix$um_F[]<-as.integer(inits_fix$um_F)

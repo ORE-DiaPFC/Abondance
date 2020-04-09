@@ -71,6 +71,13 @@ Cum_MP <- capt[,5:6]
 C_F <- read.table(paste("data/","data_F-est94-02.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
 C_F <- as.matrix(C_F);mode(C_F)<- "numeric"
 
+##############################################################################################################################
+# THIS FILE DOES NOT NEED TO BE UPDATED
+# Cuo_F[t,a]: Annual number of fish caught by fishing per sea age category (from 1994 to 2002) and notre observed at MP
+######################################################################################################################################
+Cuo_F <- read.table(paste("data/","data_F-uo94-02.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+Cuo_F <- as.matrix(Cuo_F);mode(Cuo_F)<- "numeric"
+
 ###############################################################################################################################
 ## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  
 ## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW
@@ -86,6 +93,7 @@ data <- list( Y=Y$Y,eff_R=eff_R$eff_R
               ,Q=Q,Q_dec=Q_dec$Q_dec
               ,Cm_D=Cm_D,Cum_D=Cum_D
               ,C_MP=C_MP,Cm_MP=Cm_MP,Cum_MP=Cum_MP
-              ,C_F=C_F,Cm_F=Cm_F,Cum_F=Cum_F)
+              ,C_F=C_F,Cm_F=Cm_F,Cum_F=Cum_F
+              ,Cuo_F=Cuo_F)
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données
