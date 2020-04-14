@@ -1,8 +1,10 @@
 ---
 title: "Bilan_CIEM"
 author: "Mathieu Buoro & Etienne Prévost"
-date: "3/13/2020"
-output: html_document
+date: "4/14/2020"
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
