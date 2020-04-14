@@ -38,15 +38,23 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 
 #------------------------INITS----------------------------------##
 #if(!file.exists(paste('inits/inits_',stade,year,'.Rdata',sep=""))){
-if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
-  source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
-  #load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
-}
+#if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
+#inits=list()
+#for (c in 1:2){
+#  inits.tmp=NULL
+source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
+#  inits[[c]]<-inits.tmp
+#}
+#load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#}
 #load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 #if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-inits.tmp <- read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep=""))
-inits <- rep(list(inits.tmp),CHAINS)
+#for (c in 1:2){
+inits.tmp1 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",1,".txt",sep=""))
+inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt",sep=""))
+#inits <- rep(list(inits.tmp),CHAINS)
+inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model

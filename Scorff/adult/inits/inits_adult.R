@@ -11,6 +11,7 @@
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 # inits<-function(){
 #   list(
@@ -23,59 +24,60 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 ###################################################
 # NO UPDATE
 ###################################################
-inits_fix <- list(
+#inits_fix <- list(
   # NO UPDATE
-  lambda_tot0 = 415.7,
-  logit_effort_R = c( 0.1897,0.1621),
-  logit_flow_MP = c( -0.06312,-0.3232),
-  logit_flow_R = c( -0.3844,-0.142),
-  logit_int_MP = c( 0.7415,-0.4103),
-  logit_int_R = c(-2.184,-2.036),
+  lambda_tot0 = runif(1,400,500)#415.7
+  logit_effort_R = runif(2,.1,.2)#c( 0.1897,0.1621)
+  logit_flow_MP = runif(2,-.4,-.01)#c( -0.06312,-0.3232)
+  logit_flow_R = runif(2,-.4,-.01)##c( -0.3844,-0.142)
+  logit_int_MP = c( 0.7415,-0.4103)
+  logit_int_R = runif(2,-2.4,-2)#c(-2.184,-2.036)
   logit_pi_oF = cbind(
     c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487),
-    c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487)
-    ),
-  mupi_oF = 0.5933,
-  pi_MP94 = c( 0.4432,0.322),
-  pi_oD = 0.1511,
-  rate_lambda = 0.01217,
-  rho_D = .5,#c(  -0.5855,0.9674),
-  rho_F = -.5,#c( -0.7123,-0.0143),
-  s = c( 22.23,5.283),
-  shape_lambda = 7.159,
-  sigmapi_D = 1.651,#c( 1.651,0.2428),
-  sigmapi_F = c( 0.719,1.118),
-  sigmapi_MP = 0.278,
-  sigmapi_R = 0.1693,
-  sigmapi_oF = 0.5865,
+    c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487))
+  mupi_oF = runif(1,.4,.7)#0.5933
+  pi_MP94 = runif(2,.2,.5)#c( 0.4432,0.322)
+  pi_oD = runif(1,.1,.3)#0.1511
+  rate_lambda = runif(1,0.005,.1)#0.01217
+  rho_D = runif(1,0.4,.8)#.5#c(  -0.5855,0.9674),
+  rho_F = runif(1,-.8,-.4)#-.5#c( -0.7123,-0.0143),
+  s = c( 22.23,5.283)
+  shape_lambda = runif(1,5,10)#7.159
+  sigmapi_D = runif(2,1,2)#c( 1.651,1.651)
+  sigmapi_F = runif(1,0,1)#0.719#c( 0.719,1.118),
+  sigmapi_MP = runif(1,0,1)#0.278
+  sigmapi_R = runif(1,0,1)#0.1693
+  sigmapi_oF = runif(1,0,1)#0.5865
   
   m_F = structure(.Data = c(
     5,0,53,4,68,
     3,19,4,64,2,
     21,2,22,2,24,
     1,13,0),
-    .Dim = c(9,2)),
+    .Dim = c(9,2))
 
   um_F = structure(.Data = c(
     36,20,22,7,24,
     8,16,4,6,
     3, 4,5,19,8,7,5,11,1),
-    .Dim = c(9,2)),
-  
+    .Dim = c(9,2))
+
   mupi_D = structure(.Data = c(
     0.007185,0.009917,0.3953,0.1231),
-    .Dim = c(2,2)),
+    .Dim = c(2,2))
   
   mupi_F = structure(.Data = c(
     0.06538,0.1012,0.1096,0.1179),
     .Dim = c(2,2))
   
-  #Cmuo_F = structure(.Data= c(12, 1, 13, 3, 30, 2, 5, 2, 7, 1, 2, 2, 2, 2, 6, 1, 6, 1), .Dim=c(9, 2))
-)
-inits_fix$m_F[]<-as.integer(inits_fix$m_F)
-inits_fix$um_F[]<-as.integer(inits_fix$um_F)
-# storage.mode(inits_fix$m_F) <- "integer"
-# storage.mode(inits_fix$um_F) <- "integer"
+  Cmuo_F= structure(.Data= c(12, 1, 13, 3, 30, 2, 5, 2, 7, 1, 2, 2, 2, 2, 6, 1, 6, 1),
+                    .Dim=c(9, 2))
+#  )
+m_F[]<-as.integer(m_F)
+um_F[]<-as.integer(um_F)
+Cmuo_F[]<-as.integer(Cmuo_F)
+# storage.mode(m_F) <- "integer"
+# storage.mode(um_F) <- "integer"
 
 ###################################################
 # TO UPDATE
@@ -155,8 +157,8 @@ logit_piD_MSW[is.na(logit_piD_MSW)] <- -2 # si NA, mettre -2
 #   .Dim = c(21,2))
 logit_piF_1SW <- array( ,dim=c(data$Y,2))
 t = 1:9
-logit_piF_1SW[t,1] <- logit(((inits_fix$m_F[t,1]+1)*1)/n[t,1])
-logit_piF_1SW[t,2] <- logit(((inits_fix$um_F[t,1]+1)*1)/n[t,1])
+logit_piF_1SW[t,1] <- logit(((m_F[t,1]+1)*1)/n[t,1])
+logit_piF_1SW[t,2] <- logit(((um_F[t,1]+1)*1)/n[t,1])
 t = 11:data$Y
 logit_piF_1SW[t,1] <- logit(((data$Cm_F[t,1]+1)*1)/n[t,1])
 logit_piF_1SW[t,2] <- logit(((data$Cum_F[t,1]+1)*1)/n[t,1])
@@ -179,15 +181,15 @@ logit_piF_1SW[t,2] <- logit(((data$Cum_F[t,1]+1)*1)/n[t,1])
 # t:10->Y, logit((Cm_F[t,2]+1)*10/n[t,2]),logit((Cum_F[t,2]+1)*10/n[t,2]) 
 logit_piF_MSW <- array(NA ,dim=c(data$Y,2))
 t = 1:9
-logit_piF_MSW[t,1] <- logit(((inits_fix$m_F[t,2]+1)*1)/n[t,2])
-logit_piF_MSW[t,2] <- logit(((inits_fix$um_F[t,2]+1)*1)/n[t,2])
+logit_piF_MSW[t,1] <- logit(((m_F[t,2]+1)*1)/n[t,2])
+logit_piF_MSW[t,2] <- logit(((um_F[t,2]+1)*1)/n[t,2])
 t = 10:data$Y
 logit_piF_MSW[t,1] <- logit(((data$Cm_F[t,2]+1)*1)/n[t,2])
 logit_piF_MSW[t,2] <- logit(((data$Cum_F[t,2]+1)*1)/n[t,2])
 #logit_piF_MSW[is.na(logit_piF_MSW)] <- -2 # si NA, mettre -2
 
 # t = 1:9
-# logit_piF_MSW[t,] <- logit(inits_fix$um_F[t,]/(n[t,] - data$C_MP[t,] + data$Cum_MP[t,]))
+# logit_piF_MSW[t,] <- logit(um_F[t,]/(n[t,] - data$C_MP[t,] + data$Cum_MP[t,]))
 # t = 10:data$Y
 # logit_piF_MSW[t,] <- logit(data$Cum_F[t,]/(n[t,] - data$C_MP[t,] + data$Cum_MP[t,]))
 
@@ -269,7 +271,34 @@ logit_pi_R[logit_pi_R =="-Inf"] <- -1.5 # si NA, mettre -1.5
 
 
 
-
+inits_fix <- list(
+  lambda_tot0 = lambda_tot0,
+  logit_effort_R = logit_effort_R,
+  logit_flow_MP = logit_flow_MP,
+  logit_flow_R = logit_flow_R,
+  logit_int_MP = logit_int_MP,
+  logit_int_R = logit_int_R,
+  logit_pi_oF = logit_pi_oF,
+  mupi_oF = mupi_oF,
+  pi_MP94 = pi_MP94,
+  pi_oD = pi_oD,
+  rate_lambda = rate_lambda,
+  rho_D = rho_D,
+  rho_F = rho_F,
+  s = s,
+  shape_lambda = shape_lambda,
+  sigmapi_D = sigmapi_D,
+  sigmapi_F = sigmapi_F,
+  sigmapi_MP = sigmapi_MP,
+  sigmapi_R = sigmapi_R,
+  sigmapi_oF = sigmapi_oF,
+  
+  #m_F=m_F,
+  #um_F=um_F,
+  #mupi_D = mupi_D,
+  mupi_F = mupi_F
+  #Cmuo_F = Cmuo_F
+)
 
 inits_updated <- list(
   lambda_tot = lambda_tot
@@ -287,6 +316,7 @@ inits_updated <- list(
 inits <- list(c( inits_fix,inits_updated))
 
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
 
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c
 

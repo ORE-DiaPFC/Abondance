@@ -10,6 +10,8 @@ logit<-function(x) {log(x/(1-x))}
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 
 ###################################################
@@ -18,13 +20,13 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 inits_fix <- list(
   # NO UPDATE
   #sigmap_eff = c(0.1,0.2),
-  varp_eff = c(0.1,0.2)^2,
-  shape_lambda = 5,
-  rate_lambda = 0.01,
-  lambda0=500,
-  mup_recap = c(0.3,0.5,0.3,0.5),     
+  varp_eff = runif(2,0.01,0.05),#c(0.1,0.2)^2,
+  shape_lambda = runif(1,2,7),#5,
+  rate_lambda = runif(1,.005,0.1),#0.01,
+  lambda0=500+runif(1,-10,10),
+  mup_recap = runif(4,.1,.7),#c(0.3,0.5,0.3,0.5),     
   #sigmap_recap=c(0.1,0.1,0.2,0.3)   
-  varp_recap=c(0.1,0.1,0.2,0.3)^2
+  varp_recap=runif(4,.005,0.1)#c(0.1,0.1,0.2,0.3)^2
 )
 
 
@@ -173,6 +175,7 @@ inits_updated <- list(
 inits <- list(c( inits_fix,inits_updated))
 
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
-
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c
 

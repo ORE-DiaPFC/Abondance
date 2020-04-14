@@ -38,15 +38,23 @@ source(paste('parameters_',stade,'.R',sep="")) # chargement des paramètres
 
 #------------------------INITS----------------------------------##
 #if(!file.exists(paste('inits/inits_',stade,year,'.Rdata',sep=""))){
-if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
-  source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
-  #load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
-}
+#if(!file.exists(paste("inits/init-",site,"-",stade,year,".txt",sep=""))){
+#inits=list()
+#for (c in 1:2){
+#  inits.tmp=NULL
+source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des données
+#  inits[[c]]<-inits.tmp
+#}
+#load(paste('inits/inits_',stade,year,'.Rdata',sep=""))
+#}
 #load(paste('inits/inits_',stade,'.Rdata',sep="")) # chargement des inits
 #if(site == "Bresle" && stade == "adult") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
 #if(site == "Nivelle") {inits <- list(read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep="")))}
-inits.tmp <- read.bugsdata(paste("inits/init-",site,"-",stade,year,".txt",sep=""))
-inits <- rep(list(inits.tmp),2)
+#for (c in 1:2){
+inits.tmp1 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",1,".txt",sep=""))
+inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt",sep=""))
+#inits <- rep(list(inits.tmp),2)
+inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
@@ -60,8 +68,8 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=5000 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
+nburnin=100 # Number of steps to "burn-in" the samplers.
+nstore=20000 # Total number of steps in chains to save.
 nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
@@ -134,12 +142,15 @@ write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep
 # EXAMINE THE RESULTS
 fit.mcmc <- as.mcmc(fit) # using bugs
 
-### POSTERIOR
-source("posterior_check.R")
+
 
 ## To check chains and distributions:
+source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
+
+
+
 
 # DIAGNOSTICS:
 parameterstotest <- hyperparameters # all parameters
@@ -161,6 +172,8 @@ if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
   #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
   gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  test <- gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  
 }
 cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
 
@@ -234,10 +247,20 @@ if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
 if(site == "Scorff"){
-setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance")
-f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
-f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
-f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")
-if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
-  source("script_bilan.R")
-}}
+  dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
+  setwd(dir)
+  f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
+  f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
+  f3 <- paste0(dir,"Scorff/adult/results/Results_adult","_",year,".RData")
+  if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
+    # source(paste0(dir,"Scorff/script_bilan.R"))
+    source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
+  }}
+# if(site == "Scorff"){
+# setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance")
+# f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
+# f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
+# f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")
+# if (file.exists(f1)&&file.exists(f2)&&file.exists(f3)){
+#   source("script_bilan.R")
+# }}

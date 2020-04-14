@@ -2,17 +2,8 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  10000 
+Number of iterations:  20000 
 Convergence: gelman-Rubin R test
-Potential scale reduction factors:
-
-             Point est. Upper C.I.
-shape_lambda          1          1
-rate_lambda           1          1
-
-Multivariate psrf
-
-1
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
 ---------------------------
@@ -26,25 +17,25 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.403  
-rate_lambda  passed       1         0.337  
+shape_lambda passed       1         0.637  
+rate_lambda  passed       1         0.682  
                                       
              Halfwidth Mean  Halfwidth
              test                     
-shape_lambda passed    3.393 0.019092 
-rate_lambda  passed    0.021 0.000123 
+shape_lambda passed    3.390 1.37e-02 
+rate_lambda  passed    0.021 8.67e-05 
 
 [[2]]
                                            
              Stationarity start     p-value
              test         iteration        
-shape_lambda passed       1         0.652  
-rate_lambda  passed       1         0.699  
+shape_lambda passed       1         0.245  
+rate_lambda  passed       1         0.132  
                                        
              Halfwidth Mean   Halfwidth
              test                      
-shape_lambda passed    3.3790 0.019088 
-rate_lambda  passed    0.0209 0.000122 
+shape_lambda passed    3.3867 0.013588 
+rate_lambda  passed    0.0209 0.000088 
 
 
 ---------------------------
@@ -62,7 +53,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda 
-      0.3245       0.2475 
+      0.8377       0.8508 
 
 
 [[2]]
@@ -71,7 +62,7 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
 shape_lambda  rate_lambda 
-    -0.01602      0.09162 
+       1.207        1.359 
 
 
 
@@ -85,8 +76,8 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- shape_lambda 200      381500 3746         102       
- rate_lambda  200      399400 3746         107       
+ shape_lambda 200      381100 3746         102       
+ rate_lambda  100      376100 3746         100       
 
 
 [[2]]
@@ -97,7 +88,7 @@ Probability (s) = 0.95
                                                      
               Burn-in  Total  Lower bound  Dependence
               (M)      (N)    (Nmin)       factor (I)
- shape_lambda 200      383400 3746         102       
- rate_lambda  200      380200 3746         101       
+ shape_lambda 200      376000 3746         100       
+ rate_lambda  200      380900 3746         102       
 
 

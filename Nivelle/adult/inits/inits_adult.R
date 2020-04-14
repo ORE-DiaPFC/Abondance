@@ -11,6 +11,8 @@
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
 #save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
@@ -21,26 +23,25 @@ inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".
 # NO UPDATE
 ###################################################
 inits_fix <- list(
-  # NO UPDATE
   ## NO UPDATE
-  shape_lambda = 5,
-  rate_lambda = 0.01,
-  lambda_tot0 = 289.39,
-  a_1.1SW = 4.2,
-  a_1.1SW = 0.08,
-  a_MSW = c( 0.4,0.9059,2.516,0.455,0.3037),
-  eta_1 = 1.35,
-  eta_2 = 5.5,
-  k_1 = 0.87,
-  k_2 = 1.46,
-  logit_p_11_1 = c( -1.42,-1.42,-1.42,-1.42,-1.42, -1.42,-1.42,-1.42),
-  logit_pi_EF = c( -1.68,-1.68,-1.68,-1.68,-1.68,-1.68,-1.68,-1.68),
+  shape_lambda = runif(1,2,7),#5,
+  rate_lambda = runif(1,0,0.1),#0.01,
+  lambda_tot0 = 289.39+runif(1,-5,5),
+  a_1.1SW = runif(1,2,5),#4.2,
+  a_1.1SW = runif(1,0,.1),#0.08,
+  a_MSW = runif(5,0,1),#c( 0.4,0.9059,2.516,0.455,0.3037),
+  eta_1 = runif(1,0,2),#1.35,
+  eta_2 = runif(1,4,6),#5.5,
+  k_1 = runif(1,.6,1),#0.87,
+  k_2 = runif(1,1,2),#1.46,
+  logit_p_11_1 = c( -1.42,-1.42,-1.42,-1.42,-1.42, -1.42,-1.42,-1.42)+runif(1,-.2,.2),
+  logit_pi_EF = c( -1.68,-1.68,-1.68,-1.68,-1.68,-1.68,-1.68,-1.68)+runif(1,-.2,.2),
   mup_11_1 = 0.21,
   mup_11_2 = 0.18,
   mup_21 = 0.42,
   mupi_EF = 0.16,
-  mupi_U = c(0.8689,0.8146),
-  rho = 0.79,
+  mupi_U = runif(2,.5,1),#c(0.8689,0.8146),
+  rho = runif(1,0.5,1),#0.79,
   precp_11_1 = 1,
   precp_11_2 = 1,
   precp_12 = c( 1, 1, 1, 1),
@@ -50,8 +51,8 @@ inits_fix <- list(
   precpi_Ol = 1,
   #shape_prec = 30,
   #rate_prec = 10,
-  mean_var = 5,
-  rate_prec = 2,
+  mean_var = runif(1,2,7),#5,
+  rate_prec = runif(1,1,3),#2,
   d_pi_Ol = 0,
   d_pi_U = c(0, 0),
   logit_pi_Ol = log(data$eff_Ol / (1 - data$eff_Ol))
@@ -385,4 +386,6 @@ inits <- list(c( inits_fix,inits_updated))
 #lapply(inits[[1]], write, paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
 #save(inits,file=paste('inits/inits_',stade,'.Rdata',sep=""))
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c

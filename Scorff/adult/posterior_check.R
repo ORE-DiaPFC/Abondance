@@ -9,7 +9,7 @@ hyperparameters <-c(
 
   ,paste0("mupi_F[",1:2,",",1,"]")
   ,paste0("mupi_F[",1:2,",",2,"]") # mean probability of dying from fishing
-  ,paste0("sigmapi_F[",1:2,"]") # standard deviation of probability of dying from fishing
+  ,paste0("sigmapi_F")#[",1:2,"]") # standard deviation of probability of dying from fishing
 #  ,paste0("rho_F[",1:2,"]") # correlation coefficient between probability of dying from fishing between marked and unmarked depending on sea age
 #,"sigmapi_F"
 , "rho_F"

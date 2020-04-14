@@ -11,6 +11,7 @@
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 # inits<-function(){
 #   list(
@@ -25,19 +26,19 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 ###################################################
 inits_fix <- list(
 
-              int_width = -0.262
-              ,width_coef = 0.4537
-              ,eps = 0.9869
-              ,int_ydSc = 1.809
-              ,log_flow = -0.4612
-              ,mu_d = 19.84
-              ,mup_rem = 0.5931
-              ,rate_d = 0.0261
-              ,rate_lcpu = 0.3905
-              ,sd_prem = 0.7431
-              ,sigma_dSc = 0.3269
-              ,sigma_siteSc = 0.7041
-              ,sigma_ySc = 0.4286
+              int_width = runif(1,-.4,-.1)#-0.262
+              ,width_coef = runif(1,.4,1)#0.4537
+              ,eps = runif(1,.9,1.1)#0.9869
+              ,int_ydSc = runif(1,1.5,2)#1.809
+              ,log_flow = runif(1,-.9,-.1)#-0.4612
+              ,mu_d = runif(1,18,21)#19.84
+              ,mup_rem = runif(1,.2,.8)#0.5931
+              ,rate_d = runif(1,.02,.03)#0.0261
+              ,rate_lcpu = runif(1,.2,.5)#0.3905
+              ,sd_prem = runif(1,.2,.8)#0.7431
+              ,sigma_dSc = runif(1,.2,.5)#0.3269
+              ,sigma_siteSc = runif(1,.5,.9)#0.7041
+              ,sigma_ySc = runif(1,.3,.5)#0.4286
               
 
               ,d = c(
@@ -163,5 +164,6 @@ inits_updated <- list(
 inits <- list(c( inits_fix,inits_updated))
 
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
-
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c

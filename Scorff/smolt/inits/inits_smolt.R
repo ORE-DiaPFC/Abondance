@@ -11,6 +11,7 @@
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 # inits<-function(){
 #   list(
@@ -24,14 +25,14 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 # NO UPDATE
 ###################################################
 inits_fix <- list(
-    logit_int = c(1,1),
-    logit_flow = c(1,1),
-    sigmap = c(0.7357,0.4225),
-    rho=0.3,
-    l_ML_dim = 0.01136,
-    junk = -1.1,
+    logit_int = runif(2,.9,1.1),#c(1,1),
+    logit_flow = runif(2,.9,1.1),#c(1,1),
+    sigmap = runif(2,.4,.8),#c(0.7357,0.4225),
+    rho=runif(1,.1,.8),#0.3,
+    l_ML_dim =runif(1,.01,.02),# 0.01136,
+    junk = runif(1,-2,-1),#-1.1,
     rate_lambda = 1.574E-4,
-    shape_lambda = 1.688
+    shape_lambda = runif(1,1,2)#1.688
 )
 
 
@@ -81,5 +82,6 @@ inits_updated <- list(
 inits <- list(c( inits_fix,inits_updated))
 
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
-
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c

@@ -1,5 +1,5 @@
 #rm(list=ls())   # Clear memory
-library(rjags) # require to use "read.bugsdata" function
+#library(rjags) # require to use "read.bugsdata" function
 
 ##-----------------------------FUNCTIONS ----------------------------------##
 invlogit<-function(x) {1/(1+exp(-(x)))}
@@ -7,8 +7,8 @@ logit<-function(x) {log(x/(1-x))}
 
 ##-----------------------------DATA ----------------------------------##
 #year <- 2016
-site <- "Bresle"
-stade <- "adult"
+#site <- "Bresle"
+#stade <- "adult"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/',site,stade,sep="/")
@@ -16,6 +16,7 @@ stade <- "adult"
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 # inits<-function(){
 #   list(
@@ -29,20 +30,20 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 # NO UPDATE
 ###################################################
 inits_fix <- list(
-  lambda_tot0 = 104.2,
-  logit_flow_Eu = c( -0.4262,-0.7079),
-  lflow_fall_Eu = c(-0.5,-0.5),
-  logit_int_Eu = c( 0.5082,0.8304),
-  mupi_B = c( 0.0827,0.1032),
-  pi_Eu00 = c( 0.5871,0.5992),
-  pi_Eu01 = c( 0.2006,0.7994),
-  rate_lambda = 0.04238,
-  s = c(15.67,3.914),
-  shape_lambda = 5.995,
+  lambda_tot0 = runif(1,90,120),#104.2,
+  logit_flow_Eu = runif(2,-1,0),#c( -0.4262,-0.7079),
+  lflow_fall_Eu = runif(2,-1,0),#c(-0.5,-0.5),
+  logit_int_Eu = runif(2,0,1),#c( 0.5082,0.8304),
+  mupi_B = runif(2,0,.5),#c( 0.0827,0.1032),
+  pi_Eu00 = runif(2,0.1,.9),#c( 0.5871,0.5992),
+  pi_Eu01 = runif(2,0.1,.9),#c( 0.2006,0.7994),
+  rate_lambda = runif(1,0,.1),#0.04238,
+  s = runif(2,2,20),#c(15.67,3.914),
+  shape_lambda = runif(1,3,7),#5.995,
   #sigmapi_B = c(0.644,0.6969),
   #sigmapi_Eu = c(1.019,0.8865)
-  varpi_B = c(0.414,0.485),
-  varpi_Eu = c(1.038,0.8865)
+  varpi_B = runif(2,0.1,.9),#c(0.414,0.485),
+  varpi_Eu = runif(2,0.5,1.5)#c(1.038,0.8865)
 )
 
 
@@ -147,6 +148,7 @@ inits_updated <- list(
 inits <- list(c( inits_fix,inits_updated))
 
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
-
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c
 

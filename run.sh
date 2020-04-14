@@ -4,8 +4,8 @@
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2019
 CHAINS=2
-BURNIN=5000 # Number of steps to "burn-in" the samplers.
-ITER=10000 # Total number of steps in chains to save.
+BURNIN=100 # Number of steps to "burn-in" the samplers.
+ITER=20000 # Total number of steps in chains to save.
 THIN=100 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
@@ -16,13 +16,13 @@ REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in Scorff #Oir #Nivelle #Bresle        
+for SITE in Nivelle Scorff Oir Bresle        
 do
      
 cd $REPbase/$SITE
      echo $SITE
      
-     for STADE in adult #tacon smolt   
+     for STADE in adult tacon smolt   
      do
       if [ -d "$STADE" ]; then # if directory exists...
   # Control will enter here if $DIRECTORY exists.

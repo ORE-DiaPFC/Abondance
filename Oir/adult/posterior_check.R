@@ -10,7 +10,8 @@ hyperparameters <-c(
   ,"rate_lambda" # Rate parameter of gamma distribution
   ,paste0("s[",1:4,"]") # Dirichlet parameter
   
-  ,paste0("Plambda[",1:4,"]") # Proportion distribution
+  #,paste0("Plambda[",1:4,"]") # Proportion distribution
+  ,"Plambda"
   #,"Plambda0" # Initiate proportion distribution
   
   ,paste0("mup_recap[",1:4,"]")  # Mean of the probabilities to be re-captured
@@ -33,8 +34,8 @@ for (par in hyperparameters){
   denplot(fit.mcmc,par) 
 }
 
-traplot(fit.mcmc, paste0("epsilon_MC[",1:Nyears,",1]"))
-traplot(fit.mcmc, paste0("epsilon_MC[",1:Nyears,",2]"))
+traplot(fit.mcmc, paste0("epsilon_MC[",1:data$Nyears,",1]"))
+traplot(fit.mcmc, paste0("epsilon_MC[",1:data$Nyears,",2]"))
 
 par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("pi_MC[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 

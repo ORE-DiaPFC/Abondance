@@ -11,6 +11,8 @@
 
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
+
+for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
 inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
 #save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
@@ -27,14 +29,14 @@ C4 = inits0$C4,
 beta_dj = inits0$beta_dj,
 delta = inits0$delta,
 dj_nat = inits0$dj_nat,
-epsilon_p = 0.5098,
+epsilon_p = runif(1,.3,.7),#0.5098,
 eta_dj = c(30.56, NA,54.01), 
 eta_gamma_dj = c(NA, NA, NA, 10, 10),   
   jcomp_ns_riff = inits0$jcomp_ns_riff,
   jcomp_ns_runs = inits0$jcomp_ns_runs,
   jres_ns_riff = inits0$jres_ns_riff,  
   jres_ns_runs = inits0$jres_ns_runs,
-  k_cpue = 118.2, 
+  k_cpue = 118.2 + runif(1,-10,10), 
   logit_p_1 = inits0$logit_p_1,
   logit_p_srem_pred = 2.932, 
   mu_dj_nat = 0.1105,        
@@ -42,13 +44,13 @@ eta_gamma_dj = c(NA, NA, NA, 10, 10),
   n1 = inits0$n1,
   n1_comp = inits0$n1_comp,
   n1_nat = inits0$n1_nat,
-  p_cpue = 0.4952,
-  pi_dj = 0.7351, 
-  rho_s = 0.3317, 
-  sd_logit_p_srem = 1.172,
-  sd_s_rec = 0.5465, 
+  p_cpue = runif(1,.1,.7),#0.4952,
+  pi_dj = runif(1,.5,.9),#0.7351, 
+  rho_s = runif(1,.1,.6),#0.3317, 
+  sd_logit_p_srem = runif(1,1,2),#1.172,
+  sd_s_rec = runif(1,.3,.6),#0.5465, 
   xi_dj = c(NA,4.01),              
-  zeta_alpha_dj = 4.152,  
+  zeta_alpha_dj = runif(1,3,5),#4.152,  
   zeta_gamma_dj = c(NA, NA, NA, 10, 10)
 )
 
@@ -590,4 +592,6 @@ inits <- list(c( inits_fix,inits_updated))
 #lapply(inits[[1]], write, paste("inits/init-",site,"-",stade,year,".txt",sep=""), append=TRUE)
 #save(inits,file=paste('inits/inits_',stade,'.Rdata',sep=""))
 #save(inits,file=paste('inits/inits_',stade,year,'.Rdata',sep=""))
-bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+#bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,'.txt',sep=""))
+bugs.inits(inits, n.chains=1,digits=3, inits.files = paste('inits/init-',site,'-',stade,year,"_",c,'.txt',sep=""))
+} #end loop c
