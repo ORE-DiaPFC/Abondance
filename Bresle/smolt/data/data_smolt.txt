@@ -44,5 +44,6 @@ NA	NA	NA	NA	NA	NA	#	2001
 3482	0	3409	73	258	330	# 2016
 414 0 413 1 53  126 #2017
 548 4 534 10  22  216 #2018 arret piegeage weekend / transition marquage pit 
-1664  3 1626  41  64  222 #2019 arret piegeage weekend / marquage pit (test de mortalité marquage)
+1664  3 1626  41  64  222 #2019 arret piegeage weekend / marquage pit (test de mortalite marquage)
+14  1 13  0 0 0 #2020 COVID - no recapture trapping
 #END							
