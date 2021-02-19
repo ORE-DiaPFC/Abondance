@@ -1,10 +1,10 @@
 list(
 
-#Nyears: Length of time series from 1982 to 2019  
-Nyears = 38,
+#Nyears: Length of time series from 1982 to 2020  
+Nyears = 39,
 
 # NBeau: Number of years with trapping in Beauchamps 
-NBeau = 33,
+NBeau = 34,
 
 # NEu: Number of years with trapping in Eu           
 NEu = 25
