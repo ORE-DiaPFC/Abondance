@@ -28,7 +28,6 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 ### TABLEAU BILAN
 
-
 ```{r, echo = FALSE}
 years <- seq(1984, year, 1)
 table <- array(, dim=c(length(years), 7))
