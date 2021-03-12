@@ -1,10 +1,10 @@
 ---
 title: "Bilan_Nivelle"
-author: "Mathieu Buoro & Etienne Prévost"
+author: "Mathieu Buoro, Frédéric Lange & Etienne Prévost"
 date: "4/14/2020"
 output:
-  word_document: default
   html_document: default
+  word_document: default
   pdf_document: default
 ---
 
@@ -13,7 +13,7 @@ wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Nivelle"
-year <- 2019
+year <- 2020
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -25,8 +25,15 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 ```
 
-### TABLEAU BILAN
+### NOTA BENE  
 
+2020:  
+- Le piégage a été arrêté un mois seulement (mi-Mars à mi-avril) à cause du COVID  
+- Tacons: 1 station au-dessus de Sare avec 9 0+ capturés mais pas intégré dans le modèle: évènement exceptionnel?  
+- Pas de mesures des surfaces d'habitats favorable sur les zones colonisables amont (Opalassio, Sorimenta):  quantifier les surfaces?  
+
+
+### TABLEAU BILAN
 
 ```{r, echo = FALSE}
 years <- seq(1984, year, 1)

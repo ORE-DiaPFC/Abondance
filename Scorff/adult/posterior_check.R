@@ -19,6 +19,9 @@ hyperparameters <-c(
   ,paste0("logit_flow_R[",1:2,"]") # slope for flow data in probability of recapture during reproduction
   ,"sigmapi_R" # standard deviation of probabilty of recapture during reproduction
 
+  ,paste0("pi_R_pulsium[",27:data$Y,",1]")
+,paste0("pi_R_pulsium[",27:data$Y,",2]")
+
   , paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
   ,paste0("mupi_D[",1:2,",2]") # mean probability to die from natural cause
 #  ,paste0("sigmapi_D[",1:2,"]") # standard deviation of probability of dying from natural cause 
@@ -53,6 +56,9 @@ hyperparameters <-c(
   ,paste0("p_MP94_tot[",1:2,"]") # total probability of capture in 1994
 #  ,"epsilon_MP" # standardized residuals of probability of capture at MP
   
+  ,paste0("pi_MP20[",2,"]") # decrease in probability of capture in 1994
+  ,paste0("p_MP20_tot[",2,"]") # total probability of capture in 1994
+
 #  ,"pi_oF" # probability to recover a caught fish from fishing (from 1994 to 2002
 #  ,"piF_1SW" # probability of dying from fishing for 1SW depending on being marked or not
 #  ,"piF_MSW" # probability of dying from fishing for MSW depending on being marked or not

@@ -2,7 +2,7 @@
 ###           Model of CMR data to estimate parr population size             ###
 ###                 of Salmo salar in Oir river + tributary rivers.          ###
 ###   (Intercalibration between CPUE and successive removals included)       ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                          November 2015                                   ###
 ################################################################################
 
@@ -14,7 +14,7 @@
 ## Need at the end to estimate a probability of capture by group and year (not possible to get an estimate by site)
 ## Log Density is constrained to avoid too low and too high value
 ## Year effect in density is constrained too avoid too high value
-## /!\ Unit of density and of surface of rapids or runs are in 100m², not in m². Very hard to get update otherwise because samplers are sampling very low values 
+## /!\ Unit of density and of surface of rapids or runs are in 100m?, not in m?. Very hard to get update otherwise because samplers are sampling very low values 
 ################################################################################
 
 ################################################################################
@@ -31,23 +31,23 @@
 ## Site[i]: Index of sites sampled by successive removal
 ## Group[i]: Index of group for sites sampled by successive removal
 ## Lieu[i]: Localisation of sites sampled by successive removal (Oir or tributary rivers)
-## Srr[i]: Surface of rapid for each site sampled by successive removal in 100m²
-## Spl[i]: Surface of run (plat courant et plat lent) for each site sampled by successive removal (in 100m²)
+## Srr[i]: Surface of rapid for each site sampled by successive removal in 100m?
+## Spl[i]: Surface of run (plat courant et plat lent) for each site sampled by successive removal (in 100m?)
 ## CPUE_IAno[j]: Number of 0+ captured by CPUE for sites not used to build the relationship between successive removal and CPUE
 ## Site_IA[j]: index of sites sampled by CPUE but not used to build the relationship among all sampled sites (whatever the sampling method is)
 ## IAno_num[j]: index of sites sampled by CPUE but not used to build the relationship among sites sampled by CPUE
-## Srr_IA[j]: Surface of rapid for each site sampled by CPUE but not used to  build the relationship (in 100m²)  
+## Srr_IA[j]: Surface of rapid for each site sampled by CPUE but not used to  build the relationship (in 100m?)  
 ## Group_IA[j]: Index of group for sites sampled by CPUE but not used to  build the relationship
 ## CPUE_inter[m]: Number of 0+ captured by CPUE for sites used to build the relationship between successive removal and CPUE
 ## IAinter_num[m]: index of sites sampled by CPUE and used to build the relationship among sites sampled by CPUE 
 ## Site_IAinter[m]: index of sites sampled by CPUE and used to build the relationship among all sampled sites (whatever the sampling method is) 
-## Srr_IAinter[m]: Surface of rapid for each site sampled by CPUE and used to  build the relationship (in 100m²) 
+## Srr_IAinter[m]: Surface of rapid for each site sampled by CPUE and used to  build the relationship (in 100m?) 
 ## Lieu_IAinter[m]: Localisation of sites sampled by CPUE and used to build the relationship(Oir or tributary rivers)
 ## Group_IAinter[m]: Index of group for sites sampled by CPUE and used to  build the relationship 
 ## W_Oir[k]: Mean width of sites sampled by CPUE
-## StotPC[g]: surface of run (in 100m²) for each group
-## StotRR[g]: surface of rapids (in 100m²) for each group
-## Srr_inter[]: surface of rapids (in 100m²) of sites sampled by successive removal and used to built the relationship between successive removal and CPUE 
+## StotPC[g]: surface of run (in 100m?) for each group
+## StotRR[g]: surface of rapids (in 100m?) for each group
+## Srr_inter[]: surface of rapids (in 100m?) of sites sampled by successive removal and used to built the relationship between successive removal and CPUE 
 ################################################################################## 
 ## Used indices:
 ## r: river (1: Oir, 2: La Roche, 3: Pont Levesque, 4: Moulin du Bois)
@@ -142,7 +142,7 @@ for (t in 1:Nyear) {
     Group_an[10,t] <- (Nyear * 9) + t # Group 10: IAS10
     Group_an[11,t] <- (Nyear * 10) + t  # Group 11: Moulin du bois (mbam1, mbam2, mbav1, mbav2)
     Group_an[12,t] <- (Nyear * 11) + t  #Group 12: Pont Levesque: plam1, plam2, plav1, plav2, IAS11
-    Group_an[13,t] <- (Nyear * 12) + t #Group 13: La Roche RR01 à RR20
+    Group_an[13,t] <- (Nyear * 12) + t #Group 13: La Roche RR01 ? RR20
     } # end of loop over years
 
 ########################
@@ -270,13 +270,18 @@ for(t in 13:22) {
     
 #####################
 ### Relationship with width       
-for (k in 1:(NIA-Ninter)) { # here it is prediction for CPUE only (in total 5 sites: IAS03, IAS09, IAS06, IAS07, IAS10)
+for (k in 1:(NIA-Ninter-1)) { # here it is prediction for CPUE only (in total 5 sites: IAS03, IAS09, IAS06, IAS07, IAS10)
     lwidth_Oir[k] <- log(W_Oir[k]) # log transformation of river' width at each site
     k_widthOir[k] <- int_width_cut + width_coef_cut * lwidth_Oir[k]  # proportional relationship with width
     k_cpuOir[k] <- exp(k_widthOir[k])
     } # end of loop over sites not used for intercalibration
+
+# new station 2020
+lwidth_Oir[12] <- log(W_Oir[12]) # log transformation of river' width at each site
+k_widthOir[12] <- int_width_cut + width_coef_cut * lwidth_Oir[12]  # proportional relationship with width
+k_cpuOir[12] <- exp(k_widthOir[12])
     
-for (k in ((NIA-Ninter) + 1): NIA) { # sites sampled both by CPUE and successive removals
+for (k in (NIA-Ninter): (NIA-1)) { # sites sampled both by CPUE and successive removals
      lwidth_Oir[k] <- log(W_Oir[k]) # log transformation of river' width at each site
      k_widthOir[k] <- int_width + width_coef * lwidth_Oir[k]  # proportional relationship with width
      k_cpuOir[k] <- exp(k_widthOir[k])
@@ -316,8 +321,9 @@ for (m in 1:NIAinter) {
 ##########################################  
 # Mean per year and per river
 for (t in 1:Nyear) {
+  tmp[t] <- t - 33.5
     for (g in 1:10) { # Group within Oir river 
-        lambda_ynOir_gr[g,t] <- (exp(mu_ydOir[1] + year_dOir[t] + gryr_Oir[Group_an[g,t]]) * (StotRR[g] + coef_PC_cut * StotPC[g]))
+        lambda_ynOir_gr[g,t] <- exp(mu_ydOir[1] + year_dOir[t] + gryr_Oir[Group_an[g,t]]) * ((StotRR[g]+step(tmp[t])*StotRR[14]) + coef_PC_cut * (StotPC[g]+step(tmp[t])*StotPC[14]))
         n_Oir_gr[g,t] ~ dpois(lambda_ynOir_gr[g,t])
         } # end of loop over Oir river
 } # end of loop over years

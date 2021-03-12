@@ -14,6 +14,7 @@ parameters <-c(
   ,"p_B99" # decrease in probabilities of capture in Beauchamps in 1999
   #,"p_B00" # decrease in probabilities of capture in Beauchamps in 2000
   ,"p_B02" # decrease in probabilities of capture in Beauchamps in 2002
+  ,"p_B20" # decrease in probabilities of capture in Beauchamps in 2020 (COVID)
   ,"p_Btot" # global probabilities of capture in Beauchamps
   ,"epsilon_B" # standardized residuals in probability of capture in Beauchamps
   

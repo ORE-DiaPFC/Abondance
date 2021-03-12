@@ -85,6 +85,7 @@ fit <- bugs(
   ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
   ,DIC=FALSE
   ,codaPkg = FALSE, clearWD=FALSE
+  ,saveExec=TRUE
   #,debug=TRUE
   #,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:

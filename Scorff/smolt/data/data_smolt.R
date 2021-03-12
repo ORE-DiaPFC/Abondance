@@ -7,7 +7,7 @@ stade <- "STADE"
 #work.dir<-paste("Rep",site,stade,sep="/")
 #setwd(work.dir)
 
-
+Nyears = length(1995:year)
 
 ##-----------------------------DATA ----------------------------------##
 fish <- read.bugsdata(paste("data/data_",stade,".txt",sep=""))
@@ -21,6 +21,9 @@ Q <- read.table(paste("data/data_flow.txt",sep=""),header = TRUE, check.names=FA
 Q <- as.matrix(Q);mode(Q)<- "numeric"
 
 
-data <- c(fish,Q=list(Q))
+data <- c(Nyears=Nyears
+          ,fish
+          ,Q=list(Q)
+          )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep=""))

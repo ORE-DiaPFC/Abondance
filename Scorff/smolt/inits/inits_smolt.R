@@ -53,7 +53,9 @@ inits_fix <- list(
 # Cum_MP: # Annual number of unmarked smolt captured at Moulin des Princes
 Ntot =(data$Cm_ML * (data$Cm_MP + data$Cum_MP)) / data$Cm_MP
 Ntot[1:2] = (data$Cm_ML[1:2] * data$C_MP) / data$Cm_MP[1:2]
+Ntot[26]<-mean(Ntot, na.rm=TRUE) # COVID
 Ntot <- as.integer(Ntot)
+
 
 # METTRE A JOUR
 # lambda = c(
@@ -64,6 +66,9 @@ Ntot <- as.integer(Ntot)
 #  9000)
 lambda = Ntot
 
+#shape_lambda.inits <- 3.8
+#rate_lambda.inits <- 0.0005
+
 # METTRE A JOUR /!\ TAILLE MATRICE
 logit<-function(x) {log(x/(1-x))}
 logit_pi <- array(, dim=c(data$Nyears,2))
@@ -72,11 +77,19 @@ logit_pi[,1] <- logit(data$Cm_MP / data$Cm_ML)
 # Proba capture au Moulin du Leslé
 logit_pi[,2] <- logit(data$C_ML / Ntot)
 
+logit_pi[26,] <- logit_pi[25,] # COVID / replace with values from year before to initialize
+
+Cm_MP.inits <- rep(NA,data$Nyears)
+Cm_MP.inits[26]<- 0 # COVID, no capture
 
 inits_updated <- list(
   Ntot = Ntot
   , lambda = lambda
   , logit_pi = logit_pi
+  ,Cm_MP = Cm_MP.inits
+  #, shape_lambda=shape_lambda.inits
+  #,rate_lambda=rate_lambda.inits
+  
 )
 
 inits <- list(c( inits_fix,inits_updated))

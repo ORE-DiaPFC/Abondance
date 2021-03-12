@@ -1,9 +1,9 @@
 ################################################################################
 ###           Model of CMR data to estimate smolt population size         ###
 ###                 of Salmo salar in Bresle river.                         ###
-###                  Sabrina Servanty & Etienne Prévost                      ###
+###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                          March 2015                                      ###
-###               Modified by Mathieu Buoro and Etienne Prévost              ###
+###               Modified by Mathieu Buoro and Etienne Pr?vost              ###
 ###                          March 2020                                      ###
 ################################################################################
 
@@ -56,6 +56,7 @@ p_B96 ~ dbeta(1,1) # decrease for year 1996
 p_B99 ~ dbeta(1,1) # decrease for year 1999
 # p_B00 ~ dbeta(1,1) # decrease for year 2000
 p_B02 ~ dbeta(1,1) # decrease for year 2002
+p_B20 ~ dbeta(1,1) # decrease for year 2020
 
 ## Mean and standard deviation of trap efficiency at Eu
 logit_int_Eu ~ dunif(-10,10)    #intercept
@@ -116,12 +117,18 @@ for (t in 12:13) { # from 1997 to 1998
 
 p_Btot[14] <- p_B[14] * p_B99 #year 1996
 p_Btot[15] <- p_B[15]# p_Btot[15] <- p_B[15] * p_B00 #year 2000
-# pas d'estimation en 2001 (pas de données)
+# pas d'estimation en 2001 (pas de donn?es)
 p_Btot[16] <- p_B[16] * p_B02 #year 2002
 
-for (t in 17:NBeau) { #from 2003 to now on
+for (t in 17:33) { #from 2003 to now on
     p_Btot[t] <- p_B[t]
     } #end of loop over years
+
+p_Btot[34] <- p_B[34] * p_B20 #year 2020 (COVID)
+
+# for (t in 17:NBeau) { #from 2003 to now on
+#   p_Btot[t] <- p_B[t]
+# } #end of loop over years
 
 #############	        Prior for p_Eu[t]          #################
 for (t in 1:NEu) {  # For years when Eu is installed
@@ -240,15 +247,27 @@ Nesc[37] <- Cm_B[37] + num_B[37]  ### Total number of smolt escaping the river
 
 
 # From 2019 to now on: capture at Beauchamps and recapture at Eu using PIT-Tags
-for (t in 38:Nyears) {
-  C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
-  num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
+#for (t in 38:Nyears) {
+  # C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
+  # num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
+  # 
+  # Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
+  # Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+  # 
+  # Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
+#} # end of loop over years
 
-  Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
-  Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+C_B[38] ~ dbin (p_Btot[33],Ntot[38]) # number of fish captured at Beauchamps
+num_B[38] <- Ntot[38] - C_B[38] + Cum_B[38] # total unmarked fish
 
-  Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
-} # end of loop over years
+Cm_Eu[38] ~ dbin(p_Eu[25],Cm_B[38]) # marked fish
+Cum_Eu[38] ~ dbin(p_Eu[25], num_B[38]) #unmarked fish
+
+Nesc[38] <- Cm_B[38] + num_B[38]  ### Total number of smolt escaping the river
+
+# Year 2020: only capture at Beauchamps
+C_B[39] ~ dbin(p_Btot[34],Ntot[39]) # number of fish captured at Beauchamps in 2020 (COVID)
+Nesc[39] <- Ntot[39] - D_B[39]
 
 } # end of the model
 

@@ -1,7 +1,7 @@
 ################################################################################
 ###  Observation model for electric fishing data of juveniles                ###
 ###                       Salmo salar - Nivelle                              ###
-##                Model from Mélanie Brun et al. 2011                        ###
+##                Model from M?lanie Brun et al. 2011                        ###
 ###                  Annotated by Sabrina Servanty  ( February 2014)         ###
 ################################################################################
 
@@ -19,7 +19,7 @@ model {
     } ## End of loop over zones
 
 #############################################################################################
-## Released density of alevin (Dal) or alevins at the resorbed vesicle stage (Drv) in m-²ERR
+## Released density of alevin (Dal) or alevins at the resorbed vesicle stage (Drv) in m-?ERR
 ### Zone 3 is LN, zone 4 is HN, zone 5 is LUR, zone 7 is VHN, zone 8 is LAP
 ### AL is the number of alevins released per year and per zone
 ### RV is the number of alevins at the resorbed vesicle stage per year and per zone
@@ -129,7 +129,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   mu_dj_nat ~ dgamma(1,5) ## Mean density issued from reproduction
 
 ## Shape and inverse scale of a Gamma distribution for year effect
-  zeta_alpha_dj ~ dgamma(0.01,0.01)
+  zeta_alpha_dj ~ dgamma(0.01,0.01) I(0.01,)
 
 # Modifications des hyper-priors zone specifique pour les effets d'interaction zone X year
 # Zone 3 is the reference (LN)
@@ -160,7 +160,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
   for (y in 8:Y_last) { #from year 1992, zone 4 and 5 became accessible to adults
     for (z in 4:5) { # zone 4 = HN, zone 5 = LUR
-# Modif modèle Brun et al. (2011) : distribution zone spécifique de l'interaction year X zone
+# Modif mod?le Brun et al. (2011) : distribution zone sp?cifique de l'interaction year X zone
   gamma_dj[y,z] ~ dgamma(zeta_gamma_dj[z],eta_gamma_dj[z])        
     } ## End of loop over zones
   } ## End of loop over years

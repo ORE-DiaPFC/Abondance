@@ -3,7 +3,7 @@
 ###                 of Salmo salar in Oir river.                             ###
 ###                  Sabrina Servanty & Etienne Pr?vost                      ###
 ###                             June 2015                                    ###
-###                  Modified by Buoro M & Prévost E                         ###
+###                  Modified by Buoro M & Pr?vost E                         ###
 ###                             March 2020                                   ###
 ################################################################################
 
@@ -40,6 +40,8 @@ model {
   ## ------
   #################################################################################
   ### Mean and standard deviation of probabilities depending on sea age.
+  pi_MP20[1] <-1  # 2020 is NOT considered to be different for 1SW
+  pi_MP20[2] ~ dbeta(1,1)  # 2020 is considered to be different for MSW (COVID)
   for (a in 1:2) {
     # Probabilities to be captured at Moulin des Princes.
     pi_MP94[a] ~ dbeta(1,1)  # first year 1994 is considered to be different
@@ -52,6 +54,7 @@ model {
     logit_effort_R[a] ~ dunif(-10,10) # slope for recapture effort
     logit_flow_R[a] ~ dunif(-10,10) # slope for flow in December 
     
+    pi_R_pulsium[27,a]~dbeta(1,1)    
     # Probabilities to die (not from fishing). Depends on being marked or not and on sea age.
     for (u in 1:2) {
       mupi_D[a,u] ~ dbeta(1,1) 
@@ -378,15 +381,36 @@ model {
     C_MP[1,a] ~ dbin(p_MP94_tot[a],n[1,a])   # 1994 is considered to be different.
     n_um[1,a] <- n[1,a] - C_MP[1,a] + Cum_MP[1,a] ## Fish number avoiding the trap, not marked fish (n_um) in 1994
     
-    for (t in 2:Y) {
+    for (t in 2:26) {
     ## Likelihood on trapped fish number
       C_MP[t,a] ~ dbin(pi_MP[t,a],n[t,a]) 
        
     ## Fish number avoiding the trap, not marked fish (n_um). 
       n_um[t,a] <- n[t,a] - C_MP[t,a] + Cum_MP[t,a]
       } #end of loop over years
+    
+    ## 2020 COVID
+    ## Likelihood on trapped fish number
+    C_MP[27,a] ~ dbin(p_MP20_tot[a],n[27,a]) 
+    ## Fish number avoiding the trap, not marked fish (n_um). 
+    n_um[27,a] <- n[27,a] - C_MP[27,a] + Cum_MP[27,a]
+    
+    # for (t in 27:Y) {
+    #   ## Likelihood on trapped fish number
+    #   C_MP[t,a] ~ dbin(pi_MP[t,a],n[t,a]) 
+    #   
+    #   ## Fish number avoiding the trap, not marked fish (n_um). 
+    #   n_um[t,a] <- n[t,a] - C_MP[t,a] + Cum_MP[t,a]
+    # } #end of loop over years
+    
   } # end of loop over sea age category
+  
+  # 2020 COVID
+  p_MP20_tot[1] <- pi_MP[27,1] #* pi_MP20[1] # probability in 2020 to be observed is set to be smaller than later /!\ MSW only!!!
+  p_MP20_tot[2] <- pi_MP[27,2] * pi_MP20[2] # probability in 2020 to be observed is set to be smaller than later /!\ MSW only!!!
 
+
+  
     ########################################
     ## MORTALITY FROM FISHING
     ## --------------------------------
@@ -474,7 +498,7 @@ model {
 #     pi_uoF[t,a]<- 1 - pi_oF[t,a]
 #     Cuo_F[t,a] ~ dbin(pi_uoF[t,a],xC_F[t,a])
 
-#     Fish caught but unobserved à MP
+#     Fish caught but unobserved ? MP
 #     Total number of 1SW fish available to the fishery
       n_F[t,a] <- Cm_MP[t,a] + n_um[t,a]
       C_uoF[t,a] ~ dbin(pi_uoF[t,a],n_F[t,a])  # Changed in March 2020
@@ -558,6 +582,18 @@ model {
      Cum_R[t,a] ~ dbin(pi_R[t,a],e_um[t,a])
      } # end of loop over sea age
   } # end of loop over years
+
+      ## Electric fishing used from 2020 modeled as a multinomila with two recature event   
+#      for (t in 27:Y) {       
+      for (a in 1:2) {
+      e_m_bis[27,a] <- e_m[27,a]- Cm_R[27,a]
+      p_bis[27,a] <- pi_R_pulsium[27,a]/(1-pi_R[27,a])
+      Cm_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_m[27,a])
+      ## Unmarked fish
+      e_um_bis[27,a] <- e_um[27,a]- Cum_R[27,a]
+      Cum_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_um_bis[27,a])
+      } # end of loop over sea age
+#} # end of loop over years
 
   ############
   # ESCAPEMENT

@@ -42,11 +42,20 @@ cauchy = runif(1,1,2)#1.757
 # ajouter 13 "0" à la fin
 gryr_Oir_inits <- c(inits0$gryr_Oir, rep(0, 13))
 
+
 lambdaOir_cpu <- inits0$lambdaOir_cpu
-CPUE_IAno <- data$CPUE_IAno # extraire les 5 dernières valeurs
+CPUE_IAno <- data$CPUE_IAno # extraire les 5 premières valeurs
 CPUE_inter <- data$CPUE_inter # extraire les 6 dernières valeurs
-lambdaOir_cpu_tmp <- c(tail(CPUE_IAno,5), tail(CPUE_inter,6)) +1
+tmp<-tail(CPUE_IAno,6);tmp<-tmp[-6]
+lambdaOir_cpu_tmp <- c(tmp, tail(CPUE_inter,6)) +1
 lambdaOir_cpu_inits <- as.matrix(cbind(lambdaOir_cpu, lambdaOir_cpu_tmp))
+if(year=="2020") 
+  {
+  #lambdaOir_cpu_inits 
+  tmp <- rbind(lambdaOir_cpu_inits, rep(NA,ncol(lambdaOir_cpu_inits)))
+  tmp[12,34] <- 22+1
+  lambdaOir_cpu_inits <- tmp
+}
 
 log_dOir <- inits0$log_dOir
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
@@ -54,6 +63,13 @@ vect2 <- log(((tail(data$C1,23)*2)+10) / (tail(data$Srr,23)+ 0.2*tail(data$Spl,2
 vect3 <- log(lambdaOir_cpu_tmp)
 log_dOir_tmp <- c(vect1,vect2,vect3)
 log_dOir_inits <- as.matrix(cbind(log_dOir,log_dOir_tmp))
+
+if(year=="2020") 
+{
+  tmp <- rbind(log_dOir_inits, rep(NA,ncol(log_dOir_inits)))
+  tmp[69,34] <- tmp[68,34]
+  log_dOir_inits <- tmp 
+}
 
 lp_remgr_inits <- as.matrix(cbind(inits0$lp_remgr,rep(1,13)))
 
@@ -71,6 +87,13 @@ vect2 <- (tail(data$C1,23)*2)+10
 vect3 <- lambdaOir_cpu_tmp*2
 ntot_tmp <- c(vect1,vect2,vect3)
 ntot_inits <- as.matrix(cbind(inits0$ntot,ntot_tmp))
+if(year=="2020") 
+{
+  tmp <- rbind(ntot_inits, rep(NA,ncol(ntot_inits)))
+  tmp[69,34] <- tmp[68,34]
+  ntot_inits <- tmp 
+}
+
 
 year_dOir_inits <- c(inits0$year_dOir, 0)
 
@@ -78,15 +101,19 @@ year_dOir_inits <- c(inits0$year_dOir, 0)
 C1_inits <- c(inits0$C1, rep(NA,23))
 
 
-tmpC2 <- tail(data$C2,23) 
-tmpC1 <- tail(data$C1,23)
+tmpC2 <- tail(data$C2,23*2) 
+tmpC1 <- tail(data$C1,23*2)
 tmp=rep(NA,length(tmpC2))
 for (i in 1:length(tmp)){
   if(is.na(tmpC2[i])) tmp[i] <- as.integer(.2*tmpC1[i])
   if(!is.na(tmpC2[i])) tmp[i] <- NA
 }
-C2_inits <- c(inits0$C2, tmp)
-  
+
+id <- (length(inits0$C2)-22):length(inits0$C2)
+#C2_inits <- c(inits0$C2, tmp)
+C2_inits <- inits0$C2; C2_inits[id]<- tmp[1:23] # correction pour l'anne n-1
+C2_inits <- c(C2_inits, tail(tmp,23)) # ajout de la derniere annee
+
   
 inits_updated <- list(
   gryr_Oir = gryr_Oir_inits

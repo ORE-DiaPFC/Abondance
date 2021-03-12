@@ -1,0 +1,174 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  20000 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+mu_B          passed          1      0.859  
+sigmap_B      passed          1      0.688  
+logit_int_Eu  passed       6001      0.146  
+logit_flow_Eu passed          1      0.854  
+sigmap_Eu     passed          1      0.662  
+p_B95         passed          1      0.446  
+p_B96         passed          1      0.742  
+p_B99         passed          1      0.558  
+p_B02         passed          1      0.968  
+shape_lambda  passed          1      0.794  
+rate_lambda   passed          1      0.731  
+mean_gamma    passed          1      0.737  
+var_gamma     passed          1      0.746  
+p_keep        passed          1      0.851  
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+mu_B          passed     3.04e-01 1.10e-03 
+sigmap_B      passed     5.66e-01 3.89e-03 
+logit_int_Eu  passed    -2.54e+00 1.52e-03 
+logit_flow_Eu passed    -7.58e-02 1.49e-03 
+sigmap_Eu     passed     3.37e-01 1.14e-03 
+p_B95         passed     1.88e-01 9.59e-03 
+p_B96         passed     9.73e-02 1.57e-03 
+p_B99         passed     2.46e-01 2.52e-03 
+p_B02         passed     2.26e-01 1.07e-02 
+shape_lambda  passed     2.43e+00 2.28e-02 
+rate_lambda   passed     6.58e-04 5.38e-06 
+mean_gamma    passed     3.74e+03 1.51e+01 
+var_gamma     passed     6.29e+06 6.06e+04 
+p_keep        passed     8.03e-01 1.75e-03 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+mu_B          passed       4001      0.130  
+sigmap_B      passed          1      0.188  
+logit_int_Eu  passed          1      0.752  
+logit_flow_Eu passed          1      0.854  
+sigmap_Eu     passed          1      0.799  
+p_B95         passed          1      0.283  
+p_B96         passed          1      0.144  
+p_B99         passed          1      0.056  
+p_B02         passed          1      0.398  
+shape_lambda  passed          1      0.304  
+rate_lambda   passed          1      0.105  
+mean_gamma    passed          1      0.067  
+var_gamma     passed       4001      0.259  
+p_keep        passed          1      0.968  
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+mu_B          passed     3.04e-01 1.28e-03 
+sigmap_B      passed     5.71e-01 4.56e-03 
+logit_int_Eu  passed    -2.54e+00 1.25e-03 
+logit_flow_Eu passed    -7.76e-02 1.47e-03 
+sigmap_Eu     passed     3.37e-01 1.11e-03 
+p_B95         passed     1.98e-01 9.50e-03 
+p_B96         passed     9.96e-02 1.70e-03 
+p_B99         passed     2.43e-01 2.65e-03 
+p_B02         passed     2.19e-01 9.97e-03 
+shape_lambda  passed     2.43e+00 2.45e-02 
+rate_lambda   passed     6.58e-04 6.14e-06 
+mean_gamma    passed     3.74e+03 1.43e+01 
+var_gamma     passed     6.27e+06 7.09e+04 
+p_keep        passed     8.03e-01 1.73e-03 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
+       0.1988       -2.2645        0.5283        0.4394       -0.2187 
+        p_B95         p_B96         p_B99         p_B02  shape_lambda 
+       0.4981       -0.7495       -1.0200       -0.5357       -0.1118 
+  rate_lambda    mean_gamma     var_gamma        p_keep 
+      -0.1383        0.1389        0.2028       -1.0399 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
+     -0.57921       0.03451      -0.09123       0.60392      -0.98487 
+        p_B95         p_B96         p_B99         p_B02  shape_lambda 
+     -0.08852       0.90406       0.58648       0.66370      -0.71112 
+  rate_lambda    mean_gamma     var_gamma        p_keep 
+     -0.49270      -0.35785       0.38186       0.57703 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ mu_B          600      821200  3746          219      
+ sigmap_B      600      859400  3746          229      
+ logit_int_Eu  300      407000  3746          109      
+ logit_flow_Eu 200      388100  3746          104      
+ sigmap_Eu     300      413100  3746          110      
+ p_B95         2000     2112800 3746          564      
+ p_B96         600      820200  3746          219      
+ p_B99         300      414500  3746          111      
+ p_B02         3500     4105500 3746         1100      
+ shape_lambda  600      890200  3746          238      
+ rate_lambda   300      407800  3746          109      
+ mean_gamma    200      390100  3746          104      
+ var_gamma     200      387200  3746          103      
+ p_keep        200      380200  3746          101      
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ mu_B          900      1143000 3746         305       
+ sigmap_B      300      419200  3746         112       
+ logit_int_Eu  200      399400  3746         107       
+ logit_flow_Eu 300      403400  3746         108       
+ sigmap_Eu     200      383400  3746         102       
+ p_B95         3000     3358200 3746         896       
+ p_B96         600      863600  3746         231       
+ p_B99         300      421400  3746         112       
+ p_B02         2500     2561000 3746         684       
+ shape_lambda  600      842000  3746         225       
+ rate_lambda   300      415700  3746         111       
+ mean_gamma    200      384700  3746         103       
+ var_gamma     300      403100  3746         108       
+ p_keep        200      384900  3746         103       
+
+

@@ -40,5 +40,6 @@ C_U[,1]	C_U[,2]	C_U[,3]	C_U[,4]	Cum_U[,1]	Cum_U[,2]	Cum_U[,3]	Cum_U[,4]	Cm_U[,1]
 30	16	2	9	NA	NA	NA	NA	30	16	2	9
 9	8	4	16	NA	NA	NA	NA	9	8	4	16 
 50	24	2	9	NA	NA	NA	NA	50	24	2	9 
-# 2019
+14	12	8	19	NA	NA	NA	NA	14	12	8	19 
+# 2020
 #END											

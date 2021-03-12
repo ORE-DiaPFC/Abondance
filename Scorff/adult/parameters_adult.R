@@ -14,6 +14,8 @@ parameters <-c(
   ,"logit_flow_R" # slope for flow data in probability of recapture during reproduction
   ,"sigmapi_R" # standard deviation of probabilty of recapture during reproduction
   
+  ,"pi_R_pulsium" # probability recapture during reproduction using electric fishing (pulsium)
+  
   ,"mupi_D" # mean probability to die from natural cause
   ,"sigmapi_D" # standard deviation of probability of dying from natural cause 
   ,"rho_D" # correlation coefficient between probability of dying between marked and unmarked depending on sea age
@@ -43,6 +45,8 @@ parameters <-c(
   ,"pi_MP" # probability of capture at Moulin des Princes
   ,"pi_MP94" # decrease in probability of capture in 1994
   ,"p_MP94_tot" # total probability of capture in 1994
+  ,"pi_MP20" # decrease in probability of capture in 2020 COVID
+  ,"p_MP20_tot" # total probability of capture in 2020 COVID
   ,"epsilon_MP" # standardized residuals of probability of capture at MP
   
   ,"pi_oF" # probability to recover a caught fish from fishing (from 1994 to 2002

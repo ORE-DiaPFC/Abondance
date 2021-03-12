@@ -6,6 +6,7 @@ hyperparameters <-c(
   "int_width" # intercept of linear relationship between CPUE and density 
   ,"width_coef" # proportional coefficient with width
   ,"rate_lcpu" # inverse scale of gamma distribution
+  ,"p_cpue"
   
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS
@@ -18,6 +19,12 @@ hyperparameters <-c(
   
   # Site effect (log scale
   ,"sigma_siteSc" # standard deviation
+  
+  ,"mup_rem"
+  ,"sd_prem"
+  ,"eps"
+  ,"mu_d"
+  ,"rate_d"
   
   ####################
   # DENSITY

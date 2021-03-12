@@ -21,7 +21,7 @@ hyperparameters <-c(
   ,"mu_dj_nat" # Mean density issued from reproduction
   ,"delta" # Juvenile survival depending on stage
   ,"k_cpue" # Coefficient of proportionality between mean CPUE and density
-  #,"eta_cpue" # Inverse scale parameter of gamma distribution for mean CPUE
+  ,"eta_cpue" # Inverse scale parameter of gamma distribution for mean CPUE
   ,"rho_s"  # nonlinear relationshihp between flow and surface
   ,"sd_s_rec" # Standard deviation of the recent surface of stations
   ,"p_cpue" # Non informative prior used to parameterize mean CPUE 

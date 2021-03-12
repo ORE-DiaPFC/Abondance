@@ -3,8 +3,12 @@ parameters <-c(
   "int_width" # intercept of linear relationship between CPUE and density 
   ,"width_coef" # proportional coefficient with width
   ,"rate_lcpu" # inverse scale of gamma distribution
-  
-  
+  ,"p_cpue"
+  ,"mup_rem"
+  ,"sd_prem"
+  ,"eps"
+  ,"mu_d"
+  ,"rate_d"
   
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS

@@ -1,11 +1,11 @@
 ---
 title: "Bilan_Oir"
-author: "Mathieu Buoro & Etienne Prévost"
+author: "Mathieu Buoro, Frédéric Marchand & Etienne Prévost"
 date: "4/14/2020"
 output:
-  word_document: default
   html_document: 
     theme: paper
+  word_document: default
   pdf_document: default
 ---
 
@@ -14,17 +14,28 @@ wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Oir"
-year <- 2019
+year <- 2020
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 #mycol <- paste0(COL, 50)
 #mycol <- COL
-##________________________SCORFF (starting in 1994)
-
 
 
 ```
+
+### NOTA BENE  
+
+2021:
+- Tacons : harmoniser  priorcpue : rate_cpue -> "p_cpue" (voir Nivelle (L. 296) et Scorff)
+- Réviser les surfaces d'habitats recalculer par Fred Lange
+
+
+2020: 
+- Ouverture d’un barrage en amont qui a rendu la partie haute accessible (1ers 0+ en 2020). Une station IAS en plus qu’on avait mis en place depuis plusieurs années en prévision (absence de saumon avant 2020).  
+- Pas de pb de piégeage lié au covid  
+- ajout groupe IAS tacons.  
+
 
 ### TABLEAU BILAN
 

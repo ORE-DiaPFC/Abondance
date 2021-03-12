@@ -16,4 +16,5 @@ StotPC[]	StotRR[]
 7.1075	20.6625	#	Group 11	Moulin du bois (mbam1, mbam2, mbav1, mbav2)
 17.5275	24.5275	#	Group 12	Pont Levesque: plam1, plam2, plav1, plav2, IAS11
 5.51	24.95	#	Group 13	La Roche RR01 ? RR20
+19.87	22.11	#	Extension Group 10	IAS13 a partir de 2020
 #END

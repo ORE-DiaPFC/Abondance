@@ -1,0 +1,140 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  20000 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed        1        0.3644 
+mup_rem       passed        1        0.4050 
+int_width     passed        1        0.1003 
+width_coef    failed       NA        0.0173 
+rate_lcpu     passed        1        0.9862 
+sigma_dOir    passed        1        0.7143 
+sigma_yOir    passed        1        0.2039 
+sigma_gryrOir passed        1        0.2961 
+coef_PC       passed        1        0.7491 
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.556 0.009169 
+mup_rem       passed     0.804 0.000254 
+int_width     passed    -0.778 0.003711 
+width_coef    <NA>          NA       NA 
+rate_lcpu     passed     0.615 0.003799 
+sigma_dOir    passed     0.726 0.000359 
+sigma_yOir    passed     1.187 0.003271 
+sigma_gryrOir passed     0.889 0.000946 
+coef_PC       passed     0.128 0.000844 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed          1      0.1147 
+mup_rem       passed       4001      0.0617 
+int_width     passed          1      0.4655 
+width_coef    passed          1      0.5532 
+rate_lcpu     passed          1      0.8923 
+sigma_dOir    passed       4001      0.0508 
+sigma_yOir    passed       6001      0.1065 
+sigma_gryrOir passed          1      0.2721 
+coef_PC       passed          1      0.6649 
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.560 0.009544 
+mup_rem       passed     0.804 0.000269 
+int_width     passed    -0.775 0.003550 
+width_coef    passed     0.789 0.002735 
+rate_lcpu     passed     0.614 0.003927 
+sigma_dOir    passed     0.726 0.000403 
+sigma_yOir    passed     1.184 0.003716 
+sigma_gryrOir passed     0.890 0.001000 
+coef_PC       passed     0.128 0.000832 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
+     -0.47024       1.23388       0.13130       0.20777      -0.75515 
+   sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
+     -0.59221      -1.38970       0.77780      -0.09269 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu 
+       1.4570       -1.6171       -1.5636        1.2892        0.4865 
+   sigma_dOir    sigma_yOir sigma_gryrOir       coef_PC 
+      -0.9699        0.6819       -1.7280       -0.1598 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+               Burn-in  Total  Lower bound  Dependence
+               (M)      (N)    (Nmin)       factor (I)
+ sd_prem       780      881940 3746         235.0     
+ mup_rem       60       79840  3746          21.3     
+ int_width     120      144690 3746          38.6     
+ width_coef    80       106420 3746          28.4     
+ rate_lcpu     20       39740  3746          10.6     
+ sigma_dOir    20       37530  3746          10.0     
+ sigma_yOir    20       39610  3746          10.6     
+ sigma_gryrOir 30       41280  3746          11.0     
+ coef_PC       90       128460 3746          34.3     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ sd_prem       1180     1293170 3746         345.0     
+ mup_rem       30       44830   3746          12.0     
+ int_width     100      109860  3746          29.3     
+ width_coef    70       75760   3746          20.2     
+ rate_lcpu     30       40610   3746          10.8     
+ sigma_dOir    20       38470   3746          10.3     
+ sigma_yOir    30       42970   3746          11.5     
+ sigma_gryrOir 20       39910   3746          10.7     
+ coef_PC       100      115840  3746          30.9     
+
+

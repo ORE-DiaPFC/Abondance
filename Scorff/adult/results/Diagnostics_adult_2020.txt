@@ -1,0 +1,396 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  11219 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                                 
+                   Stationarity start     p-value
+                   test         iteration        
+logit_int_MP[1]    passed          1      0.32294
+logit_int_MP[2]    passed          1      0.37107
+logit_flow_MP[1]   passed          1      0.79708
+logit_flow_MP[2]   passed          1      0.31563
+sigmapi_MP         passed          1      0.95167
+mupi_F[1,1]        passed          1      0.54115
+mupi_F[1,2]        passed          1      0.13950
+mupi_F[2,1]        passed          1      0.36550
+mupi_F[2,2]        passed          1      0.17669
+sigmapi_F          passed          1      0.17606
+rho_F              passed          1      0.71970
+logit_int_R[1]     passed          1      0.58225
+logit_int_R[2]     passed          1      0.50545
+logit_effort_R[1]  passed          1      0.40759
+logit_effort_R[2]  passed          1      0.16331
+logit_flow_R[1]    failed         NA      0.00755
+logit_flow_R[2]    passed          1      0.36147
+sigmapi_R          passed          1      0.35645
+pi_R_pulsium[27,1] passed       2245      0.09883
+pi_R_pulsium[27,2] passed          1      0.52483
+mupi_D[1,1]        passed          1      0.69483
+mupi_D[1,2]        passed          1      0.86091
+mupi_D[2,1]        passed          1      0.07113
+mupi_D[2,2]        passed          1      0.13125
+rho_D              passed          1      0.64224
+mupi_oF            passed       2245      0.35908
+sigmapi_oF         passed       2245      0.38411
+diffF_1SW          passed          1      0.23282
+diffF_MSW          passed          1      0.40410
+diff1SW            passed       1123      0.27471
+diffMSW            passed          1      0.36406
+pi_MP94[1]         passed          1      0.59643
+pi_MP94[2]         passed          1      0.57538
+p_MP94_tot[1]      passed          1      0.31610
+p_MP94_tot[2]      passed          1      0.43003
+pi_MP20[2]         passed          1      0.90397
+p_MP20_tot[2]      passed          1      0.81714
+pi_oD              passed          1      0.36194
+shape_lambda       passed          1      0.37342
+rate_lambda        passed          1      0.29332
+lambda_tot0        passed          1      0.92019
+Plambda0[1]        passed          1      0.38321
+Plambda0[2]        passed          1      0.38318
+s[1]               passed          1      0.32228
+s[2]               passed          1      0.36111
+                                                
+                   Halfwidth Mean      Halfwidth
+                   test                         
+logit_int_MP[1]    passed      0.75429 2.59e-03 
+logit_int_MP[2]    passed     -0.25473 4.69e-03 
+logit_flow_MP[1]   passed     -0.15401 2.25e-03 
+logit_flow_MP[2]   passed     -0.31221 2.51e-03 
+sigmapi_MP         passed      0.35299 2.37e-03 
+mupi_F[1,1]        passed      0.06040 1.45e-04 
+mupi_F[1,2]        passed      0.07541 2.52e-04 
+mupi_F[2,1]        passed      0.07518 2.51e-04 
+mupi_F[2,2]        passed      0.16762 8.56e-04 
+sigmapi_F          passed      0.60746 1.66e-03 
+rho_F              passed      0.50724 4.10e-03 
+logit_int_R[1]     passed     -2.15001 1.73e-03 
+logit_int_R[2]     passed     -1.95159 6.01e-03 
+logit_effort_R[1]  passed      0.27500 1.62e-03 
+logit_effort_R[2]  passed      0.27396 3.99e-03 
+logit_flow_R[1]    <NA>             NA       NA 
+logit_flow_R[2]    passed     -0.16559 3.24e-03 
+sigmapi_R          passed      0.25913 1.21e-03 
+pi_R_pulsium[27,1] passed      0.04203 2.52e-04 
+pi_R_pulsium[27,2] passed      0.05629 1.02e-03 
+mupi_D[1,1]        passed      0.01350 4.55e-04 
+mupi_D[1,2]        passed      0.00800 2.90e-04 
+mupi_D[2,1]        passed      0.10364 3.50e-03 
+mupi_D[2,2]        passed      0.04768 2.21e-03 
+rho_D              passed      0.86375 4.84e-03 
+mupi_oF            passed      0.67032 1.26e-03 
+sigmapi_oF         passed      1.02136 6.45e-03 
+diffF_1SW          passed     -0.23621 3.66e-03 
+diffF_MSW          passed     -0.90948 6.52e-03 
+diff1SW            passed      0.57062 1.43e-02 
+diffMSW            passed      0.88137 2.48e-02 
+pi_MP94[1]         passed      0.52010 3.67e-03 
+pi_MP94[2]         passed      0.33787 3.61e-03 
+p_MP94_tot[1]      passed      0.31954 2.11e-03 
+p_MP94_tot[2]      passed      0.10375 1.12e-03 
+pi_MP20[2]         passed      0.31461 3.09e-03 
+p_MP20_tot[2]      passed      0.13393 1.28e-03 
+pi_oD              passed      0.19864 4.89e-03 
+shape_lambda       passed      5.68027 3.59e-02 
+rate_lambda        passed      0.00914 5.97e-05 
+lambda_tot0        passed    578.48584 4.58e+00 
+Plambda0[1]        passed      0.84640 1.35e-03 
+Plambda0[2]        passed      0.15360 1.35e-03 
+s[1]               passed     20.10384 1.21e-01 
+s[2]               passed      3.92115 2.21e-02 
+
+[[2]]
+                                                 
+                   Stationarity start     p-value
+                   test         iteration        
+logit_int_MP[1]    passed          1      0.7060 
+logit_int_MP[2]    passed          1      0.7006 
+logit_flow_MP[1]   passed          1      0.7282 
+logit_flow_MP[2]   passed          1      0.8637 
+sigmapi_MP         passed          1      0.9091 
+mupi_F[1,1]        passed          1      0.5685 
+mupi_F[1,2]        passed          1      0.2310 
+mupi_F[2,1]        passed          1      0.2912 
+mupi_F[2,2]        passed          1      0.2850 
+sigmapi_F          passed          1      0.4113 
+rho_F              passed          1      0.4390 
+logit_int_R[1]     passed          1      0.5080 
+logit_int_R[2]     passed          1      0.6253 
+logit_effort_R[1]  passed          1      0.1438 
+logit_effort_R[2]  passed          1      0.8094 
+logit_flow_R[1]    passed          1      0.4746 
+logit_flow_R[2]    passed       1123      0.0662 
+sigmapi_R          passed          1      0.4610 
+pi_R_pulsium[27,1] passed          1      0.4902 
+pi_R_pulsium[27,2] passed          1      0.3820 
+mupi_D[1,1]        passed          1      0.3960 
+mupi_D[1,2]        passed          1      0.4960 
+mupi_D[2,1]        passed          1      0.3958 
+mupi_D[2,2]        passed          1      0.2703 
+rho_D              passed          1      0.3994 
+mupi_oF            passed          1      0.6234 
+sigmapi_oF         passed          1      0.9651 
+diffF_1SW          passed          1      0.0821 
+diffF_MSW          passed          1      0.7255 
+diff1SW            passed          1      0.7498 
+diffMSW            passed          1      0.1750 
+pi_MP94[1]         passed          1      0.3386 
+pi_MP94[2]         passed          1      0.6260 
+p_MP94_tot[1]      passed          1      0.2532 
+p_MP94_tot[2]      passed          1      0.8186 
+pi_MP20[2]         passed          1      0.2913 
+p_MP20_tot[2]      passed          1      0.3497 
+pi_oD              passed          1      0.6918 
+shape_lambda       passed          1      0.5591 
+rate_lambda        passed          1      0.5433 
+lambda_tot0        passed          1      0.7274 
+Plambda0[1]        passed          1      0.7388 
+Plambda0[2]        passed          1      0.7388 
+s[1]               passed          1      0.7562 
+s[2]               passed          1      0.9862 
+                                                
+                   Halfwidth Mean      Halfwidth
+                   test                         
+logit_int_MP[1]    passed      0.75201 2.57e-03 
+logit_int_MP[2]    passed     -0.24975 4.90e-03 
+logit_flow_MP[1]   passed     -0.15497 2.20e-03 
+logit_flow_MP[2]   passed     -0.31292 2.40e-03 
+sigmapi_MP         passed      0.35266 2.37e-03 
+mupi_F[1,1]        passed      0.06026 1.45e-04 
+mupi_F[1,2]        passed      0.07528 2.41e-04 
+mupi_F[2,1]        passed      0.07540 2.52e-04 
+mupi_F[2,2]        passed      0.16893 9.52e-04 
+sigmapi_F          passed      0.60863 1.84e-03 
+rho_F              passed      0.51302 3.97e-03 
+logit_int_R[1]     passed     -2.15238 1.85e-03 
+logit_int_R[2]     passed     -1.94755 6.71e-03 
+logit_effort_R[1]  passed      0.27700 1.53e-03 
+logit_effort_R[2]  passed      0.27178 3.72e-03 
+logit_flow_R[1]    passed     -0.34031 1.83e-03 
+logit_flow_R[2]    passed     -0.16776 3.50e-03 
+sigmapi_R          passed      0.25920 1.26e-03 
+pi_R_pulsium[27,1] passed      0.04211 2.03e-04 
+pi_R_pulsium[27,2] passed      0.05622 1.04e-03 
+mupi_D[1,1]        passed      0.01338 5.21e-04 
+mupi_D[1,2]        passed      0.00789 3.44e-04 
+mupi_D[2,1]        passed      0.10484 3.97e-03 
+mupi_D[2,2]        passed      0.04851 1.95e-03 
+rho_D              passed      0.85881 4.94e-03 
+mupi_oF            passed      0.66884 1.14e-03 
+sigmapi_oF         passed      1.01576 5.53e-03 
+diffF_1SW          passed     -0.23685 3.67e-03 
+diffF_MSW          passed     -0.91590 6.81e-03 
+diff1SW            passed      0.56851 1.43e-02 
+diffMSW            passed      0.86623 1.60e-02 
+pi_MP94[1]         passed      0.51762 3.68e-03 
+pi_MP94[2]         passed      0.34068 3.57e-03 
+p_MP94_tot[1]      passed      0.31671 2.04e-03 
+p_MP94_tot[2]      passed      0.10504 1.03e-03 
+pi_MP20[2]         passed      0.31356 3.08e-03 
+p_MP20_tot[2]      passed      0.13383 1.26e-03 
+pi_oD              passed      0.20199 5.53e-03 
+shape_lambda       passed      5.70557 3.80e-02 
+rate_lambda        passed      0.00919 6.36e-05 
+lambda_tot0        passed    576.48837 4.51e+00 
+Plambda0[1]        passed      0.84750 1.28e-03 
+Plambda0[2]        passed      0.15250 1.28e-03 
+s[1]               passed     20.24796 1.23e-01 
+s[2]               passed      3.92649 2.24e-02 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   logit_int_MP[1]    logit_int_MP[2]   logit_flow_MP[1]   logit_flow_MP[2] 
+          -0.55077            0.11713            0.11588           -0.63163 
+        sigmapi_MP        mupi_F[1,1]        mupi_F[1,2]        mupi_F[2,1] 
+           0.65556            1.81204            0.50579            0.88863 
+       mupi_F[2,2]          sigmapi_F              rho_F     logit_int_R[1] 
+           1.38073           -1.37232           -1.21218            0.14292 
+    logit_int_R[2]  logit_effort_R[1]  logit_effort_R[2]    logit_flow_R[1] 
+           0.22992           -0.26526           -1.75175            2.12872 
+   logit_flow_R[2]          sigmapi_R pi_R_pulsium[27,1] pi_R_pulsium[27,2] 
+          -0.22273           -0.61791            0.53968            0.88999 
+       mupi_D[1,1]        mupi_D[1,2]        mupi_D[2,1]        mupi_D[2,2] 
+          -0.01838            0.77263           -1.16138           -0.47247 
+             rho_D            mupi_oF         sigmapi_oF          diffF_1SW 
+           0.41796           -0.97636           -0.74610            0.96310 
+         diffF_MSW            diff1SW            diffMSW         pi_MP94[1] 
+          -0.61072           -3.15292           -1.18924           -0.75077 
+        pi_MP94[2]      p_MP94_tot[1]      p_MP94_tot[2]         pi_MP20[2] 
+           0.67491           -0.45431            0.62688            0.12747 
+     p_MP20_tot[2]              pi_oD       shape_lambda        rate_lambda 
+          -0.08035            0.76357           -0.53890           -0.56819 
+       lambda_tot0        Plambda0[1]        Plambda0[2]               s[1] 
+          -0.25425            1.14652           -1.14666            2.32242 
+              s[2] 
+           1.65742 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   logit_int_MP[1]    logit_int_MP[2]   logit_flow_MP[1]   logit_flow_MP[2] 
+         -0.029912           1.119867          -0.006557           0.812332 
+        sigmapi_MP        mupi_F[1,1]        mupi_F[1,2]        mupi_F[2,1] 
+         -0.707573          -0.545357           0.544259           0.809201 
+       mupi_F[2,2]          sigmapi_F              rho_F     logit_int_R[1] 
+          1.299615          -1.766156          -0.448818           0.138987 
+    logit_int_R[2]  logit_effort_R[1]  logit_effort_R[2]    logit_flow_R[1] 
+          1.144239           0.513588           1.444156           0.784817 
+   logit_flow_R[2]          sigmapi_R pi_R_pulsium[27,1] pi_R_pulsium[27,2] 
+          2.457006          -0.372789           0.038651          -0.228943 
+       mupi_D[1,1]        mupi_D[1,2]        mupi_D[2,1]        mupi_D[2,2] 
+         -0.262931           0.015254           0.109998           0.747756 
+             rho_D            mupi_oF         sigmapi_oF          diffF_1SW 
+          0.410449          -0.613864          -0.484874          -0.833654 
+         diffF_MSW            diff1SW            diffMSW         pi_MP94[1] 
+         -0.816358           0.264605          -1.842567          -0.312328 
+        pi_MP94[2]      p_MP94_tot[1]      p_MP94_tot[2]         pi_MP20[2] 
+         -0.232655          -0.288349           1.105689           0.458006 
+     p_MP20_tot[2]              pi_oD       shape_lambda        rate_lambda 
+          1.012667          -0.255784          -0.394757          -0.031201 
+       lambda_tot0        Plambda0[1]        Plambda0[2]               s[1] 
+         -0.309458          -0.191284           0.191295           1.046176 
+              s[2] 
+          0.222408 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                           
+                    Burn-in  Total  Lower bound  Dependence
+                    (M)      (N)    (Nmin)       factor (I)
+ logit_int_MP[1]    60       83800  3746          22.4     
+ logit_int_MP[2]    120      169400 3746          45.2     
+ logit_flow_MP[1]   40       79020  3746          21.1     
+ logit_flow_MP[2]   60       81980  3746          21.9     
+ sigmapi_MP         160      204880 3746          54.7     
+ mupi_F[1,1]        40       75640  3746          20.2     
+ mupi_F[1,2]        40       79600  3746          21.2     
+ mupi_F[2,1]        40       76740  3746          20.5     
+ mupi_F[2,2]        60       88460  3746          23.6     
+ sigmapi_F          60       80200  3746          21.4     
+ rho_F              60       80780  3746          21.6     
+ logit_int_R[1]     40       78920  3746          21.1     
+ logit_int_R[2]     120      175440 3746          46.8     
+ logit_effort_R[1]  40       77300  3746          20.6     
+ logit_effort_R[2]  80       96380  3746          25.7     
+ logit_flow_R[1]    40       76420  3746          20.4     
+ logit_flow_R[2]    60       89500  3746          23.9     
+ sigmapi_R          60       82840  3746          22.1     
+ pi_R_pulsium[27,1] 40       79020  3746          21.1     
+ pi_R_pulsium[27,2] 40       76180  3746          20.3     
+ mupi_D[1,1]        160      202640 3746          54.1     
+ mupi_D[1,2]        180      241440 3746          64.5     
+ mupi_D[2,1]        120      165040 3746          44.1     
+ mupi_D[2,2]        120      183440 3746          49.0     
+ rho_D              80       101520 3746          27.1     
+ mupi_oF            40       74540  3746          19.9     
+ sigmapi_oF         40       79020  3746          21.1     
+ diffF_1SW          40       78340  3746          20.9     
+ diffF_MSW          60       85880  3746          22.9     
+ diff1SW            120      161960 3746          43.2     
+ diffMSW            80       98560  3746          26.3     
+ pi_MP94[1]         80       99500  3746          26.6     
+ pi_MP94[2]         40       77300  3746          20.6     
+ p_MP94_tot[1]      160      223880 3746          59.8     
+ p_MP94_tot[2]      40       77300  3746          20.6     
+ pi_MP20[2]         40       76180  3746          20.3     
+ p_MP20_tot[2]      40       75640  3746          20.2     
+ pi_oD              600      768600 3746         205.0     
+ shape_lambda       40       80060  3746          21.4     
+ rate_lambda        60       82660  3746          22.1     
+ lambda_tot0        60       80200  3746          21.4     
+ Plambda0[1]        60       81380  3746          21.7     
+ Plambda0[2]        40       79020  3746          21.1     
+ s[1]               40       76740  3746          20.5     
+ s[2]               40       78440  3746          20.9     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                           
+                    Burn-in  Total  Lower bound  Dependence
+                    (M)      (N)    (Nmin)       factor (I)
+ logit_int_MP[1]    60       81980  3746          21.9     
+ logit_int_MP[2]    80       103840 3746          27.7     
+ logit_flow_MP[1]   60       82800  3746          22.1     
+ logit_flow_MP[2]   40       76740  3746          20.5     
+ sigmapi_MP         160      195000 3746          52.1     
+ mupi_F[1,1]        20       75300  3746          20.1     
+ mupi_F[1,2]        40       76100  3746          20.3     
+ mupi_F[2,1]        40       78440  3746          20.9     
+ mupi_F[2,2]        60       84640  3746          22.6     
+ sigmapi_F          40       77300  3746          20.6     
+ rho_F              40       78440  3746          20.9     
+ logit_int_R[1]     60       80740  3746          21.6     
+ logit_int_R[2]     120      189600 3746          50.6     
+ logit_effort_R[1]  40       77540  3746          20.7     
+ logit_effort_R[2]  120      165040 3746          44.1     
+ logit_flow_R[1]    40       79600  3746          21.2     
+ logit_flow_R[2]    60       87780  3746          23.4     
+ sigmapi_R          60       90620  3746          24.2     
+ pi_R_pulsium[27,1] 40       76560  3746          20.4     
+ pi_R_pulsium[27,2] 40       77300  3746          20.6     
+ mupi_D[1,1]        160      189080 3746          50.5     
+ mupi_D[1,2]        160      194640 3746          52.0     
+ mupi_D[2,1]        80       94960  3746          25.3     
+ mupi_D[2,2]        60       90160  3746          24.1     
+ rho_D              120      175560 3746          46.9     
+ mupi_oF            40       75380  3746          20.1     
+ sigmapi_oF         40       76180  3746          20.3     
+ diffF_1SW          40       76740  3746          20.5     
+ diffF_MSW          60       81980  3746          21.9     
+ diff1SW            80       92200  3746          24.6     
+ diffMSW            80       92880  3746          24.8     
+ pi_MP94[1]         120      162320 3746          43.3     
+ pi_MP94[2]         40       78440  3746          20.9     
+ p_MP94_tot[1]      120      140380 3746          37.5     
+ p_MP94_tot[2]      40       78440  3746          20.9     
+ pi_MP20[2]         40       76740  3746          20.5     
+ p_MP20_tot[2]      20       75060  3746          20.0     
+ pi_oD              720      762000 3746         203.0     
+ shape_lambda       40       78440  3746          20.9     
+ rate_lambda        40       79600  3746          21.2     
+ lambda_tot0        60       82580  3746          22.0     
+ Plambda0[1]        40       79240  3746          21.2     
+ Plambda0[2]        60       81980  3746          21.9     
+ s[1]               40       78000  3746          20.8     
+ s[2]               40       77860  3746          20.8     
+
+

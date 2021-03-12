@@ -1,11 +1,11 @@
 ---
 title: "Bilan_Bresle"
-author: "Mathieu Buoro & Etienne Prévost"
+author: "Mathieu Buoro, Quentin Josset & Etienne Prévost"
 date: "4/14/2020"
 output:
-  pdf_document: default
-  word_document: default
   html_document: default
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,13 +13,28 @@ wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Bresle"
-year <- 2019
+year <- 2020
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
-
 ```
+
+### NOTA BENE  
+
+#2020  
+- Smolt: la saison de piégeage en dévalaison a couru du 2/12/2019 au 16/3/2020, avant l'arrêt confinement COVID.  
+- Adulte: reprise piegage le 11 mai, pas de PHM n'ont pu être capture  
+- Prise en compte de l'arret des pièges pendant les weekends (depuis 2018) dans les modèles  
+
+#2019  
+- Smolt: arret piegeage weekend / marquage pit (test de mortalite marquage)  
+
+#2018  
+- Smolt: arret piegeage weekend / transition marquage pit   
+
+
+
 
 ### TABLEAU BILAN
 

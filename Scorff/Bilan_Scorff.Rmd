@@ -1,11 +1,11 @@
 ---
 title: "Bilan_Scorff"
-author: "Mathieu Buoro & Etienne Prévost"
-date: "4/14/2020"
+author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
+date: "4/14/2021"
 output:
-  html_document: default
-  word_document: default
   pdf_document: default
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,7 @@ wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
 site <- "Scorff"
-year <- 2019
+year <- 2020
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -21,9 +21,19 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 #mycol <- COL
 ##________________________SCORFF (starting in 1994)
 
-
-
 ```
+
+### NOTA BENE
+
+2021:  
+- Séparer smolts 1+ vs 2+
+
+2020:  
+- IAS: pêche réalisée avec le Pulsium ; calibration en cours avec le Martin/pulsium  
+- Smolt: estimation par classe d'âge?  avec les proportions des âges / la série 2020  
+- Adultes: Pièges non fonctionnels du 15 Mars au 11 Mai (COVID)  
+- Recapture adultes hiver 2020: pêche à l'épuisette + pulsium intégré dans le modèle  
+
 
 ### TABLEAU BILAN
 

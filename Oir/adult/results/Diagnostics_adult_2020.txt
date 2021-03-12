@@ -1,0 +1,186 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  3150 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                               
+                 Stationarity start     p-value
+                 test         iteration        
+logit_int_MC[1]  passed         1       0.5651 
+logit_int_MC[2]  passed         1       0.1833 
+logit_flow_MC[1] passed         1       0.3169 
+logit_flow_MC[2] passed         1       0.8026 
+sigmap_eff[1]    passed         1       0.3655 
+sigmap_eff[2]    passed         1       0.9539 
+shape_lambda     passed         1       0.7921 
+rate_lambda      passed         1       0.8161 
+s[1]             passed         1       0.7307 
+s[2]             passed         1       0.7330 
+s[3]             passed         1       0.3873 
+s[4]             passed         1       0.3906 
+mup_recap[1]     passed         1       0.9900 
+mup_recap[2]     passed       316       0.3932 
+mup_recap[3]     passed         1       0.6973 
+mup_recap[4]     passed         1       0.0843 
+sigmap_recap[1]  passed         1       0.1686 
+sigmap_recap[2]  passed         1       0.7390 
+sigmap_recap[3]  passed         1       0.1571 
+sigmap_recap[4]  passed         1       0.9746 
+p_MC90[1]        passed         1       0.6284 
+p_MC90[2]        passed         1       0.1853 
+                                            
+                 Halfwidth Mean    Halfwidth
+                 test                       
+logit_int_MC[1]  failed     0.0517 0.011959 
+logit_int_MC[2]  passed    -0.5716 0.012319 
+logit_flow_MC[1] passed    -0.5558 0.011852 
+logit_flow_MC[2] passed    -0.4409 0.010364 
+sigmap_eff[1]    passed     1.9083 0.008853 
+sigmap_eff[2]    passed     1.5700 0.009497 
+shape_lambda     passed     4.2538 0.037318 
+rate_lambda      passed     0.0195 0.000183 
+s[1]             passed    16.9199 0.122133 
+s[2]             passed     9.3310 0.069904 
+s[3]             passed     1.3329 0.011375 
+s[4]             passed     4.1552 0.032717 
+mup_recap[1]     passed     0.2006 0.001224 
+mup_recap[2]     passed     0.3101 0.001022 
+mup_recap[3]     passed     0.1142 0.001211 
+mup_recap[4]     passed     0.1807 0.001266 
+sigmap_recap[1]  passed     1.2408 0.006067 
+sigmap_recap[2]  passed     0.6452 0.004928 
+sigmap_recap[3]  passed     1.1349 0.014073 
+sigmap_recap[4]  passed     0.9393 0.007786 
+p_MC90[1]        passed     0.3711 0.008802 
+p_MC90[2]        passed     0.5526 0.007513 
+
+[[2]]
+                                               
+                 Stationarity start     p-value
+                 test         iteration        
+logit_int_MC[1]  passed         1       0.3592 
+logit_int_MC[2]  passed         1       0.7144 
+logit_flow_MC[1] passed         1       0.8761 
+logit_flow_MC[2] passed         1       0.8898 
+sigmap_eff[1]    passed       946       0.8548 
+sigmap_eff[2]    passed         1       0.2811 
+shape_lambda     passed         1       0.0536 
+rate_lambda      passed         1       0.1052 
+s[1]             passed         1       0.0605 
+s[2]             passed         1       0.0634 
+s[3]             passed         1       0.4283 
+s[4]             passed         1       0.3841 
+mup_recap[1]     passed         1       0.4453 
+mup_recap[2]     passed         1       0.2647 
+mup_recap[3]     passed         1       0.2239 
+mup_recap[4]     passed         1       0.7111 
+sigmap_recap[1]  passed         1       0.5989 
+sigmap_recap[2]  passed         1       0.6902 
+sigmap_recap[3]  passed         1       0.6003 
+sigmap_recap[4]  passed         1       0.1162 
+p_MC90[1]        passed         1       0.2603 
+p_MC90[2]        passed         1       0.4612 
+                                            
+                 Halfwidth Mean    Halfwidth
+                 test                       
+logit_int_MC[1]  failed     0.0494 0.012667 
+logit_int_MC[2]  passed    -0.5720 0.012430 
+logit_flow_MC[1] passed    -0.5590 0.011299 
+logit_flow_MC[2] passed    -0.4516 0.010649 
+sigmap_eff[1]    passed     1.9029 0.010738 
+sigmap_eff[2]    passed     1.5713 0.009524 
+shape_lambda     passed     4.2306 0.036867 
+rate_lambda      passed     0.0193 0.000179 
+s[1]             passed    16.9547 0.122811 
+s[2]             passed     9.3513 0.069682 
+s[3]             passed     1.3419 0.011367 
+s[4]             passed     4.1641 0.034969 
+mup_recap[1]     passed     0.2005 0.001230 
+mup_recap[2]     passed     0.3112 0.000999 
+mup_recap[3]     passed     0.1126 0.001223 
+mup_recap[4]     passed     0.1793 0.001219 
+sigmap_recap[1]  passed     1.2327 0.006814 
+sigmap_recap[2]  passed     0.6417 0.004830 
+sigmap_recap[3]  passed     1.1353 0.013880 
+sigmap_recap[4]  passed     0.9494 0.008113 
+p_MC90[1]        passed     0.3817 0.008922 
+p_MC90[2]        passed     0.5550 0.008241 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC[1]  logit_int_MC[2] logit_flow_MC[1] logit_flow_MC[2] 
+         0.08207          1.30322          1.45083          0.22584 
+   sigmap_eff[1]    sigmap_eff[2]     shape_lambda      rate_lambda 
+        -0.22797          0.42424          0.68944          0.52335 
+            s[1]             s[2]             s[3]             s[4] 
+        -1.14833         -1.23007          0.54552         -0.96220 
+    mup_recap[1]     mup_recap[2]     mup_recap[3]     mup_recap[4] 
+         0.45311          2.65988          0.63418         -0.01069 
+ sigmap_recap[1]  sigmap_recap[2]  sigmap_recap[3]  sigmap_recap[4] 
+        -0.88954          0.93644         -2.27272         -0.88564 
+       p_MC90[1]        p_MC90[2] 
+         0.63060          1.75115 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC[1]  logit_int_MC[2] logit_flow_MC[1] logit_flow_MC[2] 
+         -0.8816           0.2903           0.6147          -0.4585 
+   sigmap_eff[1]    sigmap_eff[2]     shape_lambda      rate_lambda 
+          0.8694           0.7676          -0.2840          -0.2973 
+            s[1]             s[2]             s[3]             s[4] 
+          1.5932           2.0055           1.0103           0.7515 
+    mup_recap[1]     mup_recap[2]     mup_recap[3]     mup_recap[4] 
+         -0.6301           0.1905           0.9376           0.5964 
+ sigmap_recap[1]  sigmap_recap[2]  sigmap_recap[3]  sigmap_recap[4] 
+          1.3885           0.9977           0.4411           0.9221 
+       p_MC90[1]        p_MC90[2] 
+         -1.2342          -0.6849 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+
+You need a sample size of at least 3746 with these values of q, r and s
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+
+You need a sample size of at least 3746 with these values of q, r and s
+

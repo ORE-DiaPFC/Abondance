@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2019"
+year <- "2020"
 site <- "Scorff"
 stade <- "adult"
 
@@ -68,9 +68,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=100 # Number of steps to "burn-in" the samplers.
+nburnin=1000 # Number of steps to "burn-in" the samplers.
 nstore=20000 # Total number of steps in chains to save.
-nthin=100 # Number of steps to "thin" (1=keep every step).
+nthin=20 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -85,8 +85,9 @@ fit <- bugs(
   ,n.chains = nChains, n.iter = nstore + nburnin, n.burnin = nburnin, n.thin = nthin
   ,DIC=FALSE
   ,codaPkg = FALSE, clearWD=FALSE
+  ,saveExec=TRUE
   #,debug=TRUE
-  #,working.directory=paste(work.dir,"bugs",sep="/")
+  ,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:
   #, OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
   #, useWINE = TRUE

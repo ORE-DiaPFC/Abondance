@@ -34,7 +34,8 @@ inits_fix <- list(
               ,mu_d = runif(1,18,21)#19.84
               ,mup_rem = runif(1,.2,.8)#0.5931
               ,rate_d = runif(1,.02,.03)#0.0261
-              ,rate_lcpu = runif(1,.2,.5)#0.3905
+              #,rate_lcpu = runif(1,.2,.5)#0.3905
+              ,p_lcpu = 0.3905
               ,sd_prem = runif(1,.2,.8)#0.7431
               ,sigma_dSc = runif(1,.2,.5)#0.3269
               ,sigma_siteSc = runif(1,.5,.9)#0.7041

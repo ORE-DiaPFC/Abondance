@@ -1,13 +1,13 @@
 ####################################################################################################################
 ###                          Model of CMR data to estimate parr population size                                  ###   
 ###                          of Salmo salar in Scorff river + tributary rivers                                   ###
-###   (Intercalibration between CPUE and successive removals included;  data from Prévost & Nihouarn 1999)       ###   
-###                                  Sabrina Servanty & Etienne Prévost                                          ###
+###   (Intercalibration between CPUE and successive removals included;  data from Pr?vost & Nihouarn 1999)       ###   
+###                                  Sabrina Servanty & Etienne Pr?vost                                          ###
 ###                                           September 2015                                                     ###
 ####################################################################################################################
 
 
-## /!\ Unit of density is rapid equivalent in 100², not in m². Very hard to get update otherwise because samplers are sampling very low values 
+## /!\ Unit of density is rapid equivalent in 100?, not in m?. Very hard to get update otherwise because samplers are sampling very low values 
 
 model {
 
@@ -40,21 +40,23 @@ int_width_cut <- cut(int_width) ## This parameter is going to be used in the sec
 width_coef ~ dunif(-10,10) # factor of proportionality with river's width
 width_coef_cut <- cut(width_coef) ## This parameter is going to be used in the second step of the model
 
-rate_lcpu ~ dgamma(0.01,0.01) # rate (inverse scale) of the gamma distribution for lambda_cpu
+p_cpue ~ dbeta(2,2) # this non informative prior is excluding extreme value
+rate_lcpu <- p_cpue/(1-p_cpue) # variance of a Bernouilli process
+#rate_lcpu ~ dgamma(0.01,0.01) # rate (inverse scale) of the gamma distribution for lambda_cpu
 rate_lcpu_cut <- cut(rate_lcpu) ## This parameter is going to be used in the second step of the model
 
 ### Successive removal and density
-mup_rem ~ dbeta(1,1) # mean of probability of capture during successive removals
+mup_rem ~ dbeta(2,2) #mup_rem ~ dbeta(1,1) # mean of probability of capture during successive removals
 lmu_prem <- log(mup_rem/(1-mup_rem)) # logit transformation
 
 sd_prem ~ dunif(0,10) # sd of probability of capture during successive removals
 prec_prem <- 1/(sd_prem * sd_prem) # precision of probability of capture during successive removals
 
-eps ~ dnorm(0,0.01)I(0,) # decrease in the probability of capture during the second pass
+eps ~ dunif(0,10) #eps ~ dnorm(0,0.01)I(0,) # decrease in the probability of capture during the second pass
 
 ## Density
-mu_d ~ dgamma(1,0.01) ## Mean density 
-rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
+mu_d ~ dgamma(1,0.1) #mu_d ~ dgamma(1,0.01) ## Mean density 
+rate_d ~ dgamma(0.1,0.1)# rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
 shape_d <- mu_d * rate_d # shape parameter of the gamma distribution
 
 for (i in 1:Ninter) {
@@ -110,7 +112,7 @@ for (i in 1:Ninter) {
 ## Nstation: 53 sites including tributary rivers (site #52 and #53 are already included although sampling begins in 2015. Last year considered now is 2014)
 ## CPUE_Sc[j,t]: Number of fish captured by CPUE per site and per year. Recurrent sites are the first 40 ones then tributary rivers
 ## Nyear: Since 1993 to now on
-## S_Sc[j,t]: Surface in riffle/rapid equivalent (unit:100m²) per site and per year. 
+## S_Sc[j,t]: Surface in riffle/rapid equivalent (unit:100m?) per site and per year. 
 ## W_Sc[j,t]: Width per station and per year. For tributary rivers, the width is not always the same. It has been adjusted depending on how many sites were sampled within a year.
 ###############################################################################
 

@@ -24,21 +24,21 @@ for (par in hyperparameters){
   denplot(fit.mcmc,par) 
 }
 
-traplot(fit.mcmc, paste0("epsilon_Eu[",1:36,",1]"))
-traplot(fit.mcmc, paste0("epsilon_Eu[",1:36,",2]"))
+traplot(fit.mcmc, paste0("epsilon_Eu[",1:data$Y,",1]"))
+traplot(fit.mcmc, paste0("epsilon_Eu[",1:data$Y,",2]"))
 par(mfrow=c(2,1))
 # 1SW
-caterplot(fit.mcmc,paste0("epsilon_Eu[",1:36,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("epsilon_Eu[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 # MSW
-caterplot(fit.mcmc,paste0("epsilon_Eu[",1:36,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("epsilon_Eu[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # Capture proba. Beauchamps (logit scale)
 par(mfrow=c(2,1))
 # 1SW
-caterplot(fit.mcmc,paste0("logit_pi_B[",1:36,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # MSW
-caterplot(fit.mcmc,paste0("logit_pi_B[",1:36,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 dev.off()

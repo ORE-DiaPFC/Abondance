@@ -22,7 +22,7 @@ model {
 
 ############################################################################################
 ## Used indices:
-## t: year; 1 to Y - from 1994 to Y  ## 
+## t: year; 1 to Y - from 1984 to Y  ## 
 ## a: sea age; 
 ##    1-1SW (Grisle), 
 ##    2-MSW (salmon)
@@ -55,6 +55,12 @@ model {
   for (a in 1:2) {
     pi_Eu00[a] ~ dbeta(1,1)  # year 2000 is considered to be different (partial trapping)
     pi_Eu01[a] ~ dbeta(1,1)  # year 2001 is considered to be different (partial trapping)
+    
+    # from 2018, partial capture at traps (no trapping over weekend)
+    for (y in 1:(Y-34)) {
+        pi_EuYY[y,a] <- 5/7  # year 2018 is considered to be different (partial trapping); 5 nights fishing over 7 a week
+    }
+    
     logit_int_Eu[a] ~ dunif(-10,10)    #intercept 
     logit_flow_Eu[a] ~ dunif(-10,10) #slope for flow data (1SW at Eu: 15 june - 31 august, MSW: 15 april - 30 june)
     #sigmapi_Eu[a] ~ dunif(0,20)    
@@ -68,7 +74,9 @@ model {
     #sigmapi_B[a] ~ dunif(0,20)
     sigmapi_B[a] <- sqrt(varpi_B[a])
     varpi_B[a]~dchisqr(k) # k degree of freedom
-    }
+  } # end loop a
+  
+
                                  
   ################################################################################
   ## PROBABILITY DISTRIBUTIONS
@@ -87,7 +95,7 @@ model {
     #varpi_Eu[a] <- (sigmapi_Eu[a])*(sigmapi_Eu[a]) 
     precpi_Eu[a] <- 1/(varpi_Eu[a]) # precision 
         
-        for (t in 1:Y) { #pi_Eu exchangeable from 1984 to 1999 
+        for (t in 1:34) { #logit_pi_Eu exchangeable from 1984 to now on 
         
             logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
             stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
@@ -98,6 +106,20 @@ model {
             epsilon_Eu[t,a] <- (logit_pi_Eu[t,a] - logit_mupi_Eu[t,a]) / sigmapi_Eu[a] # standardized residuals
             eps_Eu[t,a] <- logit_pi_Eu[t,a] - logit_mupi_Eu[t,a] # residuals not standardized
              } ## End of loop over years
+    
+        ## Partial trapping from 2018
+        for (t in 35:Y) {  # from 2018 to now on
+    
+            logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
+            stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
+      
+            logit_mupi_Eu[t,a] <- logit_int_Eu[a] + logit_flow_Eu[a] * stlogQ[t,a] + lflow_fall_Eu[a] * stlQ2pic[t] 
+            logit_pi_Eu[t,a] ~ dnorm(logit_mupi_Eu[t,a],precpi_Eu[a])
+            pi_Eu[t,a] <- (exp(logit_pi_Eu[t,a])/(1+exp(logit_pi_Eu[t,a])))* pi_EuYY[t-34,a]  # back-transformation on the probability scale * partial trapping
+            epsilon_Eu[t,a] <- (logit_pi_Eu[t,a] - logit_mupi_Eu[t,a]) / sigmapi_Eu[a] # standardized residuals
+            eps_Eu[t,a] <- logit_pi_Eu[t,a] - logit_mupi_Eu[t,a] # residuals not standardized
+        } # end loop t
+    
  
  # The following section is removed because R2 calculation is wrong and useless (March 2020)            
         #Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
@@ -109,7 +131,7 @@ model {
         #varlpi_Eu[a] <- sdlpi_Eu[a] * sdlpi_Eu[a]
         
         #R2[a] <- 1 - (mean(vareps_Eu[a])/mean(varlpi_Eu[a])) 
-        }# end of loop over sea age
+    }# end of loop over sea age
                 
    test[1] <- step(logit_flow_Eu[1]) # is logit_flow >=0 for 1SW?
    test[2] <- step(logit_flow_Eu[2]) # is logit_flow >=0 for MSW?  
@@ -243,12 +265,14 @@ model {
       C_Eu[18,a] ~ dbin(p_Eu01_tot[a],n[18,a])   # 1994 is considered to be different.
       n_um[18,a] <- n[18,a] - C_Eu[18,a] ## Fish number avoiding the trap, not marked fish (n_um) in 2001       
       
-      for (t in 19:Y) {  # from 2002 to now on
+      for (t in 19:Y) {  # from 2002 to 2017
         C_Eu[t,a] ~ dbin(pi_Eu[t,a],n[t,a]) 
     
         ## Fish number avoiding the trap, not marked fish (n_um). 
         n_um[t,a] <- n[t,a] - C_Eu[t,a]
         } ## End of loop over years         
+      
+      
       } # end of loop over sea age
  	    
     #####################################

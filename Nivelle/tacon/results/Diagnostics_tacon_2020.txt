@@ -1,0 +1,146 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  4706 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                              
+                Stationarity start     p-value
+                test         iteration        
+mu_p_srem       passed       1         0.2732 
+sd_logit_p_srem passed       1         0.4063 
+epsilon_p       passed       1         0.6295 
+pi_dj           passed       1         0.0685 
+zeta_alpha_dj   passed       1         0.0556 
+mu_dj_nat       passed       1         0.3689 
+k_cpue          passed       1         0.8064 
+rho_s           passed       1         0.1796 
+sd_s_rec        passed       1         0.5667 
+p_cpue          passed       1         0.8158 
+                                           
+                Halfwidth Mean    Halfwidth
+                test                       
+mu_p_srem       passed      0.515 0.002409 
+sd_logit_p_srem passed      1.092 0.005024 
+epsilon_p       passed      0.561 0.003881 
+pi_dj           passed      0.726 0.002382 
+zeta_alpha_dj   passed      4.196 0.047954 
+mu_dj_nat       passed      0.132 0.000788 
+k_cpue          passed    123.892 0.429409 
+rho_s           passed      0.145 0.002549 
+sd_s_rec        passed      0.421 0.001425 
+p_cpue          passed      0.679 0.004813 
+
+[[2]]
+                                              
+                Stationarity start     p-value
+                test         iteration        
+mu_p_srem       passed       1         0.114  
+sd_logit_p_srem passed       1         0.137  
+epsilon_p       passed       1         0.194  
+pi_dj           passed       1         0.273  
+zeta_alpha_dj   passed       1         0.955  
+mu_dj_nat       passed       1         0.499  
+k_cpue          passed       1         0.807  
+rho_s           passed       1         0.394  
+sd_s_rec        passed       1         0.760  
+p_cpue          passed       1         0.752  
+                                           
+                Halfwidth Mean    Halfwidth
+                test                       
+mu_p_srem       passed      0.514 0.002358 
+sd_logit_p_srem passed      1.092 0.005190 
+epsilon_p       passed      0.562 0.003921 
+pi_dj           passed      0.726 0.002336 
+zeta_alpha_dj   passed      4.242 0.038743 
+mu_dj_nat       passed      0.132 0.000787 
+k_cpue          passed    123.841 0.401426 
+rho_s           passed      0.145 0.002795 
+sd_s_rec        passed      0.421 0.001500 
+p_cpue          passed      0.679 0.004691 
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
+         1.5206         -1.7166         -0.5473         -0.6575          2.0122 
+      mu_dj_nat          k_cpue           rho_s        sd_s_rec          p_cpue 
+        -1.2259          1.1956         -1.7113         -0.2240          0.3521 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
+        0.45688        -0.61455        -0.24673         0.58304        -0.42463 
+      mu_dj_nat          k_cpue           rho_s        sd_s_rec          p_cpue 
+       -0.31870         0.16730         0.28932         0.09708        -1.34842 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                         
+                 Burn-in  Total   Lower bound  Dependence
+                 (M)      (N)     (Nmin)       factor (I)
+ mu_p_srem       800      903200  3746         241.0     
+ sd_logit_p_srem 500      564400  3746         151.0     
+ epsilon_p       800      1043400 3746         279.0     
+ pi_dj           200      389500  3746         104.0     
+ zeta_alpha_dj   200      369700  3746          98.7     
+ mu_dj_nat       400      491100  3746         131.0     
+ k_cpue          400      497900  3746         133.0     
+ rho_s           300      407100  3746         109.0     
+ sd_s_rec        200      369700  3746          98.7     
+ p_cpue          200      389500  3746         104.0     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                         
+                 Burn-in  Total   Lower bound  Dependence
+                 (M)      (N)     (Nmin)       factor (I)
+ mu_p_srem       400      515900  3746         138.0     
+ sd_logit_p_srem 1200     1383200 3746         369.0     
+ epsilon_p       1200     1573800 3746         420.0     
+ pi_dj           200      369700  3746          98.7     
+ zeta_alpha_dj   200      396400  3746         106.0     
+ mu_dj_nat       400      506800  3746         135.0     
+ k_cpue          300      425000  3746         113.0     
+ rho_s           300      425000  3746         113.0     
+ sd_s_rec        300      435200  3746         116.0     
+ p_cpue          200      389500  3746         104.0     
+
+

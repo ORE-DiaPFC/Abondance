@@ -1,5 +1,5 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2019"
+year <- "2020"
 site <- "Scorff"
 stade <- "adult"
 
@@ -28,6 +28,16 @@ mark <- read.table(paste("data/","data_R.txt",sep=""),header = TRUE, check.names
 mark <- as.matrix(mark);mode(mark)<- "numeric"
 Cm_R <- mark[,1:2]
 Cum_R <- mark[,3:4]
+
+
+######################################################################################################################################			
+##  Cm_R_pulsium[t,a]: Annual number of marked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
+##  Cum_R_pulsium[t,a]: Annual number of unmarked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
+######################################################################################################################################	
+mark_pulsium <- read.table(paste("data/","data_Rpulsium.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+mark_pulsium <- as.matrix(mark_pulsium);mode(mark_pulsium)<- "numeric"
+Cm_R_pulsium <- mark_pulsium[,1:2]
+Cum_R_pulsium <- mark_pulsium[,3:4]
 
 
 ######################################################################################################################################
@@ -90,6 +100,7 @@ Cum_F <- mark[,3:4]
 
 data <- list( Y=Y$Y,eff_R=eff_R$eff_R
               ,Cm_R=Cm_R,Cum_R=Cum_R
+              ,Cm_R_pulsium=Cm_R_pulsium,Cum_R_pulsium=Cum_R_pulsium
               ,Q=Q,Q_dec=Q_dec$Q_dec
               ,Cm_D=Cm_D,Cum_D=Cum_D
               ,C_MP=C_MP,Cm_MP=Cm_MP,Cum_MP=Cum_MP

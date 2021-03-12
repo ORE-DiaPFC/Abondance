@@ -1,0 +1,33 @@
+######################################################################################################################################			
+##  Cm_R[t,a]: Annual number of marked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
+##  Cum_R[t,a]: Annual number of unmarked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
+######################################################################################################################################			
+Cm_R_pulsium[,1]	Cm_R_pulsium[,2]	Cum_R_pulsium[,1]	Cum_R_pulsium[,2]
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+NA NA NA NA
+11 0 7 1 # 2020
+#END			

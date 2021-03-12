@@ -2,7 +2,7 @@ list(
 
 ### Nombre d'annees de suivi
 ## Devra etre mis a jour
-Nyear = 33, # 2019
+Nyear = 34, # 2020
 
 ## Nombre de donn?es (nombre de lignes) pour les pr?l?vements successifs (soit PE ou PTE)
 ## Devra ?tre mis ? jour
@@ -24,7 +24,7 @@ Ngroup = 13,
 
 ## Nombre de sites ?chantillonn?es par IA
 ## Pas de mise a jour
-NIA = 11,
+NIA = 12, #ajout 1 station depuis 2020
 
 ## Nombre de sites sur lesquels sont fait des indices d'abondance et des p?ches par enl?vements successifs
 ## /!\ Tous les secteurs par CPUE ne chevauchent pas avec un secteur par pr?l?vements successifs
