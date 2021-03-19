@@ -17,161 +17,185 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
              Stationarity start     p-value 
              test         iteration         
-int_width    passed          1      8.42e-01
-width_coef   failed         NA      2.80e-06
-rate_lcpu    failed         NA      6.27e-06
-sigma_dSc    failed         NA      2.46e-06
-int_ydSc     passed          1      2.35e-01
-log_flow     passed       6001      4.23e-01
-sigma_ySc    failed         NA      6.19e-06
-sigma_siteSc failed         NA      1.50e-04
-eps_ydSc[1]  passed          1      1.69e-01
-eps_ydSc[2]  passed          1      1.31e-01
-eps_ydSc[3]  failed         NA      2.72e-04
-eps_ydSc[4]  passed          1      1.17e-01
-eps_ydSc[5]  failed         NA      6.13e-06
-eps_ydSc[6]  passed          1      2.87e-01
-eps_ydSc[7]  failed         NA      9.69e-04
-eps_ydSc[8]  failed         NA      1.61e-02
-eps_ydSc[9]  failed         NA      1.62e-05
-eps_ydSc[10] passed          1      3.00e-01
-eps_ydSc[11] passed       8001      1.59e-01
-eps_ydSc[12] passed          1      4.09e-01
-eps_ydSc[13] passed       6001      3.25e-01
-eps_ydSc[14] passed       2001      1.25e-01
-eps_ydSc[15] passed          1      2.35e-01
-eps_ydSc[16] passed          1      5.45e-01
-eps_ydSc[17] passed          1      1.23e-01
-eps_ydSc[18] passed       8001      8.94e-02
-eps_ydSc[19] passed       6001      2.72e-01
-eps_ydSc[20] failed         NA      1.95e-06
-eps_ydSc[21] passed       6001      5.11e-02
-eps_ydSc[22] passed       8001      5.70e-02
-eps_ydSc[23] failed         NA      3.27e-03
-eps_ydSc[24] passed       8001      6.25e-02
-eps_ydSc[25] failed         NA      2.46e-04
-eps_ydSc[26] passed          1      1.55e-01
-eps_ydSc[27] passed          1      2.05e-01
-eps_ydSc[28] passed       6001      7.51e-02
+int_width    failed         NA      2.85e-03
+width_coef   failed         NA      8.55e-03
+rate_lcpu    failed         NA      1.40e-03
+p_cpue       failed         NA      2.58e-02
+mup_rem      failed         NA      8.70e-04
+sd_prem      failed         NA      6.47e-05
+eps          failed         NA      3.54e-04
+mu_d         failed         NA      1.37e-04
+rate_d       passed       6001      6.38e-02
+sigma_dSc    passed       8001      5.50e-02
+int_ydSc     failed         NA      1.23e-02
+log_flow     passed          1      6.12e-02
+sigma_ySc    passed       6001      5.05e-02
+sigma_siteSc failed         NA      3.45e-03
+eps_ydSc[1]  passed          1      4.28e-01
+eps_ydSc[2]  passed          1      3.84e-01
+eps_ydSc[3]  failed         NA      1.03e-02
+eps_ydSc[4]  passed       8001      3.32e-01
+eps_ydSc[5]  failed         NA      2.02e-03
+eps_ydSc[6]  passed          1      7.20e-01
+eps_ydSc[7]  failed         NA      8.43e-03
+eps_ydSc[8]  failed         NA      4.58e-02
+eps_ydSc[9]  failed         NA      1.10e-05
+eps_ydSc[10] passed       8001      7.45e-02
+eps_ydSc[11] passed          1      9.30e-01
+eps_ydSc[12] passed          1      1.52e-01
+eps_ydSc[13] passed          1      9.28e-02
+eps_ydSc[14] passed       4001      1.72e-01
+eps_ydSc[15] passed       2001      1.56e-01
+eps_ydSc[16] passed          1      6.84e-02
+eps_ydSc[17] passed       2001      9.71e-02
+eps_ydSc[18] passed          1      9.56e-01
+eps_ydSc[19] passed       4001      6.10e-02
+eps_ydSc[20] failed         NA      4.98e-02
+eps_ydSc[21] passed          1      9.20e-01
+eps_ydSc[22] passed          1      1.10e-01
+eps_ydSc[23] failed         NA      2.62e-02
+eps_ydSc[24] passed       2001      1.11e-01
+eps_ydSc[25] failed         NA      4.77e-03
+eps_ydSc[26] passed       2001      8.16e-02
+eps_ydSc[27] passed       2001      1.42e-01
+eps_ydSc[28] passed          1      5.67e-01
                                         
              Halfwidth Mean    Halfwidth
              test                       
-int_width    passed    -0.1455 0.00417  
+int_width    <NA>           NA      NA  
 width_coef   <NA>           NA      NA  
 rate_lcpu    <NA>           NA      NA  
-sigma_dSc    <NA>           NA      NA  
-int_ydSc     passed     1.8175 0.00671  
-log_flow     passed    -0.4114 0.00168  
-sigma_ySc    <NA>           NA      NA  
+p_cpue       <NA>           NA      NA  
+mup_rem      <NA>           NA      NA  
+sd_prem      <NA>           NA      NA  
+eps          <NA>           NA      NA  
+mu_d         <NA>           NA      NA  
+rate_d       failed     0.0462 0.00596  
+sigma_dSc    passed     0.4340 0.01067  
+int_ydSc     <NA>           NA      NA  
+log_flow     passed    -0.4144 0.00141  
+sigma_ySc    passed     0.5157 0.00133  
 sigma_siteSc <NA>           NA      NA  
-eps_ydSc[1]  passed    -0.3040 0.00289  
-eps_ydSc[2]  passed     0.2727 0.00300  
+eps_ydSc[1]  passed    -0.3028 0.00292  
+eps_ydSc[2]  passed     0.2784 0.00301  
 eps_ydSc[3]  <NA>           NA      NA  
-eps_ydSc[4]  passed    -0.0454 0.00187  
+eps_ydSc[4]  passed    -0.0525 0.00249  
 eps_ydSc[5]  <NA>           NA      NA  
-eps_ydSc[6]  passed    -0.8371 0.00242  
+eps_ydSc[6]  passed    -0.8451 0.00245  
 eps_ydSc[7]  <NA>           NA      NA  
 eps_ydSc[8]  <NA>           NA      NA  
 eps_ydSc[9]  <NA>           NA      NA  
-eps_ydSc[10] passed     0.2447 0.00177  
-eps_ydSc[11] failed     0.0196 0.00421  
-eps_ydSc[12] passed     0.5015 0.00196  
-eps_ydSc[13] passed     0.0776 0.00286  
-eps_ydSc[14] passed     0.1004 0.00198  
-eps_ydSc[15] passed     0.5488 0.00238  
-eps_ydSc[16] passed     0.4198 0.00191  
-eps_ydSc[17] passed     0.2345 0.00180  
-eps_ydSc[18] passed    -0.0318 0.00274  
-eps_ydSc[19] passed     0.3553 0.00243  
+eps_ydSc[10] passed     0.2381 0.00238  
+eps_ydSc[11] failed     0.0223 0.00331  
+eps_ydSc[12] passed     0.4989 0.00203  
+eps_ydSc[13] passed     0.0759 0.00243  
+eps_ydSc[14] passed     0.0966 0.00215  
+eps_ydSc[15] passed     0.5595 0.00254  
+eps_ydSc[16] passed     0.4173 0.00193  
+eps_ydSc[17] passed     0.2315 0.00198  
+eps_ydSc[18] passed    -0.0257 0.00217  
+eps_ydSc[19] passed     0.3503 0.00235  
 eps_ydSc[20] <NA>           NA      NA  
-eps_ydSc[21] passed     0.0828 0.00244  
-eps_ydSc[22] passed     0.0858 0.00237  
+eps_ydSc[21] passed     0.0871 0.00210  
+eps_ydSc[22] passed     0.0928 0.00186  
 eps_ydSc[23] <NA>           NA      NA  
-eps_ydSc[24] passed    -0.0862 0.00280  
+eps_ydSc[24] passed    -0.0792 0.00227  
 eps_ydSc[25] <NA>           NA      NA  
-eps_ydSc[26] passed    -0.3969 0.00185  
-eps_ydSc[27] passed     0.6966 0.00181  
-eps_ydSc[28] passed    -0.4995 0.00228  
+eps_ydSc[26] passed    -0.3988 0.00212  
+eps_ydSc[27] passed     0.7061 0.00200  
+eps_ydSc[28] passed    -0.4968 0.00197  
 
 [[2]]
                                             
              Stationarity start     p-value 
              test         iteration         
-int_width    passed          1      5.19e-01
-width_coef   failed         NA      6.23e-07
-rate_lcpu    failed         NA      1.84e-04
-sigma_dSc    failed         NA      4.67e-05
-int_ydSc     passed          1      1.66e-01
-log_flow     passed          1      3.41e-01
-sigma_ySc    passed       6001      5.12e-02
-sigma_siteSc failed         NA      4.37e-06
-eps_ydSc[1]  passed          1      7.15e-01
-eps_ydSc[2]  passed          1      2.48e-01
-eps_ydSc[3]  failed         NA      1.74e-04
-eps_ydSc[4]  passed          1      1.58e-01
-eps_ydSc[5]  passed       8001      1.89e-01
-eps_ydSc[6]  passed          1      2.07e-01
-eps_ydSc[7]  failed         NA      6.13e-06
-eps_ydSc[8]  passed          1      5.97e-01
-eps_ydSc[9]  failed         NA      7.94e-05
-eps_ydSc[10] passed          1      4.01e-01
-eps_ydSc[11] passed          1      1.49e-01
-eps_ydSc[12] passed          1      8.42e-01
-eps_ydSc[13] passed          1      8.08e-01
-eps_ydSc[14] passed          1      9.01e-01
-eps_ydSc[15] passed       6001      1.02e-01
-eps_ydSc[16] passed          1      5.87e-01
-eps_ydSc[17] passed          1      6.17e-01
-eps_ydSc[18] passed          1      7.40e-02
-eps_ydSc[19] passed          1      5.88e-01
-eps_ydSc[20] failed         NA      7.66e-04
-eps_ydSc[21] passed          1      3.24e-01
-eps_ydSc[22] passed          1      1.17e-01
-eps_ydSc[23] failed         NA      1.05e-04
-eps_ydSc[24] failed         NA      3.59e-04
-eps_ydSc[25] passed       8001      9.48e-02
-eps_ydSc[26] passed          1      5.29e-01
-eps_ydSc[27] failed         NA      4.73e-03
-eps_ydSc[28] passed          1      6.38e-01
+int_width    passed        1        1.47e-01
+width_coef   failed       NA        2.15e-04
+rate_lcpu    failed       NA        1.05e-06
+p_cpue       passed        1        8.14e-02
+mup_rem      failed       NA        3.68e-06
+sd_prem      failed       NA        6.44e-05
+eps          failed       NA        2.91e-04
+mu_d         failed       NA        6.32e-07
+rate_d       passed        1        2.99e-01
+sigma_dSc    passed        1        1.40e-01
+int_ydSc     failed       NA        7.95e-07
+log_flow     passed        1        1.45e-01
+sigma_ySc    passed        1        7.14e-02
+sigma_siteSc failed       NA        7.15e-04
+eps_ydSc[1]  passed        1        3.56e-01
+eps_ydSc[2]  passed        1        4.78e-01
+eps_ydSc[3]  failed       NA        2.88e-04
+eps_ydSc[4]  failed       NA        5.21e-04
+eps_ydSc[5]  failed       NA        2.74e-05
+eps_ydSc[6]  passed        1        4.34e-01
+eps_ydSc[7]  failed       NA        1.83e-05
+eps_ydSc[8]  failed       NA        1.45e-04
+eps_ydSc[9]  failed       NA        8.57e-04
+eps_ydSc[10] passed        1        7.27e-02
+eps_ydSc[11] passed        1        1.88e-01
+eps_ydSc[12] passed        1        1.97e-01
+eps_ydSc[13] passed        1        7.56e-01
+eps_ydSc[14] passed        1        2.28e-01
+eps_ydSc[15] passed        1        6.03e-02
+eps_ydSc[16] passed        1        9.81e-02
+eps_ydSc[17] passed        1        1.14e-01
+eps_ydSc[18] passed        1        2.81e-01
+eps_ydSc[19] passed        1        1.36e-01
+eps_ydSc[20] failed       NA        1.14e-05
+eps_ydSc[21] passed        1        2.34e-01
+eps_ydSc[22] passed        1        1.03e-01
+eps_ydSc[23] failed       NA        2.85e-05
+eps_ydSc[24] failed       NA        1.38e-03
+eps_ydSc[25] failed       NA        2.80e-06
+eps_ydSc[26] passed        1        6.88e-01
+eps_ydSc[27] passed        1        2.31e-01
+eps_ydSc[28] passed        1        7.07e-01
                                         
              Halfwidth Mean    Halfwidth
              test                       
-int_width    passed    -0.1519 0.00414  
+int_width    passed    -0.1503 0.00304  
 width_coef   <NA>           NA      NA  
 rate_lcpu    <NA>           NA      NA  
-sigma_dSc    <NA>           NA      NA  
-int_ydSc     passed     1.8123 0.00657  
-log_flow     passed    -0.4133 0.00139  
-sigma_ySc    passed     0.5065 0.00131  
+p_cpue       passed     0.3907 0.02433  
+mup_rem      <NA>           NA      NA  
+sd_prem      <NA>           NA      NA  
+eps          <NA>           NA      NA  
+mu_d         <NA>           NA      NA  
+rate_d       failed     0.0394 0.00475  
+sigma_dSc    passed     0.4035 0.01312  
+int_ydSc     <NA>           NA      NA  
+log_flow     passed    -0.4153 0.00140  
+sigma_ySc    passed     0.5114 0.00110  
 sigma_siteSc <NA>           NA      NA  
-eps_ydSc[1]  passed    -0.3005 0.00287  
-eps_ydSc[2]  passed     0.2736 0.00295  
+eps_ydSc[1]  passed    -0.3016 0.00288  
+eps_ydSc[2]  passed     0.2791 0.00298  
 eps_ydSc[3]  <NA>           NA      NA  
-eps_ydSc[4]  passed    -0.0446 0.00191  
-eps_ydSc[5]  passed    -0.4700 0.00319  
-eps_ydSc[6]  passed    -0.8348 0.00249  
+eps_ydSc[4]  <NA>           NA      NA  
+eps_ydSc[5]  <NA>           NA      NA  
+eps_ydSc[6]  passed    -0.8415 0.00242  
 eps_ydSc[7]  <NA>           NA      NA  
-eps_ydSc[8]  passed     0.2653 0.00214  
+eps_ydSc[8]  <NA>           NA      NA  
 eps_ydSc[9]  <NA>           NA      NA  
-eps_ydSc[10] passed     0.2451 0.00176  
-eps_ydSc[11] failed     0.0119 0.00325  
-eps_ydSc[12] passed     0.5019 0.00192  
-eps_ydSc[13] passed     0.0749 0.00240  
-eps_ydSc[14] passed     0.0997 0.00180  
-eps_ydSc[15] passed     0.5488 0.00281  
-eps_ydSc[16] passed     0.4217 0.00190  
-eps_ydSc[17] passed     0.2339 0.00179  
-eps_ydSc[18] passed    -0.0364 0.00214  
-eps_ydSc[19] passed     0.3530 0.00201  
+eps_ydSc[10] passed     0.2414 0.00179  
+eps_ydSc[11] failed     0.0173 0.00328  
+eps_ydSc[12] passed     0.5012 0.00202  
+eps_ydSc[13] passed     0.0740 0.00243  
+eps_ydSc[14] passed     0.0978 0.00188  
+eps_ydSc[15] passed     0.5563 0.00238  
+eps_ydSc[16] passed     0.4191 0.00192  
+eps_ydSc[17] passed     0.2331 0.00181  
+eps_ydSc[18] passed    -0.0296 0.00217  
+eps_ydSc[19] passed     0.3514 0.00208  
 eps_ydSc[20] <NA>           NA      NA  
-eps_ydSc[21] passed     0.0791 0.00210  
-eps_ydSc[22] passed     0.0843 0.00181  
+eps_ydSc[21] passed     0.0850 0.00212  
+eps_ydSc[22] passed     0.0897 0.00193  
 eps_ydSc[23] <NA>           NA      NA  
 eps_ydSc[24] <NA>           NA      NA  
-eps_ydSc[25] failed    -0.0209 0.00235  
-eps_ydSc[26] passed    -0.3969 0.00189  
-eps_ydSc[27] <NA>           NA      NA  
-eps_ydSc[28] passed    -0.5021 0.00182  
+eps_ydSc[25] <NA>           NA      NA  
+eps_ydSc[26] passed    -0.3982 0.00191  
+eps_ydSc[27] passed     0.7028 0.00180  
+eps_ydSc[28] passed    -0.4994 0.00194  
 
 
 ---------------------------
@@ -188,18 +212,20 @@ The Z-score is calculated under the assumption that the two parts of the chain a
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
-   -0.893879    -1.599155    -3.020028    -0.506433     1.894897    -2.529680 
+   int_width   width_coef    rate_lcpu       p_cpue      mup_rem      sd_prem 
+      4.4858       3.9738     -10.7072      -9.5171      10.2496      -8.2772 
+         eps         mu_d       rate_d    sigma_dSc     int_ydSc     log_flow 
+     -8.9420      -6.8481      -4.3560      -8.6385      -2.3206       2.2165 
    sigma_ySc sigma_siteSc  eps_ydSc[1]  eps_ydSc[2]  eps_ydSc[3]  eps_ydSc[4] 
-   -2.181535     1.685729     0.421319     0.932919     0.766614    -2.235003 
+     -3.0408      -5.9640      -1.3096      -1.8961      -7.3251       2.1786 
  eps_ydSc[5]  eps_ydSc[6]  eps_ydSc[7]  eps_ydSc[8]  eps_ydSc[9] eps_ydSc[10] 
-   -2.665227     1.244267     2.375284     1.045836     0.362138    -0.478244 
+      6.1458      -0.2782       2.8287       1.6279       6.4776       2.2685 
 eps_ydSc[11] eps_ydSc[12] eps_ydSc[13] eps_ydSc[14] eps_ydSc[15] eps_ydSc[16] 
-   -2.791050     0.252167    -2.498634    -2.314206    -0.174148     0.342389 
+     -0.5237      -0.1234       1.6826       1.9553      -3.1634       0.8961 
 eps_ydSc[17] eps_ydSc[18] eps_ydSc[19] eps_ydSc[20] eps_ydSc[21] eps_ydSc[22] 
-   -1.330279    -2.364332    -3.300505     0.009756    -1.768305    -1.228028 
+      2.3847      -0.2396       3.2638      -6.7273       0.1511      -2.4133 
 eps_ydSc[23] eps_ydSc[24] eps_ydSc[25] eps_ydSc[26] eps_ydSc[27] eps_ydSc[28] 
-   -0.802391    -2.874126    -1.377494    -1.750352     0.287403    -2.379048 
+     -4.7358      -1.9384       3.8368       1.6957      -3.3808      -1.6355 
 
 
 [[2]]
@@ -207,18 +233,20 @@ eps_ydSc[23] eps_ydSc[24] eps_ydSc[25] eps_ydSc[26] eps_ydSc[27] eps_ydSc[28]
 Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
-   int_width   width_coef    rate_lcpu    sigma_dSc     int_ydSc     log_flow 
-     0.36352      2.11902     -7.96102     -6.38033     -0.71383     -0.06413 
+   int_width   width_coef    rate_lcpu       p_cpue      mup_rem      sd_prem 
+    -1.90573     -2.31165      2.02179      2.07503     -2.88938      3.80442 
+         eps         mu_d       rate_d    sigma_dSc     int_ydSc     log_flow 
+     3.19579      4.12421      1.26463      1.71442      1.03403      0.45797 
    sigma_ySc sigma_siteSc  eps_ydSc[1]  eps_ydSc[2]  eps_ydSc[3]  eps_ydSc[4] 
-    -1.01320     -2.77064      0.50546     -1.02784     -3.75231      0.23897 
+     0.23715      2.55770     -1.08853      0.19606      2.42024     -0.69802 
  eps_ydSc[5]  eps_ydSc[6]  eps_ydSc[7]  eps_ydSc[8]  eps_ydSc[9] eps_ydSc[10] 
-     1.19532      0.22451      1.73957      1.16876      4.81262     -0.40470 
+    -1.86240     -0.76940     -2.79675     -1.54404     -4.18722     -0.88564 
 eps_ydSc[11] eps_ydSc[12] eps_ydSc[13] eps_ydSc[14] eps_ydSc[15] eps_ydSc[16] 
-    -0.94069      0.79988     -0.65368     -0.10271     -1.03147      0.61855 
+     0.65964      0.03375     -0.42982     -1.45187      0.53456     -1.54136 
 eps_ydSc[17] eps_ydSc[18] eps_ydSc[19] eps_ydSc[20] eps_ydSc[21] eps_ydSc[22] 
-     0.20599     -0.93377     -0.04407     -2.17006      0.18859     -1.26716 
+    -1.35007      0.99638     -0.61667      1.99302      0.47185      1.21814 
 eps_ydSc[23] eps_ydSc[24] eps_ydSc[25] eps_ydSc[26] eps_ydSc[27] eps_ydSc[28] 
-    -0.98793     -2.17982      1.09012      0.30221     -1.44382     -0.34870 
+     0.61611      2.52213     -2.32658     -1.30372      0.98517      0.02937 
 
 
 
@@ -232,42 +260,48 @@ Probability (s) = 0.95
                                                       
               Burn-in  Total   Lower bound  Dependence
               (M)      (N)     (Nmin)       factor (I)
- int_width    600      793200  3746         212.0     
- width_coef   200      388800  3746         104.0     
- rate_lcpu    300      421000  3746         112.0     
- sigma_dSc    600      838000  3746         224.0     
- int_ydSc     1600     2051600 3746         548.0     
- log_flow     200      370800  3746          99.0     
- sigma_ySc    200      365600  3746          97.6     
- sigma_siteSc 300      401200  3746         107.0     
- eps_ydSc[1]  100      375500  3746         100.0     
- eps_ydSc[2]  200      367100  3746          98.0     
- eps_ydSc[3]  200      372500  3746          99.4     
- eps_ydSc[4]  200      371600  3746          99.2     
- eps_ydSc[5]  200      374000  3746          99.8     
- eps_ydSc[6]  200      376000  3746         100.0     
- eps_ydSc[7]  100      375500  3746         100.0     
- eps_ydSc[8]  200      380200  3746         101.0     
- eps_ydSc[9]  200      375100  3746         100.0     
- eps_ydSc[10] 200      372500  3746          99.4     
- eps_ydSc[11] 200      369500  3746          98.6     
- eps_ydSc[12] 200      366500  3746          97.8     
- eps_ydSc[13] 200      374000  3746          99.8     
- eps_ydSc[14] 200      371000  3746          99.0     
- eps_ydSc[15] 200      369500  3746          98.6     
- eps_ydSc[16] 200      374000  3746          99.8     
- eps_ydSc[17] 200      369500  3746          98.6     
- eps_ydSc[18] 200      369500  3746          98.6     
- eps_ydSc[19] 200      371000  3746          99.0     
- eps_ydSc[20] 200      384900  3746         103.0     
- eps_ydSc[21] 200      374000  3746          99.8     
- eps_ydSc[22] 200      372500  3746          99.4     
- eps_ydSc[23] 200      384000  3746         103.0     
- eps_ydSc[24] 200      368000  3746          98.2     
- eps_ydSc[25] 200      371000  3746          99.0     
- eps_ydSc[26] 200      382600  3746         102.0     
- eps_ydSc[27] 200      373200  3746          99.6     
- eps_ydSc[28] 200      371400  3746          99.1     
+ int_width    800      1558800 3746         416       
+ width_coef   400      1502000 3746         401       
+ rate_lcpu    2400     3469600 3746         926       
+ p_cpue       2400     3480000 3746         929       
+ mup_rem      1600     1900800 3746         507       
+ sd_prem      1200     1604800 3746         428       
+ eps          1600     1851200 3746         494       
+ mu_d         800      1514400 3746         404       
+ rate_d       2400     3172800 3746         847       
+ sigma_dSc    2400     3232000 3746         863       
+ int_ydSc     1200     1746800 3746         466       
+ log_flow     800      1548800 3746         413       
+ sigma_ySc    800      1484000 3746         396       
+ sigma_siteSc 800      1514800 3746         404       
+ eps_ydSc[1]  800      1496000 3746         399       
+ eps_ydSc[2]  800      1539600 3746         411       
+ eps_ydSc[3]  800      1490000 3746         398       
+ eps_ydSc[4]  800      1484000 3746         396       
+ eps_ydSc[5]  800      1548800 3746         413       
+ eps_ydSc[6]  800      1521600 3746         406       
+ eps_ydSc[7]  800      1508400 3746         403       
+ eps_ydSc[8]  800      1480400 3746         395       
+ eps_ydSc[9]  800      1512000 3746         404       
+ eps_ydSc[10] 800      1496000 3746         399       
+ eps_ydSc[11] 800      1539600 3746         411       
+ eps_ydSc[12] 800      1508400 3746         403       
+ eps_ydSc[13] 800      1508400 3746         403       
+ eps_ydSc[14] 800      1480400 3746         395       
+ eps_ydSc[15] 400      1502000 3746         401       
+ eps_ydSc[16] 800      1478000 3746         395       
+ eps_ydSc[17] 800      1520800 3746         406       
+ eps_ydSc[18] 800      1498800 3746         400       
+ eps_ydSc[19] 800      1496000 3746         399       
+ eps_ydSc[20] 800      1478000 3746         395       
+ eps_ydSc[21] 800      1533600 3746         409       
+ eps_ydSc[22] 800      1478000 3746         395       
+ eps_ydSc[23] 800      1508400 3746         403       
+ eps_ydSc[24] 800      1508400 3746         403       
+ eps_ydSc[25] 800      1490000 3746         398       
+ eps_ydSc[26] 800      1539600 3746         411       
+ eps_ydSc[27] 800      1539600 3746         411       
+ eps_ydSc[28] 800      1496000 3746         399       
 
 
 [[2]]
@@ -278,41 +312,47 @@ Probability (s) = 0.95
                                                       
               Burn-in  Total   Lower bound  Dependence
               (M)      (N)     (Nmin)       factor (I)
- int_width    300      442800  3746         118.0     
- width_coef   200      382200  3746         102.0     
- rate_lcpu    600      813400  3746         217.0     
- sigma_dSc    800      999200  3746         267.0     
- int_ydSc     900      1347000 3746         360.0     
- log_flow     200      377800  3746         101.0     
- sigma_ySc    200      369300  3746          98.6     
- sigma_siteSc 300      412400  3746         110.0     
- eps_ydSc[1]  200      374000  3746          99.8     
- eps_ydSc[2]  200      386500  3746         103.0     
- eps_ydSc[3]  200      371000  3746          99.0     
- eps_ydSc[4]  200      380000  3746         101.0     
- eps_ydSc[5]  200      369500  3746          98.6     
- eps_ydSc[6]  200      382200  3746         102.0     
- eps_ydSc[7]  100      375500  3746         100.0     
- eps_ydSc[8]  200      380200  3746         101.0     
- eps_ydSc[9]  200      381700  3746         102.0     
- eps_ydSc[10] 200      383400  3746         102.0     
- eps_ydSc[11] 200      381800  3746         102.0     
- eps_ydSc[12] 200      378400  3746         101.0     
- eps_ydSc[13] 200      377100  3746         101.0     
- eps_ydSc[14] 200      381800  3746         102.0     
- eps_ydSc[15] 200      366500  3746          97.8     
- eps_ydSc[16] 200      380200  3746         101.0     
- eps_ydSc[17] 200      377100  3746         101.0     
- eps_ydSc[18] 200      384700  3746         103.0     
- eps_ydSc[19] 200      377100  3746         101.0     
- eps_ydSc[20] 200      372500  3746          99.4     
- eps_ydSc[21] 100      375500  3746         100.0     
- eps_ydSc[22] 200      373800  3746          99.8     
- eps_ydSc[23] 100      376100  3746         100.0     
- eps_ydSc[24] 200      380200  3746         101.0     
- eps_ydSc[25] 200      381800  3746         102.0     
- eps_ydSc[26] 200      377200  3746         101.0     
- eps_ydSc[27] 200      366500  3746          97.8     
- eps_ydSc[28] 200      371000  3746          99.0     
+ int_width    800      1552400 3746          414      
+ width_coef   800      1514800 3746          404      
+ rate_lcpu    1200     1604800 3746          428      
+ p_cpue       1200     1604800 3746          428      
+ mup_rem      3600     5031600 3746         1340      
+ sd_prem      800      1597600 3746          426      
+ eps          1600     1940800 3746          518      
+ mu_d         800      1555200 3746          415      
+ rate_d       2400     3320000 3746          886      
+ sigma_dSc    1200     1697600 3746          453      
+ int_ydSc     2400     3381600 3746          903      
+ log_flow     400      1502000 3746          401      
+ sigma_ySc    800      1508400 3746          403      
+ sigma_siteSc 800      1539600 3746          411      
+ eps_ydSc[1]  800      1495200 3746          399      
+ eps_ydSc[2]  800      1508400 3746          403      
+ eps_ydSc[3]  400      1502000 3746          401      
+ eps_ydSc[4]  800      1483200 3746          396      
+ eps_ydSc[5]  800      1546000 3746          413      
+ eps_ydSc[6]  800      1472000 3746          393      
+ eps_ydSc[7]  800      1496000 3746          399      
+ eps_ydSc[8]  800      1478000 3746          395      
+ eps_ydSc[9]  800      1541200 3746          411      
+ eps_ydSc[10] 800      1490000 3746          398      
+ eps_ydSc[11] 800      1527200 3746          408      
+ eps_ydSc[12] 400      1502000 3746          401      
+ eps_ydSc[13] 800      1514800 3746          404      
+ eps_ydSc[14] 800      1495200 3746          399      
+ eps_ydSc[15] 800      1478000 3746          395      
+ eps_ydSc[16] 800      1520800 3746          406      
+ eps_ydSc[17] 800      1496000 3746          399      
+ eps_ydSc[18] 800      1498800 3746          400      
+ eps_ydSc[19] 800      1484000 3746          396      
+ eps_ydSc[20] 800      1527200 3746          408      
+ eps_ydSc[21] 800      1496000 3746          399      
+ eps_ydSc[22] 800      1483200 3746          396      
+ eps_ydSc[23] 800      1480400 3746          395      
+ eps_ydSc[24] 800      1520800 3746          406      
+ eps_ydSc[25] 800      1527200 3746          408      
+ eps_ydSc[26] 800      1508400 3746          403      
+ eps_ydSc[27] 800      1520800 3746          406      
+ eps_ydSc[28] 400      1504400 3746          402      
 
 

@@ -17,73 +17,77 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
               Stationarity start     p-value
               test         iteration        
-mu_B          passed          1      0.859  
-sigmap_B      passed          1      0.688  
-logit_int_Eu  passed       6001      0.146  
-logit_flow_Eu passed          1      0.854  
-sigmap_Eu     passed          1      0.662  
-p_B95         passed          1      0.446  
-p_B96         passed          1      0.742  
-p_B99         passed          1      0.558  
-p_B02         passed          1      0.968  
-shape_lambda  passed          1      0.794  
-rate_lambda   passed          1      0.731  
-mean_gamma    passed          1      0.737  
-var_gamma     passed          1      0.746  
-p_keep        passed          1      0.851  
+mu_B          passed          1      0.3246 
+sigmap_B      passed          1      0.7569 
+logit_int_Eu  passed          1      0.5722 
+logit_flow_Eu passed          1      0.0978 
+sigmap_Eu     passed          1      0.4628 
+p_B95         passed          1      0.0861 
+p_B96         passed          1      0.4946 
+p_B99         passed          1      0.4303 
+p_B02         passed          1      0.3467 
+p_B20         passed       4001      0.6516 
+shape_lambda  passed          1      0.2465 
+rate_lambda   passed          1      0.2519 
+mean_gamma    passed          1      0.7909 
+var_gamma     passed          1      0.2284 
+p_keep        passed          1      0.5098 
                                            
               Halfwidth Mean      Halfwidth
               test                         
-mu_B          passed     3.04e-01 1.10e-03 
-sigmap_B      passed     5.66e-01 3.89e-03 
-logit_int_Eu  passed    -2.54e+00 1.52e-03 
-logit_flow_Eu passed    -7.58e-02 1.49e-03 
-sigmap_Eu     passed     3.37e-01 1.14e-03 
-p_B95         passed     1.88e-01 9.59e-03 
-p_B96         passed     9.73e-02 1.57e-03 
-p_B99         passed     2.46e-01 2.52e-03 
-p_B02         passed     2.26e-01 1.07e-02 
-shape_lambda  passed     2.43e+00 2.28e-02 
-rate_lambda   passed     6.58e-04 5.38e-06 
-mean_gamma    passed     3.74e+03 1.51e+01 
-var_gamma     passed     6.29e+06 6.06e+04 
-p_keep        passed     8.03e-01 1.75e-03 
+mu_B          passed     3.04e-01 6.57e-04 
+sigmap_B      passed     5.71e-01 2.30e-03 
+logit_int_Eu  passed    -2.54e+00 1.06e-03 
+logit_flow_Eu passed    -7.69e-02 1.12e-03 
+sigmap_Eu     passed     3.37e-01 9.01e-04 
+p_B95         passed     1.98e-01 5.38e-03 
+p_B96         passed     9.85e-02 1.04e-03 
+p_B99         passed     2.46e-01 2.18e-03 
+p_B02         passed     2.21e-01 5.53e-03 
+p_B20         passed     8.44e-02 3.94e-03 
+shape_lambda  passed     2.42e+00 1.47e-02 
+rate_lambda   passed     6.56e-04 3.73e-06 
+mean_gamma    passed     3.74e+03 9.79e+00 
+var_gamma     passed     6.30e+06 4.36e+04 
+p_keep        passed     8.04e-01 1.60e-03 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-mu_B          passed       4001      0.130  
-sigmap_B      passed          1      0.188  
-logit_int_Eu  passed          1      0.752  
-logit_flow_Eu passed          1      0.854  
-sigmap_Eu     passed          1      0.799  
-p_B95         passed          1      0.283  
-p_B96         passed          1      0.144  
-p_B99         passed          1      0.056  
-p_B02         passed          1      0.398  
-shape_lambda  passed          1      0.304  
-rate_lambda   passed          1      0.105  
-mean_gamma    passed          1      0.067  
-var_gamma     passed       4001      0.259  
-p_keep        passed          1      0.968  
+mu_B          passed          1      0.408  
+sigmap_B      passed          1      0.868  
+logit_int_Eu  passed          1      0.224  
+logit_flow_Eu passed          1      0.652  
+sigmap_Eu     passed          1      0.209  
+p_B95         passed          1      0.217  
+p_B96         passed       2001      0.144  
+p_B99         passed          1      0.663  
+p_B02         passed          1      0.523  
+p_B20         passed          1      0.714  
+shape_lambda  passed          1      0.262  
+rate_lambda   passed          1      0.116  
+mean_gamma    passed          1      0.222  
+var_gamma     passed       6001      0.326  
+p_keep        passed          1      0.622  
                                            
               Halfwidth Mean      Halfwidth
               test                         
-mu_B          passed     3.04e-01 1.28e-03 
-sigmap_B      passed     5.71e-01 4.56e-03 
-logit_int_Eu  passed    -2.54e+00 1.25e-03 
-logit_flow_Eu passed    -7.76e-02 1.47e-03 
-sigmap_Eu     passed     3.37e-01 1.11e-03 
-p_B95         passed     1.98e-01 9.50e-03 
-p_B96         passed     9.96e-02 1.70e-03 
-p_B99         passed     2.43e-01 2.65e-03 
-p_B02         passed     2.19e-01 9.97e-03 
-shape_lambda  passed     2.43e+00 2.45e-02 
-rate_lambda   passed     6.58e-04 6.14e-06 
-mean_gamma    passed     3.74e+03 1.43e+01 
-var_gamma     passed     6.27e+06 7.09e+04 
-p_keep        passed     8.03e-01 1.73e-03 
+mu_B          passed     3.04e-01 7.48e-04 
+sigmap_B      passed     5.73e-01 2.59e-03 
+logit_int_Eu  passed    -2.54e+00 1.06e-03 
+logit_flow_Eu passed    -7.75e-02 1.18e-03 
+sigmap_Eu     passed     3.36e-01 9.04e-04 
+p_B95         passed     1.93e-01 5.31e-03 
+p_B96         passed     9.98e-02 1.16e-03 
+p_B99         passed     2.45e-01 2.14e-03 
+p_B02         passed     2.23e-01 5.58e-03 
+p_B20         passed     8.78e-02 3.70e-03 
+shape_lambda  passed     2.43e+00 1.52e-02 
+rate_lambda   passed     6.57e-04 4.00e-06 
+mean_gamma    passed     3.75e+03 9.78e+00 
+var_gamma     passed     6.29e+06 5.74e+04 
+p_keep        passed     8.03e-01 1.62e-03 
 
 
 ---------------------------
@@ -101,11 +105,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
          mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
-       0.1988       -2.2645        0.5283        0.4394       -0.2187 
-        p_B95         p_B96         p_B99         p_B02  shape_lambda 
-       0.4981       -0.7495       -1.0200       -0.5357       -0.1118 
-  rate_lambda    mean_gamma     var_gamma        p_keep 
-      -0.1383        0.1389        0.2028       -1.0399 
+      1.45034       0.46078      -0.07655      -0.75364       1.81666 
+        p_B95         p_B96         p_B99         p_B02         p_B20 
+      1.45980      -1.81620       0.45923       1.20859       1.12581 
+ shape_lambda   rate_lambda    mean_gamma     var_gamma        p_keep 
+     -1.15356      -0.84211      -0.71651       0.62636      -0.67457 
 
 
 [[2]]
@@ -114,11 +118,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
          mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu 
-     -0.57921       0.03451      -0.09123       0.60392      -0.98487 
-        p_B95         p_B96         p_B99         p_B02  shape_lambda 
-     -0.08852       0.90406       0.58648       0.66370      -0.71112 
-  rate_lambda    mean_gamma     var_gamma        p_keep 
-     -0.49270      -0.35785       0.38186       0.57703 
+     -0.39916       0.37009       1.20553       0.14502       1.44202 
+        p_B95         p_B96         p_B99         p_B02         p_B20 
+      0.88880       1.46529       0.63190      -0.90770      -1.89345 
+ shape_lambda   rate_lambda    mean_gamma     var_gamma        p_keep 
+      0.15397       0.17685       0.19167       0.08078      -0.74415 
 
 
 
@@ -132,20 +136,21 @@ Probability (s) = 0.95
                                                        
                Burn-in  Total   Lower bound  Dependence
                (M)      (N)     (Nmin)       factor (I)
- mu_B          600      821200  3746          219      
- sigmap_B      600      859400  3746          229      
- logit_int_Eu  300      407000  3746          109      
- logit_flow_Eu 200      388100  3746          104      
- sigmap_Eu     300      413100  3746          110      
- p_B95         2000     2112800 3746          564      
- p_B96         600      820200  3746          219      
- p_B99         300      414500  3746          111      
- p_B02         3500     4105500 3746         1100      
- shape_lambda  600      890200  3746          238      
- rate_lambda   300      407800  3746          109      
- mean_gamma    200      390100  3746          104      
- var_gamma     200      387200  3746          103      
- p_keep        200      380200  3746          101      
+ mu_B          1200     1611200 3746          430      
+ sigmap_B      800      1597200 3746          426      
+ logit_int_Eu  800      1569200 3746          419      
+ logit_flow_Eu 400      1502000 3746          401      
+ sigmap_Eu     800      1480400 3746          395      
+ p_B95         4800     6546000 3746         1750      
+ p_B96         800      1536000 3746          410      
+ p_B99         800      1533600 3746          409      
+ p_B02         3200     3800800 3746         1010      
+ p_B20         4000     4420000 3746         1180      
+ shape_lambda  800      1591200 3746          425      
+ rate_lambda   1200     1611200 3746          430      
+ mean_gamma    800      1571600 3746          420      
+ var_gamma     800      1527200 3746          408      
+ p_keep        400      1493200 3746          399      
 
 
 [[2]]
@@ -156,19 +161,20 @@ Probability (s) = 0.95
                                                        
                Burn-in  Total   Lower bound  Dependence
                (M)      (N)     (Nmin)       factor (I)
- mu_B          900      1143000 3746         305       
- sigmap_B      300      419200  3746         112       
- logit_int_Eu  200      399400  3746         107       
- logit_flow_Eu 300      403400  3746         108       
- sigmap_Eu     200      383400  3746         102       
- p_B95         3000     3358200 3746         896       
- p_B96         600      863600  3746         231       
- p_B99         300      421400  3746         112       
- p_B02         2500     2561000 3746         684       
- shape_lambda  600      842000  3746         225       
- rate_lambda   300      415700  3746         111       
- mean_gamma    200      384700  3746         103       
- var_gamma     300      403100  3746         108       
- p_keep        200      384900  3746         103       
+ mu_B          2400     3631200 3746          969      
+ sigmap_B      800      1590800 3746          425      
+ logit_int_Eu  800      1527600 3746          408      
+ logit_flow_Eu 800      1548800 3746          413      
+ sigmap_Eu     800      1489200 3746          398      
+ p_B95         4800     5794800 3746         1550      
+ p_B96         1200     1604800 3746          428      
+ p_B99         800      1496000 3746          399      
+ p_B02         4800     5258400 3746         1400      
+ p_B20         3200     4240800 3746         1130      
+ shape_lambda  2400     3019200 3746          806      
+ rate_lambda   800      1584400 3746          423      
+ mean_gamma    800      1547600 3746          413      
+ var_gamma     800      1593600 3746          425      
+ p_keep        800      1517200 3746          405      
 
 

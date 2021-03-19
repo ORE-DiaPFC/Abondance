@@ -69,8 +69,8 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=20000 # Total number of steps in chains to save.
-nthin=10 # Number of steps to "thin" (1=keep every step).
+nstore=50000 # Total number of steps in chains to save.
+nthin=250 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -87,7 +87,7 @@ fit <- bugs(
   ,codaPkg = FALSE, clearWD=FALSE
   ,saveExec=TRUE
   #,debug=TRUE
-  #,working.directory=paste(work.dir,"bugs",sep="/")
+  ,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:
   #, OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
   #, useWINE = TRUE
