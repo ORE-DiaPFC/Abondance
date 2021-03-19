@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  4706 
+Number of iterations:  4385 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -17,57 +17,61 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                               
                 Stationarity start     p-value
                 test         iteration        
-mu_p_srem       passed       1         0.2732 
-sd_logit_p_srem passed       1         0.4063 
-epsilon_p       passed       1         0.6295 
-pi_dj           passed       1         0.0685 
-zeta_alpha_dj   passed       1         0.0556 
-mu_dj_nat       passed       1         0.3689 
-k_cpue          passed       1         0.8064 
-rho_s           passed       1         0.1796 
-sd_s_rec        passed       1         0.5667 
-p_cpue          passed       1         0.8158 
+mu_p_srem       passed       1         0.482  
+sd_logit_p_srem passed       1         0.276  
+epsilon_p       passed       1         0.248  
+pi_dj           passed       1         0.905  
+zeta_alpha_dj   passed       1         0.775  
+mu_dj_nat       passed       1         0.115  
+k_cpue          passed       1         0.285  
+eta_cpue        passed       1         0.125  
+rho_s           passed       1         0.917  
+sd_s_rec        passed       1         0.804  
+p_cpue          passed       1         0.976  
                                            
                 Halfwidth Mean    Halfwidth
                 test                       
-mu_p_srem       passed      0.515 0.002409 
-sd_logit_p_srem passed      1.092 0.005024 
-epsilon_p       passed      0.561 0.003881 
-pi_dj           passed      0.726 0.002382 
-zeta_alpha_dj   passed      4.196 0.047954 
-mu_dj_nat       passed      0.132 0.000788 
-k_cpue          passed    123.892 0.429409 
-rho_s           passed      0.145 0.002549 
-sd_s_rec        passed      0.421 0.001425 
-p_cpue          passed      0.679 0.004813 
+mu_p_srem       passed      0.515 0.001360 
+sd_logit_p_srem passed      1.092 0.003308 
+epsilon_p       passed      0.559 0.002363 
+pi_dj           passed      0.724 0.002446 
+zeta_alpha_dj   passed      4.235 0.039862 
+mu_dj_nat       passed      0.131 0.000536 
+k_cpue          passed    124.107 0.305873 
+eta_cpue        passed      2.948 0.140125 
+rho_s           passed      0.143 0.002068 
+sd_s_rec        passed      0.420 0.001251 
+p_cpue          passed      0.673 0.003534 
 
 [[2]]
                                               
                 Stationarity start     p-value
                 test         iteration        
-mu_p_srem       passed       1         0.114  
-sd_logit_p_srem passed       1         0.137  
-epsilon_p       passed       1         0.194  
-pi_dj           passed       1         0.273  
-zeta_alpha_dj   passed       1         0.955  
-mu_dj_nat       passed       1         0.499  
-k_cpue          passed       1         0.807  
-rho_s           passed       1         0.394  
-sd_s_rec        passed       1         0.760  
-p_cpue          passed       1         0.752  
+mu_p_srem       passed          1      0.1338 
+sd_logit_p_srem passed          1      0.8052 
+epsilon_p       passed          1      0.2276 
+pi_dj           passed          1      0.4848 
+zeta_alpha_dj   passed          1      0.7215 
+mu_dj_nat       passed       1317      0.0786 
+k_cpue          passed          1      0.0714 
+eta_cpue        passed          1      0.6593 
+rho_s           passed          1      0.5224 
+sd_s_rec        passed          1      0.2273 
+p_cpue          passed          1      0.5994 
                                            
                 Halfwidth Mean    Halfwidth
                 test                       
-mu_p_srem       passed      0.514 0.002358 
-sd_logit_p_srem passed      1.092 0.005190 
-epsilon_p       passed      0.562 0.003921 
-pi_dj           passed      0.726 0.002336 
-zeta_alpha_dj   passed      4.242 0.038743 
-mu_dj_nat       passed      0.132 0.000787 
-k_cpue          passed    123.841 0.401426 
-rho_s           passed      0.145 0.002795 
-sd_s_rec        passed      0.421 0.001500 
-p_cpue          passed      0.679 0.004691 
+mu_p_srem       passed      0.515 0.001444 
+sd_logit_p_srem passed      1.092 0.003385 
+epsilon_p       passed      0.561 0.002386 
+pi_dj           passed      0.725 0.002485 
+zeta_alpha_dj   passed      4.227 0.035853 
+mu_dj_nat       passed      0.132 0.000597 
+k_cpue          passed    123.928 0.298991 
+eta_cpue        passed      3.022 0.170603 
+rho_s           passed      0.143 0.001917 
+sd_s_rec        passed      0.420 0.001205 
+p_cpue          passed      0.674 0.003850 
 
 
 ---------------------------
@@ -85,9 +89,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
-         1.5206         -1.7166         -0.5473         -0.6575          2.0122 
-      mu_dj_nat          k_cpue           rho_s        sd_s_rec          p_cpue 
-        -1.2259          1.1956         -1.7113         -0.2240          0.3521 
+       -1.16508         1.29640         0.92429        -0.61026         1.83845 
+      mu_dj_nat          k_cpue        eta_cpue           rho_s        sd_s_rec 
+       -1.06941        -0.07383         1.31855         0.25930         1.37432 
+         p_cpue 
+        0.42264 
 
 
 [[2]]
@@ -96,9 +102,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
-        0.45688        -0.61455        -0.24673         0.58304        -0.42463 
-      mu_dj_nat          k_cpue           rho_s        sd_s_rec          p_cpue 
-       -0.31870         0.16730         0.28932         0.09708        -1.34842 
+         0.4749         -0.5156         -0.5847          0.5970         -0.1820 
+      mu_dj_nat          k_cpue        eta_cpue           rho_s        sd_s_rec 
+        -1.1592          1.1391         -0.2963          0.6821         -2.2667 
+         p_cpue 
+        -0.7150 
 
 
 
@@ -112,16 +120,17 @@ Probability (s) = 0.95
                                                          
                  Burn-in  Total   Lower bound  Dependence
                  (M)      (N)     (Nmin)       factor (I)
- mu_p_srem       800      903200  3746         241.0     
- sd_logit_p_srem 500      564400  3746         151.0     
- epsilon_p       800      1043400 3746         279.0     
- pi_dj           200      389500  3746         104.0     
- zeta_alpha_dj   200      369700  3746          98.7     
- mu_dj_nat       400      491100  3746         131.0     
- k_cpue          400      497900  3746         133.0     
- rho_s           300      407100  3746         109.0     
- sd_s_rec        200      369700  3746          98.7     
- p_cpue          200      389500  3746         104.0     
+ mu_p_srem       900      1221600 3746         326       
+ sd_logit_p_srem 900      1341300 3746         358       
+ epsilon_p       900      1292100 3746         345       
+ pi_dj           600      1133400 3746         303       
+ zeta_alpha_dj   600      1092000 3746         292       
+ mu_dj_nat       600      1233900 3746         329       
+ k_cpue          600      1112400 3746         297       
+ eta_cpue        600      1112400 3746         297       
+ rho_s           600      1154700 3746         308       
+ sd_s_rec        600      1154700 3746         308       
+ p_cpue          600      1112400 3746         297       
 
 
 [[2]]
@@ -132,15 +141,16 @@ Probability (s) = 0.95
                                                          
                  Burn-in  Total   Lower bound  Dependence
                  (M)      (N)     (Nmin)       factor (I)
- mu_p_srem       400      515900  3746         138.0     
- sd_logit_p_srem 1200     1383200 3746         369.0     
- epsilon_p       1200     1573800 3746         420.0     
- pi_dj           200      369700  3746          98.7     
- zeta_alpha_dj   200      396400  3746         106.0     
- mu_dj_nat       400      506800  3746         135.0     
- k_cpue          300      425000  3746         113.0     
- rho_s           300      425000  3746         113.0     
- sd_s_rec        300      435200  3746         116.0     
- p_cpue          200      389500  3746         104.0     
+ mu_p_srem       900      1253400 3746         335       
+ sd_logit_p_srem 1200     1392900 3746         372       
+ epsilon_p       1200     1560900 3746         417       
+ pi_dj           600      1121400 3746         299       
+ zeta_alpha_dj   600      1083000 3746         289       
+ mu_dj_nat       900      1276800 3746         341       
+ k_cpue          600      1172400 3746         313       
+ eta_cpue        600      1133400 3746         303       
+ rho_s           900      1244400 3746         332       
+ sd_s_rec        600      1112400 3746         297       
+ p_cpue          600      1133400 3746         303       
 
 

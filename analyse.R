@@ -24,7 +24,7 @@ setwd(work.dir)
 
 # cleaning
 system("mkdir bugs/")
-system("rm bugs/*")
+#system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -86,8 +86,9 @@ fit <- bugs(
   ,DIC=FALSE
   ,codaPkg = FALSE, clearWD=FALSE
   ,saveExec=TRUE
+  ,restart=TRUE
   #,debug=TRUE
-  #,working.directory=paste(work.dir,"bugs",sep="/")
+  ,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:
   #, OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
   #, useWINE = TRUE

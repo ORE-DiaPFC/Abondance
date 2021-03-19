@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  20000 
+Number of iterations:  50000 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -17,165 +17,165 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int[1]  passed          1      0.98783
-logit_int[2]  passed          1      0.90625
-logit_flow[1] passed          1      0.17612
-logit_flow[2] passed          1      0.43785
-sigmap[1]     passed          1      0.54415
-sigmap[2]     passed       2001      0.16931
-rho           passed       6001      0.24322
-shape_lambda  passed          1      0.81562
-rate_lambda   passed          1      0.88535
-mean_gamma    passed          1      0.47837
-var_gamma     passed          1      0.89085
-lambda[1]     passed          1      0.29783
-lambda[2]     passed          1      0.60579
-lambda[3]     passed       4001      0.07690
-lambda[4]     passed          1      0.72637
-lambda[5]     passed          1      0.60755
-lambda[6]     passed          1      0.64577
-lambda[7]     passed          1      0.37602
-lambda[8]     passed          1      0.92488
-lambda[9]     passed          1      0.25501
-lambda[10]    passed          1      0.64343
-lambda[11]    passed          1      0.93960
-lambda[12]    passed       2001      0.07856
-lambda[13]    passed          1      0.56483
-lambda[14]    passed          1      0.40446
-lambda[15]    passed          1      0.18706
-lambda[16]    passed          1      0.91785
-lambda[17]    failed         NA      0.00743
-lambda[18]    passed          1      0.97963
-lambda[19]    passed       4001      0.06777
-lambda[20]    passed          1      0.08481
-lambda[21]    passed          1      0.07047
-lambda[22]    passed          1      0.06320
-lambda[23]    passed          1      0.89228
-lambda[24]    passed          1      0.33722
-lambda[25]    passed          1      0.67300
-lambda[26]    passed          1      0.10709
+logit_int[1]  passed           1     0.6056 
+logit_int[2]  passed           1     0.8127 
+logit_flow[1] passed           1     0.3972 
+logit_flow[2] passed        5001     0.1369 
+sigmap[1]     passed       15001     0.0664 
+sigmap[2]     passed       15001     0.1307 
+rho           passed           1     0.0884 
+shape_lambda  passed           1     0.3746 
+rate_lambda   passed           1     0.5020 
+mean_gamma    passed           1     0.6963 
+var_gamma     passed           1     0.9911 
+lambda[1]     passed           1     0.3062 
+lambda[2]     passed           1     0.5930 
+lambda[3]     passed           1     0.0508 
+lambda[4]     passed           1     0.2006 
+lambda[5]     passed           1     0.4536 
+lambda[6]     passed        5001     0.0570 
+lambda[7]     passed           1     0.7319 
+lambda[8]     passed           1     0.4075 
+lambda[9]     passed           1     0.7393 
+lambda[10]    passed           1     0.6563 
+lambda[11]    passed           1     0.2545 
+lambda[12]    passed           1     0.3279 
+lambda[13]    passed       10001     0.1354 
+lambda[14]    passed           1     0.6167 
+lambda[15]    passed           1     0.4454 
+lambda[16]    passed           1     0.4258 
+lambda[17]    passed           1     0.4318 
+lambda[18]    passed           1     0.4374 
+lambda[19]    passed           1     0.0854 
+lambda[20]    passed           1     0.6277 
+lambda[21]    passed           1     0.0569 
+lambda[22]    passed           1     0.1910 
+lambda[23]    passed           1     0.1351 
+lambda[24]    passed           1     0.7140 
+lambda[25]    passed           1     0.9267 
+lambda[26]    passed           1     0.9471 
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int[1]  passed    -1.87e+00 1.56e-03 
-logit_int[2]  passed    -1.13e+00 2.00e-03 
-logit_flow[1] passed    -1.21e-01 1.55e-03 
-logit_flow[2] passed    -4.11e-01 1.94e-03 
-sigmap[1]     passed     5.35e-01 1.28e-03 
-sigmap[2]     passed     6.69e-01 1.78e-03 
-rho           passed     3.79e-01 3.20e-03 
-shape_lambda  passed     3.81e+00 1.48e-02 
-rate_lambda   passed     5.02e-04 2.08e-06 
-mean_gamma    passed     7.68e+03 1.18e+01 
-var_gamma     passed     1.70e+07 9.52e+04 
-lambda[1]     passed     6.32e+03 2.44e+01 
-lambda[2]     passed     2.05e+03 5.13e+00 
-lambda[3]     passed     1.00e+04 5.03e+00 
-lambda[4]     passed     4.91e+03 6.42e+00 
-lambda[5]     passed     2.65e+03 3.62e+00 
-lambda[6]     passed     3.07e+03 4.33e+00 
-lambda[7]     passed     1.19e+04 1.47e+01 
-lambda[8]     passed     1.26e+03 1.23e+00 
-lambda[9]     passed     1.02e+04 3.27e+00 
-lambda[10]    passed     7.89e+03 2.62e+00 
-lambda[11]    passed     1.08e+04 3.90e+00 
-lambda[12]    passed     7.19e+03 8.07e+00 
-lambda[13]    passed     7.58e+03 4.38e+00 
-lambda[14]    passed     1.06e+04 1.26e+01 
-lambda[15]    passed     1.37e+04 1.14e+01 
-lambda[16]    passed     1.06e+04 8.61e+00 
-lambda[17]    <NA>             NA       NA 
-lambda[18]    passed     8.31e+03 2.10e+01 
-lambda[19]    passed     8.41e+03 5.56e+01 
-lambda[20]    passed     1.03e+04 1.10e+01 
-lambda[21]    passed     6.66e+03 1.16e+01 
-lambda[22]    passed     9.78e+03 6.20e+00 
-lambda[23]    passed     6.27e+03 8.63e+00 
-lambda[24]    passed     5.14e+03 1.19e+01 
-lambda[25]    passed     5.31e+03 4.76e+00 
-lambda[26]    passed     7.72e+03 5.86e+01 
+logit_int[1]  passed    -1.87e+00 9.76e-04 
+logit_int[2]  passed    -1.14e+00 1.25e-03 
+logit_flow[1] passed    -1.22e-01 9.83e-04 
+logit_flow[2] passed    -4.13e-01 1.32e-03 
+sigmap[1]     passed     5.34e-01 9.37e-04 
+sigmap[2]     passed     6.69e-01 1.21e-03 
+rho           passed     3.78e-01 1.63e-03 
+shape_lambda  passed     3.83e+00 9.39e-03 
+rate_lambda   passed     5.04e-04 1.32e-06 
+mean_gamma    passed     7.68e+03 7.35e+00 
+var_gamma     passed     1.70e+07 6.14e+04 
+lambda[1]     passed     6.31e+03 1.02e+01 
+lambda[2]     passed     2.04e+03 2.61e+00 
+lambda[3]     passed     1.00e+04 2.54e+00 
+lambda[4]     passed     4.91e+03 3.24e+00 
+lambda[5]     passed     2.65e+03 2.12e+00 
+lambda[6]     passed     3.08e+03 2.42e+00 
+lambda[7]     passed     1.19e+04 6.91e+00 
+lambda[8]     passed     1.26e+03 7.64e-01 
+lambda[9]     passed     1.02e+04 2.04e+00 
+lambda[10]    passed     7.89e+03 1.65e+00 
+lambda[11]    passed     1.08e+04 2.40e+00 
+lambda[12]    passed     7.19e+03 3.87e+00 
+lambda[13]    passed     7.58e+03 2.89e+00 
+lambda[14]    passed     1.06e+04 6.02e+00 
+lambda[15]    passed     1.37e+04 5.76e+00 
+lambda[16]    passed     1.06e+04 4.24e+00 
+lambda[17]    passed     8.88e+03 7.20e+00 
+lambda[18]    passed     8.31e+03 8.94e+00 
+lambda[19]    passed     8.40e+03 1.95e+01 
+lambda[20]    passed     1.03e+04 5.34e+00 
+lambda[21]    passed     6.66e+03 5.10e+00 
+lambda[22]    passed     9.78e+03 3.43e+00 
+lambda[23]    passed     6.27e+03 4.25e+00 
+lambda[24]    passed     5.15e+03 5.21e+00 
+lambda[25]    passed     5.30e+03 2.59e+00 
+lambda[26]    passed     7.70e+03 3.67e+01 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int[1]  passed          1      0.4369 
-logit_int[2]  passed          1      0.8635 
-logit_flow[1] passed          1      0.9662 
-logit_flow[2] passed          1      0.8448 
-sigmap[1]     passed          1      0.5749 
-sigmap[2]     passed          1      0.2099 
-rho           passed          1      0.9464 
-shape_lambda  passed       2001      0.0928 
-rate_lambda   passed          1      0.0549 
-mean_gamma    passed          1      0.5773 
-var_gamma     passed          1      0.2256 
-lambda[1]     passed          1      0.7500 
-lambda[2]     passed          1      0.2378 
-lambda[3]     passed       2001      0.0572 
-lambda[4]     passed       2001      0.0997 
-lambda[5]     passed          1      0.2771 
-lambda[6]     passed          1      0.4366 
-lambda[7]     passed          1      0.6528 
-lambda[8]     passed          1      0.6443 
-lambda[9]     passed          1      0.3426 
-lambda[10]    passed          1      0.6915 
-lambda[11]    passed          1      0.2164 
-lambda[12]    passed          1      0.2868 
-lambda[13]    passed          1      0.2433 
-lambda[14]    passed          1      0.2519 
-lambda[15]    passed          1      0.3144 
-lambda[16]    passed       4001      0.1059 
-lambda[17]    passed          1      0.9420 
-lambda[18]    passed          1      0.5891 
-lambda[19]    passed          1      0.1188 
-lambda[20]    passed          1      0.3655 
-lambda[21]    passed          1      0.7141 
-lambda[22]    passed          1      0.7781 
-lambda[23]    passed          1      0.9413 
-lambda[24]    passed          1      0.9834 
-lambda[25]    passed          1      0.9290 
-lambda[26]    passed          1      0.4441 
+logit_int[1]  passed           1     0.0557 
+logit_int[2]  passed       10001     0.0673 
+logit_flow[1] passed           1     0.5072 
+logit_flow[2] passed           1     0.6446 
+sigmap[1]     passed           1     0.1324 
+sigmap[2]     passed           1     0.6806 
+rho           passed           1     0.3033 
+shape_lambda  passed           1     0.7024 
+rate_lambda   passed           1     0.5170 
+mean_gamma    passed           1     0.6400 
+var_gamma     passed           1     0.5950 
+lambda[1]     passed           1     0.5433 
+lambda[2]     passed           1     0.8117 
+lambda[3]     passed           1     0.7132 
+lambda[4]     passed           1     0.9887 
+lambda[5]     passed           1     0.3952 
+lambda[6]     passed           1     0.2944 
+lambda[7]     passed           1     0.4110 
+lambda[8]     passed           1     0.4279 
+lambda[9]     passed           1     0.9353 
+lambda[10]    passed           1     0.1612 
+lambda[11]    passed           1     0.9203 
+lambda[12]    passed           1     0.4340 
+lambda[13]    passed           1     0.8659 
+lambda[14]    passed           1     0.7217 
+lambda[15]    passed           1     0.0938 
+lambda[16]    passed           1     0.4959 
+lambda[17]    passed           1     0.1440 
+lambda[18]    passed           1     0.8662 
+lambda[19]    passed           1     0.7747 
+lambda[20]    passed           1     0.7860 
+lambda[21]    passed           1     0.2372 
+lambda[22]    passed           1     0.9617 
+lambda[23]    passed           1     0.4634 
+lambda[24]    passed           1     0.9399 
+lambda[25]    passed           1     0.6224 
+lambda[26]    passed           1     0.0711 
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int[1]  passed    -1.87e+00 1.51e-03 
-logit_int[2]  passed    -1.13e+00 1.96e-03 
-logit_flow[1] passed    -1.22e-01 1.53e-03 
-logit_flow[2] passed    -4.12e-01 2.00e-03 
-sigmap[1]     passed     5.34e-01 1.27e-03 
-sigmap[2]     passed     6.70e-01 1.75e-03 
-rho           passed     3.81e-01 2.69e-03 
-shape_lambda  passed     3.82e+00 1.57e-02 
-rate_lambda   passed     5.03e-04 2.13e-06 
-mean_gamma    passed     7.67e+03 1.17e+01 
-var_gamma     passed     1.70e+07 9.67e+04 
-lambda[1]     passed     6.30e+03 2.42e+01 
-lambda[2]     passed     2.05e+03 5.15e+00 
-lambda[3]     passed     1.00e+04 4.35e+00 
-lambda[4]     passed     4.91e+03 6.73e+00 
-lambda[5]     passed     2.65e+03 3.68e+00 
-lambda[6]     passed     3.07e+03 4.11e+00 
-lambda[7]     passed     1.19e+04 1.46e+01 
-lambda[8]     passed     1.26e+03 1.24e+00 
-lambda[9]     passed     1.02e+04 3.25e+00 
-lambda[10]    passed     7.89e+03 2.69e+00 
-lambda[11]    passed     1.08e+04 3.75e+00 
-lambda[12]    passed     7.20e+03 7.50e+00 
-lambda[13]    passed     7.58e+03 4.50e+00 
-lambda[14]    passed     1.06e+04 1.26e+01 
-lambda[15]    passed     1.37e+04 1.15e+01 
-lambda[16]    passed     1.06e+04 9.46e+00 
-lambda[17]    passed     8.88e+03 1.63e+01 
-lambda[18]    passed     8.31e+03 2.08e+01 
-lambda[19]    passed     8.41e+03 4.64e+01 
-lambda[20]    passed     1.03e+04 1.11e+01 
-lambda[21]    passed     6.65e+03 1.10e+01 
-lambda[22]    passed     9.79e+03 6.19e+00 
-lambda[23]    passed     6.27e+03 8.65e+00 
-lambda[24]    passed     5.15e+03 1.18e+01 
-lambda[25]    passed     5.31e+03 4.75e+00 
-lambda[26]    passed     7.71e+03 5.92e+01 
+logit_int[1]  passed    -1.87e+00 9.63e-04 
+logit_int[2]  passed    -1.13e+00 1.38e-03 
+logit_flow[1] passed    -1.22e-01 9.58e-04 
+logit_flow[2] passed    -4.13e-01 1.25e-03 
+sigmap[1]     passed     5.35e-01 7.77e-04 
+sigmap[2]     passed     6.69e-01 1.04e-03 
+rho           passed     3.80e-01 1.66e-03 
+shape_lambda  passed     3.83e+00 9.38e-03 
+rate_lambda   passed     5.04e-04 1.32e-06 
+mean_gamma    passed     7.68e+03 7.36e+00 
+var_gamma     passed     1.70e+07 6.05e+04 
+lambda[1]     passed     6.31e+03 1.03e+01 
+lambda[2]     passed     2.04e+03 2.60e+00 
+lambda[3]     passed     1.00e+04 2.54e+00 
+lambda[4]     passed     4.90e+03 3.32e+00 
+lambda[5]     passed     2.65e+03 2.01e+00 
+lambda[6]     passed     3.08e+03 2.30e+00 
+lambda[7]     passed     1.19e+04 6.88e+00 
+lambda[8]     passed     1.26e+03 7.70e-01 
+lambda[9]     passed     1.02e+04 2.05e+00 
+lambda[10]    passed     7.89e+03 1.66e+00 
+lambda[11]    passed     1.08e+04 2.37e+00 
+lambda[12]    passed     7.19e+03 3.90e+00 
+lambda[13]    passed     7.57e+03 2.58e+00 
+lambda[14]    passed     1.06e+04 6.08e+00 
+lambda[15]    passed     1.37e+04 5.77e+00 
+lambda[16]    passed     1.06e+04 4.34e+00 
+lambda[17]    passed     8.88e+03 7.18e+00 
+lambda[18]    passed     8.31e+03 8.92e+00 
+lambda[19]    passed     8.43e+03 1.95e+01 
+lambda[20]    passed     1.03e+04 5.31e+00 
+lambda[21]    passed     6.65e+03 5.02e+00 
+lambda[22]    passed     9.79e+03 3.42e+00 
+lambda[23]    passed     6.27e+03 4.15e+00 
+lambda[24]    passed     5.14e+03 5.30e+00 
+lambda[25]    passed     5.31e+03 2.57e+00 
+lambda[26]    passed     7.68e+03 3.68e+01 
 
 
 ---------------------------
@@ -193,21 +193,21 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int[1]  logit_int[2] logit_flow[1] logit_flow[2]     sigmap[1] 
-    -0.055427      0.146893     -0.913333     -1.067144      1.035247 
+     -0.28474      -0.23621       0.26248       1.66937      -2.27141 
     sigmap[2]           rho  shape_lambda   rate_lambda    mean_gamma 
-     2.567951      1.169653     -1.065832     -0.864729     -0.534703 
+     -2.05386      -1.05722       0.52621       0.78901      -0.92635 
     var_gamma     lambda[1]     lambda[2]     lambda[3]     lambda[4] 
-     0.328527      1.344291      0.111118      1.090023     -0.219166 
+     -0.36709      -0.06083       0.51721       0.79143       0.37298 
     lambda[5]     lambda[6]     lambda[7]     lambda[8]     lambda[9] 
-     0.699074     -1.263639      1.275142      0.511354      1.279100 
+     -1.11452      -1.53022       0.85042       0.51471       1.30869 
    lambda[10]    lambda[11]    lambda[12]    lambda[13]    lambda[14] 
-     0.224110      0.413324     -2.594221     -0.128788      0.541160 
+     -0.21536       0.35430       1.46976      -1.34089      -0.82314 
    lambda[15]    lambda[16]    lambda[17]    lambda[18]    lambda[19] 
-    -1.148422      0.271739     -0.664379      0.196319      1.683847 
+      2.08810       0.17407       0.82915       0.21863      -1.55340 
    lambda[20]    lambda[21]    lambda[22]    lambda[23]    lambda[24] 
-    -1.398611      2.181510      2.082935      0.771193      0.000263 
+      0.26397       1.64737      -2.07138      -1.69857       0.64832 
    lambda[25]    lambda[26] 
-    -0.135498     -0.665903 
+      0.51807      -0.71205 
 
 
 [[2]]
@@ -216,21 +216,21 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int[1]  logit_int[2] logit_flow[1] logit_flow[2]     sigmap[1] 
-      1.47172       0.01251       0.44772      -0.02329       1.98688 
+     -2.24167      -1.76575       0.09992      -0.73882       1.98805 
     sigmap[2]           rho  shape_lambda   rate_lambda    mean_gamma 
-      1.07248       0.79318      -1.83159      -1.75074       0.00724 
+     -0.03588       0.54763      -0.58984      -0.39899      -0.04231 
     var_gamma     lambda[1]     lambda[2]     lambda[3]     lambda[4] 
-      0.90292      -0.38402      -2.05338       1.68460      -1.61779 
+      0.69080      -0.55784      -0.12125       0.67463       0.88533 
     lambda[5]     lambda[6]     lambda[7]     lambda[8]     lambda[9] 
-      0.31950      -0.13330      -0.16011      -0.58009       1.27347 
+      0.08625       0.65045       1.67911      -0.39671       0.20039 
    lambda[10]    lambda[11]    lambda[12]    lambda[13]    lambda[14] 
-     -1.02678       0.58185       2.12608      -1.19260       0.50153 
+      0.25293      -0.50205      -0.46034       0.04667       1.14797 
    lambda[15]    lambda[16]    lambda[17]    lambda[18]    lambda[19] 
-     -0.21490       1.90153      -0.38468       1.60048      -0.63354 
+      2.85035       1.64824      -1.11202      -1.28952      -1.02849 
    lambda[20]    lambda[21]    lambda[22]    lambda[23]    lambda[24] 
-      0.44705      -0.29924       0.18164       0.73794       0.47257 
+      0.18340      -0.28922       0.41558      -0.18872       0.63933 
    lambda[25]    lambda[26] 
-     -0.33657       1.21925 
+     -0.41468      -0.69721 
 
 
 
@@ -244,43 +244,43 @@ Probability (s) = 0.95
                                                        
                Burn-in  Total   Lower bound  Dependence
                (M)      (N)     (Nmin)       factor (I)
- logit_int[1]  200      374500  3746         100.0     
- logit_int[2]  200      380000  3746         101.0     
- logit_flow[1] 200      371600  3746          99.2     
- logit_flow[2] 200      374000  3746          99.8     
- sigmap[1]     200      380000  3746         101.0     
- sigmap[2]     200      383100  3746         102.0     
- rho           200      369500  3746          98.6     
- shape_lambda  200      374000  3746          99.8     
- rate_lambda   200      380200  3746         101.0     
- mean_gamma    200      369500  3746          98.6     
- var_gamma     200      380200  3746         101.0     
- lambda[1]     400      504900  3746         135.0     
- lambda[2]     200      395500  3746         106.0     
- lambda[3]     200      397100  3746         106.0     
- lambda[4]     200      399400  3746         107.0     
- lambda[5]     200      391000  3746         104.0     
- lambda[6]     200      400700  3746         107.0     
- lambda[7]     300      423300  3746         113.0     
- lambda[8]     200      390200  3746         104.0     
- lambda[9]     200      385700  3746         103.0     
- lambda[10]    100      377400  3746         101.0     
- lambda[11]    200      406300  3746         108.0     
- lambda[12]    200      391300  3746         104.0     
- lambda[13]    200      370600  3746          98.9     
- lambda[14]    300      434400  3746         116.0     
- lambda[15]    300      428600  3746         114.0     
- lambda[16]    300      426700  3746         114.0     
- lambda[17]    400      468600  3746         125.0     
- lambda[18]    400      483200  3746         129.0     
- lambda[19]    800      1057800 3746         282.0     
- lambda[20]    300      406100  3746         108.0     
- lambda[21]    300      454500  3746         121.0     
- lambda[22]    200      386500  3746         103.0     
- lambda[23]    300      421000  3746         112.0     
- lambda[24]    400      467400  3746         125.0     
- lambda[25]    200      380000  3746         101.0     
- lambda[26]    200      369500  3746          98.6     
+ logit_int[1]  500      968750  3746         259       
+ logit_int[2]  500      941750  3746         251       
+ logit_flow[1] 500      936500  3746         250       
+ logit_flow[2] 500      943500  3746         252       
+ sigmap[1]     500      939750  3746         251       
+ sigmap[2]     500      952750  3746         254       
+ rho           500      944250  3746         252       
+ shape_lambda  500      961000  3746         257       
+ rate_lambda   500      959500  3746         256       
+ mean_gamma    500      949750  3746         254       
+ var_gamma     500      919750  3746         246       
+ lambda[1]     750      1012500 3746         270       
+ lambda[2]     500      952750  3746         254       
+ lambda[3]     500      959750  3746         256       
+ lambda[4]     500      956500  3746         255       
+ lambda[5]     500      924500  3746         247       
+ lambda[6]     250      938250  3746         250       
+ lambda[7]     500      982000  3746         262       
+ lambda[8]     500      936250  3746         250       
+ lambda[9]     500      941000  3746         251       
+ lambda[10]    500      927000  3746         247       
+ lambda[11]    250      951250  3746         254       
+ lambda[12]    500      951250  3746         254       
+ lambda[13]    500      942750  3746         252       
+ lambda[14]    500      945250  3746         252       
+ lambda[15]    500      956750  3746         255       
+ lambda[16]    500      940250  3746         251       
+ lambda[17]    500      996500  3746         266       
+ lambda[18]    500      980250  3746         262       
+ lambda[19]    1500     2062000 3746         550       
+ lambda[20]    500      936500  3746         250       
+ lambda[21]    500      974250  3746         260       
+ lambda[22]    500      951000  3746         254       
+ lambda[23]    500      950000  3746         254       
+ lambda[24]    500      968750  3746         259       
+ lambda[25]    500      949750  3746         254       
+ lambda[26]    500      935000  3746         250       
 
 
 [[2]]
@@ -291,42 +291,42 @@ Probability (s) = 0.95
                                                        
                Burn-in  Total   Lower bound  Dependence
                (M)      (N)     (Nmin)       factor (I)
- logit_int[1]  200      371900  3746          99.3     
- logit_int[2]  200      384100  3746         103.0     
- logit_flow[1] 200      377100  3746         101.0     
- logit_flow[2] 200      371000  3746          99.0     
- sigmap[1]     200      386500  3746         103.0     
- sigmap[2]     200      383400  3746         102.0     
- rho           200      380200  3746         101.0     
- shape_lambda  200      377100  3746         101.0     
- rate_lambda   200      391300  3746         104.0     
- mean_gamma    200      378700  3746         101.0     
- var_gamma     200      385600  3746         103.0     
- lambda[1]     600      874400  3746         233.0     
- lambda[2]     200      390300  3746         104.0     
- lambda[3]     200      383700  3746         102.0     
- lambda[4]     200      389400  3746         104.0     
- lambda[5]     100      378100  3746         101.0     
- lambda[6]     200      384900  3746         103.0     
- lambda[7]     300      448600  3746         120.0     
- lambda[8]     200      377800  3746         101.0     
- lambda[9]     200      379700  3746         101.0     
- lambda[10]    100      378100  3746         101.0     
- lambda[11]    100      391300  3746         104.0     
- lambda[12]    200      394500  3746         105.0     
- lambda[13]    200      391900  3746         105.0     
- lambda[14]    300      424900  3746         113.0     
- lambda[15]    300      434400  3746         116.0     
- lambda[16]    300      406300  3746         108.0     
- lambda[17]    400      480400  3746         128.0     
- lambda[18]    400      510700  3746         136.0     
- lambda[19]    900      1324500 3746         354.0     
- lambda[20]    300      416300  3746         111.0     
- lambda[21]    300      436300  3746         116.0     
- lambda[22]    300      402800  3746         108.0     
- lambda[23]    300      420300  3746         112.0     
- lambda[24]    400      482400  3746         129.0     
- lambda[25]    300      406400  3746         108.0     
- lambda[26]    200      369500  3746          98.6     
+ logit_int[1]  500      933500  3746         249       
+ logit_int[2]  500      945500  3746         252       
+ logit_flow[1] 500      948750  3746         253       
+ logit_flow[2] 500      930500  3746         248       
+ sigmap[1]     500      942000  3746         251       
+ sigmap[2]     500      946500  3746         253       
+ rho           250      938000  3746         250       
+ shape_lambda  500      941000  3746         251       
+ rate_lambda   500      926250  3746         247       
+ mean_gamma    500      936500  3746         250       
+ var_gamma     250      938000  3746         250       
+ lambda[1]     750      1031750 3746         275       
+ lambda[2]     500      941000  3746         251       
+ lambda[3]     250      939750  3746         251       
+ lambda[4]     250      939250  3746         251       
+ lambda[5]     500      951500  3746         254       
+ lambda[6]     500      939500  3746         251       
+ lambda[7]     500      970250  3746         259       
+ lambda[8]     500      953500  3746         255       
+ lambda[9]     500      945000  3746         252       
+ lambda[10]    500      935750  3746         250       
+ lambda[11]    500      976000  3746         261       
+ lambda[12]    500      951000  3746         254       
+ lambda[13]    250      938500  3746         251       
+ lambda[14]    250      939750  3746         251       
+ lambda[15]    500      951750  3746         254       
+ lambda[16]    500      958250  3746         256       
+ lambda[17]    500      995250  3746         266       
+ lambda[18]    500      988500  3746         264       
+ lambda[19]    1000     1152250 3746         308       
+ lambda[20]    500      957500  3746         256       
+ lambda[21]    500      966750  3746         258       
+ lambda[22]    500      954500  3746         255       
+ lambda[23]    500      943750  3746         252       
+ lambda[24]    500      968250  3746         258       
+ lambda[25]    250      937750  3746         250       
+ lambda[26]    500      939750  3746         251       
 
 

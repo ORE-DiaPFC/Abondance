@@ -17,45 +17,45 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int_MC  passed       1         0.232  
-logit_flow_MC passed       1         0.769  
-log_cess_MC   passed       1         0.876  
-shape_lambda  passed       1         0.206  
-rate_lambda   passed       1         0.225  
-mean_gamma    passed       1         0.386  
-var_gamma     passed       1         0.757  
+logit_int_MC  passed       1         0.464  
+logit_flow_MC passed       1         0.305  
+log_cess_MC   passed       1         0.650  
+shape_lambda  passed       1         0.542  
+rate_lambda   passed       1         0.599  
+mean_gamma    passed       1         0.706  
+var_gamma     passed       1         0.716  
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int_MC  passed     4.00e-01 1.62e-03 
-logit_flow_MC passed    -1.57e-01 1.70e-03 
+logit_int_MC  passed     4.00e-01 1.63e-03 
+logit_flow_MC passed    -1.56e-01 1.70e-03 
 log_cess_MC   passed    -1.59e-01 3.24e-03 
-shape_lambda  passed     2.63e+00 8.41e-03 
-rate_lambda   passed     2.09e-03 7.35e-06 
-mean_gamma    passed     1.27e+03 1.92e+00 
-var_gamma     passed     6.58e+05 3.21e+03 
+shape_lambda  passed     2.62e+00 8.44e-03 
+rate_lambda   passed     2.09e-03 7.49e-06 
+mean_gamma    passed     1.27e+03 1.93e+00 
+var_gamma     passed     6.58e+05 3.29e+03 
 
 [[2]]
                                             
               Stationarity start     p-value
               test         iteration        
-logit_int_MC  passed       1         0.416  
-logit_flow_MC passed       1         0.918  
-log_cess_MC   passed       1         0.487  
-shape_lambda  passed       1         0.820  
-rate_lambda   passed       1         0.988  
-mean_gamma    passed       1         0.923  
-var_gamma     passed       1         0.996  
+logit_int_MC  passed       1         0.519  
+logit_flow_MC passed       1         0.904  
+log_cess_MC   passed       1         0.215  
+shape_lambda  passed       1         0.557  
+rate_lambda   passed       1         0.379  
+mean_gamma    passed       1         0.802  
+var_gamma     passed       1         0.761  
                                            
               Halfwidth Mean      Halfwidth
               test                         
-logit_int_MC  passed     4.00e-01 1.66e-03 
-logit_flow_MC passed    -1.56e-01 1.71e-03 
-log_cess_MC   passed    -1.63e-01 3.29e-03 
-shape_lambda  passed     2.63e+00 8.34e-03 
-rate_lambda   passed     2.10e-03 7.34e-06 
+logit_int_MC  passed     4.01e-01 1.63e-03 
+logit_flow_MC passed    -1.54e-01 1.69e-03 
+log_cess_MC   passed    -1.61e-01 3.27e-03 
+shape_lambda  passed     2.63e+00 8.48e-03 
+rate_lambda   passed     2.09e-03 7.44e-06 
 mean_gamma    passed     1.27e+03 1.94e+00 
-var_gamma     passed     6.56e+05 3.20e+03 
+var_gamma     passed     6.58e+05 3.23e+03 
 
 
 ---------------------------
@@ -73,9 +73,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
-     -0.38486       0.05928      -0.45987      -0.72280      -1.22137 
+       0.3757       -1.5529       -1.0984       -1.7318       -1.7899 
    mean_gamma     var_gamma 
-      1.46675       0.81830 
+       0.7197        1.5218 
 
 
 [[2]]
@@ -84,9 +84,9 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
  logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda   rate_lambda 
-      0.86787      -0.20938       1.44143      -0.36811      -0.12495 
+       0.2313       -0.5780       -0.2407       -1.0274       -0.8620 
    mean_gamma     var_gamma 
-     -0.17271       0.09052 
+      -0.1109        0.9313 
 
 
 
@@ -97,16 +97,16 @@ Raftery and Lewis's diagnostic
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                      
-               Burn-in  Total  Lower bound  Dependence
-               (M)      (N)    (Nmin)       factor (I)
- logit_int_MC  200      371000 3746          99.0     
- logit_flow_MC 200      374000 3746          99.8     
- log_cess_MC   200      371000 3746          99.0     
- shape_lambda  100      375500 3746         100.0     
- rate_lambda   200      381500 3746         102.0     
- mean_gamma    200      386500 3746         103.0     
- var_gamma     200      370100 3746          98.8     
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ logit_int_MC  800      1514800 3746         404       
+ logit_flow_MC 800      1468400 3746         392       
+ log_cess_MC   800      1496000 3746         399       
+ shape_lambda  800      1442000 3746         385       
+ rate_lambda   800      1480400 3746         395       
+ mean_gamma    800      1513600 3746         404       
+ var_gamma     800      1508400 3746         403       
 
 
 [[2]]
@@ -114,15 +114,15 @@ Probability (s) = 0.95
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                      
-               Burn-in  Total  Lower bound  Dependence
-               (M)      (N)    (Nmin)       factor (I)
- logit_int_MC  200      374000 3746          99.8     
- logit_flow_MC 200      377100 3746         101.0     
- log_cess_MC   200      374000 3746          99.8     
- shape_lambda  200      377800 3746         101.0     
- rate_lambda   200      386200 3746         103.0     
- mean_gamma    200      381300 3746         102.0     
- var_gamma     200      376000 3746         100.0     
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ logit_int_MC  800      1486400 3746         397       
+ logit_flow_MC 800      1514800 3746         404       
+ log_cess_MC   800      1496000 3746         399       
+ shape_lambda  800      1536000 3746         410       
+ rate_lambda   800      1533600 3746         409       
+ mean_gamma    400      1517600 3746         405       
+ var_gamma     800      1495200 3746         399       
 
 

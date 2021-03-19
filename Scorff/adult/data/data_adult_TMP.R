@@ -29,7 +29,6 @@ mark <- as.matrix(mark);mode(mark)<- "numeric"
 Cm_R <- mark[,1:2]
 Cum_R <- mark[,3:4]
 
-
 ######################################################################################################################################			
 ##  Cm_R_pulsium[t,a]: Annual number of marked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
 ##  Cum_R_pulsium[t,a]: Annual number of unmarked fish caught by electric fishing during reproduction per sea age category; 1: 1SW, 2: MSW			
@@ -38,7 +37,6 @@ mark_pulsium <- read.table(paste("data/","data_Rpulsium.txt",sep=""),header = TR
 mark_pulsium <- as.matrix(mark_pulsium);mode(mark_pulsium)<- "numeric"
 Cm_R_pulsium <- mark_pulsium[,1:2]
 Cum_R_pulsium <- mark_pulsium[,3:4]
-
 
 ######################################################################################################################################
 ## Mean flow (m3/s): 1: 15 june - 15 august for 1SW
