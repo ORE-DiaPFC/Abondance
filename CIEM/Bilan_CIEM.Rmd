@@ -649,7 +649,7 @@ mycol <- COL
 png(paste0(dir,"Abundance/CIEM/return_rates.png"),width = 780, height = 480)
 plot(NULL,xlim=c(1,length(years)),ylim=c(0,80),bty="n",ylab="Return rates (%)",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=1:length(years),las=2)
-axis(side=1,line=3,labels = "Year of return",at=length(years)/2)
+axis(side=1,line=3,labels = "Year of smolt migration",at=length(years)/2)
 j=0
 for (site in sites) {
   j=j+1
