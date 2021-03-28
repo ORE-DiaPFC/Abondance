@@ -27,6 +27,8 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 2021:  
 - Séparer smolts 1+ vs 2+
+- modele tacon: decoupler intercalibration vs modele d'estimation? + vérifier l'utilité des cut
+
 
 2020:  
 - IAS: pêche réalisée avec le Pulsium ; calibration en cours avec le Martin/pulsium  

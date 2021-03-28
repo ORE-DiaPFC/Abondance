@@ -24,7 +24,7 @@ setwd(work.dir)
 
 # cleaning
 system("mkdir bugs/")
-system("rm bugs/*")
+#system("rm bugs/*")
 
 
 ##-----------------------------DATA ----------------------------------##
@@ -70,7 +70,7 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
 nstore=50000 # Total number of steps in chains to save.
-nthin=250 # Number of steps to "thin" (1=keep every step).
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -134,7 +134,7 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
-mydf <- as.matrix(fit$summary)
+mydf <- as.matrix(round(fit$summary,3))
 mydf <- cbind(rownames(mydf), mydf)
 rownames(mydf) <- NULL
 colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))

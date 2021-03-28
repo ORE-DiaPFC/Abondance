@@ -20,7 +20,7 @@ library(knitr)
 # ' Bresle: vérifier tx fecondité et sex-ratio
 
 dir <- ("/media/hdd/mbuoro/ORE-DiaPFC/")
-year <- 2019
+year <- 2020
 ```
 
 # Tables for ICES Working Group on North Atlantic Salmon (WGNAS)
@@ -96,7 +96,7 @@ colnames(Expl_rate) <- c("Year","1SW (%)", "MSW (%)")
 #write.csv(round(Expl_rate,1), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""))
 
 
-con <- file(paste(dir,'Abundance/CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table7_Scorff.csv',sep=""), open="wt")
 #con <- file(paste('CIEM/Table7_Scorff_',year,'.csv',sep=""), open="wt")
 #writeLines(paste("# Table 7 - Exploitation rate in the river Scorff - 1994-",year,")",sep=""), con)
 write.csv( round(Expl_rate,1), con, row.names = FALSE)
@@ -137,7 +137,7 @@ table[,"eggs (million)"] <- fit$median$eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- table[,"eggs (million)"] / CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table8_',site,'.csv',sep=""), open="wt")
 #writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,")
                  #             Conservation Limit = 1.44 (millions)
                  # ",sep=""), con)
@@ -192,7 +192,7 @@ table[,"eggs (million)"] <- c(rep(NA,10),eggs_tot / 1e6) # depose eggs
 table[,"eggs/CL"] <- c(rep(NA,10),ratio_CL)
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table8_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                  Conservation Limit = ",round(mean(CL_eggs/1e6),2)," (milliions / using 3 eggs/m²) /!\ revised from data in 2016 by Buoro & Prévost
 #                  ",sep=""), con)
@@ -235,9 +235,11 @@ mcmc <- fit$sims.matrix
 e_1SW.mcmc <- mcmc[,paste("Nesc_1SW[",1:nyear,"]",sep="")] # female only
 e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 
-prop.female <- read.csv(paste(dir,"Abundance/",site,"/",stade,"/data/prop-female.csv",sep=""))
-fec_1SW = prop.female[,2] * 4635 # fecondité 1SW # Prevost 1996
-fec_MSW = prop.female[,3] * 7965 # fecondite MSW # prevost 1996
+library(readr)
+prop_female=NULL
+prop_female <- read_csv(paste0(dir,"Abundance/",site,"/",stade,"/data/prop-female.csv"),comment = "#")
+fec_1SW = prop_female$`1SW` * 4635 # fecondité 1SW # Prevost 1996
+fec_MSW = prop_female$MSW * 7965 # fecondite MSW # prevost 1996
 
 #if (nrow(prop.female) == data$Y){
 eggs_tot.mcmc <- array(,dim=dim(e_1SW.mcmc))
@@ -251,7 +253,7 @@ eggs_tot <- apply(eggs_tot.mcmc,2,quantile, probs=0.5) #median
 #/!\ chercher les données de surface de production dans les données de juvéniles
 #Conservation Limit de taux de depose oeufs
 # CL = 3 # eggs/m²
-# S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners / pas de variation depuis le debut du suivi
+# S_prod <- rep(26714,length(years)) # surface de production juveniles accessible aux spawners #/ pas de variation depuis le debut du suivi
 # CL_eggs <- S_prod * CL # /!\ data$S_Sc starts in 1993 instead of 1994
 CL_eggs <- 0.12 # extracted from table 8 CIEM
 
@@ -263,7 +265,7 @@ table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table8_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                                   Conservation Limit =",CL_eggs," (millions)
 #                  ",sep=""), con)
@@ -321,7 +323,7 @@ table[,"eggs (million)"] <- eggs_tot / 1e6 # depose eggs
 table[,"eggs/CL"] <- ratio_CL
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table8_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table8_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 8 - Index rivers :spawning stock and egg deposition and attainment of CLs -",site," (",year,") 
 #                                   Conservation Limit =",CL_eggs," (millions)
 #                  ",sep=""), con)
@@ -397,8 +399,8 @@ SURVIVAL <- list()
 site <- "Nivelle"
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c( "PARR 0+ year","0+ parr", 	"adults",	"survival rate (%)")
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "PARR 0+ year","0+ parr", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
 rownames(table) <- years
 #smolt.years <- years+1
 table[,1] <- years #smolt.years
@@ -417,20 +419,25 @@ n_MSW <- fit$median$n_MSW # spawners MSW
 
 for (y in 1:(nrow(table))){
 table[y,3] <- n_1SW[y+2] + n_MSW[y+3] # Parr 0+ become 1SW 2 years later / MSW 3 years later; /!\ NA reported if one of the two is missing!!!
+table[y,5] <- (n_1SW[y+2]/ table[y,2])*100
+table[y,6] <- (n_MSW[y+3]/ table[y,2])*100
 }
 
 ## SURVIVAL
 table[,4] <- (table[,3] / table[,2])*100
 
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
+
 #write.csv(round(table,2), file=paste(dir,'~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste(dir,"# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
 #                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
 #                  Stocking is considered to adjust numbers"
 #                   ,sep=""), con)
-write.csv( round(table,2), con, row.names = FALSE)
+write.csv(table, con, row.names = FALSE)
 close(con)
 
 
@@ -446,8 +453,8 @@ kable(round(table,2), row.names = FALSE
 site <- "Oir"
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c( "smolt year","smolt", 	"adults",	"survival rate (%)")
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Smolt year","Smolts", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- smolt.years
@@ -465,25 +472,30 @@ n_MSW <- fit$median$Nesc_MSW # spawners MSW
 
 for (y in 1:(nrow(table))){
   table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
+  table[y,5] <- (n_1SW[y+1] / table[y,2])*100
+  table[y,6] <- (n_MSW[y+2] / table[y,2])*100
 }
 
 ## SURVIVAL
-table[,4] <- (table[,3] / table[,2])*100 
 
+
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
 #write.csv(round(table,2), file=paste(dir,'~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste(dir,"# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
 #                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
 #                  Stocking is considered to adjust numbers"
 #                  ,sep=""), con)
-write.csv( round(table,2), con, row.names = FALSE)
+write.csv(table, con, row.names = FALSE)
 close(con)
 
 SURVIVAL[[paste0(site)]] <- table[,4]
 
-kable(round(table,2), row.names = FALSE
+kable(table, row.names = FALSE
 , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 ")
 )
@@ -492,8 +504,8 @@ kable(round(table,2), row.names = FALSE
 site <- "Bresle"
 
 years <- seq(1982, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c( "smolt year","smolt", 	"adults",	"survival rate (%)")
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Smolt year","Smolts", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- smolt.years
@@ -515,13 +527,17 @@ n_MSW <- c(NA,NA,fit$median$n_MSW) # spawners MSW
 
 for (y in 1:(nrow(table))){
   table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
+  table[y,5] <- (n_1SW[y+1]/ table[y,2])*100
+  table[y,6] <- (n_MSW[y+2]/ table[y,2])*100
 }
 
-## SURVIVAL
-table[,4] <- (table[,3] / table[,2])*100 
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
+
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -543,8 +559,8 @@ kable(round(table,2), row.names = FALSE
 site <- "Scorff"
 
 years <- seq(1984, year, 1)
-table <- array(, dim=c(length(years), 4))
-colnames(table) <- c( "smolt year","smolt", 	"adults",	"survival rate (%)")
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Smolt year","Smolts", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- smolt.years
@@ -565,13 +581,18 @@ n_MSW <- c(rep(NA,10),fit$median$e_MSW) # spawners MSW
 
 for (y in 1:(nrow(table))){
   table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
+  table[y,5] <- (n_1SW[y+1]/ table[y,2])*100
+  table[y,6] <- (n_MSW[y+2]/ table[y,2])*100
 }
 
-## SURVIVAL
-table[,4] <- (table[,3] / table[,2])*100 
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
+
+
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
 #                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
 #                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
@@ -672,7 +693,7 @@ table <- cbind(years, data$C_MP, rowSums(data$C_MP))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste(dir,'Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table10_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")
 #  Nota : We only considered fish captured at Moulin des Princes"
 #                  ,sep=""), con)
@@ -698,7 +719,7 @@ table <- cbind(years,data$C_Eu + data$Cum_B, rowSums(data$C_Eu + data$Cum_B))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste(dir,'Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table10_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
 write.csv( table, con, row.names = FALSE)
 close(con)
@@ -725,7 +746,7 @@ table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste(dir,'Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table10_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")",sep=""), con)
 write.csv( table, con, row.names = FALSE)
 close(con)
@@ -751,7 +772,7 @@ table <- cbind(years,sw1, swm, (sw1 + swm))
 rownames(table)<-years
 colnames(table)<- c("Years","1SW", "MSW", "Total")
 
-con <- file(paste(dir,'Abundance/CIEM/Table10_',site,"_",year,'.csv',sep=""), open="wt")
+con <- file(paste(dir,'Abundance/CIEM/Table10_',site,'.csv',sep=""), open="wt")
 # writeLines(paste(
 # "# Table 10 -  Adult salmon captured (unmarked) at traps in the monitored rivers - ",site," (",year,")" ,sep=""), con)
 write.csv( table, con, row.names = FALSE)

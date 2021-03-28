@@ -16,8 +16,8 @@ REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-#for SITE in Nivelle Scorff Oir Bresle      
-for SITE in Nivelle  
+for SITE in Nivelle Scorff Oir Bresle      
+#for SITE in Nivelle  
 do
      
 cd $REPbase/$SITE
@@ -45,6 +45,16 @@ cd $REPbase/$SITE
     sed 's|BURNIN|'"$BURNIN"'|g' -i $STADE/analyse_"$STADE".R
     sed 's|ITER|'"$ITER"'|g' -i $STADE/analyse_"$STADE".R
     sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
+    
+        cp $REPbase/restart.R $STADE/restart_"$STADE".R
+    sed 's|Rep|'"$REPbase"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|SITE|'"$SITE"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|STADE|'"$STADE"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|YEAR|'"$YEAR"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|CHAINS|'"$CHAINS"'|g' -i $STADE/restart_"$STADE".R
+    #sed 's|BURNIN|'"$BURNIN"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|ITER|'"$ITER"'|g' -i $STADE/restart_"$STADE".R
+    sed 's|THIN|'"$THIN"'|g' -i $STADE/restart_"$STADE".R
      
 
    R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R

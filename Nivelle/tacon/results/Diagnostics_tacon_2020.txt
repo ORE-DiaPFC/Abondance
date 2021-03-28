@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  4385 
+Number of iterations:  653 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -17,61 +17,61 @@ heidel.diag also implements a convergence diagnostic, and removes up to half the
                                               
                 Stationarity start     p-value
                 test         iteration        
-mu_p_srem       passed       1         0.482  
-sd_logit_p_srem passed       1         0.276  
-epsilon_p       passed       1         0.248  
-pi_dj           passed       1         0.905  
-zeta_alpha_dj   passed       1         0.775  
-mu_dj_nat       passed       1         0.115  
-k_cpue          passed       1         0.285  
-eta_cpue        passed       1         0.125  
-rho_s           passed       1         0.917  
-sd_s_rec        passed       1         0.804  
-p_cpue          passed       1         0.976  
+mu_p_srem       passed         1       0.4372 
+sd_logit_p_srem passed         1       0.8720 
+epsilon_p       passed         1       0.0791 
+pi_dj           passed         1       0.4124 
+zeta_alpha_dj   passed       263       0.1261 
+mu_dj_nat       passed         1       0.3640 
+k_cpue          passed         1       0.1166 
+eta_cpue        passed       197       0.2899 
+rho_s           passed         1       0.5822 
+sd_s_rec        passed         1       0.7075 
+p_cpue          passed         1       0.3665 
                                            
                 Halfwidth Mean    Halfwidth
                 test                       
-mu_p_srem       passed      0.515 0.001360 
-sd_logit_p_srem passed      1.092 0.003308 
-epsilon_p       passed      0.559 0.002363 
-pi_dj           passed      0.724 0.002446 
-zeta_alpha_dj   passed      4.235 0.039862 
-mu_dj_nat       passed      0.131 0.000536 
-k_cpue          passed    124.107 0.305873 
-eta_cpue        passed      2.948 0.140125 
-rho_s           passed      0.143 0.002068 
-sd_s_rec        passed      0.420 0.001251 
-p_cpue          passed      0.673 0.003534 
+mu_p_srem       passed      0.516 0.00377  
+sd_logit_p_srem passed      1.097 0.00811  
+epsilon_p       passed      0.560 0.00536  
+pi_dj           passed      0.726 0.00605  
+zeta_alpha_dj   passed      4.244 0.10761  
+mu_dj_nat       passed      0.133 0.00144  
+k_cpue          passed    124.139 0.70050  
+eta_cpue        failed      3.008 0.37717  
+rho_s           passed      0.145 0.00603  
+sd_s_rec        passed      0.420 0.00309  
+p_cpue          passed      0.677 0.01108  
 
 [[2]]
                                               
                 Stationarity start     p-value
                 test         iteration        
-mu_p_srem       passed          1      0.1338 
-sd_logit_p_srem passed          1      0.8052 
-epsilon_p       passed          1      0.2276 
-pi_dj           passed          1      0.4848 
-zeta_alpha_dj   passed          1      0.7215 
-mu_dj_nat       passed       1317      0.0786 
-k_cpue          passed          1      0.0714 
-eta_cpue        passed          1      0.6593 
-rho_s           passed          1      0.5224 
-sd_s_rec        passed          1      0.2273 
-p_cpue          passed          1      0.5994 
+mu_p_srem       passed         1       0.1714 
+sd_logit_p_srem passed       197       0.0743 
+epsilon_p       passed         1       0.0887 
+pi_dj           passed         1       0.8305 
+zeta_alpha_dj   passed         1       0.4526 
+mu_dj_nat       passed         1       0.0804 
+k_cpue          passed         1       0.2824 
+eta_cpue        passed       197       0.1132 
+rho_s           passed         1       0.8966 
+sd_s_rec        passed         1       0.0630 
+p_cpue          passed       132       0.1076 
                                            
                 Halfwidth Mean    Halfwidth
                 test                       
-mu_p_srem       passed      0.515 0.001444 
-sd_logit_p_srem passed      1.092 0.003385 
-epsilon_p       passed      0.561 0.002386 
-pi_dj           passed      0.725 0.002485 
-zeta_alpha_dj   passed      4.227 0.035853 
-mu_dj_nat       passed      0.132 0.000597 
-k_cpue          passed    123.928 0.298991 
-eta_cpue        passed      3.022 0.170603 
-rho_s           passed      0.143 0.001917 
-sd_s_rec        passed      0.420 0.001205 
-p_cpue          passed      0.674 0.003850 
+mu_p_srem       passed      0.520 0.00353  
+sd_logit_p_srem passed      1.089 0.00960  
+epsilon_p       passed      0.556 0.00616  
+pi_dj           passed      0.725 0.00641  
+zeta_alpha_dj   passed      4.372 0.09824  
+mu_dj_nat       passed      0.130 0.00140  
+k_cpue          passed    124.472 0.77241  
+eta_cpue        failed      2.811 0.38030  
+rho_s           passed      0.139 0.00491  
+sd_s_rec        passed      0.420 0.00335  
+p_cpue          passed      0.668 0.01037  
 
 
 ---------------------------
@@ -89,11 +89,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
-       -1.16508         1.29640         0.92429        -0.61026         1.83845 
+       -0.68999         0.62959         0.87772         1.19540        -3.67276 
       mu_dj_nat          k_cpue        eta_cpue           rho_s        sd_s_rec 
-       -1.06941        -0.07383         1.31855         0.25930         1.37432 
+        3.03691         0.71975        -0.12055         0.45887        -0.17880 
          p_cpue 
-        0.42264 
+       -0.09649 
 
 
 [[2]]
@@ -102,11 +102,11 @@ Fraction in 1st window = 0.1
 Fraction in 2nd window = 0.5 
 
       mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj   zeta_alpha_dj 
-         0.4749         -0.5156         -0.5847          0.5970         -0.1820 
+        -0.8576         -0.9783          1.1670         -1.1464          0.6001 
       mu_dj_nat          k_cpue        eta_cpue           rho_s        sd_s_rec 
-        -1.1592          1.1391         -0.2963          0.6821         -2.2667 
+         0.8957          1.1049          1.6964          1.8346          1.1114 
          p_cpue 
-        -0.7150 
+         2.5192 
 
 
 
@@ -117,40 +117,14 @@ Raftery and Lewis's diagnostic
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                         
-                 Burn-in  Total   Lower bound  Dependence
-                 (M)      (N)     (Nmin)       factor (I)
- mu_p_srem       900      1221600 3746         326       
- sd_logit_p_srem 900      1341300 3746         358       
- epsilon_p       900      1292100 3746         345       
- pi_dj           600      1133400 3746         303       
- zeta_alpha_dj   600      1092000 3746         292       
- mu_dj_nat       600      1233900 3746         329       
- k_cpue          600      1112400 3746         297       
- eta_cpue        600      1112400 3746         297       
- rho_s           600      1154700 3746         308       
- sd_s_rec        600      1154700 3746         308       
- p_cpue          600      1112400 3746         297       
 
+You need a sample size of at least 3746 with these values of q, r and s
 
 [[2]]
 
 Quantile (q) = 0.025
 Accuracy (r) = +/- 0.005
 Probability (s) = 0.95 
-                                                         
-                 Burn-in  Total   Lower bound  Dependence
-                 (M)      (N)     (Nmin)       factor (I)
- mu_p_srem       900      1253400 3746         335       
- sd_logit_p_srem 1200     1392900 3746         372       
- epsilon_p       1200     1560900 3746         417       
- pi_dj           600      1121400 3746         299       
- zeta_alpha_dj   600      1083000 3746         289       
- mu_dj_nat       900      1276800 3746         341       
- k_cpue          600      1172400 3746         313       
- eta_cpue        600      1133400 3746         303       
- rho_s           900      1244400 3746         332       
- sd_s_rec        600      1112400 3746         297       
- p_cpue          600      1133400 3746         303       
 
+You need a sample size of at least 3746 with these values of q, r and s
 
