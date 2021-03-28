@@ -401,9 +401,9 @@ site <- "Nivelle"
 years <- seq(1984, year, 1)
 table <- array(, dim=c(length(years), 6))
 colnames(table) <- c( "PARR 0+ year","0+ parr", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
-rownames(table) <- years
+rownames(table) <- years#c(years,"", "5yr Avg")
 #smolt.years <- years+1
-table[,1] <- years #smolt.years
+table[1:length(years),1] <- years #smolt.years
   
 ## JUVENILES
 stade <- "tacon"
@@ -429,6 +429,10 @@ table[,4] <- (table[,3] / table[,2])*100
 table[,2:3]<-round(table[,2:3],0)
 table[,4:6]<-round(table[,4:6],2)
 
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
 #write.csv(round(table,2), file=paste(dir,'~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste(dir,"# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -444,9 +448,9 @@ close(con)
 SURVIVAL[[paste0(site)]] <- table[,4]
 
 
-kable(round(table,2), row.names = FALSE
-, caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")")
-)
+# kable(round(table,2), row.names = FALSE
+# , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")")
+# )
 
 
 ##________________________OIR (starting in 1984)
@@ -477,11 +481,13 @@ for (y in 1:(nrow(table))){
   table[y,6] <- (n_MSW[y+2] / table[y,2])*100
 }
 
-## SURVIVAL
-
-
 table[,2:3]<-round(table[,2:3],0)
 table[,4:6]<-round(table[,4:6],2)
+
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
 #write.csv(round(table,2), file=paste(dir,'~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste(dir,"# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -495,10 +501,10 @@ close(con)
 
 SURVIVAL[[paste0(site)]] <- table[,4]
 
-kable(table, row.names = FALSE
-, caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-")
-)
+# kable(table, row.names = FALSE
+# , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+# ")
+# )
 
 ##________________________BRESLE (starting in 1984)
 site <- "Bresle"
@@ -535,7 +541,10 @@ for (y in 1:(nrow(table))){
 table[,2:3]<-round(table[,2:3],0)
 table[,4:6]<-round(table[,4:6],2)
 
-
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -544,15 +553,15 @@ con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 #                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
 #                  Stocking is considered to adjust numbers"
 #                  ,sep=""), con)
-write.csv( round(table,2), con, row.names = FALSE)
+write.csv( table, con, row.names = FALSE)
 close(con)
 
 SURVIVAL[[paste0(site)]] <- table[,4]
 
-kable(round(table,2), row.names = FALSE
-, caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-")
-)
+# kable(round(table,2), row.names = FALSE
+# , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+# ")
+# )
 
 
 ##________________________SCORFF (starting in 1994)
@@ -589,8 +598,10 @@ for (y in 1:(nrow(table))){
 table[,2:3]<-round(table[,2:3],0)
 table[,4:6]<-round(table[,4:6],2)
 
-
-
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 # writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -599,16 +610,16 @@ con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 #                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
 #                  Stocking is considered to adjust numbers"
 #                  ,sep=""), con)
-write.csv( round(table,2), con, row.names = FALSE)
+write.csv( table, con, row.names = FALSE)
 close(con)
 
 SURVIVAL[[paste0(site)]] <- table[,4]
 
-
-kable(round(table,2), row.names = FALSE
-, caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
-")
-)
+# 
+# kable(round(table,2), row.names = FALSE
+# , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+# ")
+# )
 
 
 ## Table return rate for CIEM
