@@ -126,9 +126,9 @@ for (t in 17:33) { #from 2003 to now on
 
 p_Btot[34] <- p_B[34] * p_B20 #year 2020 (COVID)
 
-# for (t in 17:NBeau) { #from 2003 to now on
-#   p_Btot[t] <- p_B[t]
-# } #end of loop over years
+for (t in 35:NBeau) { #from 2021 to now on
+  p_Btot[t] <- p_B[t]
+} #end of loop over years
 
 #############	        Prior for p_Eu[t]          #################
 for (t in 1:NEu) {  # For years when Eu is installed
@@ -247,16 +247,6 @@ Nesc[37] <- Cm_B[37] + num_B[37]  ### Total number of smolt escaping the river
 
 
 # From 2019 to now on: capture at Beauchamps and recapture at Eu using PIT-Tags
-#for (t in 38:Nyears) {
-  # C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
-  # num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
-  # 
-  # Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
-  # Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
-  # 
-  # Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
-#} # end of loop over years
-
 C_B[38] ~ dbin (p_Btot[33],Ntot[38]) # number of fish captured at Beauchamps
 num_B[38] <- Ntot[38] - C_B[38] + Cum_B[38] # total unmarked fish
 
@@ -268,6 +258,18 @@ Nesc[38] <- Cm_B[38] + num_B[38]  ### Total number of smolt escaping the river
 # Year 2020: only capture at Beauchamps
 C_B[39] ~ dbin(p_Btot[34],Ntot[39]) # number of fish captured at Beauchamps in 2020 (COVID)
 Nesc[39] <- Ntot[39] - D_B[39]
+
+
+# From 2021 to now on:
+for (t in 40:Nyears) {
+C_B[t] ~ dbin (p_Btot[t-5],Ntot[t]) # number of fish captured at Beauchamps
+num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
+
+Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
+Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+
+Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
+} # end of loop over years
 
 } # end of the model
 

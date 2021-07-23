@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
+wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Bresle"
@@ -40,7 +40,7 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 
 ```{r, echo = FALSE}
-years <- seq(1982, year, 1)
+years <- seq(1982, year+1, 1)
 table <- array(, dim=c(length(years), 5))
 colnames(table) <- c( "Year","Parr 0+","Smolts","1SW (tot returns)",	"MSW (tot returns)")
 rownames(table) <- years
@@ -62,14 +62,14 @@ table[,1] <- years
 stade <- "smolt"
 dir <-  paste(wdir,site,"/",stade,sep="")
 if (file.exists(dir)){
-  load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
+  load(paste0(stade,"/results/Results_",stade,"_",year+1,".RData"))
   n_smolt <- fit$median$Nesc # escapement from river
 #table[2:nrow(table),3] <- round(n_smolt,0) # 1995 to now
 }
 
-    table[1:6,3] <- n_smolt[1:6] # 1982 to 1987
-    table[11:19,3] <- n_smolt[7:15] # 1992 to 2000
-    table[21:nrow(table),3] <- n_smolt[16:length(n_smolt)] # 2002 to now
+    table[1:6,3] <- round(n_smolt[1:6],0) # 1982 to 1987
+    table[11:19,3] <- round(n_smolt[7:15],0) # 1992 to 2000
+    table[21:nrow(table),3] <- round(n_smolt[16:length(n_smolt)],0) # 2002 to now
 
 ## ADULTS (1994 to now)
 stade <- "adult"
@@ -80,8 +80,18 @@ if (file.exists(dir)){
   # n returns
   n_1SW <- fit$median$n_1SW # 1SW
   n_MSW <- fit$median$n_MSW #  MSW
-  table[3:nrow(table),4] <- round(n_1SW,0) # 1995 to now
-  table[3:nrow(table),5] <- round(n_MSW,0) # 1995 to now
+  # table[3:nrow(table),4] <- round(n_1SW,0) # 1995 to now
+  # table[3:nrow(table),5] <- round(n_MSW,0) # 1995 to now
+  j=0
+  for (i in 3:length(years)){
+    j=j+1
+    table[i,4] <- round(n_1SW[j],0) # 1995 to now
+  }
+  k=0
+    for (i in 3:length(years)){
+      k=k+1
+    table[i,5] <- round(n_MSW[k],0) # 1995 to now
+  }
 }
 
 
@@ -239,7 +249,7 @@ legend("topright", legend=c("1SW", "MSW"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 ## Nombre de smolts estimés
 ```{r smolt, echo=FALSE}
 
-years<-1982:year
+years<-1982:(year+1)
 stade <- "smolt"
 #dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){
@@ -255,7 +265,7 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,10000),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,10000),bty="n",ylab="Total number of smolts",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=1:data$Nyears, las=2, cex=.5)
 
 # N total
@@ -267,13 +277,13 @@ segments(p,n[,"2.5%"], p,n[,"97.5%"], col=paste0(mycol[1]))
 points(p,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 
 # Escapment
-mcmc <- as.matrix(tmp[,paste0("Nesc[",p,"]")])    
-n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
-segments(p,n[,"2.5%"], p,n[,"97.5%"], col=paste0(mycol[2]))
-#lines(n[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
-points(p,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
+# mcmc <- as.matrix(tmp[,paste0("Nesc[",p,"]")])    
+# n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+# segments(p,n[,"2.5%"], p,n[,"97.5%"], col=paste0(mycol[2]))
+# #lines(n[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
+# points(p,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
-legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+#legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
 ```
 
