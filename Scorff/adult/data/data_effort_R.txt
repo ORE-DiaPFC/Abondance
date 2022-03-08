@@ -1,8 +1,7 @@
-list(
 ## Number of nights when recaptures on spawning ground are done (whether some salmons are captured or not). 
 ## Covariate is standardized within WinBUGS
 ## In 94 and 95, it's the number of nights for which some fishes are recaptured (not the total number of nights)
-eff_R = c(4              
+list(eff_R = c(4              
 ,14
 ,8
 ,6
@@ -24,10 +23,10 @@ eff_R = c(4
 ,9
 ,13
 ,12
-,8 # 2016
-,10 # 2017
-,5 # 2018
-,6 #2019
-,7 #2020
+,8
+,10
+,5
+,6
+,7
 )  
 )       
