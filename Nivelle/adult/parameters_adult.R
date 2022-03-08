@@ -84,6 +84,14 @@ parameters <-c(
   ,"n_1SW" # Total number of 1SW
   ,"n_MSW" # Total number of MSW
   
+  ,"n" # annual number of fish per breeding category
+  ,"n_1.1SW" # annual number of fish 1R/1SW (captured or not)
+  ,"n_2.1SW" # annual number of fish 2R/1SW (captured or not)
+  ,"n_1.2SW" # annual number of fish 1R/2SW (captured or not)
+  ,"n_2.2SW" # annual number of fish 2R/2SW (captured or not)
+  ,"n_1.3SW" # annual number of fish 1R/3SW (captured or not)
+  ,"n_2.3SW" # annual number of fish 2R/3SW (captured or not)
+  
   ,"n_11" # annual number of fish per breeding category staying in LN1
   
   ,"e_11" # annual escapement for LN1 per breeding category
@@ -119,6 +127,8 @@ parameters <-c(
   ,"c_tot" # annual number per cohorte
   ,"P_1SW" # annual proportion of 1SW
   ,"P_MSW" # annual proportion of MSW
+  
+  
   
   ,"d_pi_Ol"
   ,"d_pi_U"
