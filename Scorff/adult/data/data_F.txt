@@ -30,5 +30,5 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 20	8	16	5 # 2017 (42% of marked fish on declared unmarked fish)
 10	2	4	13
 5	3	5	7
-0	0	0	5 # 2020 : A corriger avec 6 MSW unmarked et 6 1SW au marked status unknown
+NA	0	NA	6 # 2020 : 6 1SW caught with marked status unknown
 #END 
