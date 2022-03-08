@@ -541,8 +541,11 @@ model {
         nv_um[t,a] <- n_um[t,a] - Cum_F[t,a] #unmarked   
         } #end of loop over sea age category 
   } # end of loop over years
-    
-    
+        
+# In 2020 the 6 1SW fish caught were not seen at MP and their m vs um status is unknwon (C_F_1SW_2020 = 6 in data_list.txt file)
+    mC_F_1SW_2020 <- Cm_F[27,1] + Cum_F[27,1]
+    C_F_1SW_2020 ~ dnorm(mC_F_1SW_2020,1)
+           
     ####################################
     ## MORTALITY FROM OTHER CAUSE THAN FISHING
     ## --------------
