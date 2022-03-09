@@ -79,7 +79,7 @@ model {
 # Building the matrix of variance-covariance for fishing between marked and unmarked fish
 # Modifed in 2020 : a single matrix of variance-covariance for fishing whatever sea age
   sigmapi_F ~ dunif(0,20) # std dev of fishing independant of sea and marked status
-#  varpi_F <- sigmapi_F*sigmapi_F
+  varpi_F <- sigmapi_F*sigmapi_F
 #  precpi_F <- 1/(varpi_F) # precision
 # Modifed in 2020 : a single cc whatever the sea age
   rho_F ~ dunif(-1,1) # prior for the correlation coefficient between probability of being fished between marked and unmarked not depending on sea age
