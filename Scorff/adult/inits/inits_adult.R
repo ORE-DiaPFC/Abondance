@@ -32,10 +32,10 @@ for (c in 1:2){ # 2 chains
   logit_flow_R = runif(2,-.4,-.01)##c( -0.3844,-0.142)
   logit_int_MP = c( 0.7415,-0.4103)
   logit_int_R = runif(2,-2.4,-2)#c(-2.184,-2.036)
-  logit_pi_oF = cbind(
-    c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487),
-    c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487))
-  mupi_oF = runif(1,.4,.7)#0.5933
+  # logit_pi_oF = cbind(
+  #   c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487),
+  #   c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487))
+  #mupi_oF = runif(1,.4,.7)#0.5933
   pi_MP94 = runif(2,.2,.5)#c( 0.4432,0.322)
   pi_MP20 = c(NA,runif(1,.01,.2))# COVID
   pi_oD = runif(1,.1,.3)#0.1511
@@ -48,7 +48,7 @@ for (c in 1:2){ # 2 chains
   sigmapi_F = runif(1,0,1)#0.719#c( 0.719,1.118),
   sigmapi_MP = runif(1,0,1)#0.278
   sigmapi_R = runif(1,0,1)#0.1693
-  sigmapi_oF = runif(1,0,1)#0.5865
+  #sigmapi_oF = runif(1,0,1)#0.5865
   
   m_F = structure(.Data = c(
     5,0,53,4,68,
@@ -71,12 +71,12 @@ for (c in 1:2){ # 2 chains
     0.06538,0.1012,0.1096,0.1179),
     .Dim = c(2,2))
   
-  Cmuo_F= structure(.Data= c(12, 1, 13, 3, 30, 2, 5, 2, 7, 1, 2, 2, 2, 2, 6, 1, 6, 1),
-                    .Dim=c(9, 2))
+  # Cmuo_F= structure(.Data= c(12, 1, 13, 3, 30, 2, 5, 2, 7, 1, 2, 2, 2, 2, 6, 1, 6, 1),
+  #                   .Dim=c(9, 2))
 #  )
 m_F[]<-as.integer(m_F)
 um_F[]<-as.integer(um_F)
-Cmuo_F[]<-as.integer(Cmuo_F)
+#Cmuo_F[]<-as.integer(Cmuo_F)
 # storage.mode(m_F) <- "integer"
 # storage.mode(um_F) <- "integer"
 
@@ -249,6 +249,12 @@ um_D <- array( ,dim=c(data$Y,2))
 um_D[,1] <- data$Cum_D[,1]*1 
 um_D[,2] <- data$Cum_D[,2]*1
 
+
+# METTRE A JOUR /!\ TAILLE MATRICE
+# Additional inits needed since 2022 
+Cum_Fb <- data$Cum_F; Cum_Fb[10:26,]<-NA
+Cm_Fb <- data$C_F - data$Cum_F
+
 # METTRE A JOUR /!\ TAILLE MATRICE
 # logit_pi_R = structure(.Data = c(
 #   -3.075,-2.512,-2.06,-1.641,-2.104,
@@ -279,8 +285,8 @@ inits_fix <- list(
   logit_flow_R = logit_flow_R,
   logit_int_MP = logit_int_MP,
   logit_int_R = logit_int_R,
-  logit_pi_oF = logit_pi_oF,
-  mupi_oF = mupi_oF,
+ # logit_pi_oF = logit_pi_oF,
+ # mupi_oF = mupi_oF,
   pi_MP94 = pi_MP94,
   pi_oD = pi_oD,
   rate_lambda = rate_lambda,
@@ -292,7 +298,7 @@ inits_fix <- list(
   sigmapi_F = sigmapi_F,
   sigmapi_MP = sigmapi_MP,
   sigmapi_R = sigmapi_R,
-  sigmapi_oF = sigmapi_oF,
+#  sigmapi_oF = sigmapi_oF,
   
   #m_F=m_F,
   #um_F=um_F,
@@ -312,6 +318,7 @@ inits_updated <- list(
   ,m_D=m_D
   ,n=n
   ,um_D=um_D
+  ,Cum_Fb=Cum_Fb,Cm_Fb=Cm_Fb
 )
 
 inits <- list(c( inits_fix,inits_updated))

@@ -1,6 +1,6 @@
 ##############################################################################################################################
-# C_F[t,a]: Annual number of fish caught by fishing per sea age category (from 1994)
-# File no longer used nor updated from 2022 and replaced by data_F-tot.txt
+# THIS FILE DOES NOT NEED TO BE UPDATED
+# C_F[t,a]: Annual number of fish caught by fishing per sea age category (from 1994 to 2002)
 ######################################################################################################################################
 C_F[,1]	C_F[,2]
 41	20
@@ -12,22 +12,4 @@ C_F[,1]	C_F[,2]
 41	10
 31	6
 24	1
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-NA	NA
-6	6
-END	
+#END	

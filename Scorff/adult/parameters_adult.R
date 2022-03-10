@@ -20,8 +20,8 @@ parameters <-c(
   ,"sigmapi_D" # standard deviation of probability of dying from natural cause 
   ,"rho_D" # correlation coefficient between probability of dying between marked and unmarked depending on sea age
   
-  ,"mupi_oF" # mean probability of recovering a caught fish (from fishing
-  ,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
+  #,"mupi_oF" # mean probability of recovering a caught fish (from fishing
+  #,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
   
   ### STATISTIC
   # 1: is logit_flow >=0 for 1SW?
@@ -49,7 +49,7 @@ parameters <-c(
   ,"p_MP20_tot" # total probability of capture in 2020 COVID
   ,"epsilon_MP" # standardized residuals of probability of capture at MP
   
-  ,"pi_oF" # probability to recover a caught fish from fishing (from 1994 to 2002
+  #,"pi_oF" # probability to recover a caught fish from fishing (from 1994 to 2002
   ,"piF_1SW" # probability of dying from fishing for 1SW depending on being marked or not
   ,"piF_MSW" # probability of dying from fishing for MSW depending on being marked or not
   
@@ -82,8 +82,8 @@ parameters <-c(
   
   ,"nv_m" ## Fish susceptible to die from other cause than fishing per sea age / marked
   ,"nv_um" ## Fish susceptible to die from other cause than fishing per sea age / unmarked
-  ,"Cmuo_F"
+  #,"Cmuo_F"
   ,"m_D"
   ,"um_D"
-  ,"pi_muoF"
+  #,"pi_muoF"
 )

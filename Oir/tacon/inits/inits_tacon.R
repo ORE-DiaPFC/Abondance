@@ -14,7 +14,7 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
-inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
+inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,"_",c,".txt",sep=""))
 #save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 #load(paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 
@@ -46,16 +46,17 @@ gryr_Oir_inits <- c(inits0$gryr_Oir, rep(0, 13))
 lambdaOir_cpu <- inits0$lambdaOir_cpu
 CPUE_IAno <- data$CPUE_IAno # extraire les 5 premières valeurs
 CPUE_inter <- data$CPUE_inter # extraire les 6 dernières valeurs
-tmp<-tail(CPUE_IAno,6);tmp<-tmp[-6]
+tmp<-tail(CPUE_IAno,6);#tmp<-tmp[-6] # edit mb 09/03/2022
 lambdaOir_cpu_tmp <- c(tmp, tail(CPUE_inter,6)) +1
 lambdaOir_cpu_inits <- as.matrix(cbind(lambdaOir_cpu, lambdaOir_cpu_tmp))
-if(year=="2020") 
+if(year=="2020") # ajout d'une station
   {
   #lambdaOir_cpu_inits 
   tmp <- rbind(lambdaOir_cpu_inits, rep(NA,ncol(lambdaOir_cpu_inits)))
   tmp[12,34] <- 22+1
   lambdaOir_cpu_inits <- tmp
 }
+
 
 log_dOir <- inits0$log_dOir
 vect1 <- rep(NA,34) # 34 premeirs sont des NA

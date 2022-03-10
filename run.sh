@@ -2,7 +2,7 @@
 #$ -S /bin/sh
 
 #SITE=Scorff # Nivelle Oir Bresle
-YEAR=2020
+YEAR=2021
 CHAINS=2
 BURNIN=1000 # Number of steps to "burn-in" the samplers.
 ITER=50000 # Total number of steps in chains to save.
@@ -10,7 +10,7 @@ THIN=300 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 #REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
-REPbase="/media/hdd/mbuoro/ORE-DiaPFC/Abundance"
+REPbase="/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance"
 #REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
 #"/media/ORE/Abundance" 
 

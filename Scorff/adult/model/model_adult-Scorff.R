@@ -447,89 +447,89 @@ model {
   
 } # end of the model
       
-# Former code (prior to 2022)
-# Probability of observing a caught fish at MP for its marked status
-  mupi_oF ~ dbeta(1,1) ; sigmapi_oF ~ dunif(0,20)
-  varpi_oF <- (sigmapi_oF)*(sigmapi_oF) 
-  precpi_oF <- 1/(varpi_oF) # precision
-  
-  ### Probability that a caught fish is showed at Moulin des Princes (dependent on sea age)
-    logit_mupi_oF <- log(mupi_oF/(1-mupi_oF)) # logit transformation of the common mean
-    for (t in 1:9) { ## pi_oF: Exchangeable from 1994 to 2002 
-      for (a in 1:2) {
-# Changed in 2020 : the probability of observing a catch is allowed to vary according to year and sea age (consistent with data)
-        logit_pi_oF[t,a] ~ dnorm(logit_mupi_oF,precpi_oF)
-        pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale  
-        pi_uoF[t,a] <- 1 - pi_oF[t,a]
-        Cuo_F[t,a] ~ dbin(pi_uoF[t,a],C_F[t,a])
-# The cut has been introduced because othewise pi_Of is not properly sampled
-# The small hierrachcal model above is used to generate "inforamtive priors"
-        cut_pi_oF[t,a] <- cut(pi_oF[t,a])  
-        }# end of loop over mark category  
-      } ## End of loop over years
-  
-# First year (1994)-> see explanations below
-      pi_moF[1,1] <- piF_1SW[1,1] * cut_pi_oF[1,1]
-      Cm_F[1,1] ~ dbin(pi_moF[1,1],Cm_MP[1,1])  # Changed in March 2020
-      pi_umoF[1,1] <- piF_1SW[1,2] * cut_pi_oF[1,1]
-      Cum_F[1,1] ~ dbin(pi_umoF[1,1],n_um[1,1])  # Changed in March 2020
-      pi_moF[1,2] <- piF_MSW[1,1] * cut_pi_oF[1,2]
-      Cm_F[1,2] ~ dbin(pi_moF[1,2],Cm_MP[1,2])  # Changed in March 2020
-      pi_umoF[1,2] <- piF_MSW[1,2] * cut_pi_oF[1,2]
-      Cum_F[1,2] ~ dbin(pi_umoF[1,2],n_um[1,2])  # Changed in March 2020
-      xuo_F[1,1] <- Cuo_F[1,1]-0.1  # Protection against 0 when all fish were presented
-      pi_muoF[1,1] <- (step(xuo_F[1,1])*(p_MP94_tot[1]*piF_1SW[1,1]) / (p_MP94_tot[1]*piF_1SW[1,1] + (1-p_MP94_tot[1])*piF_1SW[1,2])) + (1-step(xuo_F[1,1]))
-      uo_F[1,1] <- step(xuo_F[1,1])* Cuo_F[1,1] + (1-step(xuo_F[1,1])) 
-      Cmuo_F[1,1] ~ dbin(pi_muoF[1,1],uo_F[1,1])
-      xuo_F[1,2] <- Cuo_F[1,2]-0.1
-      pi_muoF[1,2] <- (step(xuo_F[1,2])*(p_MP94_tot[2]*piF_MSW[1,1]) / (p_MP94_tot[2]*piF_MSW[1,1] + (1-p_MP94_tot[2])*piF_MSW[1,2])) + (1-step(xuo_F[1,2]))
-      uo_F[1,2] <- step(xuo_F[1,2])* Cuo_F[1,2] + (1-step(xuo_F[1,2]))
-      Cmuo_F[1,2] ~ dbin(pi_muoF[1,2],uo_F[1,2])
-      pi_uo_F[1,1] <- ((Cm_MP[1,1]*piF_1SW[1,1] + n_um[1,1]*piF_1SW[1,2])/(Cm_MP[1,1] + n_um[1,1])) * (1-cut_pi_oF[1,1]) # 1SW
-      pi_uo_F[1,2] <- ((Cm_MP[1,2]*piF_MSW[1,1] + n_um[1,2]*piF_MSW[1,2])/(Cm_MP[1,2] + n_um[1,2])) * (1-cut_pi_oF[1,2]) # MSW
-     for (a in 1:2) {    
-      n_F[1,a] <- Cm_MP[1,a] + n_um[1,a]
-      C_uoF[1,a] ~ dbin(pi_uo_F[1,a],n_F[1,a])  # Changed in March 2020
-      nv_m[1,a] <- Cm_MP[1,a] - Cm_F[1,a] - step(xuo_F[1,a])*Cmuo_F[1,a] # marked
-      nv_um[1,a] <- n_um[1,a] - Cum_F[1,a] - Cuo_F[1,a] + step(xuo_F[1,a])*Cmuo_F[1,a] #unmarked 
-      }
-
-# Major change of this section in 2020
-  for (t in 2:9) { # from 1995 to 2002
-#     Probability of being fished and observed at MP for a 1SW marked fish
-      pi_moF[t,1] <- piF_1SW[t,1] * cut_pi_oF[t,1]
-      Cm_F[t,1] ~ dbin(pi_moF[t,1],Cm_MP[t,1])  # Changed in March 2020
-#     Probability of being fished and observed at MP for a 1SW unmarked fish
-      pi_umoF[t,1] <- piF_1SW[t,2] * cut_pi_oF[t,1]
-      Cum_F[t,1] ~ dbin(pi_umoF[t,1],n_um[t,1])  # Changed in March 2020
-#     Same structure for MSW fish
-      pi_moF[t,2] <- piF_MSW[t,1] * cut_pi_oF[t,2]
-      Cm_F[t,2] ~ dbin(pi_moF[t,2],Cm_MP[t,2])  # Changed in March 2020
-      pi_umoF[t,2] <- piF_MSW[t,2] * cut_pi_oF[t,2]
-      Cum_F[t,2] ~ dbin(pi_umoF[t,2],n_um[t,2])  # Changed in March 2020
-#     Modeling the number of marked fish among the 1SW fish not observed at MP
-      xuo_F[t,1] <- Cuo_F[t,1]-0.1  # Protection against 0 when all fish were presented
-#     Calculation of the probability of being marked among the fish not observed at MP
-#     When Cuo_F = 0, pi_muoF[t,1] = 1 & uo_F[t,1] = 1 
-      pi_muoF[t,1] <- (step(xuo_F[t,1])*(pi_MP[t,1]*piF_1SW[t,1]) / (pi_MP[t,1]*piF_1SW[t,1]+ (1-pi_MP[t,1])*piF_1SW[t,2])) + (1-step(xuo_F[t,1]))
-#     When Cuo_F = 0, uo_F[t,1] = 1  otherwise Cuo_F
-      uo_F[t,1] <- step(xuo_F[t,1])* Cuo_F[t,1] + (1-step(xuo_F[t,1])) 
-      Cmuo_F[t,1] ~ dbin(pi_muoF[t,1],uo_F[t,1])
-#     Same structure for MSW fish
-      xuo_F[t,2] <- Cuo_F[t,2]-0.1
-      pi_muoF[t,2] <- (step(xuo_F[t,2])*(pi_MP[t,2]*piF_MSW[t,1]) / (pi_MP[t,2]*piF_MSW[t,1]+ (1-pi_MP[t,2])*piF_MSW[t,2])) + (1-step(xuo_F[t,2]))
-      uo_F[t,2] <- step(xuo_F[t,2])* Cuo_F[t,2] + (1-step(xuo_F[t,2]))
-      Cmuo_F[t,2] ~ dbin(pi_muoF[t,2],uo_F[t,2])
-#     Probability of being fished and unobserved at MP
-      pi_uo_F[t,1] <- ((Cm_MP[t,1]*piF_1SW[t,1] + n_um[t,1]*piF_1SW[t,2])/(Cm_MP[t,1] + n_um[t,1])) * (1-cut_pi_oF[t,1]) # 1SW
-      pi_uo_F[t,2] <- ((Cm_MP[t,2]*piF_MSW[t,1] + n_um[t,2]*piF_MSW[t,2])/(Cm_MP[t,2] + n_um[t,2])) * (1-cut_pi_oF[t,2]) # MSW
-    for (a in 1:2) {    
-#     Fish caught but unobserved at MP
-#     Total number of fish available to the fishery
-      n_F[t,a] <- Cm_MP[t,a] + n_um[t,a]
-      C_uoF[t,a] ~ dbin(pi_uoF[t,a],n_F[t,a])  # Changed in March 2020
-      ## Fish susceptible to die from other cause than fishing per sea age
-      nv_m[t,a] <- Cm_MP[t,a] - Cm_F[t,a] - step(xuo_F[t,a])*Cmuo_F[t,a] # marked
-      nv_um[t,a] <- n_um[t,a] - Cum_F[t,a] - Cuo_F[t,a] + step(xuo_F[t,a])*Cmuo_F[t,a] #unmarked 
-      } # end of loop over sea age
-   } # end of loop over years
+# # Former code (prior to 2022)
+# # Probability of observing a caught fish at MP for its marked status
+#   mupi_oF ~ dbeta(1,1) ; sigmapi_oF ~ dunif(0,20)
+#   varpi_oF <- (sigmapi_oF)*(sigmapi_oF) 
+#   precpi_oF <- 1/(varpi_oF) # precision
+#   
+#   ### Probability that a caught fish is showed at Moulin des Princes (dependent on sea age)
+#     logit_mupi_oF <- log(mupi_oF/(1-mupi_oF)) # logit transformation of the common mean
+#     for (t in 1:9) { ## pi_oF: Exchangeable from 1994 to 2002 
+#       for (a in 1:2) {
+# # Changed in 2020 : the probability of observing a catch is allowed to vary according to year and sea age (consistent with data)
+#         logit_pi_oF[t,a] ~ dnorm(logit_mupi_oF,precpi_oF)
+#         pi_oF[t,a] <- exp(logit_pi_oF[t,a])/(1+exp(logit_pi_oF[t,a]))  # back-transformation on the probability scale  
+#         pi_uoF[t,a] <- 1 - pi_oF[t,a]
+#         Cuo_F[t,a] ~ dbin(pi_uoF[t,a],C_F[t,a])
+# # The cut has been introduced because othewise pi_Of is not properly sampled
+# # The small hierrachcal model above is used to generate "inforamtive priors"
+#         cut_pi_oF[t,a] <- cut(pi_oF[t,a])  
+#         }# end of loop over mark category  
+#       } ## End of loop over years
+#   
+# # First year (1994)-> see explanations below
+#       pi_moF[1,1] <- piF_1SW[1,1] * cut_pi_oF[1,1]
+#       Cm_F[1,1] ~ dbin(pi_moF[1,1],Cm_MP[1,1])  # Changed in March 2020
+#       pi_umoF[1,1] <- piF_1SW[1,2] * cut_pi_oF[1,1]
+#       Cum_F[1,1] ~ dbin(pi_umoF[1,1],n_um[1,1])  # Changed in March 2020
+#       pi_moF[1,2] <- piF_MSW[1,1] * cut_pi_oF[1,2]
+#       Cm_F[1,2] ~ dbin(pi_moF[1,2],Cm_MP[1,2])  # Changed in March 2020
+#       pi_umoF[1,2] <- piF_MSW[1,2] * cut_pi_oF[1,2]
+#       Cum_F[1,2] ~ dbin(pi_umoF[1,2],n_um[1,2])  # Changed in March 2020
+#       xuo_F[1,1] <- Cuo_F[1,1]-0.1  # Protection against 0 when all fish were presented
+#       pi_muoF[1,1] <- (step(xuo_F[1,1])*(p_MP94_tot[1]*piF_1SW[1,1]) / (p_MP94_tot[1]*piF_1SW[1,1] + (1-p_MP94_tot[1])*piF_1SW[1,2])) + (1-step(xuo_F[1,1]))
+#       uo_F[1,1] <- step(xuo_F[1,1])* Cuo_F[1,1] + (1-step(xuo_F[1,1])) 
+#       Cmuo_F[1,1] ~ dbin(pi_muoF[1,1],uo_F[1,1])
+#       xuo_F[1,2] <- Cuo_F[1,2]-0.1
+#       pi_muoF[1,2] <- (step(xuo_F[1,2])*(p_MP94_tot[2]*piF_MSW[1,1]) / (p_MP94_tot[2]*piF_MSW[1,1] + (1-p_MP94_tot[2])*piF_MSW[1,2])) + (1-step(xuo_F[1,2]))
+#       uo_F[1,2] <- step(xuo_F[1,2])* Cuo_F[1,2] + (1-step(xuo_F[1,2]))
+#       Cmuo_F[1,2] ~ dbin(pi_muoF[1,2],uo_F[1,2])
+#       pi_uo_F[1,1] <- ((Cm_MP[1,1]*piF_1SW[1,1] + n_um[1,1]*piF_1SW[1,2])/(Cm_MP[1,1] + n_um[1,1])) * (1-cut_pi_oF[1,1]) # 1SW
+#       pi_uo_F[1,2] <- ((Cm_MP[1,2]*piF_MSW[1,1] + n_um[1,2]*piF_MSW[1,2])/(Cm_MP[1,2] + n_um[1,2])) * (1-cut_pi_oF[1,2]) # MSW
+#      for (a in 1:2) {    
+#       n_F[1,a] <- Cm_MP[1,a] + n_um[1,a]
+#       C_uoF[1,a] ~ dbin(pi_uo_F[1,a],n_F[1,a])  # Changed in March 2020
+#       nv_m[1,a] <- Cm_MP[1,a] - Cm_F[1,a] - step(xuo_F[1,a])*Cmuo_F[1,a] # marked
+#       nv_um[1,a] <- n_um[1,a] - Cum_F[1,a] - Cuo_F[1,a] + step(xuo_F[1,a])*Cmuo_F[1,a] #unmarked 
+#       }
+# 
+# # Major change of this section in 2020
+#   for (t in 2:9) { # from 1995 to 2002
+# #     Probability of being fished and observed at MP for a 1SW marked fish
+#       pi_moF[t,1] <- piF_1SW[t,1] * cut_pi_oF[t,1]
+#       Cm_F[t,1] ~ dbin(pi_moF[t,1],Cm_MP[t,1])  # Changed in March 2020
+# #     Probability of being fished and observed at MP for a 1SW unmarked fish
+#       pi_umoF[t,1] <- piF_1SW[t,2] * cut_pi_oF[t,1]
+#       Cum_F[t,1] ~ dbin(pi_umoF[t,1],n_um[t,1])  # Changed in March 2020
+# #     Same structure for MSW fish
+#       pi_moF[t,2] <- piF_MSW[t,1] * cut_pi_oF[t,2]
+#       Cm_F[t,2] ~ dbin(pi_moF[t,2],Cm_MP[t,2])  # Changed in March 2020
+#       pi_umoF[t,2] <- piF_MSW[t,2] * cut_pi_oF[t,2]
+#       Cum_F[t,2] ~ dbin(pi_umoF[t,2],n_um[t,2])  # Changed in March 2020
+# #     Modeling the number of marked fish among the 1SW fish not observed at MP
+#       xuo_F[t,1] <- Cuo_F[t,1]-0.1  # Protection against 0 when all fish were presented
+# #     Calculation of the probability of being marked among the fish not observed at MP
+# #     When Cuo_F = 0, pi_muoF[t,1] = 1 & uo_F[t,1] = 1 
+#       pi_muoF[t,1] <- (step(xuo_F[t,1])*(pi_MP[t,1]*piF_1SW[t,1]) / (pi_MP[t,1]*piF_1SW[t,1]+ (1-pi_MP[t,1])*piF_1SW[t,2])) + (1-step(xuo_F[t,1]))
+# #     When Cuo_F = 0, uo_F[t,1] = 1  otherwise Cuo_F
+#       uo_F[t,1] <- step(xuo_F[t,1])* Cuo_F[t,1] + (1-step(xuo_F[t,1])) 
+#       Cmuo_F[t,1] ~ dbin(pi_muoF[t,1],uo_F[t,1])
+# #     Same structure for MSW fish
+#       xuo_F[t,2] <- Cuo_F[t,2]-0.1
+#       pi_muoF[t,2] <- (step(xuo_F[t,2])*(pi_MP[t,2]*piF_MSW[t,1]) / (pi_MP[t,2]*piF_MSW[t,1]+ (1-pi_MP[t,2])*piF_MSW[t,2])) + (1-step(xuo_F[t,2]))
+#       uo_F[t,2] <- step(xuo_F[t,2])* Cuo_F[t,2] + (1-step(xuo_F[t,2]))
+#       Cmuo_F[t,2] ~ dbin(pi_muoF[t,2],uo_F[t,2])
+# #     Probability of being fished and unobserved at MP
+#       pi_uo_F[t,1] <- ((Cm_MP[t,1]*piF_1SW[t,1] + n_um[t,1]*piF_1SW[t,2])/(Cm_MP[t,1] + n_um[t,1])) * (1-cut_pi_oF[t,1]) # 1SW
+#       pi_uo_F[t,2] <- ((Cm_MP[t,2]*piF_MSW[t,1] + n_um[t,2]*piF_MSW[t,2])/(Cm_MP[t,2] + n_um[t,2])) * (1-cut_pi_oF[t,2]) # MSW
+#     for (a in 1:2) {    
+# #     Fish caught but unobserved at MP
+# #     Total number of fish available to the fishery
+#       n_F[t,a] <- Cm_MP[t,a] + n_um[t,a]
+#       C_uoF[t,a] ~ dbin(pi_uoF[t,a],n_F[t,a])  # Changed in March 2020
+#       ## Fish susceptible to die from other cause than fishing per sea age
+#       nv_m[t,a] <- Cm_MP[t,a] - Cm_F[t,a] - step(xuo_F[t,a])*Cmuo_F[t,a] # marked
+#       nv_um[t,a] <- n_um[t,a] - Cum_F[t,a] - Cuo_F[t,a] + step(xuo_F[t,a])*Cmuo_F[t,a] #unmarked 
+#       } # end of loop over sea age
+#    } # end of loop over years

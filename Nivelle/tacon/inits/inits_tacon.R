@@ -14,7 +14,7 @@ load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 for (c in 1:2){ # 2 chains
 #------------------------INITS----------------------------------##
-inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,".txt",sep=""))
+inits0 <- read.bugsdata(paste("inits/init-",site,"-",stade,as.numeric(year)-1,"_",c,".txt",sep=""))
 #save(inits0,file=paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 #load(paste('inits/inits_',stade,as.numeric(year)-1,'.Rdata',sep=""))
 

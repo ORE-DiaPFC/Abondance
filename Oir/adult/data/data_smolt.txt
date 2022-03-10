@@ -1,7 +1,7 @@
 list(
 
 #Length of the time series: from 1986 to now on
-Nyears = 36, # 2021
+Nyears = 35, # 2020
 
 # Annual number of smolt captured at Moulin de Cerisel
 C_MC = c(508,
