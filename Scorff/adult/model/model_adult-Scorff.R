@@ -4,7 +4,7 @@
 ###                  Sabrina Servanty & Etienne Prevost                      ###
 ###                             June 2015                                    ###
 ###                  Modified by Buoro M & Prevost E                         ###
-###                             March 2020                                   ###
+###                       March 2020, March 2022                             ###
 ################################################################################
 
 ############################################################################################
@@ -29,7 +29,7 @@
 ## Fishing and natural mortality are set as a multinormal distribution depending on mark and sea age
 ## This aspect has been simplified in 2020 with the use of a single cc for fishing exploitation between marked and unmarked (rhoF)
 ## For the sake of consistency, the same approach is applied to the correlation among death rates (rhoD)
-## Associated variance parameters are also no longer dependent on sea age  
+## Associated variance parameters are also dependent on sea age for death but not for fishing (after check against data)
 ############################################################################################
 
 model {
@@ -122,8 +122,8 @@ model {
   ## pi_R[t,a]: annual probability to be captured during or after reproduction given sea age
   ####################################################################################  
         
-    for (t in 1:Y) { ## pi_MP: Exchangeable from 1994 to now on     
-        for (a in 1:2) {
+  for (t in 1:Y) { ## pi_MP: Exchangeable from 1994 to now on     
+      for (a in 1:2) {
             logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
             stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
             logit_mupi_MP[t,a] <- logit_int_MP[a] + logit_flow_MP[a] * stlogQ[t,a]
@@ -330,6 +330,7 @@ model {
 # From 1994 to 2002 not all the fish caught have their marked status knwon
 # Censoring is used to model the minimum number of fish with known status
 # Cm_F is used for censoring
+# Mofdified in 2022
    # Marked fish
   for (t in 1:9) { # from 2003 to now on   
    Cm_Fb[t,1] ~ dbin(piF_1SW[t,1],Cm_MP[t,1]) C(Cm_F[t,1],) #1SW
@@ -363,9 +364,10 @@ model {
         } #end of loop over sea age category 
    } # end of loop over years
         
-# From 202o not all the fish caught have their marked status knwon
+# From 2020 not all the fish caught have their marked status knwon
 # Censoring is used to model the minimum number of fish with known status
 # Cm_F is used for censoring
+# Mofdified in 2022
    # Marked fish
   for (t in 27:Y) { # from 2003 to now on   
    Cm_Fb[t,1] ~ dbin(piF_1SW[t,1],Cm_MP[t,1]) C(Cm_F[t,1],) #1SW
@@ -445,6 +447,7 @@ model {
   
 } # end of the model
       
+# Former code (prior to 2022)
 # Probability of observing a caught fish at MP for its marked status
   mupi_oF ~ dbeta(1,1) ; sigmapi_oF ~ dunif(0,20)
   varpi_oF <- (sigmapi_oF)*(sigmapi_oF) 

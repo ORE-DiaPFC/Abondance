@@ -1,5 +1,2 @@
 # Number of years: from 1994 to now on
-# C_F_1SW_2020 : total 1SW catch in 2020 which m vs um status is unknown (see also file data_F.txt)
-list(Y=27
-#, C_F_1SW_2020=6
-) # 2020
+list(Y=27) # 2020

@@ -1,6 +1,7 @@
 ##############################################################################################################################
 # THIS FILE DOES NOT NEED TO BE UPDATED
 # Cuo_F[t,a]: Annual number of fish caught by fishing per sea age category (from 1994 to 2002) and not observed at MP
+# File no longer used since modification done in 2022
 ######################################################################################################################################
 Cuo_F[,1]	Cuo_F[,2]
 24	0
