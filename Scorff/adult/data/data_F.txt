@@ -1,7 +1,11 @@
 
 ###############################################################################################################################			
-## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW  			
-## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category and showed at Moulin des Princes. 1:1SW, 2:MSW			
+## Cm_F[t,a]: Annual number of marked fish caught by fishing per sea age category and with marked status known.
+## Cum_F[t,a]: Annual number of unmarked fish caught by fishing per sea age category  and with marked status known.
+## From 1994 to 2002 not all the fish caught have their marked status known
+## From 2003 to 2019 all the fish caught have their marked status known
+## From 2020 not all the fish caught have their marked status known
+## 1:1SW, 2:MSW			
 ###############################################################################################################################    			
 Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 3	0	14	20
@@ -12,7 +16,7 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 16	0	4	3
 18	1	19	4
 14	1	4	3
-7	0	5	1
+7	0	5	1 # 2002
 0	1	0	6
 60	1	26	9
 17	16	10	10
@@ -30,5 +34,5 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 20	8	16	5 # 2017 (42% of marked fish on declared unmarked fish)
 10	2	4	13
 5	3	5	7
-NA	0	NA	6 # 2020 : 6 1SW caught with marked status unknown
-#END 
+0	0	0	5 # 2020
+END 

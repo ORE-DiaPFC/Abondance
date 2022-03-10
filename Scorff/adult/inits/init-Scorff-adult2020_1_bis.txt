@@ -1,0 +1,15 @@
+list(Cum_Fb=structure(.Data= c(
+14,20,10,2,8,6,7,4,5,3,
+4,3,19,4,4,3,5,1,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,0,5), .Dim=c(27, 2)),
+Cm_Fb=structure(.Data= c(
+27,0,65,9,84,5,28,4,65,2,
+21,2,22,6,27,3,19,0,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
+NA,NA,6,1), .Dim=c(27, 2))
+)
