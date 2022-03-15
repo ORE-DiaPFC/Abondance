@@ -1,7 +1,7 @@
 list(
 
 #Nyears: Length of time series from 1995 to now on  
-#Nyears = 25, # 2019
+Nyears = 26, # 2020
 
 # Annual number of smolt captured at Moulin de Lesl?
 C_ML = c(
@@ -33,7 +33,7 @@ NA,
 NA	# 2020 COVID
 ),
 
-# Annual number of smolt marked and released downstream Moulin de Lesl?
+# Annual number of smolt marked and released downstream Moulin de Lesle
 Cm_ML = c(
 458,
 279,
@@ -93,7 +93,7 @@ NA,
 0 # 2020
 ),
 
-# Annual number of dead smolt at Moulin de Lesl?
+# Annual number of dead smolt at Moulin de Lesle
 D_ML = c(
 NA,
 NA,
@@ -213,7 +213,7 @@ D_MP = c(
 0 # 2020
 ),
 
-# No update (data from 1995 and 1996 when Lesl? was not installed yet)
+# No update (data from 1995 and 1996 when Lesle was not installed yet)
 C_MP = c(594,336)
 
 )

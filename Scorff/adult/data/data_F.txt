@@ -27,7 +27,7 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 38	4	18	8
 18	10	34	20
 9	2	24	8
-20	8	16	5 #2017 (42% of marked fish on declared unmarked fish)
+20	8	16	5 #2017 (42% of marked fish on declared unmarked fish) : à vérifier en 2023 si traitement comme 2020-21
 10	2	4	13
 5	3	5	7
 0	0	0	5
