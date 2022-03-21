@@ -10,7 +10,7 @@
 ################################################################################
 # /!\ /!\ THIS CODE has been significantly modified in 2022 NEEDS not TO BE UPDATED EVERY YEAR
 #   The option for years with trapping interruption at Lesle due to high flow has been removed
-#   because it cause pb of MCMC convergence with no gain in estimation quality 
+#   because it causes pb of MCMC convergence with no gain in estimation quality 
 ################################################################################
 
 ######################################################################
@@ -118,7 +118,7 @@ test[2] <- step(logit_flow[2]) # is logit_flow at ML >=0 ?
 ## Moulin des Princes 
 for (t in 1:Nyears) {p_MP[t] <- p[t,1]} # end of loop over years
 # Lesle  
-for (t in 3:Nyears) {p_ML[t] <- p[3,2]} # end of loop over years
+for (t in 3:Nyears) {p_ML[t] <- p[t,2]} # end of loop over years
 # 2020 (COVID: traps not activated from March 15th to May 11th 2020)
 
 ######################### Population process ###########################################
