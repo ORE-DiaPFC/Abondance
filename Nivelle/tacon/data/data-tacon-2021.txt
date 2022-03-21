@@ -1,16 +1,16 @@
 list(
-# Index de la derniere annee. /!\ 1985 est consid?r? comme ann?e y=2
+# Index de la derniere annee. /!\ 1985 est considere comme annee y=2
 Y_last=38, # 2021
 
 # Index dernier site. Add 17 per year because now only CPUE are done on 17 stations
-I=715, # 2021
+I=732, # 2021
 
 # Donnees de CPUE en sequence
-# Seules les dernieres ann?es sont par paquets de 17 stations.
-# Depuis 2011, les 17 stations sont ordonn?es dans l'ordre aval -> amont
+# Seules les dernieres annees sont par paquets de 17 stations.
+# Depuis 2011, les 17 stations sont ordonnees dans l'ordre aval -> amont
 # Uskain, Zumabia, Inra, Olha, Ile Amotz, 
-# Pont Amotz, Ustegabea, Le couillu, Betrienea, Grand ch?ne, 
-# Conf Sorrimenta, Petit ch?ne, Moulin zahara, Aval Darguy, Lyonnaise
+# Pont Amotz, Ustegabea, Le couillu, Betrienea, Grand chene, 
+# Conf Sorrimenta, Petit chene, Moulin zahara, Aval Darguy, Lyonnaise
 # Ohaldea, Conserverie
 
 CPUE=c(
@@ -61,12 +61,13 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,17,17,10,9,24,63,25,25,9,22,16,11,
 19,20,23,63,10,35,12,31,26,45,64,27,46,16,15,12,12, # 2016
 9,11,6,28,14,24,11,40,14,16,27,16,4,6,9,7,17, # 2017
 17,13,9,8,13,18,14,18,6,3,9,13,12,1,11,21,20, # 2018
+
 30,55,14,54,48,51,20,30,33,47,46,37,52,30,41,25,4, # 2019
 14,31,8,13,19,28,16,16,22,79,49,24,19,13,4,13,5, # 2020
 51,62,34,144,90,100,67,91,48,68,115,83,77,55,98,97,81 # 2021
 ),
 
-# D?versement d'alevins par zone. 8 zones. 
+# Deversement d'alevins par zone. 8 zones. 
 # MISE A JOUR en rajoutant une ligne de NA (no more releases since 2009). 
 # /!\ Besoin de changer la dimension de la matrice aussi de AL[Y_last, nbre zone]
 AL=structure(.Data=c(
@@ -111,12 +112,13 @@ NA,NA,NA,NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,NA,NA, # 2016
 NA,NA,NA,NA,NA,NA,NA,NA, # 2017
 NA,NA,NA,NA,NA,NA,NA,NA, # 2018
+
 NA,NA,NA,NA,NA,NA,NA,NA, # 2019
 NA,NA,NA,NA,NA,NA,NA,NA, # 2020
 NA,NA,NA,NA,NA,NA,NA,NA # 2021
 ),.Dim = c(38,8)),
 
-# D?versement d'alevins ? r?sorbtion de v?sicule par zone. 5 zones
+# Deversement d'alevins a resorbtion de vesicule par zone. 5 zones
 # MISE A JOUR en rajoutant une ligne de NA (no more releases since 2009)
 # /!\ Besoin de changer la dimension de la matrice aussi de RV[Y_last, nbre zone]
 RV=structure(.Data=c(
@@ -293,10 +295,10 @@ H=c(
 
 # Debits le jours des peches pour les CPUE par stations
 # MISE A JOUR: 17 d?bits pour les 17 stations.  
-# Depuis 2011, les 17 stations sont ordonn?es dans l'ordre aval -> amont
+# Depuis 2011, les 17 stations sont ordonnees dans l'ordre aval -> amont
 # Uskain, Zumabia, Inra, Olha, Ile Amotz, 
-# Pont Amotz, Ustegabea, Le couillu, Betrienea, Grand ch?ne, 
-# Conf Sorrimenta, Petit ch?ne, Moulin zahara, Aval Darguy, Lyonnaise
+# Pont Amotz, Ustegabea, Le couillu, Betrienea, Grand chene, 
+# Conf Sorrimenta, Petit chene, Moulin zahara, Aval Darguy, Lyonnaise
 # Ohaldea, Conserverie
 Q=c(
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
@@ -346,6 +348,7 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.64,1,0.7,0.76,0.73,0.71,0.71,0.71,0.
 0.66,0.66,0.66,0.78,0.78,0.66,0.66,0.66,0.90,0.90,0.90,0.90,0.78,0.90,0.66,0.78,0.78, # 2016
 2.37,2.37,2.37,2.37,2.37,2.58,2.37,2.37,2.58,2.58,2.58,2.58,2.58,2.58,8.18,8.18,8.18, # 2017
 1.24,1.24,1.31,1.31,1.24,1.31,1.31,1.24,1.29,1.29,1.29,1.29,1.29,1.29,1.31,1.31,1.31, # 2018
+
 1.1,1.1,1.1,1.1,1.1,1.1,1.18,1.18,1.18,1.18,1.34,1.34,1.34,1.18,1.34,1.34,1.34, # 2019
 0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84, # 2020
 0.93,0.93,0.78,0.77,0.78,0.86,0.93,0.72,0.77,0.86,0.90,0.93,0.90,0.90,0.78,0.78,0.78 # 2021
@@ -402,6 +405,7 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2.97,2.85,2.97,2.85,2.97,2.85,2.97,3.0
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905, # 2016
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905, # 2017
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905, # 2018
+
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905, # 2019
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905, # 2020
 2.97,2.85,2.97,2.85,1.25,1.25,1.25,1.25,2.97,2.97,3.09,3.09,3.09,2.97,0.905,0.905,0.905 # 2021
@@ -409,7 +413,7 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2.97,2.85,2.97,2.85,2.97,2.85,2.97,3.0
 
 # Surface des sites
 # MISE A JOUR: Reprendre les surfaces des 17 derniers sites CPUE
-# Depuis 2011, les stations sont ordonn?es d'aval en amont.
+# Depuis 2011, les stations sont ordonnees d'aval en amont.
 S=c(
 362,408,230,1281,449,674,378,118,340,706,362,408,230,1462,449,574,378,
 118,340,706,362,408,230,1462,449,574,232,118,340,706,362,247,310,1462,
@@ -458,6 +462,7 @@ S=c(
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2016
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2017
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2018
+
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2019
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2020
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931 # 2021
@@ -465,7 +470,7 @@ S=c(
 ),
 
 
-# Surface mesur?e le jour de la p?che
+# Surface mesuree le jour de la peche
 # MISE A JOUR: Rajouter 17 NA pour les 17 stations CPUE
 S_rec=c(
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
@@ -515,6 +520,7 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, # 2016
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, # 2017
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, # 2018
+
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, # 2019
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA, # 2020
 NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA # 2021
@@ -565,6 +571,7 @@ NA,NA,11223,28074,6884,NA,NA,NA,
 NA,NA,11223,28074,6884,NA,NA,NA, # 2016
 NA,NA,11223,28074,6884,NA,NA,NA, # 2017
 NA,NA,11223,28074,6884,NA,NA,NA, # 2018
+
 NA,NA,11223,28074,6884,NA,NA,NA, # 2019
 NA,NA,11223,28074,6884,NA,NA,NA, # 2020
 NA,NA,11223,28074,6884,NA,NA,NA # 2021
@@ -620,8 +627,8 @@ NA,NA,18036,25237,6224,NA,NA,NA, # 2020
 NA,NA,18036,25237,6224,NA,NA,NA # 2021
 ),.Dim = c(38,8)),
 
-# Indice de l'ann?e par station (premi?re ann?e : Y=2)
-# MISE A JOUR : Rajouter 17 fois l'indice de la derni?re ann?e (Y_last)
+# Indice de l'annee par station (premiere annee : Y=2)
+# MISE A JOUR : Rajouter 17 fois l'indice de la derniere annee (Y_last)
 Y=c(
 2,2,2,2,2,2,2,2,2,2,
 3,3,3,3,3,3,3,3,3,3,
@@ -729,7 +736,7 @@ Y=c(
 
 # Indice de la zone par station (BN=3, HN=4, LUR=5)
 # MISE A JOUR : Reprendre les 17 derniers indices des stations CPUE
-# Depuis 2011, les stations sont ordonn?es d'aval en amont.
+# Depuis 2011, les stations sont ordonnees d'aval en amont.
 Z=c(
 3,3,3,3,3,
 3,3,3,3,3,
@@ -847,6 +854,7 @@ Z=c(
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5, # 2016
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5, # 2017
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5, # 2018
+
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5, # 2019
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5, # 2020
 3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5 # 2021
@@ -855,7 +863,7 @@ Z=c(
 
 ###################################
 # PAS DE MISE A JOUR
-# Ne concerne que les enl?vements successifs. Premier passage.
+# Ne concerne que les enlevements successifs. Premier passage.
 C1=c(
 9,8,14,106,6,
 15,0,0,0,6,
@@ -1042,7 +1050,7 @@ NA,0,8,8,2,
 43,10,8,7,4),
 
 # PAS DE MISE A JOUR
-# Ne concerne que les enl?vements successifs. Troisi?me passage.
+# Ne concerne que les enlevements successifs. Troisieme passage.
 C3=c(
 NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,
@@ -1135,7 +1143,7 @@ NA,2,NA,4,NA,
 NA,NA,NA,NA,NA),
 
 # PAS DE MISE A JOUR
-# Ne concerne que les enl?vements successifs. Quatri?me passage.
+# Ne concerne que les enlevements successifs. Quatrieme passage.
 C4=c(
 NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,
@@ -1228,7 +1236,7 @@ NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA),
 
 # PAS DE MISE A JOUR
-# Ne concerne que les enl?vements successifs.
+# Ne concerne que les enlevements successifs.
 minC2=c(
 0,0,0,0,0,
 0,0,0,0,0,
@@ -1321,7 +1329,7 @@ minC2=c(
 0,0,0,0,0),
 
 # PAS DE MISE A JOUR
-# Ne concerne que les enl?vements successifs
+# Ne concerne que les enlevements successifs
 minC3=c(
 0,0,0,0,0,
 0,0,0,0,0,
