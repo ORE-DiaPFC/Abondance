@@ -8,7 +8,8 @@
 ## A_12[t,g]: Annual number of fish caught by angling between Uxondoa and Olha per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"																															
 ## Am_12[t,g]: Annual number of marked fish caught by angling between Uxondoa and Olha per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"																															
 ##   = A_12[t,g] except for the first years (until 1991)																															
-## Aum_12[t,g]: Annual number of unmarked fish caught by angling between Uxondoa and Olha per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"																															
+## Aum_12[t,g]: Annual number of unmarked fish caught by angling between Uxondoa and Olha per breeding category; 1: male 1SW; 2: female 1SW; 3: male MSW; 4: female MSW"
+## The Dm_12, Dum_12, Am_12, Aum_12 data are no longer used since changes made for accounting for partial trapping at Olha																															
 ################################################################################																															
 D_11[,1]	D_11[,2]	D_11[,3]	D_11[,4]	D_12[,1]	D_12[,2]	D_12[,3]	D_12[,4]	Dm_12[,1]	Dm_12[,2]	Dm_12[,3]	Dm_12[,4]	Dum_12[,1]	Dum_12[,2]	Dum_12[,3]	Dum_12[,4]	A_11[,1]	A_11[,2]	A_11[,3]	A_11[,4]	A_12[,1]	A_12[,2]	A_12[,3]	A_12[,4]	Am_12[,1]	Am_12[,2]	Am_12[,3]	Am_12[,4]	Aum_12[,1]	Aum_12[,2]	Aum_12[,3]	Aum_12[,4]
 0	0	0	0	0	2	0	1	NA	NA	NA	NA	NA	NA	NA	NA	0	1	0	2	1	0	1	0	NA	NA	NA	NA	NA	NA	NA	NA

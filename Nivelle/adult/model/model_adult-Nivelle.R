@@ -24,7 +24,7 @@ model {
 # the proportion of days with trapping and the actual probability of capture. 
 # The differntial do not apply to 2000 for Olha as that year is not equivalent to the others : very few days of trappinga and targeting on days with favourable flows     
 ############################################################################################
-# Since 2018 all the precison parameters are modeled herarchically with a common gamma distribution
+# Since 2018 all the precison parameters are modeled hierarchically with a common gamma distribution
 ##########################################################################################
 # Used indices:
 ## t: year; 1 to Y - from 1984 to Y
@@ -58,15 +58,15 @@ model {
 ##
 ## D_11[t,g]: Annual number of dead fish between Ascain and Uxondoa per breeding category
 ## D_12[t,g]: Annual number of dead fish between Uxondoa and Olha per breeding category
-## Dm_12[t,g]: Annual number of dead fish with a mark between Uxondoa and Olha per breeding category
+## Dm_12[t,g]: Annual number of dead fish with a mark between Uxondoa and Olha per breeding category (data no longer used since changes made for accounting for partial trapping at Olha)
 ##   = D_12[t,g] except for the first years (until 1991)
-## Dum_12[t,g]: Annual number of dead fish without a mark at Olha per breeding category. Start in 1992
+## Dum_12[t,g]: Annual number of dead fish without a mark at Olha per breeding category. Start in 1992 (data no longer used since changes made for accounting for partial trapping at Olha)
 ##
 ## A_11[t,g]: Annual number of fish caught by angling between Ascain and Uxondoa per breeding category
 ## A_12[t,g]: Annual number of fish caught by angling between Uxondoa and Olha per breeding category
-## Am_12[t,g]: Annual number of marked fish caught by angling between Uxondoa and Olha per breeding category
+## Am_12[t,g]: Annual number of marked fish caught by angling between Uxondoa and Olha per breeding category (data no longer used since changes made for accounting for partial trapping at Olha)
 ##   = A_12[t,g] except for the first years (until 1991)
-## Aum_12[t,g]: Annual number of unmarked fish caught by angling between Uxondoa and Olha per breeding category
+## Aum_12[t,g]: Annual number of unmarked fish caught by angling between Uxondoa and Olha per breeding category (data no longer used since changes made for accounting for partial trapping at Olha)
 ##
 ## R_EF[t,g]: Annual number of fish removed for experiment by electric fishing between Uxondoa and Olha per breeding category (from 1984 to 1991)
 ## M_EF[t,g]: Annual number of fish removed between Uxondoa and Olha and moved upstream Olha per breeding category (1990 & 1991)
