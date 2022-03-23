@@ -1,13 +1,13 @@
 ####################################################################################################################
 ###                          Model of CMR data to estimate parr population size                                  ###   
 ###                          of Salmo salar in Scorff river + tributary rivers                                   ###
-###   (Intercalibration between CPUE and successive removals included;  data from Pr?vost & Nihouarn 1999)       ###   
-###                                  Sabrina Servanty & Etienne Pr?vost                                          ###
+###   (Intercalibration between CPUE and successive removals included;  data from Prevost & Nihouarn 1999)       ###   
+###                                  Sabrina Servanty & Etienne Prevost                                          ###
 ###                                           September 2015                                                     ###
 ####################################################################################################################
 
 
-## /!\ Unit of density is rapid equivalent in 100?, not in m?. Very hard to get update otherwise because samplers are sampling very low values 
+## /!\ Unit of density is rapid equivalent in 100m2, not in m2. Very hard to get update otherwise because samplers are sampling very low values 
 
 model {
 
@@ -19,7 +19,7 @@ model {
 ################################################################################################
 ## i: station; 1 to Ninter - from 1 to 52 sampled stations for intercalibration (including river's width <3m)
 ##############################################################################################################
-
+# Change made in 2022 : lognormal modeling of the parr densities in accordance with the rest of model (Scorff densities)
 ##############################################################################################################
 ## DATA
 ## --------------
@@ -59,8 +59,8 @@ eps ~ dunif(0,10) #eps ~ dnorm(0,0.01)I(0,) # decrease in the probability of cap
 mu_d ~ dlnorm(2.5,1) ## Mean density 
 #rate_d ~ dgamma(0.1,0.1)# rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
 #shape_d <- mu_d * rate_d # shape parameter of the gamma distribution
-sigma_d ~ dunif(0,10)
-tau_d <- pow(sigma_d,-2)
+sigma_d ~ dunif(0,10)  # 2022 : harmonization with the rest of the model
+tau_d <- pow(sigma_d,-2)  # 2022 : harmonization with the rest of the model
 
 for (i in 1:Ninter) {
 
@@ -68,7 +68,7 @@ for (i in 1:Ninter) {
     #### Density
     #########################
 #    d[i] ~ dgamma(shape_d,rate_d)
-    d[i] ~ dlnorm(mu_d,tau_d)
+    d[i] ~ dlnorm(mu_d,tau_d)  # changed in 2022 : harmonization with the rest of the model
 
     ########################
     ### CPUE and density
