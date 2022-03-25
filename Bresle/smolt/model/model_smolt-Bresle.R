@@ -132,8 +132,8 @@ for (t in 35:NBeau) { #from 2021 to now on
 
 #############	        Prior for p_Eu[t]          #################
 for (t in 1:NEu) {  # For years when Eu is installed
-  logQ_Eu[t] <- log(Q_Eu[t]) # ln transformation of covariate
-  stlogQ_Eu[t] <- (logQ_Eu[t] - mean(logQ_Eu[]))/sd(logQ_Eu[]) # standardized covariate
+ # logQ_Eu[t] <- log(Q_Eu[t]) # ln transformation of covariate -> in data_smolt.R - mb-21.03.2022
+ # stlogQ_Eu[t] <- (logQ_Eu[t] - mean(logQ_Eu[]))/sd(logQ_Eu[]) # standardized covariate -> in data_smolt.R - mb-21.03.2022
 
   logit_mupi_Eu[t] <- logit_int_Eu + logit_flow_Eu * stlogQ_Eu[t]
   logit_pi_Eu[t] ~ dnorm(logit_mupi_Eu[t],precp_Eu)

@@ -31,9 +31,10 @@ inits_fix <- list(
               ,eps = runif(1,.9,1.1)#0.9869
               ,int_ydSc = runif(1,1.5,2)#1.809
               ,log_flow = runif(1,-.9,-.1)#-0.4612
-              ,mu_d = runif(1,18,21)#19.84
+              ,mu_d = runif(1,10,20)#19.84
+              ,sigma_d = runif(1,0.5,2)
               ,mup_rem = runif(1,.2,.8)#0.5931
-              ,rate_d = runif(1,.02,.03)#0.0261
+              #,rate_d = runif(1,.02,.03)#0.0261
               #,rate_lcpu = runif(1,.2,.5)#0.3905
               ,p_lcpu = 0.3905
               ,sd_prem = runif(1,.2,.8)#0.7431

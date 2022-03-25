@@ -3,17 +3,17 @@ title: "Bilan_Nivelle"
 author: "Mathieu Buoro, Frédéric Lange & Etienne Prévost"
 date: "4/14/2020"
 output:
-  html_document: default
   word_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
-wdir <- "/media/hdd/mbuoro/ORE-DiaPFC/Abundance/"
+wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Nivelle"
-year <- 2020
+year <- 2021
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -51,7 +51,7 @@ if (file.exists(dir)){
  # load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
  # n_parr <- fit$median$n1
  # table[4:nrow(table),2] <- round(n_parr,0) # 1995 to now
-    sum <- read.table(paste0(stade,"/results/YOYnat.txt"), h=TRUE)
+    sum <- read.table(paste0(stade,"/results/YOYnat_q.txt"), h=TRUE)
     table[1:nrow(table),2] <- as.matrix(sum[1:nrow(sum),6])
 }
 
@@ -332,7 +332,7 @@ load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,15),bty="n",ylab="Mean flow observed in December",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,20),bty="n",ylab="Mean flow observed in December",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
 
 lines(data$Q,lty=1,lwd=2,col="steelblue1",type="o")
@@ -365,13 +365,13 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 p<-1:data$Y_last
 ### Total number of returns
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,20000),bty="n",ylab="Total number of parr",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,35000),bty="n",ylab="Total number of parr",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # N total
 #mcmc <- as.matrix(tmp[,paste0("ntot_Oir[",p,"]")])    
 #n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
-    sum <- read.table(paste0(stade,"/results/YOYnat.txt"), h=TRUE)
+    sum <- read.table(paste0(stade,"/results/YOYnat_q.txt"), h=TRUE)
     n <- as.matrix(sum[1:nrow(sum),c(3,6,9)]);colnames(n)<-c("2.5%","50%","97.5%")
     
 segments(p,n[,"2.5%"], p,n[,"97.5%"], col=paste0(mycol[1]))
@@ -402,20 +402,20 @@ stade <- "tacon"
 # mcmc <- as.matrix(parr[,paste0("ntot_Oir[",1:data$Nyear,"]")]) # 1987 to now)
 # r <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 #r <- rbind(matrix(NA,3,3),r)
-sum <- read.table(paste0(stade,"/results/YOYnat.txt"), h=TRUE)
+sum <- read.table(paste0(stade,"/results/YOYnat_q.txt"), h=TRUE)
 r <- as.matrix(sum[1:nrow(sum),c(3,6,9)]);colnames(r)<-c("2.5%","50%","97.5%")
 
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(0,1500000),ylim=c(0,20000),bty="n",ylab="Recruitment (parr 0+)",xlab="Stock (eggs produced)")
+plot(NULL,xlim=c(0,1500000),ylim=c(0,35000),bty="n",ylab="Recruitment (parr 0+)",xlab="Stock (eggs produced)")
 #axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # Stock
 segments(s[1:(nrow(s)-1),"2.5%"], r[2:nrow(r),"50%"],s[1:(nrow(s)-1),"97.5%"],r[2:nrow(r),"50%"], col=paste0(mycol[1]))
 segments(s[1:(nrow(s)-1),"50%"], r[2:nrow(r),"2.5%"],s[1:(nrow(s)-1),"50%"],r[2:nrow(r),"97.5%"], col=paste0(mycol[1]))
 points(s[1:(nrow(s)-1),"50%"],r[2:nrow(r),"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-text(s[1:(nrow(s)-1),"50%"],r[2:nrow(r),"50%"]+1000,labels = 1987:2019, cex=.5) # year of parr cohort
+text(s[1:(nrow(s)-1),"50%"],r[2:nrow(r),"50%"]+1000,labels = 1987:2021, cex=.5) # year of parr cohort
 
 ```

@@ -8,7 +8,8 @@ parameters <-c(
   ,"sd_prem"
   ,"eps"
   ,"mu_d"
-  ,"rate_d"
+  ,"sigma_d"
+  #,"rate_d"
   
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS

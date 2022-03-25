@@ -23,6 +23,12 @@ parameters <-c(
   
   ## POPULATION
   ,"Ntot" # annual number of smolt
+ , "N" #  number of smolt by cohort
+ ,"Nc" #  number of smolt by age
+ ,"p1c" # proportion smolt 1+ / cohort
+ ,"p1y" # proportion smolt 1+ / year
+ ,"s1","s2"
+ ,"mu_p1c","alpha"
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution

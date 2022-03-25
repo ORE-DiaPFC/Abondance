@@ -39,5 +39,6 @@ C_MC[,1]	C_MC[,2]	C_MC[,3]	C_MC[,4]	Cm_MC[,1]	Cm_MC[,2]	Cm_MC[,3]	Cm_MC[,4]
 11	1	0	2	11	1	0	2
 3	2	2	5	3	2	2	5
 41	19	3	11	41	19	3	11
-54	37	4	10	51	36	3	10 # 2020
+55	38	4	7	52	37	4	7 # 2020 remis à jour avec sexage génétique
+39	13	3	11	37	12	3	11 # 20210128 il manque des sexes de 3 castillons (mis 2M et 1F) et de 1 printemps (mis F) qu'on aura avec le sexage DCF
 #END

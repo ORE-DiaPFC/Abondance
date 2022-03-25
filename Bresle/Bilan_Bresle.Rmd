@@ -3,9 +3,9 @@ title: "Bilan_Bresle"
 author: "Mathieu Buoro, Quentin Josset & Etienne Prévost"
 date: "4/14/2020"
 output:
+  html_document: default
   word_document: default
   pdf_document: default
-  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Bresle"
-year <- 2020
+year <- 2021
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -40,7 +40,7 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 
 ```{r, echo = FALSE}
-years <- seq(1982, year+1, 1)
+years <- seq(1982, year, 1)
 table <- array(, dim=c(length(years), 5))
 colnames(table) <- c( "Year","Parr 0+","Smolts","1SW (tot returns)",	"MSW (tot returns)")
 rownames(table) <- years
@@ -62,7 +62,7 @@ table[,1] <- years
 stade <- "smolt"
 dir <-  paste(wdir,site,"/",stade,sep="")
 if (file.exists(dir)){
-  load(paste0(stade,"/results/Results_",stade,"_",year+1,".RData"))
+  load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
   n_smolt <- fit$median$Nesc # escapement from river
 #table[2:nrow(table),3] <- round(n_smolt,0) # 1995 to now
 }
@@ -249,7 +249,7 @@ legend("topright", legend=c("1SW", "MSW"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 ## Nombre de smolts estimés
 ```{r smolt, echo=FALSE}
 
-years<-1982:(year+1)
+years<-1982:(year)
 stade <- "smolt"
 #dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){

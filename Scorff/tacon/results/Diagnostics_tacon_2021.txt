@@ -1,0 +1,368 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  8019 
+Convergence: gelman-Rubin R test
+Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
+
+---------------------------
+Heidelberger and Welch's convergence diagnostic
+
+heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+int_width    failed         NA      0.00720
+width_coef   passed          1      0.29320
+rate_lcpu    passed       1605      0.08712
+p_cpue       failed         NA      0.00453
+mup_rem      failed         NA      0.00886
+sd_prem      passed          1      0.08839
+eps          failed         NA      0.02762
+mu_d         passed          1      0.06444
+sigma_d      passed        803      0.05234
+sigma_dSc    passed        803      0.05684
+int_ydSc     passed        803      0.07146
+log_flow     passed          1      0.83279
+sigma_ySc    passed          1      0.39002
+sigma_siteSc passed          1      0.40636
+eps_ydSc[1]  passed          1      0.74635
+eps_ydSc[2]  passed          1      0.21829
+eps_ydSc[3]  passed          1      0.82984
+eps_ydSc[4]  passed          1      0.83995
+eps_ydSc[5]  passed          1      0.63022
+eps_ydSc[6]  passed          1      0.99972
+eps_ydSc[7]  passed          1      0.46033
+eps_ydSc[8]  passed          1      0.87475
+eps_ydSc[9]  passed          1      0.76150
+eps_ydSc[10] passed          1      0.97483
+eps_ydSc[11] passed          1      0.85902
+eps_ydSc[12] passed          1      0.73147
+eps_ydSc[13] passed          1      0.90165
+eps_ydSc[14] passed          1      0.83248
+eps_ydSc[15] passed          1      0.30450
+eps_ydSc[16] passed          1      0.53292
+eps_ydSc[17] passed          1      0.68052
+eps_ydSc[18] passed          1      0.59323
+eps_ydSc[19] passed          1      0.95699
+eps_ydSc[20] passed          1      0.17008
+eps_ydSc[21] passed          1      0.97077
+eps_ydSc[22] passed          1      0.90626
+eps_ydSc[23] passed          1      0.26436
+eps_ydSc[24] passed          1      0.83613
+eps_ydSc[25] passed          1      0.69082
+eps_ydSc[26] passed          1      0.56574
+eps_ydSc[27] passed          1      0.32104
+eps_ydSc[28] passed          1      0.35131
+eps_ydSc[29] passed          1      0.45277
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+int_width    <NA>           NA      NA  
+width_coef   passed     0.4104 0.00214  
+rate_lcpu    passed     1.2443 0.05019  
+p_cpue       <NA>           NA      NA  
+mup_rem      <NA>           NA      NA  
+sd_prem      passed     1.0042 0.00387  
+eps          <NA>           NA      NA  
+mu_d         passed     2.1597 0.00555  
+sigma_d      passed     1.2923 0.00364  
+sigma_dSc    passed     0.4531 0.00150  
+int_ydSc     passed     1.8775 0.00597  
+log_flow     passed    -0.4062 0.00207  
+sigma_ySc    passed     0.5090 0.00166  
+sigma_siteSc passed     0.6609 0.00194  
+eps_ydSc[1]  passed    -0.3112 0.00408  
+eps_ydSc[2]  passed     0.2673 0.00452  
+eps_ydSc[3]  passed    -0.3436 0.00357  
+eps_ydSc[4]  passed    -0.0625 0.00302  
+eps_ydSc[5]  passed    -0.5055 0.00401  
+eps_ydSc[6]  passed    -0.8573 0.00370  
+eps_ydSc[7]  passed    -0.4126 0.00527  
+eps_ydSc[8]  passed     0.2435 0.00342  
+eps_ydSc[9]  passed    -1.4726 0.00348  
+eps_ydSc[10] passed     0.2258 0.00283  
+eps_ydSc[11] failed     0.0176 0.00520  
+eps_ydSc[12] passed     0.4813 0.00317  
+eps_ydSc[13] passed     0.0653 0.00380  
+eps_ydSc[14] passed     0.0842 0.00299  
+eps_ydSc[15] passed     0.5510 0.00377  
+eps_ydSc[16] passed     0.3999 0.00304  
+eps_ydSc[17] passed     0.2175 0.00292  
+eps_ydSc[18] failed    -0.0318 0.00341  
+eps_ydSc[19] passed     0.3384 0.00329  
+eps_ydSc[20] passed     0.2960 0.00284  
+eps_ydSc[21] passed     0.0792 0.00334  
+eps_ydSc[22] passed     0.0845 0.00293  
+eps_ydSc[23] passed     0.6521 0.00267  
+eps_ydSc[24] passed    -0.0916 0.00333  
+eps_ydSc[25] passed    -0.0519 0.00295  
+eps_ydSc[26] passed    -0.4155 0.00304  
+eps_ydSc[27] passed     0.6883 0.00283  
+eps_ydSc[28] passed    -0.5100 0.00323  
+eps_ydSc[29] passed     0.3432 0.00276  
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+int_width    passed         1       0.0539 
+width_coef   passed         1       0.7648 
+rate_lcpu    passed       803       0.7478 
+p_cpue       passed         1       0.1373 
+mup_rem      passed       803       0.2083 
+sd_prem      passed         1       0.8410 
+eps          passed         1       0.0622 
+mu_d         passed         1       0.0990 
+sigma_d      passed         1       0.9604 
+sigma_dSc    passed       803       0.1861 
+int_ydSc     failed        NA       0.0222 
+log_flow     passed       803       0.4513 
+sigma_ySc    passed         1       0.9640 
+sigma_siteSc passed         1       0.4557 
+eps_ydSc[1]  passed         1       0.5288 
+eps_ydSc[2]  passed         1       0.1834 
+eps_ydSc[3]  passed         1       0.4241 
+eps_ydSc[4]  passed         1       0.6824 
+eps_ydSc[5]  passed         1       0.4211 
+eps_ydSc[6]  passed         1       0.6640 
+eps_ydSc[7]  passed       803       0.5978 
+eps_ydSc[8]  passed         1       0.1697 
+eps_ydSc[9]  passed         1       0.9885 
+eps_ydSc[10] passed         1       0.9055 
+eps_ydSc[11] passed         1       0.0895 
+eps_ydSc[12] passed         1       0.4287 
+eps_ydSc[13] passed         1       0.0758 
+eps_ydSc[14] passed         1       0.9153 
+eps_ydSc[15] passed         1       0.2974 
+eps_ydSc[16] passed         1       0.3750 
+eps_ydSc[17] passed         1       0.6157 
+eps_ydSc[18] passed         1       0.9747 
+eps_ydSc[19] passed       803       0.1013 
+eps_ydSc[20] passed         1       0.4906 
+eps_ydSc[21] passed       803       0.1876 
+eps_ydSc[22] passed         1       0.4126 
+eps_ydSc[23] passed         1       0.4834 
+eps_ydSc[24] passed         1       0.0664 
+eps_ydSc[25] passed         1       0.8920 
+eps_ydSc[26] passed         1       0.8552 
+eps_ydSc[27] passed         1       0.5979 
+eps_ydSc[28] passed         1       0.0999 
+eps_ydSc[29] passed         1       0.8373 
+                                        
+             Halfwidth Mean    Halfwidth
+             test                       
+int_width    passed    -0.1819 0.00524  
+width_coef   passed     0.4068 0.00206  
+rate_lcpu    passed     1.2340 0.03886  
+p_cpue       passed     0.4872 0.00423  
+mup_rem      passed     0.5307 0.00263  
+sd_prem      passed     1.0043 0.00400  
+eps          passed     0.9077 0.00442  
+mu_d         passed     2.1563 0.00613  
+sigma_d      passed     1.2900 0.00339  
+sigma_dSc    passed     0.4514 0.00151  
+int_ydSc     <NA>           NA      NA  
+log_flow     passed    -0.4097 0.00229  
+sigma_ySc    passed     0.5099 0.00170  
+sigma_siteSc passed     0.6611 0.00198  
+eps_ydSc[1]  passed    -0.3050 0.00454  
+eps_ydSc[2]  passed     0.2756 0.00466  
+eps_ydSc[3]  passed    -0.3397 0.00357  
+eps_ydSc[4]  passed    -0.0605 0.00300  
+eps_ydSc[5]  passed    -0.5038 0.00400  
+eps_ydSc[6]  passed    -0.8500 0.00382  
+eps_ydSc[7]  passed    -0.4029 0.00558  
+eps_ydSc[8]  passed     0.2470 0.00334  
+eps_ydSc[9]  passed    -1.4698 0.00334  
+eps_ydSc[10] passed     0.2279 0.00261  
+eps_ydSc[11] failed     0.0127 0.00518  
+eps_ydSc[12] passed     0.4874 0.00315  
+eps_ydSc[13] passed     0.0638 0.00385  
+eps_ydSc[14] passed     0.0854 0.00290  
+eps_ydSc[15] passed     0.5565 0.00373  
+eps_ydSc[16] passed     0.4059 0.00300  
+eps_ydSc[17] passed     0.2202 0.00289  
+eps_ydSc[18] failed    -0.0333 0.00340  
+eps_ydSc[19] passed     0.3366 0.00333  
+eps_ydSc[20] passed     0.3004 0.00284  
+eps_ydSc[21] passed     0.0761 0.00347  
+eps_ydSc[22] passed     0.0847 0.00297  
+eps_ydSc[23] passed     0.6543 0.00281  
+eps_ydSc[24] passed    -0.0908 0.00334  
+eps_ydSc[25] passed    -0.0548 0.00292  
+eps_ydSc[26] passed    -0.4139 0.00299  
+eps_ydSc[27] passed     0.6929 0.00280  
+eps_ydSc[28] passed    -0.5096 0.00303  
+eps_ydSc[29] passed     0.3456 0.00275  
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu       p_cpue      mup_rem      sd_prem 
+   -1.639446    -0.881745     1.754865     1.822191    -2.760433    -1.827343 
+         eps         mu_d      sigma_d    sigma_dSc     int_ydSc     log_flow 
+    2.869235     2.114943    -1.469410     2.022600     2.066986     0.238533 
+   sigma_ySc sigma_siteSc  eps_ydSc[1]  eps_ydSc[2]  eps_ydSc[3]  eps_ydSc[4] 
+    0.684423     0.219784    -0.852066     0.391575     0.284693     0.466794 
+ eps_ydSc[5]  eps_ydSc[6]  eps_ydSc[7]  eps_ydSc[8]  eps_ydSc[9] eps_ydSc[10] 
+    0.004825    -0.551460    -1.258985    -0.186765    -1.077754     0.768864 
+eps_ydSc[11] eps_ydSc[12] eps_ydSc[13] eps_ydSc[14] eps_ydSc[15] eps_ydSc[16] 
+    0.373132     0.832737     0.204119     0.057314     0.590199    -1.007883 
+eps_ydSc[17] eps_ydSc[18] eps_ydSc[19] eps_ydSc[20] eps_ydSc[21] eps_ydSc[22] 
+    0.030986     1.202919    -0.301405    -0.323373     0.171795     0.196672 
+eps_ydSc[23] eps_ydSc[24] eps_ydSc[25] eps_ydSc[26] eps_ydSc[27] eps_ydSc[28] 
+    0.227922     0.236512    -0.680068     1.397998     0.574412    -0.386370 
+eps_ydSc[29] 
+    1.026331 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+   int_width   width_coef    rate_lcpu       p_cpue      mup_rem      sd_prem 
+    -2.11779      0.09049      1.51246      1.72590     -3.03952      0.18267 
+         eps         mu_d      sigma_d    sigma_dSc     int_ydSc     log_flow 
+     2.26861      1.56207      0.21995      2.78241      1.83538      2.87624 
+   sigma_ySc sigma_siteSc  eps_ydSc[1]  eps_ydSc[2]  eps_ydSc[3]  eps_ydSc[4] 
+    -0.29740      0.14407     -1.88271     -2.79041     -1.55391      0.50695 
+ eps_ydSc[5]  eps_ydSc[6]  eps_ydSc[7]  eps_ydSc[8]  eps_ydSc[9] eps_ydSc[10] 
+     0.84287     -1.90356     -2.92451     -2.08541     -0.89831     -0.76825 
+eps_ydSc[11] eps_ydSc[12] eps_ydSc[13] eps_ydSc[14] eps_ydSc[15] eps_ydSc[16] 
+     2.02239     -1.19502      0.44368     -0.69936     -2.60204     -1.25302 
+eps_ydSc[17] eps_ydSc[18] eps_ydSc[19] eps_ydSc[20] eps_ydSc[21] eps_ydSc[22] 
+     0.37600      0.21344      2.16423     -0.15777      1.76529      0.97373 
+eps_ydSc[23] eps_ydSc[24] eps_ydSc[25] eps_ydSc[26] eps_ydSc[27] eps_ydSc[28] 
+    -0.55683      1.40680     -0.80802     -0.59948     -1.00120      1.27164 
+eps_ydSc[29] 
+    -0.51863 
+
+
+
+---------------------------
+Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+              Burn-in  Total   Lower bound  Dependence
+              (M)      (N)     (Nmin)       factor (I)
+ int_width    900      1235700 3746         330       
+ width_coef   600      1104300 3746         295       
+ rate_lcpu    600      1150200 3746         307       
+ p_cpue       600      1150200 3746         307       
+ mup_rem      900      1274100 3746         340       
+ sd_prem      600      1109100 3746         296       
+ eps          900      1314000 3746         351       
+ mu_d         300      1126500 3746         301       
+ sigma_d      600      1107600 3746         296       
+ sigma_dSc    600      1150200 3746         307       
+ int_ydSc     1200     1407000 3746         376       
+ log_flow     600      1138500 3746         304       
+ sigma_ySc    600      1115400 3746         298       
+ sigma_siteSc 300      1131600 3746         302       
+ eps_ydSc[1]  600      1161900 3746         310       
+ eps_ydSc[2]  600      1092900 3746         292       
+ eps_ydSc[3]  600      1161900 3746         310       
+ eps_ydSc[4]  600      1138500 3746         304       
+ eps_ydSc[5]  600      1161900 3746         310       
+ eps_ydSc[6]  300      1136400 3746         303       
+ eps_ydSc[7]  600      1104300 3746         295       
+ eps_ydSc[8]  600      1115400 3746         298       
+ eps_ydSc[9]  600      1106400 3746         295       
+ eps_ydSc[10] 600      1161900 3746         310       
+ eps_ydSc[11] 600      1104300 3746         295       
+ eps_ydSc[12] 300      1131600 3746         302       
+ eps_ydSc[13] 600      1104300 3746         295       
+ eps_ydSc[14] 600      1150200 3746         307       
+ eps_ydSc[15] 300      1126500 3746         301       
+ eps_ydSc[16] 300      1126500 3746         301       
+ eps_ydSc[17] 600      1115400 3746         298       
+ eps_ydSc[18] 600      1092900 3746         292       
+ eps_ydSc[19] 600      1138500 3746         304       
+ eps_ydSc[20] 600      1138500 3746         304       
+ eps_ydSc[21] 600      1115400 3746         298       
+ eps_ydSc[22] 300      1126500 3746         301       
+ eps_ydSc[23] 600      1138500 3746         304       
+ eps_ydSc[24] 600      1138500 3746         304       
+ eps_ydSc[25] 600      1138500 3746         304       
+ eps_ydSc[26] 600      1155000 3746         308       
+ eps_ydSc[27] 300      1126500 3746         301       
+ eps_ydSc[28] 600      1150200 3746         307       
+ eps_ydSc[29] 600      1115400 3746         298       
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                      
+              Burn-in  Total   Lower bound  Dependence
+              (M)      (N)     (Nmin)       factor (I)
+ int_width    900      1287300 3746         344       
+ width_coef   600      1150200 3746         307       
+ rate_lcpu    600      1185900 3746         317       
+ p_cpue       600      1185900 3746         317       
+ mup_rem      1800     2626800 3746         701       
+ sd_prem      600      1185900 3746         317       
+ eps          900      1300500 3746         347       
+ mu_d         600      1171800 3746         313       
+ sigma_d      300      1126500 3746         301       
+ sigma_dSc    600      1104300 3746         295       
+ int_ydSc     900      1355100 3746         362       
+ log_flow     600      1115400 3746         298       
+ sigma_ySc    600      1113900 3746         297       
+ sigma_siteSc 600      1092900 3746         292       
+ eps_ydSc[1]  600      1104300 3746         295       
+ eps_ydSc[2]  300      1126500 3746         301       
+ eps_ydSc[3]  600      1115400 3746         298       
+ eps_ydSc[4]  600      1115400 3746         298       
+ eps_ydSc[5]  600      1115400 3746         298       
+ eps_ydSc[6]  600      1115400 3746         298       
+ eps_ydSc[7]  600      1115400 3746         298       
+ eps_ydSc[8]  600      1092900 3746         292       
+ eps_ydSc[9]  600      1148100 3746         306       
+ eps_ydSc[10] 600      1104300 3746         295       
+ eps_ydSc[11] 600      1092900 3746         292       
+ eps_ydSc[12] 600      1081800 3746         289       
+ eps_ydSc[13] 600      1104300 3746         295       
+ eps_ydSc[14] 600      1150200 3746         307       
+ eps_ydSc[15] 600      1104300 3746         295       
+ eps_ydSc[16] 600      1092900 3746         292       
+ eps_ydSc[17] 300      1126500 3746         301       
+ eps_ydSc[18] 600      1092900 3746         292       
+ eps_ydSc[19] 600      1081800 3746         289       
+ eps_ydSc[20] 300      1126500 3746         301       
+ eps_ydSc[21] 300      1126500 3746         301       
+ eps_ydSc[22] 600      1104300 3746         295       
+ eps_ydSc[23] 600      1120500 3746         299       
+ eps_ydSc[24] 600      1104300 3746         295       
+ eps_ydSc[25] 600      1092900 3746         292       
+ eps_ydSc[26] 600      1092900 3746         292       
+ eps_ydSc[27] 600      1104300 3746         295       
+ eps_ydSc[28] 600      1104300 3746         295       
+ eps_ydSc[29] 600      1161900 3746         310       
+
+

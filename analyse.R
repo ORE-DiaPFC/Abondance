@@ -58,7 +58,7 @@ inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -249,7 +249,7 @@ if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
 if(site == "Scorff"){
-  dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
+  dir<- c("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/")
   setwd(dir)
   f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
   f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")

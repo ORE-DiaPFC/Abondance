@@ -37,7 +37,8 @@ Q = c(209.3,
 1789.782051,
 468,93589,
 2698,8859,
-2422 # 2020
+2422, # 2020
+1155 # 2021 je n'ai pas accès au données journalières, j'ai utilisé les moyenes mensuelles (pour octobre, j'ai tenu compte de 15 jours)
 )
 )
 

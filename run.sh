@@ -4,8 +4,8 @@
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2021
 CHAINS=2
-BURNIN=1000 # Number of steps to "burn-in" the samplers.
-ITER=50000 # Total number of steps in chains to save.
+BURNIN=100 # Number of steps to "burn-in" the samplers.
+ITER=10000 # Total number of steps in chains to save.
 THIN=300 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
@@ -16,8 +16,8 @@ REPbase="/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance"
 
 COUNTER=0
 
-for SITE in Nivelle Scorff Oir Bresle      
-#for SITE in Nivelle  
+#for SITE in Nivelle Scorff Oir Bresle      
+for SITE in Scorff  
 do
      
 cd $REPbase/$SITE
