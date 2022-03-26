@@ -3,9 +3,9 @@ title: "Bilan_Scorff"
 author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
 date: "4/14/2021"
 output:
+  pdf_document: default
   html_document: default
   word_document: default
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -560,8 +560,6 @@ points(1:27,smolt[1:27,"50%"]/r[2:28,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[
 
 ```
 
-
-
 # Stock-Recruitement relationship
 
 Stock : number of anadromous adults escaped (available for reproduction)
@@ -582,6 +580,7 @@ par(mfrow=c(1,1))
 
 ### Total number of returns
 plot(NULL,xlim=c(0,1000),ylim=c(0,50000),bty="n",ylab="Recruitment (tacon 0+)",xlab="Stock (escapted adults)")
+
 #axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
 # Stock
 segments(s[,"2.5%"], r[2:27,"50%"],s[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
