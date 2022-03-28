@@ -86,10 +86,11 @@ model {
   ## pi_B[t,a]: annual probability to be captured at Beauchamps given sea age (after reproduction)
   ####################################################################################  
   ### Probabilities to be captured at Eu (time and sea age dependent)
-  for (t in 1:Y) {
-     lQ2pic[t] <- log(Q2pic[t]) # ln transformation of autumn covariate
-     stlQ2pic[t] <- (lQ2pic[t] - mean(lQ2pic[]))/sd(lQ2pic[]) # standardized covariate 
-     } #end of loop over years
+  # mb-21.03.2022: now in dat
+  # for (t in 1:Y) {
+  #    lQ2pic[t] <- log(Q2pic[t]) # ln transformation of autumn covariate
+  #    stlQ2pic[t] <- (lQ2pic[t] - mean(lQ2pic[]))/sd(lQ2pic[]) # standardized covariate 
+  #    } #end of loop over years
   
   for (a in 1:2) { 
     #varpi_Eu[a] <- (sigmapi_Eu[a])*(sigmapi_Eu[a]) 
@@ -97,8 +98,9 @@ model {
         
         for (t in 1:34) { #logit_pi_Eu exchangeable from 1984 to now on 
         
-            logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
-            stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
+          # mb-21.03.2022: now in data
+            #logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
+           #stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
           
             logit_mupi_Eu[t,a] <- logit_int_Eu[a] + logit_flow_Eu[a] * stlogQ[t,a] + lflow_fall_Eu[a] * stlQ2pic[t] 
             logit_pi_Eu[t,a] ~ dnorm(logit_mupi_Eu[t,a],precpi_Eu[a])
@@ -110,8 +112,9 @@ model {
         ## Partial trapping from 2018
         for (t in 35:Y) {  # from 2018 to now on
     
-            logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
-            stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
+          # mb-21.03.2022: now in data
+            #logQ[t,a] <- log(Q[t,a]) # ln transformation of covariate
+            #stlogQ[t,a] <- (logQ[t,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
       
             logit_mupi_Eu[t,a] <- logit_int_Eu[a] + logit_flow_Eu[a] * stlogQ[t,a] + lflow_fall_Eu[a] * stlQ2pic[t] 
             logit_pi_Eu[t,a] ~ dnorm(logit_mupi_Eu[t,a],precpi_Eu[a])
@@ -290,42 +293,4 @@ model {
   } # end of loop over sea age
   
 } # end of the model
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    
-      
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+

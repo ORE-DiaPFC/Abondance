@@ -26,13 +26,21 @@ for (c in 1:2){ # 2 chains
 ###################################################
 inits_fix <- list(
   ## NO UPDATE
-  mu_B = runif(1,0,1),#0.5,
+  mu_B = runif(1,0.1,0.5),#0.5,
   sigmap_B =runif(1,0,2),#1,
   logit_int_Eu = runif(1,0,2),#,
   logit_flow_Eu =runif(1,0,2),#,
   sigmap_Eu=runif(1,0,2),#,
-  shape_lambda =runif(1,1,3),#,
-  rate_lambda = runif(1,0.01,0.05)#0.01
+  shape_lambda =2.436, #runif(1,1,3),#,
+  rate_lambda = 0.001, #runif(1,0.01,0.05)#0.01
+  
+  #mb-21.03.2022
+  p_B95 = runif(1,0.1,0.2), # decrease for year 1995
+  p_B96 = runif(1,0.1,0.2), # decrease for year 1996
+  p_B99 = runif(1,0.1,0.2), # decrease for year 1999
+  # p_B00 ~ dbeta(1,1) # decrease for year 2000
+  p_B02 = runif(1,0.1,0.2), # decrease for year 2002
+  p_B20 = runif(1,0.1,0.2) # decrease for year 2020
 )
 
 
@@ -78,6 +86,8 @@ inits_fix <- list(
 Ntot <- (data$Cum_Eu / (data$Cm_Eu/data$Cm_B)) + data$Cum_B + data$Cm_B
 Ntot <- as.integer(Ntot)
 
+
+
 ## METTRE A JOUR
 # lambda = c(3105	,
 #            3118	,
@@ -113,7 +123,16 @@ Ntot <- as.integer(Ntot)
 #            2513	,
 #            2414	,
 #            8000)
-lambda <- Ntot -10
+#lambda <- Ntot -10
+
+#mb-21.03.2022
+lambda <-rgamma(data$Nyears,inits_fix$shape_lambda,inits_fix$rate_lambda)
+lambda <- as.integer(lambda)
+lambda <- ifelse(lambda>Ntot,Ntot-10,lambda)
+lambda[c(7:10,20)]<-NA
+
+
+
 
 ## METTRE A JOUR
 # logit_pi_B = c(0.5	,
@@ -145,7 +164,19 @@ lambda <- Ntot -10
 #                0.5	,
 #                0.5	,
 #                0.5)
-logit_pi_B <- rep(0.5, data$NBeau)
+#logit_pi_B <- rep(0.5, data$NBeau)
+
+#mb-21.03.2022
+varp_B <- (inits_fix$sigmap_B)*(inits_fix$sigmap_B)
+precp_B <- 1/(varp_B)
+logit_mupi_B <- log(inits_fix$mu_B/(1-inits_fix$mu_B)) #logit transformation
+logit_pi_B <-rnorm(data$NBeau,logit_mupi_B,precp_B)
+
+
+# p_B <- exp(logit_pi_B)/(1+exp(logit_pi_B))  # back-transformation on the probability scale
+# p_Btot <- p_B
+# data$C_B/p_Btot
+
 
 ## METTRE A JOUR
 # logit_pi_Eu = c(
@@ -170,7 +201,13 @@ logit_pi_B <- rep(0.5, data$NBeau)
 #   0.5	,
 #   0.5	,
 #   0.5)
-logit_pi_Eu <- rep(0.5, data$NEu)
+#logit_pi_Eu <- rep(0.5, data$NEu)
+
+#mb-21.03.2022
+varp_Eu <- (inits_fix$sigmap_Eu)*(inits_fix$sigmap_Eu)
+precp_Eu <- 1/(varp_Eu) # precision
+logit_mupi_Eu <- inits_fix$logit_int_Eu + inits_fix$logit_flow_Eu * data$stlogQ_Eu
+logit_pi_Eu <-rnorm(data$NEu,logit_mupi_Eu,precp_Eu)
 
 inits_updated <- list(
   Ntot = Ntot

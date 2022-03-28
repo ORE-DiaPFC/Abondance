@@ -4,8 +4,8 @@ author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
 date: "4/14/2021"
 output:
   pdf_document: default
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,8 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
 site <- "Scorff"
-year <- 2020
+year <- 2021
+years <- seq(1993, year, 1)
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -41,9 +42,9 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 
 ```{r, echo = FALSE}
-years <- seq(1993, year, 1)
-table <- array(, dim=c(length(years), 7))
-colnames(table) <- c( "Année","Tacon 0+","Smolts","1HM (retours tot.)",	"PHM (retours tot.)", 	"1HM (échappement)",	"PHM (échappement)")
+
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Année","Tacon 0+","Smolts (tous)","Smolts 1+", 	"1HM (échappement)",	"PHM (échappement)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- years
@@ -53,7 +54,7 @@ table[,1] <- years
 stade <- "tacon"
 dir <-  paste(wdir,site,"/",stade,sep="")
 if (file.exists(dir)){
-  load(paste0(dir,"/results/Results_",stade,"_",year,".RData"))
+  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
   n_parr <- fit$median$ntot_Sc
   table[,2] <- round(n_parr,0) # 1995 to now
 }
@@ -64,33 +65,26 @@ if (file.exists(dir)){
 stade <- "smolt"
 dir <-  paste(wdir,site,"/",stade,sep="")
 if (file.exists(dir)){
-  load(paste0(dir,"/results/Results_",stade,"_",year,".RData"))
-  n_smolt <- fit$median$Nesc # escapement from river
-table[3:nrow(table),3] <- round(n_smolt,0) # 1995 to now
+  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  n_smolt <- fit$median$Ntot # smolt numbers by year of migration
+  table[3:nrow(table),3] <- round(n_smolt,0) # 1995 to now
+  n_smolt <- fit$median$Nc[,1] # smolt 1+ numbers by year of migration
+  table[3:nrow(table),4] <- round(n_smolt,0) # 1995 to now
 }
 
 
-## ADULTS (1994 to now)
+## ADULTS (1984 to now)
 stade <- "adult"
 dir <-  paste(wdir,site,"/",stade,sep="")
 if (file.exists(dir)){
-  load(paste0(dir,"/results/Results_",stade,"_",year,".RData"))
-  
-  # n returns
-  n_1SW <- fit$median$n_1SW # 1SW
-  n_MSW <- fit$median$n_MSW #  MSW
-  table[2:nrow(table),4] <- round(n_1SW,0) # 1995 to now
-  table[2:nrow(table),5] <- round(n_MSW,0) # 1995 to now
-  
-  # escapment
-e_1SW <- fit$median$e_1SW # 1SW
-e_MSW <- fit$median$e_MSW #  MSW
-table[2:nrow(table),6] <- round(e_1SW,0) # 1995 to now
-table[2:nrow(table),7] <- round(e_MSW,0) # 1995 to now
+  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  e_1SW <-fit$median$e_1SW # 1SW
+  e_MSW <- fit$median$e_MSW #  MSW
+  table[2:nrow(table),5] <- round(e_1SW,0) # 1995 to now
+  table[2:nrow(table),6] <- round(e_MSW,0) # 1995 to now
 }
 
 
-#write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 con <- file(paste0("Bilan_",site,"_",year,'.csv'), open="wt")
 write.csv( table, con, row.names = FALSE)
 close(con)
@@ -124,7 +118,7 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
 
 # N total
@@ -150,7 +144,7 @@ legend("topright", legend=c("Nombre total de retour", "Echappement"), col=mycol[
 ```{r, echo=FALSE}
 
 
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Total number of returns",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
@@ -168,7 +162,7 @@ segments(1:data$Y,n_MSW[,"2.5%"], 1:data$Y,n_MSW[,"97.5%"], col=paste0(mycol[2])
 lines(n_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(1:data$Y,n_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
-legend("topright", legend=c("1SW","MSW"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+legend("topright", legend=c("1HM","PHM"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
 
 #dev.off()
@@ -379,8 +373,8 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,15000),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,15000),bty="n",ylab="Nombre total de smolts",xaxt="n",xlab="Année de migration")
+axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.6)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("Ntot[",1:data$Nyears,"]")])    
@@ -389,14 +383,43 @@ segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 
-# Escapment
-mcmc <- as.matrix(tmp[,paste0("Nesc[",1:data$Nyears,"]")])    
-n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
-segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[2]))
-lines(n[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
-points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
+# # Escapment
+# mcmc <- as.matrix(tmp[,paste0("Nesc[",1:data$Nyears,"]")])    
+# n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+# segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[2]))
+# lines(n[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
+# points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
-legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+#legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+
+
+par(mfrow=c(1,1)) 
+
+### Total number of returns
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,15000),bty="n",ylab="Nombre total de smolts",xaxt="n",xlab="Cohorte")
+axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.6)
+
+# N total
+mcmc <- as.matrix(tmp[,paste0("N[",1:data$Nyears,"]")])    
+n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1]))
+lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
+points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+
+
+
+par(mfrow=c(1,1)) 
+
+### Total number of returns
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,1),bty="n",ylab="Proportion de smolts 1+",xaxt="n",xlab=" Cohorte")
+axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.6)
+# N total
+mcmc <- as.matrix(tmp[,paste0("p1c[",1:data$Nyears,"]")])    
+n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1]))
+lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
+points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+
 
 ```
 
@@ -405,8 +428,8 @@ legend("topright", legend=c("Nombre total de smolts", "Echappement"), col=mycol[
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,100),bty="n",ylab="% smolts captured at traps",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,100),bty="n",ylab="% smolts capturé aux pièges",xaxt="n",xlab="Année de migration")
+axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.7)
 
 # Moulin des Princes
 mcmc <- as.matrix(tmp[,paste0("p_MP[",1:data$Nyears,"]")])    
@@ -431,12 +454,15 @@ legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"), col=mycol
 ```{r env, echo=FALSE}
 
 stade <- "smolt"
-#dir <-  paste(wdir,site,"/",stade,sep="")
+dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
-load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
+#load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 #load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
 #}
+
+Q <- read.table(paste(dir,"/data/data_flow.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+Q <- as.matrix(Q);mode(Q)<- "numeric"
 
 
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
@@ -446,7 +472,7 @@ par(mfrow=c(1,1))
 plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,20),bty="n",ylab="Mean flow observed from 1st April to May 10",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex=.5)
 
-lines(data$Q[,1],lty=1,lwd=2,col="steelblue1",type="o")
+lines(Q[,1],lty=1,lwd=2,col="steelblue1",type="o")
 
 #legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"),col=mycol[1:2],lty=1,lwd=2,bty="n")
 
@@ -473,8 +499,8 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyear),ylim=c(0,50000),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Nyear),ylim=c(0,50000),bty="n",ylab=" Nombre total de tacons 0+",xaxt="n",xlab="Cohort")
+axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex.axis=.7)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:data$Nyear,"]")])    
@@ -484,20 +510,23 @@ lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 ```
 
-# Stock-Recruitement relationship
+#. Relation Parr-Smolt
 
-Stock : number of anadromous adults escaped (available for reproduction)
-Recruitment: number of parr 0+
+```{r parr-smolt survival, echo=FALSE}
 
-```{r SR, echo=FALSE}
+setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/Scorff")
 
 
-stade <- "adult"
-load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) 
+stade <- "smolt"
+#dir <-  paste(wdir,site,"/",stade,sep="")
+#if (file.exists(dir)){
+# load dataset
+load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
-adu <- as.matrix(fit$sims.matrix)
-mcmc <- as.matrix(adu[,paste0("e_tot[",1:data$Y,"]")]) # 1984 to now)
-s <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+
+tmp <- as.matrix(fit$sims.matrix)
+mcmc <- as.matrix(tmp[,paste0("Nc[",1:data$Nyears,",1]")]) # 1984 to now)
+smolt <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 stade <- "tacon"
 load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) 
@@ -509,16 +538,53 @@ r <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 
 
+
+
+
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(0,1000),ylim=c(0,50000),bty="n",ylab="Recruitment (parr 0+)",xlab="Stock (escapted adults)")
+plot(NULL,xlim=c(0,50000),ylim=c(0,20000),bty="n",ylab="Smolt 1+",xlab="Tacon 0+")
 #axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
+#points(r[2:28,"50%"],smolt[1:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+#segments(s[,"2.5%"], r[2:27,"50%"],e[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
+#segments(s[,"50%"], r[2:27,"2.5%"],e[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1]))
+text(r[2:28,"50%"],smolt[1:27,"50%"],labels = years, cex=.5)
 
+
+
+plot(NULL,xlim=c(1,28),ylim=c(0,1),bty="n",ylab="Survie tacon - Smolt",xlab="Cohorte",xaxt="n")
+axis(side=1,line=1,labels = 1994:2020,at=1:27, las=2, cex.axis=.7)
+points(1:27,smolt[1:27,"50%"]/r[2:28,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+
+```
+
+# Stock-Recruitement relationship
+
+Stock : number of anadromous adults escaped (available for reproduction)
+Recruitment: number of parr 0+
+
+```{r SR, echo=FALSE}
+
+stade <- "adult"
+load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) 
+load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
+adu <- as.matrix(fit$sims.matrix)
+mcmc <- as.matrix(adu[,paste0("e_tot[",1:data$Y,"]")]) # 1984 to now)
+s <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+
+
+#png(paste0(site,"/total_return.png"),width = 780, height = 480)
+par(mfrow=c(1,1)) 
+
+### Total number of returns
+plot(NULL,xlim=c(0,1000),ylim=c(0,50000),bty="n",ylab="Recruitment (tacon 0+)",xlab="Stock (escapted adults)")
+
+#axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
 # Stock
-segments(s[,"2.5%"], r[2:27,"50%"],e[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
-segments(s[,"50%"], r[2:27,"2.5%"],e[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1]))
+segments(s[,"2.5%"], r[2:27,"50%"],s[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
+segments(s[,"50%"], r[2:27,"2.5%"],s[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1]))
 points(s[1:26,"50%"],r[2:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 text(s[1:26,"50%"],r[2:27,"50%"]+2000,labels = years, cex=.5)
 

@@ -39,11 +39,15 @@ Cum_Eu=smolt[,6]
 flow <- read.bugsdata(paste("data/","data_flow_Eu.txt",sep=""))
 Q_Eu=flow$Q_Eu
 
+logQ_Eu <- log(Q_Eu) # ln transformation of covariate
+stlogQ_Eu <- (logQ_Eu - mean(logQ_Eu))/sd(logQ_Eu) # standardized covariate
+
 
 data <- list(
   Nyears=list$Nyears, NBeau=list$NBeau,NEu=list$NEu
   , C_B=C_B,D_B=D_B, Cm_B=Cm_B,Cum_B=Cum_B,Cm_Eu=Cm_Eu, Cum_Eu=Cum_Eu
   , Q_Eu=Q_Eu
+  , logQ_Eu =logQ_Eu, stlogQ_Eu=stlogQ_Eu
 )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep=""))

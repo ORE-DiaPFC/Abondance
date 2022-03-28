@@ -1,7 +1,7 @@
 list(
 
 #Nyears: Length of time series from 1995 to now on  
-Nyears = 26, # 2020
+#Nyears = 25, # 2019
 
 # Annual number of smolt captured at Moulin de Lesl?
 C_ML = c(
@@ -30,10 +30,11 @@ NA,
 1345, 
 1307,# 2019
 1839, # 2019
-NA	# 2020 COVID
+NA,	# 2020 COVID
+1784 	# 2021
 ),
 
-# Annual number of smolt marked and released downstream Moulin de Lesle
+# Annual number of smolt marked and released downstream Moulin de Lesl?
 Cm_ML = c(
 458,
 279,
@@ -60,7 +61,8 @@ Cm_ML = c(
 1345,
 1200,
 1729, # 2019
-1 # 2020 /!\ fake data to initialize / no capture due to COVID
+1, # 2020 /!\ fake data to initialize / no capture due to COVID
+1763 #2021
 ),
 
 # Annual number of smolt captured at Moulin de Lesl? and released unmarked downstream Moulin de Lesl?
@@ -90,10 +92,11 @@ NA,
 0,
 0,
 2, # 2019
-0 # 2020
+0, # 2020
+5 #2021
 ),
 
-# Annual number of dead smolt at Moulin de Lesle
+# Annual number of dead smolt at Moulin de Lesl?
 D_ML = c(
 NA,
 NA,
@@ -120,7 +123,8 @@ NA,
 0,
 107,	# 2018 (29 dead + 78 marked fish with acoustic tag - SAMARCH project)
 79,	# 2019 (7 dead + 72 marked fish with acoustic tag - SAMARCH project) 
-0	#2020	
+0,	#2020	
+16	#2021
 ),
 
 # Annual number of marked smolt captured at Moulin des Princes
@@ -150,7 +154,8 @@ Cm_MP = c(
 135,
 70,
 193, # 2019
-NA # 2020 
+NA, # 2020
+142	#2021 
 ),
 
 # Annual number of unmarked smolt captured at Moulin des Princes
@@ -180,7 +185,8 @@ NA ,
 501,
 214,
 374, # 2019
-NA # 2020
+NA, # 2020
+535	#2021
 ),
 
 # Annual number of dead smolt at Moulin des Princes
@@ -210,10 +216,11 @@ D_MP = c(
 16,
 0,
 1, # 2019
-0 # 2020
+0, # 2020
+2	
 ),
 
-# No update (data from 1995 and 1996 when Lesle was not installed yet)
+# No update (data from 1995 and 1996 when Lesl? was not installed yet)
 C_MP = c(594,336)
 
 )

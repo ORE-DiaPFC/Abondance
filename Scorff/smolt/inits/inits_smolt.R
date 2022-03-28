@@ -29,8 +29,10 @@ inits_fix <- list(
     logit_flow = runif(2,.9,1.1),#c(1,1),
     sigmap = runif(2,.4,.8),#c(0.7357,0.4225),
     rho=runif(1,.1,.8),#0.3,
-    l_ML_dim =runif(1,.01,.02),# 0.01136,
-    junk = runif(1,-2,-1),#-1.1,
+   # l_ML_dim =runif(1,.01,.02),# 0.01136,
+   # junk = runif(1,-2,-1),#-1.1,
+   mu_p1c = runif(1,0.1,0.9),# rbeta(1,2,2),
+   alpha =runif(1,0.1,0.25), # protection against too low values for s1 and s2
     rate_lambda = 1.574E-4,
     shape_lambda = runif(1,1,2)#1.688
 )
@@ -54,7 +56,7 @@ inits_fix <- list(
 Ntot =(data$Cm_ML * (data$Cm_MP + data$Cum_MP)) / data$Cm_MP
 Ntot[1:2] = (data$Cm_ML[1:2] * data$C_MP) / data$Cm_MP[1:2]
 Ntot[26]<-mean(Ntot, na.rm=TRUE) # COVID
-Ntot <- as.integer(Ntot)
+N <- as.integer(Ntot) # /!!!\ 21.03.2022: N est different de Ntot; à reprendre!!!!
 
 
 # METTRE A JOUR
@@ -64,7 +66,7 @@ Ntot <- as.integer(Ntot)
 #   11120.0,7377.0,7370.0,1.1E+4,14400.0,
 #   11010.0,8637.0,7853.0,11075,13000,
 #  9000)
-lambda = Ntot
+lambda = N
 
 #shape_lambda.inits <- 3.8
 #rate_lambda.inits <- 0.0005
@@ -75,7 +77,7 @@ logit_pi <- array(, dim=c(data$Nyears,2))
 # Proba capture au Moulin des Princes
 logit_pi[,1] <- logit(data$Cm_MP / data$Cm_ML)
 # Proba capture au Moulin du Leslé
-logit_pi[,2] <- logit(data$C_ML / Ntot)
+logit_pi[,2] <- logit(data$C_ML / N)
 
 logit_pi[26,] <- logit_pi[25,] # COVID / replace with values from year before to initialize
 
@@ -83,7 +85,7 @@ Cm_MP.inits <- rep(NA,data$Nyears)
 Cm_MP.inits[26]<- 0 # COVID, no capture
 
 inits_updated <- list(
-  Ntot = Ntot
+  N = N
   , lambda = lambda
   , logit_pi = logit_pi
   ,Cm_MP = Cm_MP.inits

@@ -19,18 +19,18 @@ hyperparameters <-c(
   ,paste0("logit_flow_R[",1:2,"]") # slope for flow data in probability of recapture during reproduction
   ,"sigmapi_R" # standard deviation of probabilty of recapture during reproduction
 
-  ,paste0("pi_R_pulsium[",27:data$Y,",1]")
-,paste0("pi_R_pulsium[",27:data$Y,",2]")
+  # ,paste0("pi_R_pulsium[",27:data$Y,",1]")
+  # ,paste0("pi_R_pulsium[",27:data$Y,",2]")
 
-  , paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
+  ,paste0("mupi_D[",1:2,",1]") # mean probability to die from natural cause
   ,paste0("mupi_D[",1:2,",2]") # mean probability to die from natural cause
 #  ,paste0("sigmapi_D[",1:2,"]") # standard deviation of probability of dying from natural cause 
  # ,paste0("rho_D[",1:2,"]") # correlation coefficient between probability of dying between marked and unmarked depending on sea age
 ,"sigmapi_D"
 , "rho_D"
 
-  ,"mupi_oF" # mean probability of recovering a caught fish (from fishing
-  ,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
+ # ,"mupi_oF" # mean probability of recovering a caught fish (from fishing
+ # ,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
 
   ### STATISTIC
   # 1: is logit_flow >=0 for 1SW?

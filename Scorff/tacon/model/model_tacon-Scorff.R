@@ -55,16 +55,20 @@ prec_prem <- 1/(sd_prem * sd_prem) # precision of probability of capture during 
 eps ~ dunif(0,10) #eps ~ dnorm(0,0.01)I(0,) # decrease in the probability of capture during the second pass
 
 ## Density
-mu_d ~ dgamma(1,0.1) #mu_d ~ dgamma(1,0.01) ## Mean density 
-rate_d ~ dgamma(0.1,0.1)# rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
-shape_d <- mu_d * rate_d # shape parameter of the gamma distribution
+#mu_d ~ dgamma(1,0.1) #mu_d ~ dgamma(1,0.01) ## Mean density 
+mu_d ~ dlnorm(2.5,1) ## Mean density 
+#rate_d ~ dgamma(0.1,0.1)# rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
+#shape_d <- mu_d * rate_d # shape parameter of the gamma distribution
+sigma_d ~ dunif(0,10)
+tau_d <- pow(sigma_d,-2)
 
 for (i in 1:Ninter) {
 
     #########################
     #### Density
     #########################
-    d[i] ~ dgamma(shape_d,rate_d)
+#    d[i] ~ dgamma(shape_d,rate_d)
+    d[i] ~ dlnorm(mu_d,tau_d)
 
     ########################
     ### CPUE and density

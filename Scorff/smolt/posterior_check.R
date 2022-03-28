@@ -3,7 +3,7 @@
 
 
 
-fit.mcmc <- as.mcmc(fit)
+#fit.mcmc <- as.mcmc(fit)
 
 
 hyperparameters <-c(
@@ -27,9 +27,15 @@ hyperparameters <-c(
 #  ,"p_MP" # capture probability at Moulin des Princes
 #  ,"p_ML" # capture probability at Moulin de Lesl?
   
-  
   ## POPULATION
- # ,"Ntot" # annual number of smolt
+#,"Ntot" # annual number of smolt
+#, "N" #  number of smolt by cohort
+#,"Nc" #  number of smolt by age
+#,"p1c" # proportion smolt 1+ / cohort
+#,"p1y" # proportion smolt 1+ / year
+,"s1","s2"
+,"mu_p1c"
+,"alpha"
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
@@ -53,7 +59,7 @@ pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 
 for (par in hyperparameters){
   traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  #denplot(fit.mcmc,par) 
 }
 
 

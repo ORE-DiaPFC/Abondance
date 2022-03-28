@@ -44,12 +44,21 @@ Cm_Eu=as.matrix(Eu[,3:4])
 Q <- read.table(paste("data/","data_flow_sea-age.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
 Q <- as.matrix(Q);mode(Q)<- "numeric"
 
+stlogQ=logQ=Q
+for (a in 1:2) { 
+logQ[,a] <- log(Q[,a]) # ln transformation of covariate
+stlogQ[,a] <- (logQ[,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
+}
 
+lQ2pic <- log(list$Q2pic) # ln transformation of autumn covariate
+stlQ2pic <- (lQ2pic - mean(lQ2pic))/sd(lQ2pic) # standardized covariate 
 
 data <- list(
   Y=list$Y, Q2pic=list$Q2pic
   , Cm_B=Cm_B,Cum_B=Cum_B,C_Eu=C_Eu, Cm_Eu=Cm_Eu
-  , Q=Q
+  #, Q=Q, Q2pic=list$Q2pic
+  , logQ=logQ, stlogQ=stlogQ
+  , lQ2pic=lQ2pic,stlQ2pic=stlQ2pic
 )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données

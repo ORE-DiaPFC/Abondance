@@ -68,9 +68,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=2500 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
+nburnin=100 # Number of steps to "burn-in" the samplers.
+nstore=10000 # Total number of steps in chains to save.
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -249,7 +249,7 @@ if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
 if(site == "Scorff"){
-  dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
+  dir<- c("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/")
   setwd(dir)
   f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
   f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
@@ -259,7 +259,7 @@ if(site == "Scorff"){
     source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
   }}
 # if(site == "Scorff"){
-# setwd("/media/hdd/mbuoro/ORE-DiaPFC/Abundance")
+# setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance")
 # f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
 # f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
 # f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")
