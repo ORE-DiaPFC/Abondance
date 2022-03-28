@@ -189,7 +189,7 @@ for (t in 9:Y) { ## p_11_2: Exchangeable from 1992 to now on
 for (a in 1:2) {
   logit_mupi_U[a] <- log(mupi_U[a]/(1-mupi_U[a])) # logit transformation
    
-  for (t in 1:28) { ## pi_U: Exchangeable from 1984 to now on
+  for (t in 1:28) { ## pi_U: Exchangeable from 1984 to 2011
     logit_pi_U[t,a] ~ dnorm(logit_mupi_U[a],precpi_U[a])
     pi_U[t,a] <- exp(logit_pi_U[t,a])/(1+exp(logit_pi_U[t,a]))  # back-transformation on the probability scale
     eps_U[t,a] <- (logit_pi_U[t,a] - logit_mupi_U[a]) / sigmapi_U[a] # standardized residuals
