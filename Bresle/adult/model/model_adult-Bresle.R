@@ -139,7 +139,7 @@ model {
    test[1] <- step(logit_flow_Eu[1]) # is logit_flow >=0 for 1SW?
    test[2] <- step(logit_flow_Eu[2]) # is logit_flow >=0 for MSW?  
    test[3] <- step(lflow_fall_Eu[1]) # is logit_flow_fall >=0 for 1SW?
-   test[4] <- step(lflow_fall_Eu[2]) # is logit_flow_fall >=0 for 1SW?
+   test[4] <- step(lflow_fall_Eu[2]) # is logit_flow_fall >=0 for MSW?
 
    diff_flow <- logit_flow_Eu[1] - logit_flow_Eu[2] 
    test[5] <- step(diff_flow) #is difference in slope >=0 for 1SW? (1SW>MSW)
