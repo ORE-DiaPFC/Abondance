@@ -72,7 +72,7 @@ var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 s1 <- mu_p1c * ((1/alpha)-1)
 s2 <- (1/alpha)-s1-1
 mu_p1c ~ dunif(0.1,0.9) #dbeta(2,2)
-alpha ~ dunif(0,0.5) # protection against too low values for s1 and s2
+alpha ~ dunif(0,0.33) # protection against too low values for s1 and s2 (s1+s2>2)
 
 ############################################################################################
 ####### Standardization of flow covariates 
