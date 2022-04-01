@@ -61,7 +61,7 @@ covmat[2,2] <- varp[2] # variance of the probability of capture at ML
 ############################################################################################
 # Shape and rate parameter for gamma distribution  for negative binomial (see Gelman, 2d edition, p446)
 shape_lambda ~ dgamma(0.001,0.001)
-rate_lambda ~ dgamma(0.001,0.001)
+rate_lambda ~ dgamma(0.001,0.001) C(0.00001,) # protection contre les trop faibles valeurs
 mean_gamma <- shape_lambda/rate_lambda
 var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 ################
@@ -69,10 +69,12 @@ var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 ############################################################################################
 ###############     Hyperparameters for p1c (proportion of 1 year old smolt by cohort)
 ############################################################################################
+# Prior joint pour que s1 et s2 soient supérieurs à 1
 s1 <- mu_p1c * ((1/alpha)-1)
 s2 <- (1/alpha)-s1-1
-mu_p1c ~ dunif(0.1,0.9) #dbeta(2,2)
-alpha ~ dunif(0,0.25) # protection against too low values for s1 and s2 (s1+s2>3)
+mu_p1c ~ dunif(l1,l2)
+l1 <- alpha/(1-alpha); l2 <- (1-2*alpha)/(1-alpha)
+alpha ~ dunif(0,0.33333) 
 
 ############################################################################################
 ####### Standardization of flow covariates 
