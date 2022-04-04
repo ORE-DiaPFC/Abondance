@@ -69,12 +69,9 @@ var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 ############################################################################################
 ###############     Hyperparameters for p1c (proportion of 1 year old smolt by cohort)
 ############################################################################################
-# Prior joint pour que s1 et s2 soient supérieurs à 1
-s1 <- mu_p1c * ((1/alpha)-1)
-s2 <- (1/alpha)-s1-1
-mu_p1c ~ dunif(l1,l2)
-l1 <- alpha/(1-alpha); l2 <- (1-2*alpha)/(1-alpha)
-alpha ~ dunif(0,0.33333) 
+# Prior pour que s1 et s2 soient supérieurs à 1 et que le prior sur p1c soit faiblement informatif
+s1 <- 1/l1; s2 <- 1/l2
+l1 ~ dbeta(2,2); l2 ~ dbeta(2,2) 
 
 ############################################################################################
 ####### Standardization of flow covariates 
