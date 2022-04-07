@@ -3,9 +3,7 @@ title: "Bilan_Scorff"
 author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
 date: "4/14/2021"
 output:
-  pdf_document: default
   html_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -85,7 +83,7 @@ if (file.exists(dir)){
 }
 
 
-con <- file(paste0("Bilan_",site,"_",year,'.csv'), open="wt")
+con <- file(paste0(wdir,site,"/","Bilan_",site,"_",year,'.csv'), open="wt")
 write.csv( table, con, row.names = FALSE)
 close(con)
 
@@ -537,8 +535,9 @@ r <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 
 
-
-
+labels=1994:2020
+boxes <- sapply(nchar(labels), function(n) 
+  paste(rep("\U2588", n), collapse=""))
 
 
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
@@ -548,19 +547,34 @@ par(mfrow=c(1,1))
 plot(NULL,xlim=c(0,50000),ylim=c(0,20000),bty="n",ylab="Smolt 1+",xlab="Tacon 0+")
 #axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
 #points(r[2:28,"50%"],smolt[1:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-#segments(s[,"2.5%"], r[2:27,"50%"],e[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
-#segments(s[,"50%"], r[2:27,"2.5%"],e[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1]))
-text(r[2:28,"50%"],smolt[1:27,"50%"],labels = years, cex=.5)
+segments(r[2:28,"2.5%"],smolt[1:27,"50%"],r[2:28,"97.5%"],smolt[1:27,"50%"], col=paste0(mycol[1]))
+segments(r[2:28,"50%"],smolt[1:27,"2.5%"],r[2:28,"50%"],smolt[1:27,"97.5%"], col=paste0(mycol[1]))
+#text(r[2:28,"50%"],smolt[1:27,"50%"],labels=boxes, col="#CCCCCC99")
+text(r[2:28,"50%"],smolt[1:27,"50%"],labels = years, cex=.7)
 
 
 
-plot(NULL,xlim=c(1,28),ylim=c(0,1),bty="n",ylab="Survie tacon - Smolt",xlab="Cohorte",xaxt="n")
-axis(side=1,line=1,labels = 1994:2020,at=1:27, las=2, cex.axis=.7)
-points(1:27,smolt[1:27,"50%"]/r[2:28,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 
+# plot(NULL,xlim=c(1,28),ylim=c(0,1),bty="n",ylab="Survie tacon - Smolt",xlab="Cohorte",xaxt="n")
+# axis(side=1,line=0,labels = labels,at=1:27, las=2, cex.axis=.7)
+# size <- r[2:28,"50%"]/10000
+# points(1:27,smolt[1:27,"50%"]/r[2:28,"50%"],col=mycol[1],pch=21, bg=24,lwd=.5,cex=size)
+
+
+library(plotly)
+
+df <- data.frame(parr=r[2:28,"50%"],smolt=smolt[1:27,"50%"])
+df$surv <- df$smolt/df$parr
+df$year <- 1995:2021
+
+fig <- plot_ly(df, x = ~year, y = ~surv, text = ~year, type = 'scatter', mode = 'markers', color = ~parr, colors = 'Reds',marker = list(size = ~parr/1000, opacity = 0.5))
+fig <- fig %>% layout(title = 'Survie Tacon-Smolt',
+         xaxis = list(showgrid = FALSE),
+         yaxis = list(showgrid = FALSE))
+
+fig
 ```
 
-# Stock-Recruitement relationship
 
 Stock : number of anadromous adults escaped (available for reproduction)
 Recruitment: number of parr 0+

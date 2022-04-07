@@ -24,6 +24,8 @@ for (c in 1:2){ # 2 chains
 ###################################################
 # NO UPDATE
 ###################################################
+  #alpha =runif(1,0.1,0.25)
+  #l1 = alpha/(1-alpha); l2 <- (1-2*alpha)/(1-alpha)
 inits_fix <- list(
     logit_int = runif(2,.9,1.1),#c(1,1),
     logit_flow = runif(2,.9,1.1),#c(1,1),
@@ -31,8 +33,10 @@ inits_fix <- list(
     rho=runif(1,.1,.8),#0.3,
    # l_ML_dim =runif(1,.01,.02),# 0.01136,
    # junk = runif(1,-2,-1),#-1.1,
-   mu_p1c = runif(1,0.1,0.9),# rbeta(1,2,2),
-   alpha =runif(1,0.1,0.25), # protection against too low values for s1 and s2
+   #mu_p1c = runif(1,l1,l2),# rbeta(1,2,2),
+   #alpha =alpha, # protection against too low values for s1 and s2
+   l1 = rbeta(1,2,2), 
+   l2 = rbeta(1,2,2),
     rate_lambda = 1.574E-4,
     shape_lambda = runif(1,1,2)#1.688
 )

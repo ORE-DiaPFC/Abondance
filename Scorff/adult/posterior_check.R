@@ -118,9 +118,9 @@ par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# par(mfrow=c(2,1))
+# caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("pi_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 

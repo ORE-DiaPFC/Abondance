@@ -58,7 +58,7 @@ inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -69,7 +69,7 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=0 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
+nstore=20000 # Total number of steps in chains to save.
 nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 

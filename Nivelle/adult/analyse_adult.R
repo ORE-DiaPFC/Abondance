@@ -247,6 +247,8 @@ sink()
 ## SUMMARY
 if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
+if(site == "Nivelle" && stade == "adult") {source("analyse_coda_adult.R")}
+
 
 if(site == "Scorff"){
   dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")

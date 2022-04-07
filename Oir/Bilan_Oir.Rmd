@@ -3,10 +3,10 @@ title: "Bilan_Oir"
 author: "Mathieu Buoro, Frédéric Marchand & Etienne Prévost"
 date: "4/14/2020"
 output:
-  word_document: default
-  pdf_document: default
   html_document: 
     theme: paper
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -389,6 +389,8 @@ segments(p,n[,"2.5%"], p,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(p,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 ```
+
+
 
 # Stock-Recruitement relationship
 

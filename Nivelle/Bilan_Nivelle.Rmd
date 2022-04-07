@@ -3,9 +3,9 @@ title: "Bilan_Nivelle"
 author: "Mathieu Buoro, Frédéric Lange & Etienne Prévost"
 date: "4/14/2020"
 output:
-  word_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -409,7 +409,7 @@ r <- as.matrix(sum[1:nrow(sum),c(3,6,9)]);colnames(r)<-c("2.5%","50%","97.5%")
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(0,1500000),ylim=c(0,35000),bty="n",ylab="Recruitment (parr 0+)",xlab="Stock (eggs produced)")
+plot(NULL,xlim=c(0,1500000),ylim=c(0,35000),bty="n",ylab="Recruitment (wild parr 0+)",xlab="Stock (eggs produced)")
 #axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # Stock

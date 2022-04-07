@@ -29,13 +29,18 @@ hyperparameters <-c(
   
   ## POPULATION
 #,"Ntot" # annual number of smolt
-#, "N" #  number of smolt by cohort
+, "N" #  number of smolt by cohort
 #,"Nc" #  number of smolt by age
 #,"p1c" # proportion smolt 1+ / cohort
 #,"p1y" # proportion smolt 1+ / year
+,"l1","l2"
 ,"s1","s2"
-,"mu_p1c"
-,"alpha"
+#,"mu_p1c"
+#,"alpha"
+
+,"p10c"
+,"lambda0"
+,"N0"
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
@@ -43,6 +48,8 @@ hyperparameters <-c(
   ,"var_gamma" # Variance parameter of gamma distribution
   
   ,paste0("lambda[",1:data$Nyears,"]") # Poisson parameter
+
+,paste0("p1c[",1:data$Nyears,"]") # Poisson parameter
   
 #  ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
   
@@ -59,13 +66,24 @@ pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 
 for (par in hyperparameters){
   traplot(fit.mcmc,par) 
-  #denplot(fit.mcmc,par) 
+  denplot(fit.mcmc,par) 
 }
 
 
 par(mfrow=c(2,1))
 caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+par(mfrow=c(2,1))
+caterplot(fit.mcmc,paste0("N[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("Ntot[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+par(mfrow=c(1,1))
+caterplot(fit.mcmc,paste0("p1c[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+par(mfrow=c(2,1))
+caterplot(fit.mcmc,paste0("Nc[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit.mcmc,paste0("Nc[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()
 

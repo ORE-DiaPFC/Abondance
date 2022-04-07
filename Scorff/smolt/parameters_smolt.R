@@ -20,6 +20,10 @@ parameters <-c(
   ,"p_MP" # capture probability at Moulin des Princes
   ,"p_ML" # capture probability at Moulin de Lesl?
   
+ ,"p1c"
+ ,"p10c"
+ ,"lambda0"
+ ,"N0"
   
   ## POPULATION
   ,"Ntot" # annual number of smolt
@@ -28,7 +32,8 @@ parameters <-c(
  ,"p1c" # proportion smolt 1+ / cohort
  ,"p1y" # proportion smolt 1+ / year
  ,"s1","s2"
- ,"mu_p1c","alpha"
+ ,"l1","l2"
+ #,"mu_p1c","alpha"
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
