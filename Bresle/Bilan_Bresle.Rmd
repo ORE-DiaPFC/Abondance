@@ -3,8 +3,8 @@ title: "Bilan_Bresle"
 author: "Mathieu Buoro, Quentin Josset & Etienne Prévost"
 date: "4/14/2020"
 output:
-  html_document: default
   word_document: default
+  html_document: default
   pdf_document: default
 ---
 
@@ -42,7 +42,7 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 ```{r, echo = FALSE}
 years <- seq(1982, year, 1)
 table <- array(, dim=c(length(years), 5))
-colnames(table) <- c( "Year","Parr 0+","Smolts","1SW (tot returns)",	"MSW (tot returns)")
+colnames(table) <- c( "Année","Tacon 0+","Smolts (tous)", 	"1HM (échappement)",	"PHM (échappement)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- years
@@ -129,8 +129,8 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,500),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex.axis=.7)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("n_tot[",1:data$Y,"]")]) # 1984 to now)
@@ -146,7 +146,7 @@ points(1:data$Y,n[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 # lines(e[,"50%"],lty=1,lwd=2,col=mycol[4],type="o")
 # points(1:data$Y,e[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
 
-legend("topright", legend=c("Nombre total de retour"), col=mycol[3],lty=1,lwd=2,bty="n")
+#legend("topright", legend=c("Nombre total de retour"), col=mycol[3],lty=1,lwd=2,bty="n")
 ```
 
 
@@ -155,8 +155,8 @@ legend("topright", legend=c("Nombre total de retour"), col=mycol[3],lty=1,lwd=2,
 ```{r, echo=FALSE}
 
 
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,500),bty="n",ylab="Total number of returns",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex.axis=.7)
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 # 1SW
@@ -173,7 +173,7 @@ segments(1:data$Y,n_MSW[,"2.5%"], 1:data$Y,n_MSW[,"97.5%"], col=paste0(mycol[2])
 lines(n_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(1:data$Y,n_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
-legend("topright", legend=c("1SW","MSW"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+legend("topright", legend=c("1HM","PHM"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
 
 #dev.off()
@@ -196,8 +196,8 @@ mcmc <- as.matrix(tmp[,paste0("pi_B[",p,",2]")]) #
 piMP_MSW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
 ### Total number of returns
 #png("report/total_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% captured at Beauchamps",xaxt="n",xlab="")#,main="% MSW to be captured by fishing")
-axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% capturé at Beauchamps",xaxt="n",xlab="")#,main="% MSW to be captured by fishing")
+axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex.axis=.7)
 gap=0.1
 # N total
 segments(p+gap,piMP_MSW[,"2.5%"], p+gap,piMP_MSW[,"97.5%"], col=paste0(mycol[4]))
@@ -209,7 +209,7 @@ segments(p-gap,piMP_1SW[,"2.5%"], p-gap,piMP_1SW[,"97.5%"], col=paste0(mycol[3])
 #lines(piMP_1SW[,"50%"],lty=1,lwd=2,col=mycol[3],type="o")
 points(p-gap,piMP_1SW[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]),type='b')
 
-legend("topright", legend=c("1SW", "MSW"), col=mycol[3:4],lty=1,lwd=3,bty="n")
+legend("topright", legend=c("1HM", "PHM"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 
 ```
 
@@ -225,8 +225,8 @@ mcmc <- as.matrix(tmp[,paste0("pi_Eu[",p,",2]")]) #
 piMP_MSW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
 ### Total number of returns
 #png("report/total_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="% captured at EU",xaxt="n",xlab="")#,main="% MSW to be captured by fishing")
-axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="% capturé à EU",xaxt="n",xlab="")#,main="% MSW to be captured by fishing")
+axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex.axis=.7)
 gap=0.1
 # N total
 segments(p+gap,piMP_MSW[,"2.5%"], p+gap,piMP_MSW[,"97.5%"], col=paste0(mycol[4]))
@@ -238,7 +238,7 @@ segments(p-gap,piMP_1SW[,"2.5%"], p-gap,piMP_1SW[,"97.5%"], col=paste0(mycol[3])
 #lines(piMP_1SW[,"50%"],lty=1,lwd=2,col=mycol[3],type="o")
 points(p-gap,piMP_1SW[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]),type='b')
 
-legend("topright", legend=c("1SW", "MSW"), col=mycol[3:4],lty=1,lwd=3,bty="n")
+legend("topright", legend=c("1HM", "PHM"), col=mycol[3:4],lty=1,lwd=3,bty="n")
 
 ```
 
@@ -265,8 +265,8 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,10000),bty="n",ylab="Total number of smolts",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years,at=1:data$Nyears, las=2, cex=.5)
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,10000),bty="n",ylab="Nombre total de smolts",xaxt="n",xlab="")
+axis(side=1,line=1,labels = years,at=1:data$Nyears, las=2, cex.axis=.7)
 
 # N total
 p <- c(1:6,11:19,21:data$Nyears)

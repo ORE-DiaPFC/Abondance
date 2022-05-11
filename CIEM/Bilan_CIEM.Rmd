@@ -3,9 +3,9 @@ title: "Bilan_CIEM"
 author: "Mathieu Buoro & Etienne Prévost"
 date: "4/07/2022"
 output:
+  word_document: default
   pdf_document: default
   html_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -239,7 +239,7 @@ e_MSW.mcmc <- mcmc[,paste("Nesc_MSW[",1:nyear,"]",sep="")] # female only
 library(readr)
 prop_female=NULL
 prop_female <- read_csv(paste0(dir,"Abundance/",site,"/",stade,"/data/prop-female.csv"),comment = "#")
-fec_1SW = prop_female$`1SW` * 4635 # fecondité 1SW # Prevost 1996
+fec_1SW = prop_female$OneSW * 4635 # fecondité 1SW # Prevost 1996
 fec_MSW = prop_female$MSW * 7965 # fecondite MSW # prevost 1996
 
 #if (nrow(prop.female) == data$Y){
@@ -409,7 +409,7 @@ table[1:length(years),1] <- years #smolt.years
 ## JUVENILES
 stade <- "tacon"
 #load(paste("~/Documents/RESEARCH/PROJECTS/ORE/Abundance/Nivelle/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-YOY_tot_q <- read.table(paste(dir,"Abundance/","Nivelle/",stade,"/results/YOY_tot.txt",sep=""), header = TRUE)
+YOY_tot_q <- read.table(paste(dir,"Abundance/","Nivelle/",stade,"/results/YOY_tot_q.txt",sep=""), header = TRUE)
 table[,2] <- YOY_tot_q[,"q0.5"]
 
 ## ADULTS
@@ -631,17 +631,17 @@ j=0
 for (site in sites) {
 j=j+1
 pred=NULL
-pred <-SURVIVAL[[paste0(site)]]
+pred <-SURVIVAL[[paste0(site)]][paste0(1984:year)]
 if (site == "Bresle"){ pred <-SURVIVAL[["Bresle"]][paste0(1984:year)] }
-table[,j] <- pred
+table[,j] <- as.numeric(pred)
 }
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
-con <- file(paste(dir,'Abundance/CIEM/T3.3.6.1.csv',sep=""), open="wt")
+#con <- file(paste(dir,'Abundance/CIEM/T3.3.6.1.csv',sep=""), open="wt")
 # writeLines(paste("# Table 3.3.6.1. Estimated survival of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area."
 #                  ,sep=""), con)
-write.csv( round(table,2), con, row.names = TRUE)
-close(con)
+#write.csv( round(table,2), con, row.names = TRUE)
+#close(con)
 
 kable(round(table,2), row.names = FALSE
 , caption = paste0("Table 3.3.6.1. Estimated survival of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area.")
@@ -666,10 +666,11 @@ j=0
 for (site in sites) {
   j=j+1
   #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
-  lines(SURVIVAL[[paste0(site)]][paste0(1984:year)],lty=1,lwd=2,col=paste0(mycol[j], 50)) 
+  tmp <- as.numeric(SURVIVAL[[paste0(site)]][paste0(1984:year)])
+  lines(tmp,lty=1,lwd=2,col=paste0(mycol[j], 50)) 
   
   #scatter.smooth(years, returns[[site]][,"50%"], span = 2/3, degree = 2)
-  df <- data.frame(x=years, y= SURVIVAL[[paste0(site)]][paste0(1984:year)])
+  df <- data.frame(x=years, y= tmp)
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
   pred <- predict(lw1)
   if (site == "Bresle"){ pred<-c(rep(NA,5),pred) }

@@ -93,13 +93,14 @@ parameters <-c(
   ,"n_2.3SW" # annual number of fish 2R/3SW (captured or not)
   
   ,"n_11" # annual number of fish per breeding category staying in LN1
-  
   ,"e_11" # annual escapement for LN1 per breeding category
   ,"e_11_tot" # annual escapement for LN1
   
+  ,"n_12" # annual number of fish per breeding category staying in LN2
   ,"e_12" # annual escapement for LN2 per breeding category
   ,"e_12_tot" # annual escapement for LN2
   
+  ,"e_2" # annual escapement for upper Olha
   ,"e_21" # annual escapement for UN per breeding category
   ,"e_21_tot" # annual escapement for UN
   

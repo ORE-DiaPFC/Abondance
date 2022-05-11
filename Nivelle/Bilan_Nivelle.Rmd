@@ -3,9 +3,9 @@ title: "Bilan_Nivelle"
 author: "Mathieu Buoro, Frédéric Lange & Etienne Prévost"
 date: "4/14/2020"
 output:
-  html_document: default
-  pdf_document: default
   word_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -122,7 +122,7 @@ par(mfrow=c(1,1))
 
 p <- 1:data$Y
 ### Total number of returns
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,500),bty="n",ylab="Total number of fish",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,500),bty="n",ylab="Nombre de retours total",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # N total
@@ -152,7 +152,7 @@ legend("topright", legend=c("Nombre total de retour", "Echappement"), col=mycol[
 ```{r, echo=FALSE}
 
 
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,500),bty="n",ylab="Total number of returns",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,500),bty="n",ylab="Nombre de retours total",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
@@ -170,7 +170,7 @@ segments(p,n_MSW[,"2.5%"], p,n_MSW[,"97.5%"], col=paste0(mycol[2]))
 lines(n_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(p,n_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
-legend("topright", legend=c("1SW","MSW"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+legend("topright", legend=c("1HM","PHM"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
 
 #dev.off()
@@ -188,7 +188,7 @@ fixed number of 4500 eggs/female 1SW and 7200 eggs/female MSW
 ```{r, echo=FALSE}
 
 p <- 1:data$Y
-plot(NULL,xlim=c(1,max(p)),ylim=c(100000,1500000),bty="n",ylab="Total number of eggs produced",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(100000,1500000),bty="n",ylab="Nombre total d'oeufs déposés",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 # N total
 mcmc <- as.matrix(tmp[,paste0("eggs_tot[",p,"]")]) # 1984 to now)
@@ -202,7 +202,7 @@ points(p,n[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 
 
 p <- 1:data$Y
-plot(NULL,xlim=c(1,max(p)),ylim=c(5000,700000),bty="n",ylab="Number of eggs produced",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(5000,700000),bty="n",ylab="Nombre total d'oeufs déposés",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # annual number of eggs produced between Ascain and Uxondoa (LN1)
@@ -332,7 +332,7 @@ load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,20),bty="n",ylab="Mean flow observed in December",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,20),bty="n",ylab="Débit moyen observé en Décembre",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=1:data$Y, las=2, cex=.5)
 
 lines(data$Q,lty=1,lwd=2,col="steelblue1",type="o")
@@ -365,7 +365,7 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 p<-1:data$Y_last
 ### Total number of returns
-plot(NULL,xlim=c(1,max(p)),ylim=c(0,35000),bty="n",ylab="Total number of parr",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,max(p)),ylim=c(0,35000),bty="n",ylab="Nombre total de tacons",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years,at=p, las=2, cex=.5)
 
 # N total
@@ -384,6 +384,7 @@ points(p,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 Stock : number of eggs produced (fixed number of 4500 eggs/female 1SW and 7200 eggs/female MSW )
 Recruitment: number of parr 0+
 Les années reportées sur la figure correspondent à l'année de la cohorte des juvéniles produits.
+/!\ Doit être convertit en densité!!
 
 ```{r SR, echo=FALSE}
 
