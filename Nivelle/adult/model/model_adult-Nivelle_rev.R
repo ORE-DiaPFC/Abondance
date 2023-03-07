@@ -739,7 +739,7 @@ for (t in 7:Y) { # from 1990 to now on
 ## n_PS[t]: annual number of fish spawning for the second time  
 ##################################################
 ## From 1984 to now on
-# Modified in 2023 to separate the adults of wild origin in the returns in the first years
+# Modified in 2023 to separate the adults of wild origin in the returns in the first 6 years
 # Wild origin : not issuing from smolts releases (wild reproduction or released as YOY)
 
 for (t in 1:6) {
@@ -797,7 +797,7 @@ for (t in 1:6) {
   p_MSW[t,1:5] ~ ddirich(a_MSW[]) # annual probability to sample a MSW individual. 
   } # end of loop over years
 
-for (t in 1:Y) {
+for (t in 7:Y) {
 
   ### Individuals 1SW
 
