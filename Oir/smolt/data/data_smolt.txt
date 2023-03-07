@@ -1,7 +1,7 @@
 list(
 
 #Length of the time series: from 1986 to now on
-Nyears = 36, # 2021
+Nyears = 37, # 2022
 
 # Annual number of smolt captured at Moulin de Cerisel
 C_MC = c(508,
@@ -39,7 +39,8 @@ C_MC = c(508,
 451,
 745,
 939,
-1096 # 2021
+1096, 
+700 # 2022
 ),
 
 #Annual number of smolt marked and released upstream from Moulin de Cerisel
@@ -78,7 +79,8 @@ Cm_MC = c(89,
 239,
 324,
 207,
-284 # 2021
+284,
+211 # 2022
 ),
 
 # Annual number of marked smolt recaptured at the trap
@@ -117,7 +119,8 @@ Cm_R = c(61,
 42,
 195,
 147,
-231 # 2021
+231,
+181 # 2022
 ),
 
 # Annual number of dead smolt (marked or unmarked, death at the trap)
@@ -156,7 +159,8 @@ D_MC = c(1,
 0,
 1,
 0,
-1 # 2021
+1,
+0 # 2022
 )
 
 )

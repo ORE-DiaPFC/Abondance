@@ -286,11 +286,12 @@ model {
       for (t in 1:Y) {
          ## Marked fish
          Cm_B[t,a] ~ dbin(pi_B[t,a],Cm_Eu[t,a])
+         # Cm_B[t,a] ~ dbin(pi_B[t,a]*eff_B[t],Cm_Eu[t,a]) # eff_B is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to today (data)
          ## Unmarked fish
          Cum_B[t,a] ~ dbin(pi_B[t,a],n_um[t,a])
+         #Cum_B[t,a] ~ dbin(pi_B[t,a]*eff_B[t],n_um[t,a]) # eff_B is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to today (data)
          } # end of loop over years
       
   } # end of loop over sea age
-  
 } # end of the model
 

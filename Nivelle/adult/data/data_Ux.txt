@@ -42,5 +42,6 @@ C_U[,1]	C_U[,2]	C_U[,3]	C_U[,4]	Cum_U[,1]	Cum_U[,2]	Cum_U[,3]	Cum_U[,4]	Cm_U[,1]
 50	24	2	9	NA	NA	NA	NA	50	24	2	9 
 14	12	8	19	NA	NA	NA	NA	14	12	8	19 
 16	7	2	11	NA	NA	NA	NA	16	7	2	11
-# 2021
+6	2	14	6	NA	NA	NA	NA	6	2	14	6
+# 2022
 #END											

@@ -445,12 +445,25 @@ model {
     e_MSW[t] <- e_m[t,2] + e_um[t,2] # escapement of MSW
     }  # end of loop over years 
   
+  
+  
+  for (t in 1:Y){
+  
+  # recaptured marked fish
+  psi_1SW[t,1] <- (1 - piF_1SW[t,1]) * (1 - piD_1SW[t,1]) * pi_R[t,1]
+  psi_MSW[t,1] <- (1 - piF_MSW[t,1]) * (1 - piD_MSW[t,1]) * pi_R[t,2]
+    
+  }  # end of loop over years
+  
+  
+  
 } # end of the model
       
 # # Former code (prior to 2022)
 # # Probability of observing a caught fish at MP for its marked status
 #   mupi_oF ~ dbeta(1,1) ; sigmapi_oF ~ dunif(0,20)
 #   varpi_oF <- (sigmapi_oF)*(sigmapi_oF) 
+
 #   precpi_oF <- 1/(varpi_oF) # precision
 #   
 #   ### Probability that a caught fish is showed at Moulin des Princes (dependent on sea age)

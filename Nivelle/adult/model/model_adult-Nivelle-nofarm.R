@@ -739,68 +739,9 @@ for (t in 7:Y) { # from 1990 to now on
 ## n_PS[t]: annual number of fish spawning for the second time  
 ##################################################
 ## From 1984 to now on
-# Modified in 2023 to separate the adults of wild origin in the returns in the first years
-# Wild origin : not issuing from smolts releases (wild reproduction or released as YOY)
-
-for (t in 1:6) {
-
-  ### Individuals 1SW
-
-  ech_1.1SW[t] ~ dbin(p_1.1SW[t], ech_1SW_wild[t]) # Individuals 1R/1SW sampled
-  
-  n_1SW.cut[t] <- cut(n_1SW[t])
-  
-  ech_1SW_wild[t] ~ dbin(p_1SW_wild[t], ech_1SW_tot[t]) # Wild individuals among the 1SW sampled
-  p_1SW_wild[t] ~ dbeta(1,1)
-  
-  no_ech_1SW[t] <- n_1SW.cut[t] - ech_1SW_tot[t] # Individuals 1SW not sampled
-  no_ech_1SW_wild[t] ~ dbin(p_1SW_wild[t], no_ech_1SW[t]) # Individuals 1SW wild not sampled
-  no_ech_1.1SW[t] ~ dbin(p_1.1SW[t], no_ech_1SW_wild[t]) # Individuals 1R/1SW not sampled 
-  
-  n_1.1SW[t] <- ech_1.1SW[t] + no_ech_1.1SW[t] # Total number of individuals 1SW
-  n_2.1SW[t] <- ech_1SW_wild[t] - ech_1.1SW[t] + no_ech_1SW_wild[t] - no_ech_1.1SW[t] # Individuals 2R/1SW
-  
-  ### Individuals MSW
-  ech_MSW[t,1:5] ~ dmulti(p_MSW[t,], ech_MSW_wild[t]) # Individuals MSW sampled
-  
-  n_MSW.cut[t] <- cut(n_MSW[t]) 
-  
-  ech_MSW_wild[t] ~ dbin(p_MSW_wild[t], ech_MSW_tot[t]) # Wild individuals among the 1SW sampled
-  p_MSW_wild[t] ~ dbeta(1,1)
-  
-  no_ech_MSW_tot[t] <- n_MSW.cut[t]- ech_MSW_tot[t] # Individuals MSW not sampled
-  no_ech_MSW_wild[t] ~ dbin(p_MSW_wild[t], no_ech_MSW[t]) # Individuals MSW wild not sampled
-       
-  no_ech_MSW[t,1] ~ dbin(p_MSW[t,1], no_ech_MSW_wild[t]) # Individuals 1R/2SW not sampled
-  no_ech_MSW_r[t,1] <- no_ech_MSW_wild[t] - no_ech_MSW[t,1] # Individuals MSW minus individuals 1R/2SW
-  
-  p_MSW_r[t,1]<- p_MSW[t,2] / (1 - p_MSW[t,1]) # to ensure that the total sum of p_MSW[t,] is equal to one (use of multinomial function)
-  no_ech_MSW[t,2] ~ dbin(p_MSW_r[t,1], no_ech_MSW_r[t,1]) # Individuals 2R/2SW not sampled 
-  no_ech_MSW_r[t,2] <- no_ech_MSW_r[t,1] - no_ech_MSW[t,2] # Individuals MSW minus individuals (1R/2SW + 2R/2SW)
-   
-  p_MSW_r[t,2]<- p_MSW[t,3] / (1 - sum(p_MSW[t,1:2]))
-  no_ech_MSW[t,3] ~ dbin(p_MSW_r[t,2], no_ech_MSW_r[t,2]) # Individuals 1R/3SW not sampled
-  no_ech_MSW_r[t,3] <- no_ech_MSW_r[t,2] - no_ech_MSW[t,3] # Individuals MSW minus individuals (1R/2SW + 2R/2SW + 1R/3SW)
-  
-  p_MSW_r[t,3]<- p_MSW[t,4] / (1 - sum(p_MSW[t,1:3]))
-  no_ech_MSW[t,4] ~ dbin(p_MSW_r[t,3], no_ech_MSW_r[t,3]) # Individuals 2R/3SW not sampled
-   
-  no_ech_MSW[t,5] <- no_ech_MSW_r[t,3] - no_ech_MSW[t,4]  # Individuals MSW minus individuals (1R/2SW + 2R/2SW + 1R/3SW + 2R/3SW)
-   
-  n_1.2SW[t] <- ech_MSW[t,1] + no_ech_MSW[t,1]
-  n_2.2SW[t] <- ech_MSW[t,2] + no_ech_MSW[t,2]
-  n_1.3SW[t] <- ech_MSW[t,3] + no_ech_MSW[t,3]
-  n_2.3SW[t] <- ech_MSW[t,4] + no_ech_MSW[t,4]
-  n_PS[t] <- ech_MSW[t,5] + no_ech_MSW[t,5]
-  
-  p_1.1SW[t] ~ dbeta(a_1.1SW, a_2.1SW) # annual probability to sample a 1R/1SW individual
-  p_MSW[t,1:5] ~ ddirich(a_MSW[]) # annual probability to sample a MSW individual. 
-  } # end of loop over years
-
 for (t in 1:Y) {
 
   ### Individuals 1SW
-
   ech_1.1SW[t] ~ dbin(p_1.1SW[t], ech_1SW_tot[t]) # Individuals 1R/1SW sampled
   
   n_1SW.cut[t] <- cut(n_1SW[t])

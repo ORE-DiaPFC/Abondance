@@ -2,7 +2,7 @@ list(
 
 ### Nombre d'annees de suivi
 ## Devra etre mis a jour
-Nyear = 35, # 2021
+Nyear = 36, # 2022
 
 ## Nombre de donn?es (nombre de lignes) pour les pr?l?vements successifs (soit PE ou PTE)
 ## Devra ?tre mis ? jour

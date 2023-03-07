@@ -21,8 +21,8 @@ inits_fix <- list(
   # NO UPDATE
   #sigmap_eff = c(0.1,0.2),
   varp_eff = runif(2,0.01,0.05),#c(0.1,0.2)^2,
-  shape_lambda = runif(1,2,7),#5,
-  rate_lambda = runif(1,.005,0.1),#0.01,
+  shape_lambda = runif(1,4,7),#5,
+  rate_lambda = runif(1,.005,0.1),#0.01
   lambda0=500+runif(1,-10,10),
   mup_recap = runif(4,.1,.7),#c(0.3,0.5,0.3,0.5),     
   #sigmap_recap=c(0.1,0.1,0.2,0.3)   

@@ -60,6 +60,8 @@ parameters <-c(
   ,"pi_R" # probability of recapture during or after reproduction
   ,"epsilon_R" # standardized residuals of probability of recapture during or after reproduction
   
+  , "psi_1SW" # probability to recover a marked fish
+  , "psi_MSW" # probability to recover a marked fis
   
   ## POPULATION
   ,"n_tot" # total annual number of adults entering the river

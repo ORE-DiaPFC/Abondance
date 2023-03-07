@@ -133,4 +133,8 @@ parameters <-c(
   
   ,"d_pi_Ol"
   ,"d_pi_U"
+  
+  ,"p_1SW_wild"
+  ,"p_MSW_wild"
+  
 )

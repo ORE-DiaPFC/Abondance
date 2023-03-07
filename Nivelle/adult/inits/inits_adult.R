@@ -316,8 +316,23 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   #   5,2),
   n_1SW.tmp <- sum(n[data$Y,1:2])
   no_ech_1SW.tmp = n_1SW.tmp - data$ech_1SW_tot[data$Y]
-  no_ech_1.1SW.tmp = no_ech_1SW.tmp * p1.1SW.tmp[data$Y]
+  no_ech_1.1SW.tmp = no_ech_1SW.tmp * p_1.1SW[data$Y] # mb-2022
   no_ech_1.1SW = c(inits0$no_ech_1.1SW, ceiling(no_ech_1.1SW.tmp))
+  
+  # /!\ 2022: separation des wild/farm origin de 1984 à 1989
+  n_1SW.tmp=no_ech_1SW.tmp=no_ech_1SW_wild=NULL
+  p_1SW_wild=(data$ech_1SW_wild / data$ech_1SW_tot)
+  for (y in 1:6){
+    n_1SW.tmp[y] <- sum(n[y,1:2])
+    no_ech_1SW.tmp[y] = n_1SW.tmp[y] - data$ech_1SW_tot[y]
+    no_ech_1SW_wild[y] = ceiling(no_ech_1SW.tmp[y] * p_1SW_wild[y])
+    no_ech_1.1SW[y] = ceiling(no_ech_1SW_wild[y] * p_1.1SW[y]) 
+  }
+  
+
+
+
+
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
   # no_ech_MSW = structure(.Data = c(
@@ -361,6 +376,22 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   no_ech_MSW.tmp = no_ech_MSW.tmp * pMSW.tmp[1:4]
   no_ech_MSW = rbind(inits0$no_ech_MSW, c(as.integer(no_ech_MSW.tmp),NA))
   
+  n_MSW.tmp=no_ech_MSW.tmp=no_ech_MSW_wild=NULL
+  p_MSW_wild=(data$ech_MSW_wild / data$ech_MSW_tot)
+  for (y in 1:6){
+    n_MSW.tmp[y] <- sum(n[y,3:4])
+    no_ech_MSW.tmp[y] = n_MSW.tmp[y] - data$ech_MSW_tot[y]
+    no_ech_MSW_wild[y] = ceiling(no_ech_MSW.tmp[y] * p_MSW_wild[y])
+    
+    for (j in 1:4){ # 1.2/2.2/1.3/2.3/autres
+      no_ech_MSW[y,j] = round(no_ech_MSW_wild[y] * pMSW.tmp[j], 0) 
+    }
+  }
+  
+  # # to avoid no integer value for no_ech_MSW
+  no_ech_MSW[2,3]<-0
+  no_ech_MSW[3,3]<-0 
+  no_ech_MSW[4,3]<-0
 
 
 inits_updated <- list(
@@ -374,6 +405,10 @@ inits_updated <- list(
   n=n,
   n_11=n_11,
   p_1.1SW=p_1.1SW,
+  
+  no_ech_1SW_wild=no_ech_1SW_wild,p_1SW_wild=p_1SW_wild[1:6],
+  no_ech_MSW_wild=no_ech_MSW_wild,p_MSW_wild=p_MSW_wild[1:6],
+  
   no_ech_1.1SW=no_ech_1.1SW,
   no_ech_MSW = no_ech_MSW,
   num_2 =num_2

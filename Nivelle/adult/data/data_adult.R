@@ -106,12 +106,16 @@ Cm_U=as.matrix(Ux[,9:12])
 ## ech_MSW[,4]: annual number of captured individuals 2R3SW
 ## ech_MSW[,5]: annual number of captured individuals second spawning
 ################################################################################
-age <- read.table(paste("data/data_age.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+age <- read.table(paste("data/data_age_rev.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
 age <- as.matrix(age);mode(age)<- "numeric"
-ech_1SW_tot=age[,1]
-ech_1.1SW=age[,2]
-ech_MSW_tot=age[,3]
-ech_MSW=as.matrix(age[,4:8])
+
+ech_1SW_wild=age[,1]
+ech_MSW_wild=age[,2]
+
+ech_1SW_tot=age[,3]
+ech_1.1SW=age[,4]
+ech_MSW_tot=age[,5]
+ech_MSW=as.matrix(age[,6:10])
 
 ################################################################################			
 ### UPDATE WITH NA			
@@ -153,6 +157,7 @@ data <- list( Y=Y
               ,Am_12=Am_12,Aum_12=Aum_12
               ,Cm_O=Cm_O,Cum_O=Cum_O
               ,C_U=C_U,Cum_U=Cum_U,Cm_U=Cm_U
+              ,ech_1SW_wild=ech_1SW_wild, ech_MSW_wild=ech_MSW_wild
               ,ech_1SW_tot=ech_1SW_tot,ech_1.1SW=ech_1.1SW,ech_MSW_tot=ech_MSW_tot,ech_MSW=ech_MSW
               ,e_2=e_2
               ,nm_2=nm_2,num_2=num_2

@@ -36,7 +36,8 @@ Q_MC = c(1236.78,
 2070,
 960,# 2019
 1680, #2020
-1220 # 2021
+623.4, # 2021 mise à jour avec valeur de la nouvelle station voir avec la DREAL pour intercalibration ancienne valeur 1220
+531.7 # 2022 valeur nouvelle station
 )
 
 )

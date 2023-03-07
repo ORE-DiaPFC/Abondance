@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2021"
+year <- "2022"
 site <- "Scorff"
 stade <- "smolt"
 
@@ -70,7 +70,7 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=100 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=500 # Number of steps to "thin" (1=keep every step).
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -131,8 +131,13 @@ elapsed.time = difftime(end.time, start.time, units='mins')
 cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 
 
+
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
+
+## Check if enough independent samples
+test <-  any(fit$summary[,"n.eff"]<1000)
+try(if(iter > 10) stop("too many iterations"))
 
 mydf <- as.matrix(round(fit$summary,3))
 mydf <- cbind(rownames(mydf), mydf)
@@ -247,6 +252,8 @@ sink()
 ## SUMMARY
 if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
+if(site == "Nivelle" && stade == "adult") {source("analyse_coda_adult.R")}
+
 
 if(site == "Scorff"){
   dir<- c("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/")

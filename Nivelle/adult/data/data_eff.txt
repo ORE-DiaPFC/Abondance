@@ -1,6 +1,6 @@
 list(
 
-### Eff_Ux is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to 2011 (=307 days)
+### Eff_Ux is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to 2011 (=300 days)
 eff_Ux = c(NA	,
 NA	,
 NA	,
@@ -38,12 +38,13 @@ NA
 , 0.896666667 # 2018
 , 0.856666667 # 2019
 , 0.793333333 # 2020
-, 0.893333333 # 2021
+, 0.890000000 # 2021
+, 0.946666666 # 2022
 ),
 
 
 
-## eff_Ol is the ratio of the number of trapping nights over the mean number of nights of trapping from 1994 to 2011 (excluded 1992,1993,2000, mean = 294)
+## eff_Ol is the ratio of the number of trapping nights over the mean number of nights of trapping from 1994 to 2011 (excluded 1992,1993,2000, mean = 288)
 eff_Ol = c(NA	,
 NA	,
 NA	,
@@ -82,6 +83,7 @@ NA
 , 0.895833333333333 # 2019
 , 0.833333333333333 # 2020
 , 0.944444444444444 # 2021
+, 0.875000000000000 # 2022
 )
 
 )

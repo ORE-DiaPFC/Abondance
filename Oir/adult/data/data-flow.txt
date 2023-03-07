@@ -35,10 +35,11 @@ Q = c(209.3,
 856.6759259,
 637.5384615,
 1789.782051,
-468,93589,
-2698,8859,
+468.93589,
+2698.8859,
 2422, # 2020
-1155 # 2021 je n'ai pas accès au données journalières, j'ai utilisé les moyenes mensuelles (pour octobre, j'ai tenu compte de 15 jours)
+1001.5, # 2021 mise à jour mais nouvelle station donc pas forcement d'intercalibration à voir avec la DREAL
+568.8 # 2022 valeur de la nouvelle station)
 )
 )
 

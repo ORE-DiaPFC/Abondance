@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2021"
+year <- "2022"
 site <- "Nivelle"
 stade <- "tacon"
 
@@ -70,7 +70,7 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=0 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=100 # Number of steps to "thin" (1=keep every step).
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -253,7 +253,7 @@ if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
 if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
 
 if(site == "Scorff"){
-  dir<- c("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/")
+  dir<- c("/media/hdd/mbuoro/ORE-DiaPFC/Abundance/")
   setwd(dir)
   f1 <- paste0(dir,"Scorff/tacon/results/Results_tacon","_",year,".RData")
   f2 <- paste0(dir,"Scorff/smolt/results/Results_smolt","_",year,".RData")
