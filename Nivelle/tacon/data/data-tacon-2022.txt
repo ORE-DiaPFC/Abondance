@@ -68,6 +68,14 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,17,17,10,9,24,63,25,25,9,22,16,11,
 6,1,1,14,16,34,26,48,57,62,37,20,6,4,10,50,17 # 2022
 ),
 
+# Intercalibration data from 2021 to 2024
+# IAS collected with the MP electrofishing gear
+# The sites are : Olha, Betrienea, conf Sorrimenta, Min Zahara
+CPUE_inter=structure(.Data=c(
+164,50,167,93, #2021
+28,61,61,9 #2022
+),.Dim = c(2,4)),
+
 # Deversement d'alevins par zone. 8 zones. 
 # MISE A JOUR en rajoutant une ligne de NA (no more releases since 2009). 
 # /!\ Besoin de changer la dimension de la matrice aussi de AL[Y_last, nbre zone]

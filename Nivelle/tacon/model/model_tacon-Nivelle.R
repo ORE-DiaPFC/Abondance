@@ -1,10 +1,11 @@
 ################################################################################
 ###  Observation model for electric fishing data of juveniles                ###
 ###                       Salmo salar - Nivelle                              ###
-##                Model from M?lanie Brun et al. 2011                        ###
+##                Model from Melanie Brun et al. 2011                        ###
 ###                  Annotated by Sabrina Servanty  ( February 2014)         ###
 ################################################################################
-
+# 2023:
+# - inclusion intercalibration pulsium (k_inter, k_cpue_Puls)
 model {
 
 #########################################
@@ -292,6 +293,8 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 ## ------
 
    k_cpue ~ dgamma(1,0.01) #  coefficient of proportionality between mean CPUE and density
+# k_cpue corresponds to the MP electrofishing used until 2020
+# From 2021, this is changed to Pulsium : see new code added in 2023 below  
    rho_s ~ dgamma(1,1) # nonlinear relationshihp between flow and surface
    p_cpue ~ dbeta(2,2) # this non informative prior is excluding extreme value
    eta_cpue <- p_cpue/(1-p_cpue) # variance of a Bernouilli process
@@ -396,7 +399,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
 ##################
 ### CPUE only ###
-  for (i in 446:I) {
+  for (i in 446:715) {
   
   ## Pass
   CPUE[i] ~ dpois(lambda_cpue[i])
@@ -412,6 +415,37 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   Lmu_s_rec[i] <- log(Q[i]/Q_85[i])*rho_s + log(S[i]) 
   } ## End of loop over sites
 
+# From 2021 to end, new electrofishing gear MP -> Pulsium
+# kcpue changes to k_cpue_Puls
+  k_cpue_Puls <- k_cpue * k_inter ; k_inter <- exp(log_k_inter); log_k_inter ~ dunif(-10,10) 
+  for (i in 716:I) {
+  
+  ## Pass
+  CPUE[i] ~ dpois(lambda_cpue[i])
+  lambda_cpue[i] ~ dgamma(zeta_cpue[i],eta_cpue)I(0.001,)
+  zeta_cpue[i] <- k_cpue_Puls*dj_rec[i]*eta_cpue
+
+  ## Recent density
+  dj_rec[i] <- (dj[i]*S[i])/S_rec[i]
+
+  ## Link between recent surface and surface in 1985
+  LS_rec[i] ~ dnorm(Lmu_s_rec[i],prec_s_rec)
+  S_rec[i] <- exp(LS_rec[i])
+  Lmu_s_rec[i] <- log(Q[i]/Q_85[i])*rho_s + log(S[i]) 
+  } ## End of loop over sites
+
+# From 2021 to 2024, 4 sites were electrofished every year with the former gear (MP) for intercalibration
+# The 4 sites are : Inra, Olha, Betrienea, Conf Sorrimenta
+  r[1] <- 4; r[2] <- 9; r[3] <- 11; r[4] <- 13 # Sites numbers
+  for (y in 1:2) { # incrementer pour chaque annee d'intercalibration
+       for (s in 1:4) {
+  ## Pass
+  CPUE_inter[y,s] ~ dpois(lambda_cpue_inter[y,s])
+  lambda_cpue_inter[y,s] ~ dgamma(zeta_cpue_inter[y,s],eta_cpue)I(0.001,)
+  k[y,s] <- 715 + (y-1) *17 + r[s]
+  zeta_cpue_inter[y,s] <- k_cpue*dj_rec[k[y,s]]*eta_cpue # calculated with k_cpue for MP
+  } # End of loop over s
+  } # end loop y
 
 ## DENSITY
 ## -----------------------------------------------------------------------------

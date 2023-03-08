@@ -2,6 +2,6 @@
 # IAS collected with the MP electrofishing gear
 # The sites are : Olha, Betrienea, conf Sorrimenta, Min Zahara
 CPUE_inter[,1] CPUE_inter[,2] CPUE_inter[,3] CPUE_inter[,4]
-164            50             167            93
-28             61             61             9
+164            50             167            93 #2021
+28             61             61             9 #2022
 #END
