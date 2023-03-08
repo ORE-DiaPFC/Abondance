@@ -22,11 +22,11 @@
 # Cm_MP[t]: Annual number of marked smolt captured at Moulin des Princes
 # Cum_MP[t]: Annual number of unmarked smolt captured at Moulin des Princes
 # D_MP[t]: Annual number of dead smolt at Moulin des Princes
-# Q[t,i]: Mean flow observed from 1st April to May 10 for 1. Moulin des Princes and 2. Moulin de Lesl?
+# Q[t,i]: Mean flow observed from 1st April to May 10 for 1. Moulin des Princes and 2. Moulin de Lesle
 ########################################################################
 # NOTATION:
-# i: trap, 1: Moulin des Princes; 2: Moulin de Lesl?
-# p_ML[t]: annual trap efficiency for capturing smolt at Moulin de Lesl?
+# i: trap, 1: Moulin des Princes; 2: Moulin de Lesle
+# p_ML[t]: annual trap efficiency for capturing smolt at Moulin de Lesle
 # p_MP[t]: annual trap efficiency for capturing smolt at Moulin des Princes
 # lambda[t]: annual mean smolt population size (mean of Poisson distribution)
 # Ntot[t]: annual total smolt population size 
@@ -69,7 +69,7 @@ var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 ############################################################################################
 ###############     Hyperparameters for p1c (proportion of 1 year old smolt by cohort)
 ############################################################################################
-# Prior pour que s1 et s2 soient sup?rieurs ? 1 et que le prior sur p1c soit faiblement informatif
+# Prior pour que s1 et s2 soient superieurs a 1 et que le prior sur p1c soit faiblement informatif
 l1 ~ dbeta(1,2); l2 ~ dbeta(1,2)
 s1 <- 1+(l1*100); s2 <- 1+(l2*100)
 
@@ -91,7 +91,7 @@ s1 <- 1+(l1*100); s2 <- 1+(l2*100)
 ############################################################################################
 ######## Probabilities of capture at the traps
 ############################################################################################   
-############# Probability of capture at MP during the first 2 years (no lesl? trap)
+############# Probability of capture at MP during the first 2 years (no lesle trap)
 for (t in 1:2) {  # first 2 years, Lesle is not installed
     logit_mupi[t,1] <- logit_int[1] + logit_flow[1] * stlogQ[t,1]
     logit_pi[t,1] ~ dnorm(logit_mupi[t,1],precp[1])
@@ -161,14 +161,14 @@ for (t in 1:2) { # 1995 and 1996
   p1y[2] <- p1c[2]*N[2]/(p1c[2]*N[2]+(1-p1c[1])*N[1])
 
 ###############################################
-# Captures at Moulin de Lesl?
+# Captures at Moulin de Lesle
 ################################################  
 for (t in 3:Nyears) {
     C_ML[t] ~ dbin(p_ML[t],Ntot[t])       
     num_ML[t] <- Ntot[t] - C_ML[t] + Cum_ML[t] - D_ML[t] # total unmarked fish 
 
 ###############################################
-# Captures at Moulin des Princes since Lesl? is installed (1997)
+# Captures at Moulin des Princes since Lesle is installed (1997)
 ################################################ 
     Cm_MP[t] ~ dbin(p_MP[t],Cm_ML[t]) # marked fish 
     Cum_MP[t] ~ dbin(p_MP[t], num_ML[t]) #unmarked fish
