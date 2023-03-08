@@ -57,7 +57,7 @@ inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt"
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,"_rev.R",sep="") # path of the model
+model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
 if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
@@ -156,7 +156,8 @@ source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
 
-
+traplot(fit, "log_k_inter")
+traplot(fit, "k_cpue_Puls")
 
 
 # DIAGNOSTICS:

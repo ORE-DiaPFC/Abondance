@@ -25,6 +25,8 @@ hyperparameters <-c(
   ,"rho_s"  # nonlinear relationshihp between flow and surface
   ,"sd_s_rec" # Standard deviation of the recent surface of stations
   ,"p_cpue" # Non informative prior used to parameterize mean CPUE 
+  ,"k_cpue_Puls" # # Coefficient of proportionality for CPUE using Pulsium
+  ,"log_k_inter"
 ) 
 
 
