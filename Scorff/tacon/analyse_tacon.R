@@ -57,7 +57,7 @@ inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt"
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
+model <- paste("model/model_",stade,"-",site,"_ln_rev.R",sep="") # path of the model
 if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
@@ -70,7 +70,7 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=100 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=300 # Number of steps to "thin" (1=keep every step).
+nthin=1 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###

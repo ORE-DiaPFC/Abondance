@@ -10,6 +10,7 @@ parameters <-c(
   ,"mu_d"
   ,"sigma_d"
   #,"rate_d"
+  ,"log_k_inter"
   
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS

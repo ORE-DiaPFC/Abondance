@@ -183,6 +183,7 @@ for (j in 1:Nstation) {
 ########################
 ### CPUE and density
 ##########################
+k_inter <- exp(log_k_inter); log_k_inter ~ dunif(-10,10) # coeffcient intercalibration pulsium
 for (j in 1:Nstation) {
    for (t in 1:27) {  
         lwidth_Sc[j,t] <- log(W_Sc[j,t]) # log transformation of river' width at each site
@@ -206,7 +207,7 @@ for (j in 1:Nstation) {
         CPUE_Sc[j,t] ~ dpois(lambdaSc_cpu2[j,t])
 
         mul_cpuSc[j,t] <- k_cpuSc[j,t] * d_Sc[j,t] * k_inter # mean lambda_cpu modified to account for change in fishing gear
-        k_inter <- exp(log_k_inter); log_k_inter ~ dunif(-10,10) # conversion factor for change from MP to Pulsium 
+ # conversion factor for change from MP to Pulsium 
         shape_lcpuSc[j,t] <- mul_cpuSc[j,t] * rate_lcpu_cut   # shape parameter of the gamma distribution for lambda_cpu
         lambdaSc_cpu[j,t] ~ dgamma(shape_lcpuSc[j,t],rate_lcpu_cut)I(0.001,)
         lambdaSc_cpu2[j,t] <- max(0.001,lambdaSc_cpu[j,t]) # try to avoid error on lambda_cpu  
@@ -221,7 +222,7 @@ for (m in 1:6) {
    
         CPUE_Sc_inter[m,l] ~ dpois(lambdaSc_cpu_inter[m,l])
 
-        mul_cpuSc_inter[m,l] <- k_cpuSc[r[m]],y[m,l]] * d_Sc[r[m]],y[m,l]] # mean lambda_cpu modified for MP
+        mul_cpuSc_inter[m,l] <- k_cpuSc[r[m],y[m,l]] * d_Sc[r[m],y[m,l]] # mean lambda_cpu modified for MP
         shape_lcpuSc_inter[m,l] <- mul_cpuSc_inter[m,l] * rate_lcpu_cut   # shape parameter of the gamma distribution for lambda_cpu
         lambdaSc_cpu_inter[m,l] ~ dgamma(shape_lcpuSc_inter[m,l],rate_lcpu_cut)I(0.001,)
 #        lambdaSc_cpu_inter[j,t] <- max(0.001,lambdaSc_cpu[j,t]) # try to avoid error on lambda_cpu  

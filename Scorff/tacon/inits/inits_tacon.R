@@ -41,6 +41,7 @@ inits_fix <- list(
               ,sigma_dSc = runif(1,.2,.5)#0.3269
               ,sigma_siteSc = runif(1,.5,.9)#0.7041
               ,sigma_ySc = runif(1,.3,.5)#0.4286
+              ,log_k_inter=0
               
 
               ,d = c(

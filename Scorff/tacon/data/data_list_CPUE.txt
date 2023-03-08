@@ -38,7 +38,7 @@ Q = c(2.178947368	,
 1.1574750	,
 0.75175		,
 1.00809756	,
-0,634731707	#2022 les autres débits devront être mis à jour
+0.634731707	#2022 les autres débits devront être mis à jour
 ),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995 et 2010
@@ -73,7 +73,7 @@ Q95_10 = c(1.197947368	,
 0.670285714	,
 0.670285714	,
 0.670285714	,
-0.670285714	,# 2022
+0.670285714	# 2022
 ),
 
 # D?bit moyen observ? lors de la caract?risation des habitats en 1995

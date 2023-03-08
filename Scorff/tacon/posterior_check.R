@@ -7,6 +7,7 @@ hyperparameters <-c(
   ,"width_coef" # proportional coefficient with width
   ,"rate_lcpu" # inverse scale of gamma distribution
   ,"p_cpue"
+  ,"log_k_inter"
   
   ######### ABUNDANCE INDEX SCORFF
   ## HYPER PARAMETERS

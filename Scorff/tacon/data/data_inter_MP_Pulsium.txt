@@ -7,4 +7,4 @@ CPUE_Sc_inter[,1]  CPUE_Sc_inter[,2]  CPUE_Sc_inter[,3]
 15                 26                 31
 11                 5                  4
 13                 24                 19
-END
+#END
