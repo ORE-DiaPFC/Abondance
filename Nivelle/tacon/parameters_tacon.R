@@ -49,4 +49,7 @@ parameters <- c(
 # When compensation or restocking is occuring
 ,"dj_nat" # density per station issued from natural reproduction
 ,"dj_comp"  # density per station issued from compensation
+
+,"k_cpue_Puls" # # Coefficient of proportionality for CPUE using Pulsium
+,"log_k_inter"
 )

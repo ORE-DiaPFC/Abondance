@@ -32,4 +32,5 @@ Cm_F[,1]	Cm_F[,2]	Cum_F[,1]	Cum_F[,2]
 5	3	5	7
 0	0	0	5
 4	0	1	1 #2021
+0	2	0	8 #2022 (1 PHM Marqué et 4 PHM non marqués de sûr. Proportion appliquée sur les 5 autres poissons restants)
 #END 

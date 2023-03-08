@@ -51,7 +51,8 @@ eta_gamma_dj = c(NA, NA, NA, 10, 10),
   sd_s_rec = runif(1,.3,.6),#0.5465, 
   xi_dj = c(NA,4.01),              
   zeta_alpha_dj = runif(1,3,5),#4.152,  
-  zeta_gamma_dj = c(NA, NA, NA, 10, 10)
+  zeta_gamma_dj = c(NA, NA, NA, 10, 10),
+log_k_inter=0 # coeffcient proportion interccalibration pulsium
 )
 
 ###################################################

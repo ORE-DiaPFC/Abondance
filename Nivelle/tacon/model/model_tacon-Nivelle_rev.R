@@ -435,15 +435,16 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
 # From 2021 to 2024, 4 sites were electrofished every year with the former gear (MP) for intercalibration
 # The 4 sites are : Inra, Olha, Betrienea, Conf Sorrimenta
-  r[1] -> 4; r[2] -> 9; r[3] -> 11; r[4] -> 13 # Sites numbers
+  r[1] <- 4; r[2] <- 9; r[3] <- 11; r[4] <- 13 # Sites numbers
   for (y in 1:Y) {
        for (s in 1:4) {
   ## Pass
   CPUE_inter[y,s] ~ dpois(lambda_cpue_inter[y,s])
   lambda_cpue_inter[y,s] ~ dgamma(zeta_cpue_inter[y,s],eta_cpue)I(0.001,)
-  zeta_cpue_inter[y,s] <- k_cpue*dj_rec[k]*eta_cpue # calculated with k_cpue for MP
   k <- 715 + (y-1) *17 + r[s]
-  } ## End of loop over sites
+  zeta_cpue_inter[y,s] <- k_cpue*dj_rec[k]*eta_cpue # calculated with k_cpue for MP
+  } # End of loop over s
+  } # end loop y
 
 ## DENSITY
 ## -----------------------------------------------------------------------------

@@ -53,7 +53,9 @@ model {
     logit_effort_R[a] ~ dunif(-10,10) # slope for recapture effort
     logit_flow_R[a] ~ dunif(-10,10) # slope for flow in December 
     # Probility of recapture by electrofishinh odureing spwaning (only 2020 so far) 
-    pi_R_pulsium[27,a]~dbeta(1,1)    
+    for (t in 27:Y) {
+    pi_R_pulsium[t,a]~dbeta(1,1)    
+    }
     # Probabilities to die from fishing or not depends on marked satstus and on sea age.
     for (u in 1:2) {
       # Probability to die not from fishing
@@ -433,6 +435,13 @@ model {
       ## Unmarked fish
       e_um_bis[27,a] <- e_um[27,a]- Cum_R[27,a]
       Cum_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_um_bis[27,a])
+      
+      e_m_bis[29,a] <- e_m[29,a]- Cm_R[29,a]
+      p_bis[29,a] <- pi_R_pulsium[29,a]/(1-pi_R[29,a])
+      Cm_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_m[29,a])
+      ## Unmarked fish
+      e_um_bis[29,a] <- e_um[29,a]- Cum_R[29,a]
+      Cum_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_um_bis[29,a])
       } # end of loop over sea age
 #} # end of loop over years
 
