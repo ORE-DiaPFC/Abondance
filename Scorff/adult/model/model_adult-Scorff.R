@@ -426,7 +426,7 @@ model {
       } # end of loop over sea age
   } # end of loop over years
 
- ## Electric fishing used from 2020 modeled as a multinomial with two recature events   
+ ## Electric fishing used from 2020 modeled as a multinomial with two recapture events   
 #      for (t in 27:Y) {       
       for (a in 1:2) {
       e_m_bis[27,a] <- e_m[27,a]- Cm_R[27,a]
