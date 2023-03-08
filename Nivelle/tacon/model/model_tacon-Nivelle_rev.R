@@ -435,7 +435,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
 # From 2021 to 2024, 4 sites were electrofished every year with the former gear (MP) for intercalibration
 # The 4 sites are : Inra, Olha, Betrienea, Conf Sorrimenta
-  r[1] -> 3; r[2] -> 4; r[3] -> 9; r[4] -> 11 # Sites numbers
+  r[1] -> 4; r[2] -> 9; r[3] -> 11; r[4] -> 13 # Sites numbers
   for (y in 1:Y) {
        for (s in 1:4) {
   ## Pass
