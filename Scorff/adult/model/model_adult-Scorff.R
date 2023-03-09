@@ -427,23 +427,30 @@ model {
   } # end of loop over years
 
  ## Electric fishing used from 2020 modeled as a multinomial with two recature events   
-#      for (t in 27:Y) {       
+      for (t in 27:Y) {       
       for (a in 1:2) {
-      e_m_bis[27,a] <- e_m[27,a]- Cm_R[27,a]
-      p_bis[27,a] <- pi_R_pulsium[27,a]/(1-pi_R[27,a])
-      Cm_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_m[27,a])
-      ## Unmarked fish
-      e_um_bis[27,a] <- e_um[27,a]- Cum_R[27,a]
-      Cum_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_um_bis[27,a])
-      
-      e_m_bis[29,a] <- e_m[29,a]- Cm_R[29,a]
-      p_bis[29,a] <- pi_R_pulsium[29,a]/(1-pi_R[29,a])
-      Cm_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_m[29,a])
-      ## Unmarked fish
-      e_um_bis[29,a] <- e_um[29,a]- Cum_R[29,a]
-      Cum_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_um_bis[29,a])
+        e_m_bis[t,a] <- e_m[t,a]- Cm_R[t,a]
+        p_bis[t,a] <- pi_R_pulsium[t,a]/(1-pi_R[t,a])
+        Cm_R_pulsium[t,a] ~ dbin(p_bis[t,a],e_m[t,a])
+        ## Unmarked fish
+        e_um_bis[t,a] <- e_um[t,a]- Cum_R[t,a]
+        Cum_R_pulsium[t,a] ~ dbin(p_bis[t,a],e_um_bis[t,a])
+        
+      # e_m_bis[27,a] <- e_m[27,a]- Cm_R[27,a]
+      # p_bis[27,a] <- pi_R_pulsium[27,a]/(1-pi_R[27,a])
+      # Cm_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_m[27,a])
+      # ## Unmarked fish
+      # e_um_bis[27,a] <- e_um[27,a]- Cum_R[27,a]
+      # Cum_R_pulsium[27,a] ~ dbin(p_bis[27,a],e_um_bis[27,a])
+      # 
+      # e_m_bis[29,a] <- e_m[29,a]- Cm_R[29,a]
+      # p_bis[29,a] <- pi_R_pulsium[29,a]/(1-pi_R[29,a])
+      # Cm_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_m[29,a])
+      # ## Unmarked fish
+      # e_um_bis[29,a] <- e_um[29,a]- Cum_R[29,a]
+      # Cum_R_pulsium[29,a] ~ dbin(p_bis[29,a],e_um_bis[29,a])
       } # end of loop over sea age
-#} # end of loop over years
+} # end of loop over years
 
   ############
   # ESCAPEMENT

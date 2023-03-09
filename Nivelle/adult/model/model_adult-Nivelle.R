@@ -20,8 +20,8 @@ model {
 # Since 2012, not every fish is captured (and so for 2000). Data observed are Cm_O and Cum_O.
 # Until 2011, escapment was perfectly known which is not the case since 2012. We're introducing new data corresponding to the sum of the fish removed from the population (e.g., removed for experiment) or added to the population (case of 2000 for instance) = net balance.
 # Introducing new data corresponding to the ratio of the number of nights of trapping realized every year since 2012 (and 2000) over the mean number of nights of trapping over the period (1994 to 2011 without 2000). 1992 and 1993 are not included because captures were not done during the full period but effort is considered to be one for those two years because the trap was working when fish are passing in UN.
-# Since 2018 the reduction in trapping effort is modeled hiererchically with a variation and a systematic diffrential between 
-# the proportion of days with trapping and the actual probability of capture. 
+# Since 2018 the reduction in trapping effort is modeled hiererchically with a variation and exponential relationship between 
+# the actual probability of capture and the proportion of days with trapping. 
 # The differntial do not apply to 2000 for Olha as that year is not equivalent to the others : very few days of trappinga and targeting on days with favourable flows     
 ############################################################################################
 # Since 2018 all the precison parameters are modeled hierarchically with a common gamma distribution
@@ -195,11 +195,13 @@ for (a in 1:2) {
     eps_U[t,a] <- (logit_pi_U[t,a] - logit_mupi_U[a]) / sigmapi_U[a] # standardized residuals
     } ## End of loop over years
 
+  exp_d_pi_U[a] <- exp(d_pi_U[a]) # mb+ep 2023
   for (t in 29:Y) { ## from 2012 to now. Partial trapping
      pi_U_mupi[t,a] <- exp(logit_mupi_U[a])/(1+exp(logit_mupi_U[a]))  # back-transformation on the probability scale    
-     pi_U_eff[t,a] <- pi_U_mupi[t,a] *  eff_Ux[t]  # eff_Ux is a ratio (data)
+     #pi_U_eff[t,a] <- pi_U_mupi[t,a] *  eff_Ux[t]  # eff_Ux is a ratio (data)
+     pi_U_eff[t,a] <- pi_U_mupi[t,a] *  pow(eff_Ux[t], exp_d_pi_U[a])  # eff_Ux is a ratio (data) # mb+ep 2023
  #logit transformation of the probability of capture with a systematic diffrential
-     lpi_U[t,a] <- log(pi_U_eff[t,a]/(1-pi_U_eff[t,a]))+d_pi_U[a]        
+     lpi_U[t,a] <- log(pi_U_eff[t,a]/(1-pi_U_eff[t,a]))#+d_pi_U[a]        
      logit_pi_U[t,a] ~ dnorm(lpi_U[t,a],precpi_U[a])
      pi_U[t,a] <- exp(logit_pi_U[t,a])/(1+exp(logit_pi_U[t,a])) # back-transformation on the probability scale 
      eps_U[t,a] <- (logit_pi_U[t,a] - lpi_U[t,a]) / sigmapi_U[a] # standardized residuals
@@ -426,9 +428,12 @@ for (t in 1:Y) {
      logit_pi_Ol[17] ~ dnorm(lpi_Ol[17],precpi_Ol)
      pi_Ol[17]<- exp(logit_pi_Ol[17])/(1+exp(logit_pi_Ol[17])) # back-transformation on the probability scale 
      eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
+     
+     exp_d_pi_Ol <- exp(d_pi_Ol) # mb+ep 2023
   for (t in 29:Y) {
 # logit transformation of probability of capture at Olha wher eff_Ux which is a ratio (data) and d_pi_Ol is a systematic differential    
-     lpi_Ol[t] <- log(eff_Ol[t]/(1-eff_Ol[t]))+d_pi_Ol
+    eff_Ol_d[t] <- pow(eff_Ol[t], exp_d_pi_Ol) # mb+ep 2023
+    lpi_Ol[t] <- log(eff_Ol_d[t]/(1-eff_Ol_d[t]))#+d_pi_Ol # mb+ep 2023
      logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
      pi_Ol[t]<- exp(logit_pi_Ol[t])/(1+exp(logit_pi_Ol[t])) # back-transformation on the probability scale 
      eps_Ol[t] <- (logit_pi_Ol[t] - lpi_Ol[t]) / sigmapi_Ol # standardized residuals

@@ -2,7 +2,7 @@ list(
 
 # Nombre d'ann?es de suivi depuis 1993
 # Devra ?tre mis ? jour
-Nyear = 29, # 2022
+Nyear = 30, # 2022
 
 # Q est la moyenne pond?r?e du d?bit annuel (m3/s). 
 # Pond?r? par le nombre de stations ?chantillonn?es un jour X une ann?e Y

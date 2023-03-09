@@ -147,39 +147,64 @@ model {
    diff_fall <- lflow_fall_Eu[1] - lflow_fall_Eu[2]
    test[6] <- step(diff_fall) # is difference in slope in fall >=0 for 1SW? (1SW>MSW)
 
+   ### Proportion of days the trap was operational per month from December to March (mb+ep 2023)
+   for (j in 1:4){ alpha[j] <- 1}
+   p_dev[1:4] ~ ddirch(alpha[1:4]) # proba devalaison becard pour chaque mois de decembre à mars
+   for (t in 1:Y) { # loop over years
+   for (j in 1:4){ # 4 month (December to March)
+     eff_B_p[t,j] <- p_dev[j]*R_B[t,j] # piegeage efficace pondere
+   } # end loop j
+     eff_B[t] <- sum(eff_B_p[t,1:4])
+   } # end loop t
+
+   
    ### Probabilities to be captured at Beauchamps after reproduction (time and sea age dependent)
   for (a in 1:2) {
     logit_mupi_B[a] <- log(mupi_B[a]/(1-mupi_B[a])) # logit transformation
     #varpi_B[a] <- (sigmapi_B[a])*(sigmapi_B[a]) 
     precpi_B[a] <- 1/(varpi_B[a]) # precision
-    
+
     for (t in 1:5) { ## pi_B: Exchangeable from 1984 to 1988
       logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
       pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+      pi_B_eff[t,a] <- pi_B[t,a] * eff_B[t] # Effective probabilities to be captured at Beauchamps (mb+ep 2023)
       } ## End of loop over years
       
     pi_B[6,a] <- 0 # Trap not working in 1989
-  
-    for (t in 7:9) { ## pi_B: Exchangeable from 1990 to 1992
-      logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
-      pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+    pi_B_eff[6,a] <- pi_B[6,a] * eff_B[6] # Effective probabilities to be captured at Beauchamps (mb+ep 2023)
+    
+      for (t in 7:Y) { ## pi_B: Exchangeable from 1990 to now on
+        logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
+        pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+        pi_B_eff[t,a] <- pi_B[t,a] * eff_B[t] # Effective probabilities to be captured at Beauchamps (mb+ep 2023)
       } ## End of loop over years
     
-    pi_B[10,a] <- 0 # Trap not working in 1993
+  } # end of loop over sea age
     
-    for (t in 11:16) { ## pi_B: Exchangeable from 1994 to 1999
-      logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
-      pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
-    } ## End of loop over years
-    
-    pi_B[17,a] <- 0 # Trap not working in 2000
-    pi_B[18,a] <- 0 # Trap not working in 2001
-    
-    for (t in 19:Y) { ## pi_B: Exchangeable from 2002 to now on
-      logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
-      pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
-      } ## End of loop over years
-    } # end of loop over sea age
+    # for (t in 7:9) { ## pi_B: Exchangeable from 1990 to 1992
+    #   logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
+    #   pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+    #   pi_B_eff[t,a] <- pi_B[t,a] * eff_B[t] # Effective probabilities to be captured at Beauchamps 
+    #   } ## End of loop over years
+    # 
+    # pi_B[10,a] <- 0 # Trap not working in 1993
+    # 
+    # for (t in 11:16) { ## pi_B: Exchangeable from 1994 to 1999
+    #   logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
+    #   pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+    #   pi_B_eff[t,a] <- pi_B[t,a] * eff_B[t] # Effective probabilities to be captured at Beauchamps 
+    #   } ## End of loop over years
+    # 
+    # pi_B[17,a] <- 0 # Trap not working in 2000
+    # pi_B[18,a] <- 0 # Trap not working in 2001
+    # 
+    # for (t in 19:Y) { ## pi_B: Exchangeable from 2002 to now on
+    #   logit_pi_B[t,a] ~ dnorm(logit_mupi_B[a],precpi_B[a])
+    #   pi_B[t,a] <- exp(logit_pi_B[t,a])/(1+exp(logit_pi_B[t,a]))  # back-transformation on the probability scale
+    #   pi_B_eff[t,a] <- pi_B[t,a] * eff_B[t] # Effective probabilities to be captured at Beauchamps 
+    #   } ## End of loop over years
+    #} # end of loop over sea age
+   
     
   ######################################################################################################################################
   ######################################################################################################################################
@@ -285,11 +310,9 @@ model {
   for (a in 1:2) {
       for (t in 1:Y) {
          ## Marked fish
-         Cm_B[t,a] ~ dbin(pi_B[t,a],Cm_Eu[t,a])
-         # Cm_B[t,a] ~ dbin(pi_B[t,a]*eff_B[t],Cm_Eu[t,a]) # eff_B is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to today (data)
+         Cm_B[t,a] ~ dbin(pi_B_eff[t,a],Cm_Eu[t,a])
          ## Unmarked fish
-         Cum_B[t,a] ~ dbin(pi_B[t,a],n_um[t,a])
-         #Cum_B[t,a] ~ dbin(pi_B[t,a]*eff_B[t],n_um[t,a]) # eff_B is the ratio of the number of trapping nights over the mean number of nights of trapping from 1984 to today (data)
+         Cum_B[t,a] ~ dbin(pi_B_eff[t,a],n_um[t,a])
          } # end of loop over years
       
   } # end of loop over sea age

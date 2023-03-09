@@ -41,5 +41,17 @@ caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",1]"), reorder = FALSE, horizo
 caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
+# N 
+caterplot(fit.mcmc,paste0("n_tot[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
+par(mfrow=c(2,1))
+# 1SW
+caterplot(fit.mcmc,paste0("n_1SW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+# MSW
+caterplot(fit.mcmc,paste0("n_MSW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
 dev.off()
 

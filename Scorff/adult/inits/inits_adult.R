@@ -277,6 +277,12 @@ logit_pi_R[is.na(logit_pi_R)] <- -1.5 # si NA, mettre -1.5
 logit_pi_R[logit_pi_R =="-Inf"] <- -1.5 # si NA, mettre -1.5
 
 
+pi_R_pulsium=array(,dim=c(data$Y,2))
+for (t in 27:data$Y) {
+   pi_R_pulsium[t,1] <- 0.1    
+   pi_R_pulsium[t,2] <- 0.1 
+}
+
 
 inits_fix <- list(
   lambda_tot0 = lambda_tot0,
@@ -319,6 +325,7 @@ inits_updated <- list(
   ,n=n
   ,um_D=um_D
   ,Cum_Fb=Cum_Fb,Cm_Fb=Cm_Fb
+  ,pi_R_pulsium=pi_R_pulsium
 )
 
 inits <- list(c( inits_fix,inits_updated))

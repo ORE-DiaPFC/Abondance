@@ -12,11 +12,11 @@ stade <- "tacon"
 ##-----------------------------DATA ----------------------------------##
 fish <- read.bugsdata(paste("data/data_list_CPUE.txt",sep=""))
 
-
 ### Intercalibration Martin/Pulsium
 ## En ligne, les 6 stations d'intercalibration et les années en colonne (2020 à Y)
 CPUE_Sc_inter <- read.table(paste("data/data_inter_MP_Pulsium.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
 CPUE_Sc_inter <- as.matrix(CPUE_Sc_inter);mode(CPUE_Sc_inter)<- "numeric"
+
 
 ##################################################################################################################################################																						
 ## Il s'agit ici de la largeur (en m?tre) au niveau des stations IA avec les stations en ligne et les ann?es en colonne

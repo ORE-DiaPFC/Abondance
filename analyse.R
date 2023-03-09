@@ -58,7 +58,7 @@ inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+#if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -137,7 +137,7 @@ save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
 ## Check if enough independent samples
 test <-  any(fit$summary[,"n.eff"]<1000)
-try(if(iter > 10) stop("too many iterations"))
+#try(if(iter > 10) stop("too many iterations"))
 
 mydf <- as.matrix(round(fit$summary,3))
 mydf <- cbind(rownames(mydf), mydf)

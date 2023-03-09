@@ -18,6 +18,13 @@ stade <- "adult"
 ## DATA DIRECTORY:
 list <- read.bugsdata(paste("data/data_list.txt",sep="/"))
 
+
+
+#R_B <- read.table(paste("data/","data_p_operation_Beauchamp.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#R_B <- as.matrix(R_B);mode(R_B)<- "numeric"
+
+
+
 ######################################################################################
 ##  Cm_B[t,a]: Annual number of marked fish captured at Beauchamps per sea age category; 1: 1SW, 2: MSW    
 ##  Cum_B[t,a]: Annual number of unmarked fish captured at Beauchamps per sea age category; 1: 1SW, 2: MSW 
@@ -41,13 +48,13 @@ Cm_Eu=as.matrix(Eu[,3:4])
 ## - 15 april - 30 june for MSW  ([,2])    
 ## Covariate is standardized within WinBUGS
 ###################################################################################################################################### 
-Q <- read.table(paste("data/","data_flow_sea-age.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
-Q <- as.matrix(Q);mode(Q)<- "numeric"
+#Q <- read.table(paste("data/","data_flow_sea-age.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#Q <- as.matrix(Q);mode(Q)<- "numeric"
 
-stlogQ=logQ=Q
+stlogQ=logQ=list$Q
 for (a in 1:2) { 
-logQ[,a] <- log(Q[,a]) # ln transformation of covariate
-stlogQ[,a] <- (logQ[,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
+  logQ[,a] <- log(list$Q[,a]) # ln transformation of covariate
+  stlogQ[,a] <- (logQ[,a] - mean(logQ[,a]))/sd(logQ[,a]) # standardized covariate
 }
 
 lQ2pic <- log(list$Q2pic) # ln transformation of autumn covariate
@@ -59,8 +66,8 @@ data <- list(
   #, Q=Q, Q2pic=list$Q2pic
   , logQ=logQ, stlogQ=stlogQ
   , lQ2pic=lQ2pic,stlQ2pic=stlQ2pic
+  ,R_B=list$R_B
 )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données
 bugs.data(data,digits=3, data.file = paste0('data/data_',stade,"_",year,'.txt'))
-

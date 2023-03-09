@@ -15,6 +15,9 @@ parameters <-c(
   ,"p_Eu00_tot" # Global probability of capture in Eu in 2000
   ,"p_Eu01_tot" # Global probability of capture in Eu in 2001
   ,"pi_B" # Probability of capture in Beauchamps
+  ,"pi_B_eff"
+  ,"p_dev"
+  ,"eff_B"
   ,"logit_pi_B" # Probability of capture in Beauchamps logit scale
   
   # STATISTICS
@@ -41,4 +44,6 @@ parameters <-c(
   
   ,"lambda_tot" # Poisson parameter
   ,"Plambda" # Proportion distribution
+  
+  ,"eff_B" # proportion days Beauchamps was operationg
 )

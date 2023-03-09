@@ -58,7 +58,7 @@ inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
 model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+#if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
 filename <- file.path(work.dir, model)
@@ -68,9 +68,9 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=100 # Number of steps to "burn-in" the samplers.
+nburnin=1000 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=3 # Number of steps to "thin" (1=keep every step).
+nthin=200 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -137,7 +137,7 @@ save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
 ## Check if enough independent samples
 test <-  any(fit$summary[,"n.eff"]<1000)
-try(if(iter > 10) stop("too many iterations"))
+#try(if(iter > 10) stop("too many iterations"))
 
 mydf <- as.matrix(round(fit$summary,3))
 mydf <- cbind(rownames(mydf), mydf)
