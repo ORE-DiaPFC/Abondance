@@ -464,7 +464,6 @@ model {
   
   
   for (t in 1:Y){
-  
   # recaptured marked fish
   psi_1SW[t,1] <- (1 - piF_1SW[t,1]) * (1 - piD_1SW[t,1]) * pi_R[t,1]
   psi_MSW[t,1] <- (1 - piF_MSW[t,1]) * (1 - piD_MSW[t,1]) * pi_R[t,2]
