@@ -1,8 +1,8 @@
 ################################################################################
 ## ech_1SW_wild[t]: annual number of captured individuals 1SW of wild origin (sum of 1R/1SW and 2R/1SW)
 ## ech_MSW_wild[t]: annual number of captured individuals MSW of wild origin (sum of 1R/1SW and 2R/1SW)
-# Wild origin : not issuing from smolts releases (wild reproduction or released as YOY)
-# Only for the first 6 years affected by smolt releases
+## Wild origin : not issuing from smolts releases (wild reproduction or released as YOY)
+## Only for the first 6 years affected by smolt releases
 ## ech_1SW_tot[t]: annual number of captured individuals 1SW (sum of 1R/1SW and 2R/1SW)
 ## ech_1.1SW[t]: annual number of captured individuals 1R/1SW
 ## ech_MSW_tot[t]: annual number of captured individuals MSW (1R/2SW, 2R/2SW, 1R3SW, 2R3SW, second spawning)
@@ -13,12 +13,12 @@
 ## ech_MSW[,5]: annual number of captured individuals second spawning
 ################################################################################
 ech_1SW_wild[]  ech_MSW_wild[]  ech_1SW_tot[]	ech_1.1SW[]	ech_MSW_tot[]	ech_MSW[,1]	ech_MSW[,2]	ech_MSW[,3]	ech_MSW[,4]	ech_MSW[,5]
-15	12  127	11  19	9	3	0	0	0 #1984
+15  12  127	11  	19	9	3	0	0	0 #1984
 47  5   63	41	37	4	0	1	0	0 #1985
 139 20  225	127	31	11	8	0	0	1  #1986
 98  22  149	79	40	20	2	0	0	0  #1987
 63  20  77	57	26	16	4	0	0	0  #1988
-159	41  159	133 42	35	5	0	0	1 #1989
+159 41  159	133 	42	35	5	0	0	1 #1989
 NA  NA  203	173	32	26	6	0	0	0
 NA  NA  112	32	38	19	15	0	0	4
 NA  NA  172	128	43	24	13	0	0	6
