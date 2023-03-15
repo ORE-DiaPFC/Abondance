@@ -20,7 +20,7 @@ model {
     } ## End of loop over zones
 
 #############################################################################################
-## Released density of alevin (Dal) or alevins at the resorbed vesicle stage (Drv) in m-?ERR
+## Released density of alevin (Dal) or alevins at the resorbed vesicle stage (Drv) in m-2ERR
 ### Zone 3 is LN, zone 4 is HN, zone 5 is LUR, zone 7 is VHN, zone 8 is LAP
 ### AL is the number of alevins released per year and per zone
 ### RV is the number of alevins at the resorbed vesicle stage per year and per zone

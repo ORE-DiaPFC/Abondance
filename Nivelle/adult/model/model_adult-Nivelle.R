@@ -3,6 +3,7 @@
 ###                 of Salmo salar in Nivelle river.                         ###
 ###                  Sabrina Servanty & Etienne Prévost                      ###
 ###                          December 2014                                   ###
+###         Modified by Mathieu Buoro and Etienne Prévost since then         ###
 ################################################################################
 
 model {
@@ -22,7 +23,7 @@ model {
 # Introducing new data corresponding to the ratio of the number of nights of trapping realized every year since 2012 (and 2000) over the mean number of nights of trapping over the period (1994 to 2011 without 2000). 1992 and 1993 are not included because captures were not done during the full period but effort is considered to be one for those two years because the trap was working when fish are passing in UN.
 # Since 2018 the reduction in trapping effort is modeled hiererchically with a variation and exponential relationship between 
 # the actual probability of capture and the proportion of days with trapping. 
-# The differntial do not apply to 2000 for Olha as that year is not equivalent to the others : very few days of trappinga and targeting on days with favourable flows     
+# The differential do not apply to 2000 for Olha as that year is not equivalent to the others : very few days of trappinga and targeting on days with favourable flows     
 ############################################################################################
 # Since 2018 all the precison parameters are modeled hierarchically with a common gamma distribution
 ##########################################################################################
@@ -86,7 +87,9 @@ model {
 ##
 ## e_2[t,g]: annual breeding escapement in the high catchment zone (UN + LUR) per breeding category
 ##    = number of fish released upstream Olha = NA until 1989, in 2000 and since 2012
-## NB[t,g]: annual breeding escapement per breeding category in the high catchment zone added or removed in the HC zone = sum of the number of fish removed from the population and the number of fish released upstream Olah. Happened in 2000 and since 2012.
+## NB[t,g]: annual breeding escapement per breeding category in the high catchment zone added or removed in the HC zone
+##        = sum of the number of fish removed from the population and the number of fish released upstream Olha. 
+## Happened in 2000 and since 2012.
 ##
 ## Q[t]: annual mean December flow
 ##
@@ -94,6 +97,12 @@ model {
 ## eff_Ol[t] : ratio of the annual number of nights of trapping since 2012 (partial trapping) and for year 2000 over the mean number of nights of trapping in Olha from 1994 to 2011 (294 nights, year 1992, 1993 and 2000 are excluded)
 ##
 ## OMEGA[t,z]: annual redd count per zone. 1/ LN1 (from Ascain to Uxondoa), 2/ LN2 (from Uxondoa to Olha), 4/ UN, 5/ LUR /!\ Zone 3 does not exist!
+##
+## Changed in 2023 to estimate returns from wild juvenile production
+## ech_1SW_wild[t]: annual number of captured individuals 1SW of wild origin (sum of 1R/1SW and 2R/1SW)
+## ech_MSW_wild[t]: annual number of captured individuals MSW of wild origin (sum of 1R/1SW and 2R/1SW)
+## Wild origin : not issuing from smolts releases (wild reproduction or released as YOY)
+## Only for the first 6 years affected by smolt releases
 ##
 ## ech_1.1SW[t]: annual number of captured individuals 1R/1SW
 ## ech_1SW_tot[t]: annual number of captured individuals 1SW (sum of 1R/1SW and 2R/1SW)
@@ -124,10 +133,10 @@ mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 <- sqrt(1/precp_11_2) ; precp_11_2 ~ dgamma(
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
   mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] <- sqrt(1/precpi_U[a]) ; precpi_U[a] ~ dgamma(shape_prec,rate_prec)
-  d_pi_U[a] ~ dunif(-5,5) # diffrential in the probability of capture since 2012
+  d_pi_U[a] ~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
   } ## End of loop over fish ages
   sigmapi_Ol <- sqrt(1/precpi_Ol) ; precpi_Ol ~ dgamma(shape_prec,rate_prec)
-  d_pi_Ol ~ dunif(-5,5) # diffrential in the probability of capture since 2012
+  d_pi_Ol ~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
 mupi_EF ~ dbeta(1,1) ; sigmapi_EF <- sqrt(1/precpi_EF) ; precpi_EF ~ dgamma(shape_prec,rate_prec)
 
@@ -199,8 +208,9 @@ for (a in 1:2) {
   for (t in 29:Y) { ## from 2012 to now. Partial trapping
      pi_U_mupi[t,a] <- exp(logit_mupi_U[a])/(1+exp(logit_mupi_U[a]))  # back-transformation on the probability scale    
      #pi_U_eff[t,a] <- pi_U_mupi[t,a] *  eff_Ux[t]  # eff_Ux is a ratio (data)
-     pi_U_eff[t,a] <- pi_U_mupi[t,a] *  pow(eff_Ux[t], exp_d_pi_U[a])  # eff_Ux is a ratio (data) # mb+ep 2023
- #logit transformation of the probability of capture with a systematic diffrential
+# eff_Ux is a ratio (data) and its influence is amplified by an exponent (exp_d_pi_U[a]) 
+     pi_U_eff[t,a] <- pi_U_mupi[t,a] *  pow(eff_Ux[t], exp_d_pi_U[a])  # changed by mb+ep 2023
+ #logit transformation of the probability of capture with a systematic differential
      lpi_U[t,a] <- log(pi_U_eff[t,a]/(1-pi_U_eff[t,a]))#+d_pi_U[a]        
      logit_pi_U[t,a] ~ dnorm(lpi_U[t,a],precpi_U[a])
      pi_U[t,a] <- exp(logit_pi_U[t,a])/(1+exp(logit_pi_U[t,a])) # back-transformation on the probability scale 
@@ -423,20 +433,23 @@ for (t in 1:Y) {
 ## Male or female 1SW
 
 # In 2000 (17) and from 2012 (29) trapping is not continuous at Olha
-# Note : Contrary to Uxondoa, probaility of capture at Olha is 1 when there is no interruption of trapping      
+# 2000 is particular because of short window of trapping at Olha with a choice of favourable days for catching fish
+# Modeled differentely than the years from 2012
+# Note : Contrary to Uxondoa, probability of capture at Olha is 1 when there is no interruption of trapping      
      lpi_Ol[17] <- log(eff_Ol[17]/(1-eff_Ol[17])) # logit transformation of eff_Ux which is a ratio (data)
-     logit_pi_Ol[17] ~ dnorm(lpi_Ol[17],precpi_Ol)
+     logit_pi_Ol[17] ~ dnorm(lpi_Ol[17],0.25) # precpi_Ol) changed in 2023
      pi_Ol[17]<- exp(logit_pi_Ol[17])/(1+exp(logit_pi_Ol[17])) # back-transformation on the probability scale 
-     eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
+#     eps_Ol[17] <- (logit_pi_Ol[17] - lpi_Ol[17]) / sigmapi_Ol # standardized residuals
      
      exp_d_pi_Ol <- exp(d_pi_Ol) # mb+ep 2023
   for (t in 29:Y) {
-# logit transformation of probability of capture at Olha wher eff_Ux which is a ratio (data) and d_pi_Ol is a systematic differential    
+# eff_Ol is a ratio (data) and its influence is amplified by an exponent (exp_d_pi_Ol) 
     eff_Ol_d[t] <- pow(eff_Ol[t], exp_d_pi_Ol) # mb+ep 2023
+# logit transformation of probability of capture at Olha  
     lpi_Ol[t] <- log(eff_Ol_d[t]/(1-eff_Ol_d[t]))#+d_pi_Ol # mb+ep 2023
-     logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
-     pi_Ol[t]<- exp(logit_pi_Ol[t])/(1+exp(logit_pi_Ol[t])) # back-transformation on the probability scale 
-     eps_Ol[t] <- (logit_pi_Ol[t] - lpi_Ol[t]) / sigmapi_Ol # standardized residuals
+    logit_pi_Ol[t] ~ dnorm(lpi_Ol[t],precpi_Ol)
+    pi_Ol[t]<- exp(logit_pi_Ol[t])/(1+exp(logit_pi_Ol[t])) # back-transformation on the probability scale 
+    eps_Ol[t] <- (logit_pi_Ol[t] - lpi_Ol[t]) / sigmapi_Ol # standardized residuals
      }
 
 for (g in 1:2) { 
@@ -465,7 +478,7 @@ for (g in 1:2) {
   } ## End of loop over 1SW breeding category
 
 ##########################
-# Trapped marked male MSW number  (some years no marked male MSW was captured)
+# Trapped marked male MSW number (some years no marked male MSW was captured)
 # Year 1992
 nm_2[9,3] ~ dbin(p_n12[9,3],Cm_U[9,3])
 
