@@ -1,4 +1,4 @@
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 
 hyperparameters <-c(
@@ -28,9 +28,10 @@ hyperparameters <-c(
   ,"sigma_d"
   #,"rate_d"
   
+  ,"eps_ydSc"
   ####################
   # DENSITY
-  ,paste0("eps_ydSc[",1:data$Nyear,"]")
+ # ,paste0("eps_ydSc[",1:data$Nyear,"]")
  # ,paste0("year_dSc[",1:data$Nyear,"]") # annual year effect in density (log scale
  # ,"site_Sc" # site effect in density (log scale
   
@@ -48,22 +49,22 @@ hyperparameters <-c(
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
-rate_lcpu <- as.vector(fit.mcmc[,"rate_lcpu"][[1]])
-sigma_dSc <-  as.vector(fit.mcmc[,"sigma_dSc"][[1]])
+rate_lcpu <- as.vector(fit$sims.list$rate_lcpu)
+sigma_dSc <-  as.vector(fit$sims.list$sigma_dSc)
 plot(rate_lcpu, sigma_dSc)
 
-caterplot(fit.mcmc,"year_dSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,"site_Sc", reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit.mcmc,"eps_ydSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,"year_dSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,"site_Sc", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"eps_ydSc", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 #par(mfrow=c(2,1))
-#caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-#caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit,paste0("epsilon[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit,paste0("epsilon[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()
 

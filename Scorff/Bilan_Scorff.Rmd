@@ -11,7 +11,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
 site <- "Scorff"
-year <- 2021
+year <- 2022
 years <- seq(1993, year, 1)
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")

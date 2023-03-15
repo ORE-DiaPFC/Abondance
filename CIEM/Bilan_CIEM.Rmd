@@ -3,8 +3,8 @@ title: "Bilan_CIEM"
 author: "Mathieu Buoro & Etienne Prévost"
 date: "4/07/2022"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
   html_document: default
 ---
 
@@ -21,7 +21,7 @@ library(knitr)
 # ' Bresle: vérifier tx fecondité et sex-ratio
 
 dir <- ("/media/hdd4To/mbuoro/ORE-DiaPFC/")
-year <- 2021
+year <- 2022
 ```
 
 # Tables for ICES Working Group on North Atlantic Salmon (WGNAS)

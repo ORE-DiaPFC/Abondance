@@ -1,5 +1,5 @@
 
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 hyperparameters <-c(
   "pi_Eu00" # decrease in probability of capture in Eu in 2000
@@ -15,42 +15,58 @@ hyperparameters <-c(
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
+  
+  #,"pi_B_eff"
+  ,"p_dev"
+  #,"eff_B"
 ) 
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
-traplot(fit.mcmc, paste0("epsilon_Eu[",1:data$Y,",1]"))
-traplot(fit.mcmc, paste0("epsilon_Eu[",1:data$Y,",2]"))
+traplot(fit, paste0("epsilon_Eu[",1:data$Y,",1]"))
+traplot(fit, paste0("epsilon_Eu[",1:data$Y,",2]"))
 par(mfrow=c(2,1))
 # 1SW
-caterplot(fit.mcmc,paste0("epsilon_Eu[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_Eu[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 # MSW
-caterplot(fit.mcmc,paste0("epsilon_Eu[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_Eu[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
+caterplot(fit,paste0("eff_B[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # Capture proba. Beauchamps (logit scale)
 par(mfrow=c(2,1))
 # 1SW
-caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("logit_pi_B[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # MSW
-caterplot(fit.mcmc,paste0("logit_pi_B[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("logit_pi_B[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
+# Capture proba. Beauchamps effective
+par(mfrow=c(2,1))
+# 1SW
+caterplot(fit,paste0("pi_B_eff[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+# MSW
+caterplot(fit,paste0("pi_B_eff[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 # N 
-caterplot(fit.mcmc,paste0("n_tot[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("n_tot[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 par(mfrow=c(2,1))
 # 1SW
-caterplot(fit.mcmc,paste0("n_1SW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("n_1SW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # MSW
-caterplot(fit.mcmc,paste0("n_MSW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("n_MSW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 dev.off()

@@ -13,50 +13,6 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
-[[1]]
-                                            
-              Stationarity start     p-value
-              test         iteration        
-logit_int_MC  passed       1         0.2864 
-logit_flow_MC passed       1         0.7829 
-log_cess_MC   passed       1         0.4596 
-shape_lambda  passed       1         0.0585 
-rate_lambda   passed       1         0.1149 
-mean_gamma    passed       1         0.5901 
-var_gamma     passed       1         0.1897 
-                                           
-              Halfwidth Mean      Halfwidth
-              test                         
-logit_int_MC  passed     4.86e-01 3.38e-03 
-logit_flow_MC passed    -2.46e-01 3.33e-03 
-log_cess_MC   passed    -1.94e-01 8.52e-03 
-shape_lambda  passed     2.74e+00 4.37e-02 
-rate_lambda   passed     2.20e-03 3.87e-05 
-mean_gamma    passed     1.26e+03 3.18e+00 
-var_gamma     passed     6.20e+05 1.28e+04 
-
-[[2]]
-                                            
-              Stationarity start     p-value
-              test         iteration        
-logit_int_MC  passed          1      0.6478 
-logit_flow_MC passed          1      0.7771 
-log_cess_MC   passed          1      0.5541 
-shape_lambda  passed          1      0.0818 
-rate_lambda   passed          1      0.0625 
-mean_gamma    passed       1001      0.1794 
-var_gamma     passed          1      0.1170 
-                                           
-              Halfwidth Mean      Halfwidth
-              test                         
-logit_int_MC  passed     4.86e-01 2.73e-03 
-logit_flow_MC passed    -2.46e-01 3.52e-03 
-log_cess_MC   passed    -1.92e-01 8.50e-03 
-shape_lambda  passed     2.77e+00 4.22e-02 
-rate_lambda   passed     2.22e-03 3.73e-05 
-mean_gamma    passed     1.26e+03 3.09e+00 
-var_gamma     passed     6.11e+05 1.20e+04 
-
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -67,62 +23,6 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
-[[1]]
-
-Fraction in 1st window = 0.1
-Fraction in 2nd window = 0.5 
-
- logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda 
-      -0.4245        2.3937        0.4259       -1.2473 
-  rate_lambda    mean_gamma     var_gamma 
-      -0.9996       -1.1789        0.9255 
-
-
-[[2]]
-
-Fraction in 1st window = 0.1
-Fraction in 2nd window = 0.5 
-
- logit_int_MC logit_flow_MC   log_cess_MC  shape_lambda 
-      -1.2492       -0.8017       -0.8778       -2.3652 
-  rate_lambda    mean_gamma     var_gamma 
-      -2.3695        3.5821        2.5574 
-
-
 
 ---------------------------
 Raftery and Lewis's diagnostic
-[[1]]
-
-Quantile (q) = 0.025
-Accuracy (r) = +/- 0.005
-Probability (s) = 0.95 
-                                                     
-               Burn-in  Total Lower bound  Dependence
-               (M)      (N)   (Nmin)       factor (I)
- logit_int_MC  6        9954  3746         2.660     
- logit_flow_MC 4        4996  3746         1.330     
- log_cess_MC   4        4674  3746         1.250     
- shape_lambda  12       13274 3746         3.540     
- rate_lambda   12       14916 3746         3.980     
- mean_gamma    2        3590  3746         0.958     
- var_gamma     15       17175 3746         4.580     
-
-
-[[2]]
-
-Quantile (q) = 0.025
-Accuracy (r) = +/- 0.005
-Probability (s) = 0.95 
-                                                     
-               Burn-in  Total Lower bound  Dependence
-               (M)      (N)   (Nmin)       factor (I)
- logit_int_MC  3        4558  3746         1.22      
- logit_flow_MC 4        5299  3746         1.41      
- log_cess_MC   6        8598  3746         2.30      
- shape_lambda  10       12188 3746         3.25      
- rate_lambda   10       11760 3746         3.14      
- mean_gamma    2        3850  3746         1.03      
- var_gamma     10       10864 3746         2.90      
-
-

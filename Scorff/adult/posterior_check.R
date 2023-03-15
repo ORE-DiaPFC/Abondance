@@ -1,4 +1,4 @@
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 
 hyperparameters <-c(
@@ -96,43 +96,43 @@ hyperparameters <-c(
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 
 for (par in hyperparameters){
-  traplot(fit.mcmc,par)
-  denplot(fit.mcmc,par)
+  traplot(fit,par)
+  denplot(fit,par)
 }
 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("piD_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("piD_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("piD_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("piD_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("piF_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("piF_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piF_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piF_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 # par(mfrow=c(2,1))
-# caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# caterplot(fit.mcmc,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# caterplot(fit,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# caterplot(fit,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("pi_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("pi_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("pi_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("pi_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("epsilon_MP[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("epsilon_MP[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_MP[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_MP[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("epsilon_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("epsilon_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 dev.off()

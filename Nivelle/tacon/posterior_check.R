@@ -1,4 +1,4 @@
-fit.mcmc <- as.mcmc(fit)
+fit <- as.mcmc(fit)
 
 ##### BRESLE
 
@@ -31,21 +31,21 @@ hyperparameters <-c(
 
 
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par)
-  denplot(fit.mcmc,par)
+  traplot(fit,par)
+  denplot(fit,par)
 }
 
-#traplot(fit.mcmc, alpha_dj)
-#traplot(fit.mcmc, gamma_dj)
+#traplot(fit, alpha_dj)
+#traplot(fit, gamma_dj)
 
 par(mfrow=c(1,1))
-caterplot(fit.mcmc,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 par(mfrow=c(1,1))
-caterplot(fit.mcmc,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 
 dev.off()

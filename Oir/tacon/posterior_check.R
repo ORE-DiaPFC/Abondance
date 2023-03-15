@@ -1,4 +1,4 @@
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 hyperparameters <-c(
   ## HYPER PARAMETERS 
@@ -26,20 +26,20 @@ hyperparameters <-c(
 ) 
 
 pdf(paste('results/PosteriorCheck_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc, "year_dOir", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc, paste0("n_Oir[",1:data$Nyear,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, "year_dOir", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, paste0("n_Oir[",1:data$Nyear,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-caterplot(fit.mcmc, "n_MB", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc, "n_PL", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, "n_MB", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, "n_PL", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-caterplot(fit.mcmc, "n_LR", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc, "ntot_Oir", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, "n_LR", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, "ntot_Oir", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 dev.off()

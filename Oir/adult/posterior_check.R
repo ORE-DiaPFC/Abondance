@@ -1,4 +1,4 @@
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 hyperparameters <-c(
   ## HYPER PARAMETERS 
@@ -27,39 +27,39 @@ hyperparameters <-c(
 ) 
 
 pdf(paste('results/PosteriorCheck_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
-traplot(fit.mcmc, paste0("epsilon_MC[",1:data$Nyears,",1]"))
-traplot(fit.mcmc, paste0("epsilon_MC[",1:data$Nyears,",2]"))
+traplot(fit, paste0("epsilon_MC[",1:data$Nyears,",1]"))
+traplot(fit, paste0("epsilon_MC[",1:data$Nyears,",2]"))
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("pi_MC[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("pi_MC[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("pi_MC[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("pi_MC[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("epsilon_MC[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("epsilon_MC[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_MC[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_MC[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("p_recap[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("p_recap[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_recap[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_recap[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("p_recap[",1:data$Nyears,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("p_recap[",1:data$Nyears,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_recap[",1:data$Nyears,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_recap[",1:data$Nyears,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("Plambda[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("Plambda[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Plambda[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Plambda[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("Plambda[",1:data$Nyears,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("Plambda[",1:data$Nyears,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Plambda[",1:data$Nyears,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Plambda[",1:data$Nyears,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()

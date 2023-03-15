@@ -74,7 +74,7 @@ NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,17,17,10,9,24,63,25,25,9,22,16,11,
 CPUE_inter=structure(.Data=c(
 164,50,167,93, #2021
 28,61,61,9 #2022
-),.Dim = c(2,4)),
+),.Dim = c(2,4)), # c(nb colonne, nb ligne)
 
 # Deversement d'alevins par zone. 8 zones. 
 # MISE A JOUR en rajoutant une ligne de NA (no more releases since 2009). 

@@ -106,7 +106,7 @@ Cm_U=as.matrix(Ux[,9:12])
 ## ech_MSW[,4]: annual number of captured individuals 2R3SW
 ## ech_MSW[,5]: annual number of captured individuals second spawning
 ################################################################################
-age <- read.table(paste("data/data_age_rev.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+age <- read.table(paste("data/data_age.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
 age <- as.matrix(age);mode(age)<- "numeric"
 
 ech_1SW_wild=age[,1]

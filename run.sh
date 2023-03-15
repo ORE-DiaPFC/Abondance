@@ -5,8 +5,8 @@
 YEAR=2022
 CHAINS=2
 BURNIN=1000 # Number of steps to "burn-in" the samplers.
-ITER=10000 # Total number of steps in chains to save.
-THIN=200 # Number of steps to "thin" (1=keep every step).
+ITER=20000 # Total number of steps in chains to save.
+THIN=300 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 #REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
@@ -46,7 +46,7 @@ cd $REPbase/$SITE
     sed 's|ITER|'"$ITER"'|g' -i $STADE/analyse_"$STADE".R
     sed 's|THIN|'"$THIN"'|g' -i $STADE/analyse_"$STADE".R
     
-        cp $REPbase/restart.R $STADE/restart_"$STADE".R
+    cp $REPbase/restart.R $STADE/restart_"$STADE".R
     sed 's|Rep|'"$REPbase"'|g' -i $STADE/restart_"$STADE".R
     sed 's|SITE|'"$SITE"'|g' -i $STADE/restart_"$STADE".R
     sed 's|STADE|'"$STADE"'|g' -i $STADE/restart_"$STADE".R
@@ -55,9 +55,11 @@ cd $REPbase/$SITE
     #sed 's|BURNIN|'"$BURNIN"'|g' -i $STADE/restart_"$STADE".R
     sed 's|ITER|'"$ITER"'|g' -i $STADE/restart_"$STADE".R
     sed 's|THIN|'"$THIN"'|g' -i $STADE/restart_"$STADE".R
+    
+    cp $REPbase/diagnostics.R $STADE/diagnostics.R
      
 
-   #R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]

@@ -2,7 +2,7 @@
 #setwd("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/")
 setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/")
 
-year=2021
+year=2022
 #mycol=c("#787878", "#1E90FF", "#FF6A6A", "#a1dab4")
 #COL <- c("#5C5C5C", "#00CD66", "#FF4500", "#00B2EE")
 

@@ -1,4 +1,4 @@
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 ##### BRESLE
 
@@ -80,33 +80,33 @@ hyperparameters <-c(
 
 
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
-# traplot(fit.mcmc, paste0("eps_U[",1:data$Y,",1]"))
+# traplot(fit, paste0("eps_U[",1:data$Y,",1]"))
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("alpha_1[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit.mcmc,paste0("alpha_2[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("alpha_1[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("alpha_2[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 #par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_12[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_12[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 #par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit.mcmc,paste0("eps_12[",1:data$Y,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_12[",1:data$Y,",3]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_12[",1:data$Y,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 #par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("eps_U[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit.mcmc,paste0("eps_U[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_U[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_U[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 #par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("eps_Ol[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("eps_Ol[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 dev.off()
 

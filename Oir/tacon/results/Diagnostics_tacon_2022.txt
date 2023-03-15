@@ -2,6 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
+Number of iterations:  2167 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -12,71 +13,16 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
-Number of iterations:  10000 
-[[1]]
-                                            
-              Stationarity start     p-value
-              test         iteration        
-sd_prem       passed       1001      0.3478 
-mup_rem       passed          1      0.2363 
-int_width     passed          1      0.9312 
-width_coef    passed          1      0.7227 
-rate_lcpu     passed          1      0.0768 
-sigma_dOir    passed       1001      0.6184 
-sigma_yOir    passed          1      0.0570 
-sigma_gryrOir passed       1001      0.3132 
-coef_PC       passed       2001      0.1000 
-                                        
-              Halfwidth Mean   Halfwidth
-              test                      
-sd_prem       passed     0.503 0.032077 
-mup_rem       passed     0.804 0.000899 
-int_width     passed    -0.752 0.014894 
-width_coef    passed     0.774 0.011718 
-rate_lcpu     passed     0.606 0.016246 
-sigma_dOir    passed     0.710 0.001084 
-sigma_yOir    passed     1.144 0.010261 
-sigma_gryrOir passed     0.883 0.003879 
-coef_PC       passed     0.128 0.003221 
 
-[[2]]
-                                            
-              Stationarity start     p-value
-              test         iteration        
-sd_prem       passed          1      0.0795 
-mup_rem       passed       1001      0.6912 
-int_width     passed          1      0.3216 
-width_coef    passed          1      0.2869 
-rate_lcpu     passed          1      0.2691 
-sigma_dOir    passed       1001      0.7898 
-sigma_yOir    passed          1      0.3043 
-sigma_gryrOir passed       1001      0.5295 
-coef_PC       passed          1      0.1948 
-                                        
-              Halfwidth Mean   Halfwidth
-              test                      
-sd_prem       failed     0.567 0.062097 
-mup_rem       passed     0.804 0.000896 
-int_width     passed    -0.757 0.014839 
-width_coef    passed     0.775 0.011938 
-rate_lcpu     passed     0.613 0.013914 
-sigma_dOir    passed     0.710 0.001146 
-sigma_yOir    passed     1.157 0.011672 
-sigma_gryrOir passed     0.880 0.003363 
-coef_PC       passed     0.128 0.003228 
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
 
 ---------------------------
-Start of the run
-[1] "model/model_tacon-Oir.R"
-Start of the run
-[1] "model/model_smolt-Oir.R"
-Start of the run
-[1] 37
-[1] 37
- [1] 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998
-[14] 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011
-[27] 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
- [1] 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998
-[14] 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011
-[27] 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022
+Raftery and Lewis's diagnostic

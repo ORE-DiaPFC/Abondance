@@ -70,9 +70,12 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=200 # Number of steps to "thin" (1=keep every step).
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
+analysis=FALSE
+
+if(analysis){
 ### Start of the run ###
 start.time = Sys.time(); cat("Start of the run\n"); 
 
@@ -135,6 +138,11 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
+} else {
+  load(paste0('results/Results_',stade,"_",year,'.RData'))
+}
+
+
 ## Check if enough independent samples
 test <-  any(fit$summary[,"n.eff"]<1000)
 #try(if(iter > 10) stop("too many iterations"))
@@ -147,105 +155,14 @@ write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep
      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
-fit.mcmc <- as.mcmc(fit) # using bugs
-
-
 
 ## To check chains and distributions:
 source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
 
+source("diagnostics.R")
 
-
-
-# DIAGNOSTICS:
-parameterstotest <- hyperparameters # all parameters
-# parameterstotest <- c(
-#   "epsilon_p"
-# )
-
-# Start writing to an output file
-sink(paste('results/Diagnostics_',stade,"_",year,'.txt',sep=""))
-
-cat("=============================\n")
-cat("DIAGNOSTICS\n")
-cat("=============================\n")
-
-cat("Number of chains: ", fit$n.chains,"\n")
-cat("Number of iterations: ", fit$n.keep,"\n")
-
-if (nChains > 1) {
-  cat("Convergence: gelman-Rubin R test\n")
-  #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-  gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-  test <- gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-  
-}
-cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
-
-
-cat("\n---------------------------\n")
-cat("Heidelberger and Welch's convergence diagnostic\n")
-cat("
-heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
-
-heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
-\n")
-#heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
-heidel.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], eps=0.1, pvalue=0.05)
-
-cat("\n---------------------------\n")
-cat("Geweke's convergence diagnostic\n")
-cat("
-Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
-If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
-The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
-
-The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
-\n")
-#geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
-geweke.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], frac1 = 0.1, frac2 = 0.5)
-
-cat("\n---------------------------\n")
-cat("Raftery and Lewis's diagnostic\n")
-raftery.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)], q=0.025, r=0.005, s=0.95, converge.eps=0.001)
-
-# Stop writing to the file
-sink()
-
-
-## Plot the chains:
-#pdf(paste('results/Results_',stade,"_",year,'.pdf',sep=""))
-
-# if(site == "Bresle" && stade == "smolt") {
-# parameters.trend <- c("Ntot","Nesc","lambda","p_B","p_Btot","epsilon_B","p_Eu","epsilon_Eu")
-# }
-# if(site == "Bresle" && stade == "adult") {
-#   parameters.trend <- c("n_tot","n_1SW","n_MSW","pi_B","lambda_tot","Plambda","pi_Eu","epsilon_Eu")
-# }
-# if(site == "Oir" && stade == "adult") {
-#   parameters.trend <- c("n_tot","n_1SW","n_MSW","n","Nesc_1SW","Nesc_MSW","Nesc_tot","pi_MC","lambda_n","lambda","p_recap","epsilon_MC")
-# }
-# if(site == "Oir" && stade == "smolt") {
-#   parameters.trend <- c("Ntot","Nesc","p_MC","lambda","alpha_MC","beta_MC","overdisp_MC","mean_MC")
-# }
-
-# for (i in 1:length(parameters.trend)){
-#   caterplot(fit.mcmc,parameters.trend[i], reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-# }
-
-#caterplot(fit.mcmc,parameterstotest, reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
-
-#gelman.plot(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)])
-
-#for (par in hyperparameters){
-#  traplot(fit.mcmc,par) 
-#  denplot(fit.mcmc,par) 
-#}
-#dev.off()
 
 
 #------------------------------------------------------------------------------

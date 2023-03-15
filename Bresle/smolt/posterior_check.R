@@ -1,5 +1,5 @@
 
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 
 ### JUV
@@ -38,16 +38,16 @@ hyperparameters <-c(
 )
 
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
-#traplot(fit.mcmc[,which(varnames(fit.mcmc)%in%hyperparameters)])
-#traplot(fit.mcmc,"pi_Eu00")
+#traplot(fit[,which(varnames(fit)%in%hyperparameters)])
+#traplot(fit,"pi_Eu00")
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("epsilon_Eu[",1:data$NEu,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("epsilon_B[",1:data$NBeau,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_Eu[",1:data$NEu,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon_B[",1:data$NBeau,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 
 dev.off()

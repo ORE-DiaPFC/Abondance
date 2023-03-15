@@ -3,7 +3,7 @@
 
 
 
-#fit.mcmc <- as.mcmc(fit)
+#fit <- as.mcmc(fit)
 
 
 hyperparameters <-c(
@@ -47,9 +47,11 @@ hyperparameters <-c(
   ,"mean_gamma" # Mean parameter of gamma distribution
   ,"var_gamma" # Variance parameter of gamma distribution
   
-  ,paste0("lambda[",1:data$Nyears,"]") # Poisson parameter
+ # ,paste0("lambda[",1:data$Nyears,"]") # Poisson parameter
+,"lambda"
 
-,paste0("p1c[",1:data$Nyears,"]") # Poisson parameter
+#,paste0("p1c[",1:data$Nyears,"]") # Poisson parameter
+,"p1c"
   
 #  ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
   
@@ -65,25 +67,25 @@ hyperparameters <-c(
 pdf(paste('results/Posterior_check_',site,"_",stade,"_",year,'.pdf',sep=""))
 
 for (par in hyperparameters){
-  traplot(fit.mcmc,par) 
-  denplot(fit.mcmc,par) 
+  traplot(fit,par) 
+  denplot(fit,par) 
 }
 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("epsilon[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("epsilon[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("N[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("Ntot[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("N[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Ntot[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(1,1))
-caterplot(fit.mcmc,paste0("p1c[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p1c[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 par(mfrow=c(2,1))
-caterplot(fit.mcmc,paste0("Nc[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit.mcmc,paste0("Nc[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Nc[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("Nc[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 dev.off()
 
