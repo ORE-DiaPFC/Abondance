@@ -1,5 +1,5 @@
 #fit <- as.mcmc(fit)
-
+#load(paste0('results/Results_',stade,"_",year,'.RData'))
 
 hyperparameters <-c(
   ##### INTERCALIBRATION

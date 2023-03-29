@@ -391,7 +391,7 @@ Stocking is considered to adjust numbers
 ######## Table 9 - juvenile and adult salmon  numbers (estim.), in-river return rate in the monitored rivers ######
 ###################################################################################################################
 
-SURVIVAL <- list()
+RETURN <- list()
 
 # Nota : juvenile fish are smolts, except in r. Nivelle (parrs O+). Adult numbers refer to the smolt year N: runs of N+1 and N+2 
 
@@ -424,7 +424,7 @@ table[y,5] <- (n_1SW[y+2]/ table[y,2])*100
 table[y,6] <- (n_MSW[y+3]/ table[y,2])*100
 }
 
-## SURVIVAL
+## RETURN
 table[,4] <- (table[,3] / table[,2])*100
 
 table[,2:3]<-round(table[,2:3],0)
@@ -446,7 +446,7 @@ write.csv(table, con, row.names = FALSE)
 close(con)
 
 
-SURVIVAL[[paste0(site)]] <- table[,4]
+RETURN[[paste0(site)]] <- table[,4]
 
 
 # kable(round(table,2), row.names = FALSE
@@ -500,7 +500,7 @@ con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 write.csv(table, con, row.names = FALSE)
 close(con)
 
-SURVIVAL[[paste0(site)]] <- table[,4]
+RETURN[[paste0(site)]] <- table[,4]
 
 # kable(table, row.names = FALSE
 # , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -557,7 +557,7 @@ con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 write.csv( table, con, row.names = FALSE)
 close(con)
 
-SURVIVAL[[paste0(site)]] <- table[,4]
+RETURN[[paste0(site)]] <- table[,4]
 
 # kable(round(table,2), row.names = FALSE
 # , caption = paste0("Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
@@ -614,7 +614,7 @@ con <- file(paste(dir,'Abundance/CIEM/Table9_',site,'.csv',sep=""), open="wt")
 write.csv( table, con, row.names = FALSE)
 close(con)
 
-SURVIVAL[[paste0(site)]] <- table[,4]
+RETURN[[paste0(site)]] <- table[,4]
 
 # 
 # kable(round(table,2), row.names = FALSE
@@ -631,22 +631,23 @@ j=0
 for (site in sites) {
 j=j+1
 pred=NULL
-pred <-SURVIVAL[[paste0(site)]][paste0(1984:year)]
-if (site == "Bresle"){ pred <-SURVIVAL[["Bresle"]][paste0(1984:year)] }
+pred <-RETURN[[paste0(site)]][paste0(1984:year)]
+if (site == "Bresle"){ pred <-RETURN[["Bresle"]][paste0(1984:year)] }
 table[,j] <- as.numeric(pred)
 }
 
 #write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
 #con <- file(paste(dir,'Abundance/CIEM/T3.3.6.1.csv',sep=""), open="wt")
-# writeLines(paste("# Table 3.3.6.1. Estimated survival of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area."
+# writeLines(paste("# Table 3.3.6.1. Estimated return rates of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area."
 #                  ,sep=""), con)
 #write.csv( round(table,2), con, row.names = TRUE)
 #close(con)
 
 kable(round(table,2), row.names = FALSE
-, caption = paste0("Table 3.3.6.1. Estimated survival of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area.")
+, caption = paste0("Table 3.3.6.1. Estimated return rates of wild smolts (%) to return to homewaters (prior to coastal fisheries) for various monitored rivers in the NE Atlantic area.")
 )
 
+write.csv(round(table,2), file=paste0(dir,"Abundance/CIEM/T3.3.6.1.csv"))
 
 
 
@@ -666,7 +667,7 @@ j=0
 for (site in sites) {
   j=j+1
   #lines(total[,site],lty=1,lwd=3,col=mycol[site])  
-  tmp <- as.numeric(SURVIVAL[[paste0(site)]][paste0(1984:year)])
+  tmp <- as.numeric(RETURN[[paste0(site)]][paste0(1984:year)])
   lines(tmp,lty=1,lwd=2,col=paste0(mycol[j], 50)) 
   
   #scatter.smooth(years, returns[[site]][,"50%"], span = 2/3, degree = 2)

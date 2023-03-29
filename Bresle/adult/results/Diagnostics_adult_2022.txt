@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  10000 
+Number of iterations:  20000 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 

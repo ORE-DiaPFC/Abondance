@@ -133,10 +133,10 @@ mup_11_2 ~ dbeta(1,1) ; sigmap_11_2 <- sqrt(1/precp_11_2) ; precp_11_2 ~ dgamma(
 ### Standard deviation of the probabilities to be captured at Olha when trapping is not continuous  
 for (a in 1:2) {
   mupi_U[a] ~ dbeta(1,1) ; sigmapi_U[a] <- sqrt(1/precpi_U[a]) ; precpi_U[a] ~ dgamma(shape_prec,rate_prec)
-  d_pi_U[a] ~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
+  d_pi_U[a] ~dnorm(0, 0.25)#~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
   } ## End of loop over fish ages
   sigmapi_Ol <- sqrt(1/precpi_Ol) ; precpi_Ol ~ dgamma(shape_prec,rate_prec)
-  d_pi_Ol ~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
+  d_pi_Ol ~dnorm(0, 0.25)#~ dunif(-5,5) # differential in the probability of capture since 2012 set as an exponent (log sacle; see below)
 ### Mean and standard deviation of the probabilities to be Re-captured by EF, angling or found dead
 mupi_EF ~ dbeta(1,1) ; sigmapi_EF <- sqrt(1/precpi_EF) ; precpi_EF ~ dgamma(shape_prec,rate_prec)
 

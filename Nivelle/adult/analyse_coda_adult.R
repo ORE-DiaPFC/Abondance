@@ -54,7 +54,7 @@ years <- 1984:year
 
 
 #"eggs_tot" : annual number of eggs produced     
-eggs_tot <- fit.mcmc$sims.matrix[,paste0("eggs_tot[",1:data$Y,"]")]
+eggs_tot <- fit$sims.matrix[,paste0("eggs_tot[",1:data$Y,"]")]
 
 write.table(eggs_tot,file="results/eggs_tot_iter.txt", row.names=F, col.names=c(paste0(years)), sep = "\t") #mb-21.03.2022
 

@@ -70,10 +70,10 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=300 # Number of steps to "thin" (1=keep every step).
+nthin=400 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
-analysis=FALSE
+analysis=TRUE
 
 if(analysis){
 ### Start of the run ###
@@ -98,7 +98,7 @@ fit <- bugs(
 )
 
 ## cleaning
-system("rm bugs/CODA*")
+#system("rm bugs/CODA*")
 
 ### Save inits ###
 # save last values for inits

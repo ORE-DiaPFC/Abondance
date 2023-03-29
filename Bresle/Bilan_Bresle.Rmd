@@ -13,7 +13,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Bresle"
-year <- 2021
+year <- 2022
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -21,7 +21,8 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 ```
 
 ### NOTA BENE  
-
+#2022
+- pris en compte des arrets de piegages pour la devalaison des adultes
 #2020  
 - Smolt: la saison de piégeage en dévalaison a couru du 2/12/2019 au 16/3/2020, avant l'arrêt confinement COVID.  
 - Adulte: reprise piegage le 11 mai, pas de PHM n'ont pu être capture  

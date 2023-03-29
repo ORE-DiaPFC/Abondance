@@ -4,7 +4,7 @@
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2022
 CHAINS=2
-BURNIN=1000 # Number of steps to "burn-in" the samplers.
+BURNIN=10 # Number of steps to "burn-in" the samplers.
 ITER=20000 # Total number of steps in chains to save.
 THIN=300 # Number of steps to "thin" (1=keep every step).
 
@@ -59,7 +59,7 @@ cd $REPbase/$SITE
     cp $REPbase/diagnostics.R $STADE/diagnostics.R
      
 
-   R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   #R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]

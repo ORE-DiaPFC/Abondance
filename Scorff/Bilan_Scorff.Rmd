@@ -3,6 +3,7 @@ title: "Bilan_Scorff"
 author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
 date: "4/14/2021"
 output:
+  word_document: default
   html_document: default
 ---
 
@@ -561,18 +562,18 @@ text(r[2:28,"50%"],smolt[1:27,"50%"],labels = years, cex=.7)
 # points(1:27,smolt[1:27,"50%"]/r[2:28,"50%"],col=mycol[1],pch=21, bg=24,lwd=.5,cex=size)
 
 
-library(plotly)
-
-df <- data.frame(parr=r[2:28,"50%"],smolt=smolt[1:27,"50%"])
-df$surv <- df$smolt/df$parr
-df$year <- 1995:2021
-
-fig <- plot_ly(df, x = ~year, y = ~surv, text = ~year, type = 'scatter', mode = 'markers', color = ~parr, colors = 'Reds',marker = list(size = ~parr/1000, opacity = 0.5))
-fig <- fig %>% layout(title = 'Survie Tacon-Smolt',
-         xaxis = list(showgrid = FALSE),
-         yaxis = list(showgrid = FALSE))
-
-fig
+# library(plotly)
+# 
+# df <- data.frame(parr=r[2:28,"50%"],smolt=smolt[1:27,"50%"])
+# df$surv <- df$smolt/df$parr
+# df$year <- 1995:2021
+# 
+# fig <- plot_ly(df, x = ~year, y = ~surv, text = ~year, type = 'scatter', mode = 'markers', color = ~parr, colors = 'Reds',marker = list(size = ~parr/1000, opacity = 0.5))
+# fig <- fig %>% layout(title = 'Survie Tacon-Smolt',
+#          xaxis = list(showgrid = FALSE),
+#          yaxis = list(showgrid = FALSE))
+# 
+# fig
 ```
 
 
