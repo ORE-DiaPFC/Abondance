@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  10000 
+Number of iterations:  4604 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -12,66 +12,6 @@ Heidelberger and Welch's convergence diagnostic
 heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
-
-[[1]]
-                                              
-                Stationarity start     p-value
-                test         iteration        
-mu_p_srem       passed          1      0.721  
-sd_logit_p_srem passed          1      0.251  
-epsilon_p       passed          1      0.713  
-pi_dj           passed          1      0.732  
-zeta_alpha_dj   passed       1001      0.106  
-mu_dj_nat       passed          1      0.552  
-k_cpue          passed          1      0.338  
-eta_cpue        passed          1      0.643  
-rho_s           passed          1      0.228  
-sd_s_rec        passed          1      0.419  
-p_cpue          passed          1      0.426  
-                                           
-                Halfwidth Mean    Halfwidth
-                test                       
-mu_p_srem       passed      0.517 0.01059  
-sd_logit_p_srem passed      1.092 0.01543  
-epsilon_p       passed      0.559 0.01593  
-pi_dj           passed      0.730 0.00963  
-zeta_alpha_dj   passed      4.014 0.07413  
-mu_dj_nat       passed      0.130 0.00302  
-k_cpue          passed    123.901 1.95443  
-eta_cpue        failed      2.165 0.41558  
-rho_s           passed      0.146 0.01338  
-sd_s_rec        passed      0.410 0.00902  
-p_cpue          passed      0.636 0.02003  
-
-[[2]]
-                                              
-                Stationarity start     p-value
-                test         iteration        
-mu_p_srem       passed          1      0.6202 
-sd_logit_p_srem passed       1001      0.1508 
-epsilon_p       passed          1      0.2944 
-pi_dj           passed          1      0.5211 
-zeta_alpha_dj   passed          1      0.1683 
-mu_dj_nat       passed       2001      0.0576 
-k_cpue          passed          1      0.1207 
-eta_cpue        passed          1      0.4019 
-rho_s           passed          1      0.2497 
-sd_s_rec        passed          1      0.4596 
-p_cpue          passed          1      0.8165 
-                                           
-                Halfwidth Mean    Halfwidth
-                test                       
-mu_p_srem       passed      0.511 0.00780  
-sd_logit_p_srem passed      1.089 0.01706  
-epsilon_p       passed      0.568 0.01289  
-pi_dj           passed      0.729 0.00924  
-zeta_alpha_dj   passed      4.007 0.07670  
-mu_dj_nat       passed      0.130 0.00587  
-k_cpue          passed    124.720 2.36277  
-eta_cpue        failed      2.343 0.53186  
-rho_s           failed      0.131 0.01550  
-sd_s_rec        passed      0.409 0.00700  
-p_cpue          passed      0.647 0.02593  
 
 
 ---------------------------
@@ -83,74 +23,6 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
-[[1]]
-
-Fraction in 1st window = 0.1
-Fraction in 2nd window = 0.5 
-
-      mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj 
-        -1.8941          1.4503          2.1217          0.1404 
-  zeta_alpha_dj       mu_dj_nat          k_cpue        eta_cpue 
-         3.4816          1.5495         -1.9483         -1.4015 
-          rho_s        sd_s_rec          p_cpue 
-         1.9683          0.7006         -0.9764 
-
-
-[[2]]
-
-Fraction in 1st window = 0.1
-Fraction in 2nd window = 0.5 
-
-      mu_p_srem sd_logit_p_srem       epsilon_p           pi_dj 
-       -0.71302         4.15968        -0.45290        -0.20513 
-  zeta_alpha_dj       mu_dj_nat          k_cpue        eta_cpue 
-        0.93111         1.73982         0.89560         0.04698 
-          rho_s        sd_s_rec          p_cpue 
-        0.76074         0.85152        -0.11484 
-
-
 
 ---------------------------
 Raftery and Lewis's diagnostic
-[[1]]
-
-Quantile (q) = 0.025
-Accuracy (r) = +/- 0.005
-Probability (s) = 0.95 
-                                                        
-                 Burn-in  Total  Lower bound  Dependence
-                 (M)      (N)    (Nmin)       factor (I)
- mu_p_srem       48       49336  3746         13.20     
- sd_logit_p_srem 35       38320  3746         10.20     
- epsilon_p       36       40578  3746         10.80     
- pi_dj           24       24609  3746          6.57     
- zeta_alpha_dj   4        4597   3746          1.23     
- mu_dj_nat       72       86040  3746         23.00     
- k_cpue          256      307680 3746         82.10     
- eta_cpue        35       37095  3746          9.90     
- rho_s           50       64930  3746         17.30     
- sd_s_rec        18       18534  3746          4.95     
- p_cpue          35       37095  3746          9.90     
-
-
-[[2]]
-
-Quantile (q) = 0.025
-Accuracy (r) = +/- 0.005
-Probability (s) = 0.95 
-                                                        
-                 Burn-in  Total  Lower bound  Dependence
-                 (M)      (N)    (Nmin)       factor (I)
- mu_p_srem       81       89757  3746         24.00     
- sd_logit_p_srem 32       37504  3746         10.00     
- epsilon_p       40       48300  3746         12.90     
- pi_dj           16       17212  3746          4.59     
- zeta_alpha_dj   4        5210   3746          1.39     
- mu_dj_nat       63       63224  3746         16.90     
- k_cpue          112      103280 3746         27.60     
- eta_cpue        44       45116  3746         12.00     
- rho_s           24       33144  3746          8.85     
- sd_s_rec        48       43008  3746         11.50     
- p_cpue          44       45116  3746         12.00     
-
-

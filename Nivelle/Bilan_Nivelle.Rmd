@@ -27,6 +27,9 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 ### NOTA BENE  
 
+2023:
+- tacon: le paramètre xi_dj est borne pour éviter une estimation superieur au nombre de poissons relachés
+
 2020:  
 - Le piégage a été arrêté un mois seulement (mi-Mars à mi-avril) à cause du COVID  
 - Tacons: 1 station au-dessus de Sare avec 9 0+ capturés mais pas intégré dans le modèle: évènement exceptionnel?  

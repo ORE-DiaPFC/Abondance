@@ -149,7 +149,8 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 ## The effect also depends on zone (1=Nivelle +LUR, 2=LAP). Zone 1 is the reference
   pi_dj ~ dgamma(0.01,0.01)
   xi_dj[1] <- 1
-  xi_dj[2] ~ dgamma(0.01,0.01)
+  #xi_dj[2] ~ dgamma(0.01,0.01)
+  xi_dj[2] ~ dgamma(1,0.7) # ep+mb 29/03/2023
 
 ## PROBABILITY DISTRIBUTIONS
 ## -------------------------
@@ -256,28 +257,33 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
       for (z in 4:5) {
         # density of alevins restocking * survival restocking * density depence^(density restocking) * zone effect Niv+LUR
         ## * habitat effect
-        mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*xi_dj[1]*beta_dj[h]
+        #mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*xi_dj[1]*beta_dj[h]
+        mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*(xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
         zeta_dj[3,y,z,h] <- mu_dj[3,y,z,h]*eta_dj[3]
         } ## End of loop over zones
       } ## End of loop over years
 
   ## LAP in 1989
-    mu_dj[3,6,8,h] <- Dal[6,8]*delta[3]*pow(pi_dj,Dal[6,8])*xi_dj[2]*beta_dj[h]
+    #mu_dj[3,6,8,h] <- Dal[6,8]*delta[3]*pow(pi_dj,Dal[6,8])*xi_dj[2]*beta_dj[h]
+    mu_dj[3,6,8,h] <- Dal[6,8]*delta[3]*pow(pi_dj,Dal[6,8])*(xi_dj[2]/(1+( xi_dj[2]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
     zeta_dj[3,6,8,h] <- mu_dj[3,6,8,h]*eta_dj[3]
 
   ## VHN from 1989 to 1992
     for (y in 6:9) {
-      mu_dj[3,y,7,h] <- Dal[y,7]*delta[3]*pow(pi_dj,Dal[y,7])*xi_dj[1]*beta_dj[h]
+      #mu_dj[3,y,7,h] <- Dal[y,7]*delta[3]*pow(pi_dj,Dal[y,7])*xi_dj[1]*beta_dj[h]
+      mu_dj[3,y,7,h] <- Dal[y,7]*delta[3]*pow(pi_dj,Dal[y,7])*(xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
       zeta_dj[3,y,7,h] <- mu_dj[3,y,7,h]*eta_dj[3]
       } ## End of loop over years
 
   ## VHN in 1994
-    mu_dj[3,11,7,h] <- Dal[11,7]*delta[3]*pow(pi_dj,Dal[11,7])*xi_dj[1]*beta_dj[h]
+    #mu_dj[3,11,7,h] <- Dal[11,7]*delta[3]*pow(pi_dj,Dal[11,7])*xi_dj[1]*beta_dj
+    mu_dj[3,11,7,h] <- Dal[11,7]*delta[3]*pow(pi_dj,Dal[11,7])* (xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
     zeta_dj[3,11,7,h] <- mu_dj[3,11,7,h]*eta_dj[3] 
 
   ## LAP in 1994 & 1995
     for (y in 11:12) {
-     mu_dj[3,y,8,h] <- Dal[y,8]*delta[3]*pow(pi_dj,Dal[y,8])*xi_dj[2]*beta_dj[h]
+     #mu_dj[3,y,8,h] <- Dal[y,8]*delta[3]*pow(pi_dj,Dal[y,8])*xi_dj[2]*beta_dj[h]
+     mu_dj[3,y,8,h] <- Dal[y,8]*delta[3]*pow(pi_dj,Dal[y,8])* (xi_dj[2]/(1+( xi_dj[2]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
      zeta_dj[3,y,8,h] <- mu_dj[3,y,8,h]*eta_dj[3]
      } ## End of loop over years
 
