@@ -6,6 +6,8 @@
 ################################################################################
 # 2023:
 # - inclusion intercalibration pulsium (k_inter, k_cpue_Puls)
+# - modification de la survie des repeuplements pour éviter des effectifs de tacons 0+ supérieurs aux effectifs déversés
+#
 model {
 
 #########################################
@@ -151,6 +153,9 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   xi_dj[1] <- 1
   #xi_dj[2] ~ dgamma(0.01,0.01)
   xi_dj[2] ~ dgamma(1,0.7) # ep+mb 29/03/2023
+# nouveau prior faiblement informatif en lien avec la modif du modéle apportée par ailleurs (voir plus bas)
+# assure une médiane de 1 et une gamme de variation de xi entre 0.36 et 5.2
+# assure aussi une survie densité indépendante faiblement informative en association avec delta  
 
 ## PROBABILITY DISTRIBUTIONS
 ## -------------------------
@@ -258,7 +263,10 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
         # density of alevins restocking * survival restocking * density depence^(density restocking) * zone effect Niv+LUR
         ## * habitat effect
         #mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*xi_dj[1]*beta_dj[h]
-        mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*(xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        mu_dj[3,y,z,h] <-Dal[y,z]*delta[3]*pow(pi_dj,Dal[y,z])*(xi_dj[1]/(1+(xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        # modification pour s'assurer que la survie des déversement est inférieure à 1
+        # et que les effectifs de tacons 0+ issus des deversement ne soient pas supérieurs aux effectifs déversés
+        # pour xi_dj[1] = 1 cette formulation est équivalent à l'ancienne
         zeta_dj[3,y,z,h] <- mu_dj[3,y,z,h]*eta_dj[3]
         } ## End of loop over zones
       } ## End of loop over years
@@ -266,24 +274,32 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   ## LAP in 1989
     #mu_dj[3,6,8,h] <- Dal[6,8]*delta[3]*pow(pi_dj,Dal[6,8])*xi_dj[2]*beta_dj[h]
     mu_dj[3,6,8,h] <- Dal[6,8]*delta[3]*pow(pi_dj,Dal[6,8])*(xi_dj[2]/(1+( xi_dj[2]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        # modification pour s'assurer que la survie des déversement est inférieure à 1
+        # et que les effectifs de tacons 0+ issus des deversement ne soient pas supérieurs aux effectifs déversés
     zeta_dj[3,6,8,h] <- mu_dj[3,6,8,h]*eta_dj[3]
 
   ## VHN from 1989 to 1992
     for (y in 6:9) {
       #mu_dj[3,y,7,h] <- Dal[y,7]*delta[3]*pow(pi_dj,Dal[y,7])*xi_dj[1]*beta_dj[h]
       mu_dj[3,y,7,h] <- Dal[y,7]*delta[3]*pow(pi_dj,Dal[y,7])*(xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        # modification pour s'assurer que la survie des déversement est inférieure à 1
+        # et que les effectifs de tacons 0+ issus des deversement ne soient pas supérieurs aux effectifs déversés
       zeta_dj[3,y,7,h] <- mu_dj[3,y,7,h]*eta_dj[3]
       } ## End of loop over years
 
   ## VHN in 1994
     #mu_dj[3,11,7,h] <- Dal[11,7]*delta[3]*pow(pi_dj,Dal[11,7])*xi_dj[1]*beta_dj
     mu_dj[3,11,7,h] <- Dal[11,7]*delta[3]*pow(pi_dj,Dal[11,7])* (xi_dj[1]/(1+( xi_dj[1]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        # modification pour s'assurer que la survie des déversement est inférieure à 1
+        # et que les effectifs de tacons 0+ issus des deversement ne soient pas supérieurs aux effectifs déversés
     zeta_dj[3,11,7,h] <- mu_dj[3,11,7,h]*eta_dj[3] 
 
   ## LAP in 1994 & 1995
     for (y in 11:12) {
      #mu_dj[3,y,8,h] <- Dal[y,8]*delta[3]*pow(pi_dj,Dal[y,8])*xi_dj[2]*beta_dj[h]
      mu_dj[3,y,8,h] <- Dal[y,8]*delta[3]*pow(pi_dj,Dal[y,8])* (xi_dj[2]/(1+( xi_dj[2]-1)* delta[3]))*beta_dj[h] # ep-30.03.2023
+        # modification pour s'assurer que la survie des déversement est inférieure à 1
+        # et que les effectifs de tacons 0+ issus des deversement ne soient pas supérieurs aux effectifs déversés
      zeta_dj[3,y,8,h] <- mu_dj[3,y,8,h]*eta_dj[3]
      } ## End of loop over years
 
