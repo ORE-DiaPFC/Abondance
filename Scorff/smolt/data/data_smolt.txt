@@ -1,7 +1,7 @@
 list(
 
 #Nyears: Length of time series from 1995 to now on  
-#Nyears = 25, # 2019
+#Nyears = 25, # 2022
 
 # Annual number of smolt captured at Moulin de Lesl?
 C_ML = c(
@@ -31,8 +31,8 @@ NA,
 1307,# 2019
 1839, # 2019
 NA,	# 2020 COVID
-1784, 	# 2021
-2450 	# 2022
+1780, 	# 2021
+2454 	# 2022
 ),
 
 # Annual number of smolt marked and released downstream Moulin de Lesl?
@@ -63,8 +63,8 @@ Cm_ML = c(
 1200,
 1729, # 2019
 1, # 2020 /!\ fake data to initialize / no capture due to COVID
-1762, #2021
-2434  #2022
+1763, #2021
+2438  #2022
 ),
 
 # Annual number of smolt captured at Moulin de Lesl? and released unmarked downstream Moulin de Lesl?
@@ -95,7 +95,7 @@ NA,
 0,
 2, # 2019
 0, # 2020
-5, #2021
+1, #2021
 5  #2022
 ),
 
@@ -160,7 +160,7 @@ Cm_MP = c(
 193, # 2019
 NA, # 2020
 135,	#2021 
-256	#2022
+257	#2022
 ),
 
 # Annual number of unmarked smolt captured at Moulin des Princes
@@ -192,7 +192,7 @@ NA ,
 374, # 2019
 NA, # 2020
 388,	#Donnee modifiee en 2022
-518	#2022
+517	#2022
 ),
 
 # Annual number of dead smolt at Moulin des Princes
