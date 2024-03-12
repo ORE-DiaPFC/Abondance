@@ -1,7 +1,7 @@
 list(
 
 #### Debit pour Eu (l/s). Moyenne sur la periode 1 avril - 10 mai
-#### Ne sont indiques que les annees ou il y a eu du piegeage (n=27 years)
+#### Ne sont indiques que les annees ou il y a eu du piegeage (n=29 years)
 #### Covariate is standardized within WinBUGS
 
 Q_Eu = c(			
@@ -32,6 +32,7 @@ Q_Eu = c(
 6986.25, #2019
 9508, #2020
 7959.25, #2021
-6528.750 #2022
+6528.750, #2022
+7125.5 #2023
  )
 )

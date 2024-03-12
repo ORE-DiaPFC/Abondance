@@ -47,5 +47,6 @@ NA	NA	NA	NA	NA	NA	#	2001
 1662  3 1619  39  64  222 #2019 arret piegeage weekend / marquage pit (test de mortalite marquage)
 14  1 13  0 NA NA #2020 COVID - no recapture trapping
 384 5 377 2 6 41 #2021
-362 4 358 0 12  106 #2022
+362 4 355 0 12  106 #2022
+648  8  638  2  47  250  #2023
 #END							
