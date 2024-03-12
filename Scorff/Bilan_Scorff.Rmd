@@ -352,6 +352,89 @@ legend("topright", legend=c("1HM", "PHM"), col=mycol[1:2],lty=1,lwd=3,bty="n")
 
 <!-- ``` -->
 
+
+# Probabilities to die from other cause than fishing (time, mark status and sea age dependent)
+
+```{r, echo=FALSE}
+
+#### CAPTURE AT MP ####
+par(mfrow=c(1,1)) 
+mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
+mcmc <- as.matrix(tmp[,paste0("piD_1SW[",1:data$Y,",1]")]) # 
+piD_1SWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+mcmc <- as.matrix(tmp[,paste0("piD_1SW[",1:data$Y,",2]")]) # 
+piD_1SWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+
+mcmc <- as.matrix(tmp[,paste0("piD_MSW[",1:data$Y,",1]")]) # 
+piD_MSWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+mcmc <- as.matrix(tmp[,paste0("piD_MSW[",1:data$Y,",2]")]) # 
+piD_MSWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+
+
+### Total number of returns
+#png("report/total_return.png",width = 780, height = 480)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="Proba de mortalité (en %)",xaxt="n",xlab="",main="Proba. de mortalité (hors exploitation)")
+axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+
+# N total
+segments(1:data$Y,piD_1SWm[,"2.5%"], 1:data$Y,piD_1SWm[,"97.5%"], col=paste0(mycol[2]))
+lines(piD_1SWm[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
+points(1:data$Y,piD_1SWm[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
+
+  df <- data.frame(x=1:data$Y, y= piD_1SWm[,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  lines(pred,col=mycol[2],lwd=2,lty=2)
+  
+# N total
+# segments(1:data$Y,piD_1SWum[,"2.5%"], 1:data$Y,piD_1SWum[,"97.5%"], col=paste0(mycol[1]))
+# lines(piD_1SWum[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
+# points(1:data$Y,piD_1SWum[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+# 
+#   df <- data.frame(x=1:data$Y, y= piD_1SWum[,"50%"])
+#   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+#   pred <- predict(lw1)
+#   lines(pred,col=mycol[1],lwd=2,lty=2)
+#   
+#  legend("topright", legend=c("marked", "unmarked"), col=mycol[1:2],lty=1,lwd=3,bty="n")
+  
+  
+  # MSW
+#plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="Proba de mortalité (en %)",xaxt="n",xlab="",main="Proba. de mortalité des PHM")
+#axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+
+# segments(1:data$Y,piD_MSWm[,"2.5%"], 1:data$Y,piD_MSWm[,"97.5%"], col=paste0(mycol[3]))
+# lines(piD_MSWm[,"50%"],lty=1,lwd=2,col=mycol[3],type="o")
+# points(1:data$Y,piD_MSWm[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
+# 
+#   df <- data.frame(x=1:data$Y, y= piD_MSWm[,"50%"])
+#   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+#   pred <- predict(lw1)
+#   lines(pred,col=mycol[3],lwd=2,lty=2)
+  
+# N total
+segments(1:data$Y,piD_MSWum[,"2.5%"], 1:data$Y,piD_MSWum[,"97.5%"], col=paste0(mycol[4]))
+lines(piD_MSWum[,"50%"],lty=1,lwd=2,col=mycol[4],type="o")
+points(1:data$Y,piD_MSWum[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
+
+  df <- data.frame(x=1:data$Y, y= piD_MSWum[,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  lines(pred,col=mycol[4],lwd=2,lty=2)
+  
+#legend("topright", legend=c("marked", "unmarked"), col=mycol[1:2],lty=1,lwd=3,bty="n")
+
+legend("topright", legend=c("1HM", "PHM"), col=c(mycol[2],mycol[4]),lty=1,lwd=3,bty="n")
+
+tmp <- data.frame(Years=1993:2021, MSW=piD_MSWum[,"50%"], OneSW=piD_1SWum[,"50%"])
+library(knitr)
+kable(tmp, row.names = FALSE, caption = paste0("Tableau bilan mortalité naturelle (en %) pour le ",site,". Seules les valeurs médianes sont reportées"))
+
+
+```
+
+
+
 # SMOLTS
 
 ## Nombre de smolts estimés
@@ -543,6 +626,19 @@ boxes <- sapply(nchar(labels), function(n)
 
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
+
+ratio <- smolt[1:28,"50%"]/r[2:29,"50%"]
+plot(ratio,bty="n",ylab="Ratio Smolts/Tacons 0+",xlab="Cohort",xaxt="n",ylim=c(0,1))
+axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
+
+
+  df <- data.frame(x=1:28, y= ratio)
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  lines(pred,col=1,lwd=2,lty=1)
+  
+  
+  
 
 ### Total number of returns
 plot(NULL,xlim=c(0,50000),ylim=c(0,20000),bty="n",ylab="Smolt 1+",xlab="Tacon 0+")

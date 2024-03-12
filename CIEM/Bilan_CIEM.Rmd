@@ -421,7 +421,7 @@ n_MSW <- fit$median$n_MSW # spawners MSW
 for (y in 1:(nrow(table))){
 table[y,3] <- n_1SW[y+2] + n_MSW[y+3] # Parr 0+ become 1SW 2 years later / MSW 3 years later; /!\ NA reported if one of the two is missing!!!
 table[y,5] <- (n_1SW[y+2]/ table[y,2])*100
-table[y,6] <- (n_MSW[y+3]/ table[y,2])*100
+if(!is.na(n_MSW[y+3])) table[y,6] <- (n_MSW[y+3]/ table[y,2])*100
 }
 
 ## RETURN
@@ -472,8 +472,8 @@ table[,2] <- c(NA,NA,fit$median$Nesc) # capture of smolts started in 1986
 ## ADULTS
 stade <- "adult"
 load(paste(dir,"Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-n_1SW <- fit$median$Nesc_1SW # spawners 1SW
-n_MSW <- fit$median$Nesc_MSW # spawners MSW
+n_1SW <- fit$median$n_1SW # spawners 1SW
+n_MSW <- fit$median$n_MSW # spawners MSW
 
 for (y in 1:(nrow(table))){
   table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
@@ -586,14 +586,17 @@ table[12:nrow(table),2] <- Nesc # 1995 to now
 ## ADULTS (1984 to now)
 stade <- "adult"
 load(paste(dir,"Abundance/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-n_1SW <- c(rep(NA,10), fit$median$e_1SW) # spawners 1SW
-n_MSW <- c(rep(NA,10),fit$median$e_MSW) # spawners MSW
+n_1SW <- c(rep(NA,10), fit$median$n_1SW) 
+n_MSW <- c(rep(NA,10),fit$median$n_MSW)
 
 for (y in 1:(nrow(table))){
-  table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
-  table[y,4] <- (table[y,3] / table[y,2])*100 
+  
   table[y,5] <- (n_1SW[y+1]/ table[y,2])*100
   table[y,6] <- (n_MSW[y+2]/ table[y,2])*100
+  
+  if (is.na(n_1SW[y+1]) | is.na(n_MSW[y+2]) | is.na(table[y,2])) next;
+  table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
 }
 
 table[,2:3]<-round(table[,2:3],0)
