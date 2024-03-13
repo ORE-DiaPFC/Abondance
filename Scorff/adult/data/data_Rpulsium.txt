@@ -31,5 +31,6 @@ NA NA NA NA
 NA NA NA NA
 11 0 7 1 #2020
 NA NA NA NA #2021-pulsium not used
-9  3  0  2  #2022
+9  3  0  2   #2022
+11  1  5  0  #2023
 #END			

@@ -325,7 +325,7 @@ alpha_dj <- c(inits0$alpha_dj, 1) # ajouter 1
 #   0.002, 0.137, 0.089, 0.054, 0.010,
 #   0.025, 0.084, 0.112, 0.135, 0.097,
 #   0.045, 0.184)#,
-dj.tmp = tail(data$CPUE, n=17) / 125
+dj.tmp = (tail(data$CPUE, n=17) / 125)+0.02
 dj = c(inits0$dj, dj.tmp)
 
 ## METTRE A JOUR (3 NA ET 2 VALEURS PAR AN) /!\ TAILLE MATRICE
@@ -404,9 +404,9 @@ gamma_dj = rbind(inits0$gamma_dj,  c(NA,NA,NA,1,1))
 #   NA,            NA,1399,2807,1033),
 #   .Dim = c(32,5)),
 # 
-dj.tmp <- data$CPUE / 125
-tmp <- tail(dj.tmp, n=17)
-jnat_ns_riff.tmp = data$Stot_ns_riff[33,] * mean(tmp)
+#dj.tmp <- data$CPUE / 125
+#tmp <- tail(dj.tmp, n=17)
+jnat_ns_riff.tmp = data$Stot_ns_riff[33,] * mean(dj.tmp)
 jnat_ns_riff= rbind(inits0$jnat_ns_riff,jnat_ns_riff.tmp[1:5])
 
 
@@ -447,9 +447,9 @@ jnat_ns_riff= rbind(inits0$jnat_ns_riff,jnat_ns_riff.tmp[1:5])
 #   NA,            NA,239,1250,202),
 #   .Dim = c(32,5)),
 
-dj.tmp <- data$CPUE / 125
-tmp <- tail(dj.tmp, n=17)
-jnat_ns_runs.tmp = data$Stot_ns_runs[33,] * mean(tmp/5)
+#dj.tmp <- data$CPUE / 125
+#tmp <- tail(dj.tmp, n=17)
+jnat_ns_runs.tmp = data$Stot_ns_runs[33,] * mean(dj.tmp/5)
 jnat_ns_runs= rbind(inits0$jnat_ns_runs,jnat_ns_runs.tmp[1:5])
 
 
@@ -575,6 +575,7 @@ jnat_ns_runs= rbind(inits0$jnat_ns_runs,jnat_ns_runs.tmp[1:5])
 # )
 
 lambda_cpue = c(inits0$lambda_cpue, tail(data$CPUE,n=17))
+lambda_cpue <- ifelse(lambda_cpue==0,1,lambda_cpue) # protect against null value I(0.001,)
 
 inits_updated <- list(
   LS_rec=LS_rec,

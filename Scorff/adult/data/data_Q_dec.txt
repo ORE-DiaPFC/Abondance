@@ -30,6 +30,7 @@ Q_dec = c(6.94161
 , 9.75000
 , 3.36258	# 2021 attention toutes valeurs recalculee en 2021
 , 11,7596774	# 2022
+, 12,01194	# 2023
 )	
 	
 )	

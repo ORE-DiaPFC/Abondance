@@ -1,8 +1,9 @@
 rm(list=ls())   # Clear memory
 
-
+R_LIBS="/home/mbuoro/R/x86_64-pc-linux-gnu-library/4.3"
 
 ##------------------ R PACKAGES ------------------------------##
+#install.packages("R2OpenBUGS")
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
 library(coda)
@@ -73,7 +74,7 @@ nstore=ITER # Total number of steps in chains to save.
 nthin=THIN # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
-analysis=FALSE
+analysis=TRUE
 
 if(analysis){
 ### Start of the run ###

@@ -39,7 +39,8 @@ Q = c(209.3,
 2698.8859,
 2422, # 2020
 1001.5, # 2021 mise à jour mais nouvelle station donc pas forcement d'intercalibration à voir avec la DREAL
-568.8 # 2022 valeur de la nouvelle station)
+568.8, # 2022 valeur de la nouvelle station)
+1935.1 # 2023
 )
 )
 

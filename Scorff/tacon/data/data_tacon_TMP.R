@@ -1,5 +1,5 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2022"
+year <- "2023"
 site <- "Scorff"
 stade <- "tacon"
 
@@ -27,9 +27,10 @@ CPUE_Sc_inter <- as.matrix(CPUE_Sc_inter);mode(CPUE_Sc_inter)<- "numeric"
 ## VOIR RAPPORT SERVANTY & PREVOST (2016) POUR PLUS D'INFORMATIONS (NOTAMMENT TABLEAU 18, P.85)																					
 ## Mettre ? jour en reprenant les infos de la derni?re colonne														
 ################################################################################################################################################
-W_Sc <- read.table(paste("data/data_width_CPUE.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#W_Sc <- read.table(paste("data/data_width_CPUE.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#W_Sc <- as.matrix(W_Sc);mode(W_Sc)<- "numeric"
+W_Sc <- read.csv("data/data_width_CPUE.csv",sep=";", comment.char = "#")
 W_Sc <- as.matrix(W_Sc);mode(W_Sc)<- "numeric"
-
 ##################################################################################################################################################																						
 ## Il s'agit ici des donn?es de surface ?quivalent radier-rapide (au 100m?) pour chaque station avec les stations en ligne et les ann?es en colonne.																						
 ## /!\ Si elles sont mises en m?,il y a des probl?mes de mise ? jour car sampling dans de trop petites valeurs	
@@ -38,9 +39,10 @@ W_Sc <- as.matrix(W_Sc);mode(W_Sc)<- "numeric"
 ## A partir de l'ann?e 2016, mettre ? jour en reprenant les infos de la derni?re colonne																						
 ## /!\ Ne pas modifier l'ordre des lignes.																						
 ################################################################################################################################################
-S_Sc <- read.table(paste("data/data_SeqRR100_CPUE.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#S_Sc <- read.table(paste("data/data_SeqRR100_CPUE.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+#S_Sc <- as.matrix(S_Sc);mode(S_Sc)<- "numeric"
+S_Sc <- read.csv("data/data_SeqRR100_CPUE.csv",sep=";", comment.char = "#")
 S_Sc <- as.matrix(S_Sc);mode(S_Sc)<- "numeric"
-
 
 ##################################################################################################################################################
 ## Donn?es d'indice d'abondance sur le Scorff et ses affluents avec les stations en ligne et les ann?es en colonne

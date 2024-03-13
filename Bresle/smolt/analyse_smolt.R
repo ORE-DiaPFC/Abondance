@@ -1,8 +1,9 @@
 rm(list=ls())   # Clear memory
 
-
+R_LIBS="/home/mbuoro/R/x86_64-pc-linux-gnu-library/4.3"
 
 ##------------------ R PACKAGES ------------------------------##
+#install.packages("R2OpenBUGS")
 library(R2OpenBUGS)
 library(rjags) # require to use "read.bugsdata" function
 library(coda)
@@ -13,7 +14,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2022"
+year <- "2023"
 site <- "Bresle"
 stade <- "smolt"
 
@@ -69,11 +70,11 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
-nthin=300 # Number of steps to "thin" (1=keep every step).
+nstore=50000 # Total number of steps in chains to save.
+nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
-analysis=FALSE
+analysis=TRUE
 
 if(analysis){
 ### Start of the run ###

@@ -13,7 +13,7 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2022"
+year <- "2023"
 site <- "Nivelle"
 stade <- "tacon"
 
@@ -67,10 +67,10 @@ filename <- file.path(work.dir, model)
 
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
-adaptSteps = 1 # Number of steps to "tune" the samplers.
+adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=0 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
-nthin=300 # Number of steps to "thin" (1=keep every step).
+nstore=50000 # Total number of steps in chains to save.
+nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###

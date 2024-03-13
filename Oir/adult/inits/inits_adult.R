@@ -121,7 +121,9 @@ logit_pi_eff <- cbind(
 #   -0.9537507,  0.041536211,-0.9537507,  0.041536211),     
 #   .Dim = c(32,4)),  
 
-logit_p_recap = logit((data$Cm_R+1) / (data$C_MC+2))
+tmp <- (data$Cm_R+1) / (data$C_MC+2)
+tmp <- ifelse(tmp==1, 0.99,tmp)
+logit_p_recap = logit(tmp)
 
 # METTRE A JOUR /!\ TAILLE MATRICE                                                                                                   
 # n=structure(.Data = c(    

@@ -389,6 +389,8 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   }
   
   # # to avoid no integer value for no_ech_MSW
+  # Pas d'explications à ce jour!!! mb+ep-2024
+  no_ech_MSW[1,3]<-0
   no_ech_MSW[2,3]<-0
   no_ech_MSW[3,3]<-0 
   no_ech_MSW[4,3]<-0
