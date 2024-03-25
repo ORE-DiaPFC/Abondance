@@ -98,6 +98,15 @@ Cm_F <- mark[,1:2]
 Cum_F <- mark[,3:4]
 
 
+
+###################################################			
+##  n_smp : Annual number of fish sampled by sea age category and sexed ; 1: 1SW-Male, 2: 1SW-Female, 3: MSW-Male, 4: MSW-Female	
+###################################################################################
+n_sex_smp <- read.csv("data/data_sex.csv",header = TRUE)
+n_sex_smp <- as.matrix(n_sex_smp[,2:5])
+
+
+
 data <- list( Y=Y$Y,eff_R=eff_R$eff_R
               ,Cm_R=Cm_R,Cum_R=Cum_R
               ,Cm_R_pulsium=Cm_R_pulsium,Cum_R_pulsium=Cum_R_pulsium
@@ -105,6 +114,7 @@ data <- list( Y=Y$Y,eff_R=eff_R$eff_R
               ,Cm_D=Cm_D,Cum_D=Cum_D
               ,C_MP=C_MP,Cm_MP=Cm_MP,Cum_MP=Cum_MP
               ,C_F=C_F,Cm_F=Cm_F,Cum_F=Cum_F
+              ,n_sex_smp=n_sex_smp
               #,Cuo_F=Cuo_F
               )
 

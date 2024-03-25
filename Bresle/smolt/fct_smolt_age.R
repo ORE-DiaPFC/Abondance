@@ -1,3 +1,6 @@
+library(dplyr)
+library(readr)
+
 #' mise en forme des données d'âge
 formate_smolt_age <- function(
   chemin = "Bresle/smolt/data",

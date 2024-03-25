@@ -28,6 +28,8 @@ parameters <-c(
 ,"n_1SW" # Total number of 1SW
 ,"n_MSW"  # Total number of MSW
 ,"n" # Total number of adults per breeding category
+,"sex_ratio_1SW","sex_ratio_MSW"
+,"pmale_1SW","pmale_MSW"
   
 ,"lambda0" # Initiate lambda distribution
 ,"lambda_n" # Poisson parameter per breeding category

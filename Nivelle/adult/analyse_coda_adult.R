@@ -8,7 +8,7 @@
 library(coda)
 
 ##-----------------------------DATA ----------------------------------##
-year <- 2022
+year <- 2023
 site <- "Nivelle"
 stade <- "adult"
 
@@ -21,10 +21,10 @@ years <- 1984:year
 
 # data.dir <- paste("data/","data-",stade,"-",year,".txt",sep="")
 # data <- read.bugsdata(data.dir)
-#load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
+load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
   
 # loading coda
-#load(paste('results/Results_',stade,"_",year,'.RData',sep=""))
+load(paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
 # Post processings =======================================================
 # as.mcmc.bugs <- function(x){

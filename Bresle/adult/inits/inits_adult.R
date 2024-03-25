@@ -138,11 +138,23 @@ n <- cbind(
 )
 n <- ceiling(n)
 
+# Proprotion sampling for sexing
+# p_smp=array(,dim=c(data$Y,2))
+# p_smp[,1] <-rbeta(data$Y,1, 5) # 1SW
+# p_smp[,2] <-rbeta(data$Y,5, 1) # MSW
+# 
+# # proportion male by sea age
+# p_male=array(,dim=c(data$Y,2))
+# p_male[,1] <-0.5
+# p_male[,2] <- 0.2
+
 inits_updated <- list(
   lambda_tot = lambda_tot
   ,logit_pi_Eu=logit_pi_Eu
   ,logit_pi_B=logit_pi_B
   ,n=n
+  #, p_male=p_male
+  #,p_smp=p_smp
 )
 
 inits <- list(c( inits_fix,inits_updated))

@@ -139,6 +139,11 @@ for (t in 1:Nyears) {
   n_tot[t] <- sum(n[t,])    # total number
   n_1SW[t] <- sum(n[t,1:2]) # Number of males and females 1SW
   n_MSW[t] <- sum(n[t,3:4]) # Number of males and females MSW 
+  
+  sex_ratio_1SW[t] <- n[t,1]/n[t,2]
+  sex_ratio_MSW[t] <- n[t,3]/n[t,4] 
+  pmale_1SW[t] <- n[t,1]/n_1SW[t]
+  pmale_MSW[t] <- n[t,3]/n_MSW[t]
   } # end of loop over years
   
 ##################                 Hyperprior for Ntot                #######################

@@ -18,6 +18,7 @@ year <- "2023"
 site <- "Nivelle"
 stade <- "adult"
 
+cat(year, "-",site,"-",stade, "\n")
 
 ## WORKING DIRECTORY:
 work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
@@ -69,8 +70,8 @@ filename <- file.path(work.dir, model)
 #---------------------------ANALYSIS-----------------------------##
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=50000 # Total number of steps in chains to save.
+nburnin=50000 # Number of steps to "burn-in" the samplers.
+nstore=10000*100 # Total number of steps in chains to save.
 nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 

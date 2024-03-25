@@ -84,6 +84,9 @@ parameters <-c(
   ,"n_1SW" # Total number of 1SW
   ,"n_MSW" # Total number of MSW
   
+  ,"sex_ratio_1SW","sex_ratio_MSW"
+  ,"pmale_1SW","pmale_MSW"
+  
   ,"n" # annual number of fish per breeding category
   ,"n_1.1SW" # annual number of fish 1R/1SW (captured or not)
   ,"n_2.1SW" # annual number of fish 2R/1SW (captured or not)

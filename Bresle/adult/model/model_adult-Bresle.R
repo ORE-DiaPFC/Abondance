@@ -232,6 +232,36 @@ model {
     n_MSW[t] <- n[t,2] # Number of males and females MSW 
   } ## End of loop over years
  
+   # ## Distributing 1SW/MSW into sex classes - mb+ep-15032024
+   # for (t in 1:Y) {
+   #   # Distributing 1SW/MSW into sex classes
+   #   n_1SW_m[t] ~ dbin(p_male[t,1], n_1SW[t]) # male
+   #   n_1SW_f[t] <- n_1SW[t]-n_1SW_m[t] # female
+   #   
+   #   n_MSW_m[t] ~ dbin(p_male[t,2], n_MSW[t])
+   #   n_MSW_f[t] <- n_MSW[t]-n_MSW_m[t] 
+   #   
+   #   # Hierarchcal modelling of the proportion of male by age
+   #   p_male[t,1] ~ dbeta(q[1], q[2])
+   #   p_male[t,2] ~ dbeta(q[3], q[4])
+   #   
+   #   # Samples for genetic sexing
+   #   n_sex_smp[t,1] ~ dbin(p_smp[t,1], n_1SW_m[t]) # male
+   #   n_sex_smp[t,2] ~ dbin(p_smp[t,1], n_1SW_f[t]) # female
+   #   n_sex_smp[t,3] ~ dbin(p_smp[t,2], n_MSW_m[t]) # male
+   #   n_sex_smp[t,4] ~ dbin(p_smp[t,2], n_MSW_f[t]) # female
+   #   
+   #   # Hierarchcal modelling of the proportion of samples
+   #   p_smp[t,1] ~ dbeta(2, 2)
+   #   p_smp[t,2] ~ dbeta(2, 2)    
+   # } ## End of loop over years
+   # 
+   # # Prior pour que s1 et s2 soient superieurs a 1 et que le prior sur p1c soit faiblement informatif
+   # l[1] ~ dbeta(1,2); l[2] ~ dbeta(1,2)
+   # q[1] <- 1+(l[1]*100); q[2] <- 1+(l[2]*100)
+   # l[3] ~ dbeta(1,2); l[4] ~ dbeta(1,2)
+   # q[3] <- 1+(l[3]*100); q[4] <- 1+(l[4]*100)
+   
   # Shape and rate parameter for gamma distribution for negative binomial (see Gelman, 2d edition, p446)
   shape_lambda ~ dgamma(0.001,0.001)
   rate_lambda ~ dgamma(0.001,0.001)

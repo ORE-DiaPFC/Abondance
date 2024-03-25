@@ -89,6 +89,22 @@ for (par in hyperparameters){
 
 # traplot(fit, paste0("eps_U[",1:data$Y,",1]"))
 
+par(mfrow=c(1,1))
+caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+par(mfrow=c(2,1))
+caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("sex_ratio_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("pmale_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("pmale_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+
 par(mfrow=c(2,1))
 caterplot(fit,paste0("alpha_1[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 caterplot(fit,paste0("alpha_2[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
