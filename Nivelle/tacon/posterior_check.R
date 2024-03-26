@@ -45,7 +45,10 @@ par(mfrow=c(1,1))
 caterplot(fit,"alpha_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 par(mfrow=c(1,1))
-caterplot(fit,"gamma_dj", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("gamma_dj[",1:data$Y_last,",4]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+par(mfrow=c(1,1))
+caterplot(fit,paste0("gamma_dj[",1:data$Y_last,",5]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
 
 dev.off()

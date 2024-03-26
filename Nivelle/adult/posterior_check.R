@@ -90,19 +90,26 @@ for (par in hyperparameters){
 # traplot(fit, paste0("eps_U[",1:data$Y,",1]"))
 
 par(mfrow=c(1,1))
-caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("ntot")
 
 par(mfrow=c(2,1))
-caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("n_1SW")
+caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("n_MSW")
 
 par(mfrow=c(2,1))
-caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit,paste0("sex_ratio_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("sex_ratio_1SW")
+caterplot(fit,paste0("sex_ratio_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("sex_ratio_MSW")
 
 par(mfrow=c(2,1))
-caterplot(fit,paste0("pmale_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
-caterplot(fit,paste0("pmale_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+caterplot(fit,paste0("pmale_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("pmale_1SW")
+caterplot(fit,paste0("pmale_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("pmale_MSW")
 
 
 par(mfrow=c(2,1))
