@@ -134,6 +134,16 @@ par(mfrow=c(2,1))
 caterplot(fit,paste0("epsilon_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit,paste0("epsilon_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
+### Proportion male par 1SW et MSW
+par(mfrow=c(2,1))
+caterplot(fit,paste0("p_male[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_male[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+### Proportion echnatillonés pour sexage
+par(mfrow=c(1,1))
+caterplot(fit,paste0("p_smp[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("p_smp[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
 
 dev.off()
 

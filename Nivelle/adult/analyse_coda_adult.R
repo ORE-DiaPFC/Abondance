@@ -8,7 +8,7 @@
 library(coda)
 
 ##-----------------------------DATA ----------------------------------##
-year <- 2022
+year <- 2023
 site <- "Nivelle"
 stade <- "adult"
 
@@ -21,10 +21,10 @@ years <- 1984:year
 
 # data.dir <- paste("data/","data-",stade,"-",year,".txt",sep="")
 # data <- read.bugsdata(data.dir)
-#load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
+load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
   
 # loading coda
-#load(paste('results/Results_',stade,"_",year,'.RData',sep=""))
+load(paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
 # Post processings =======================================================
 # as.mcmc.bugs <- function(x){
@@ -58,5 +58,9 @@ eggs_tot <- fit$sims.matrix[,paste0("eggs_tot[",1:data$Y,"]")]
 
 write.table(eggs_tot,file="results/eggs_tot_iter.txt", row.names=F, col.names=c(paste0(years)), sep = "\t") #mb-21.03.2022
 
-
-                                   
+# Save returns estimates in csv file
+res <- fit$summary
+n_tot <- res[paste0("n_tot[",1:data$Y,"]"),]
+colnames(n_tot)
+rownames(n_tot) <- 1984:year
+write.csv(n_tot, file="results/Nivelle_adults_ntot.csv")

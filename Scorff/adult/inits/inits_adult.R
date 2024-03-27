@@ -283,6 +283,15 @@ for (t in 27:data$Y) {
    pi_R_pulsium[t,2] <- 0.1 
 }
 
+# Proprotion sampling for sexing
+p_smp=array(,dim=c(data$Y,2))
+p_smp[,1] <-rbeta(data$Y,1, 5) # 1SW
+p_smp[,2] <-rbeta(data$Y,5, 1) # MSW
+
+# proportion male by sea age
+p_male=array(,dim=c(data$Y,2))
+p_male[,1] <-0.5
+p_male[,2] <- 0.2
 
 inits_fix <- list(
   lambda_tot0 = lambda_tot0,
@@ -326,6 +335,8 @@ inits_updated <- list(
   ,um_D=um_D
   ,Cum_Fb=Cum_Fb,Cm_Fb=Cm_Fb
   ,pi_R_pulsium=pi_R_pulsium
+  ,p_smp=p_smp
+  ,p_male=p_male
 )
 
 inits <- list(c( inits_fix,inits_updated))

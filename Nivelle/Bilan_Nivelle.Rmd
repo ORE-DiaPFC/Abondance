@@ -3,8 +3,8 @@ title: "Bilan_Nivelle"
 author: "Mathieu Buoro, Frédéric Lange & Etienne Prévost"
 date: "4/14/2020"
 output:
-  word_document: default
   pdf_document: default
+  word_document: default
   html_document: default
 ---
 
@@ -13,7 +13,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Nivelle"
-year <- 2022
+year <- 2023
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")

@@ -6,7 +6,7 @@ YEAR=2023
 CHAINS=2
 BURNIN=1000 # Number of steps to "burn-in" the samplers.
 ITER=50000 # Total number of steps in chains to save.
-THIN=100 # Number of steps to "thin" (1=keep every step).
+THIN=10 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 #REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
@@ -59,7 +59,7 @@ cd $REPbase/$SITE
     cp $REPbase/diagnostics.R $STADE/diagnostics.R
      
 
-   R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   sudo R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]

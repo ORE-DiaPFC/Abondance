@@ -18,6 +18,7 @@ year <- "YEAR"
 site <- "SITE"
 stade <- "STADE"
 
+cat(year, "-",site,"-",stade, "\n")
 
 ## WORKING DIRECTORY:
 work.dir<-paste("Rep",site,stade,sep="/")

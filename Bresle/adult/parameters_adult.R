@@ -46,4 +46,7 @@ parameters <-c(
   ,"Plambda" # Proportion distribution
   
   ,"eff_B" # proportion days Beauchamps was operationg
+  
+  ,"p_male" # proportion male per sea age
+  ,"p_smp" # proportion sample for sexing
 )

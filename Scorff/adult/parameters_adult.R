@@ -78,6 +78,9 @@ parameters <-c(
   
   ,"s" # Dirichlet parameter 
   
+  ,"p_male","q","l"
+  ,"p_smp"
+  
   ,"e_tot" # total annual escapement
   ,"e_1SW" # annual escapement of 1SW
   ,"e_MSW" # annual escapement of MSW
