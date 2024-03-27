@@ -11,6 +11,7 @@
 ## Considering a beta-binomial for the probability of capture
 ## Adding a proportional relationship between the number of marking sessions (standardized within the model) and the overdispersion
 ## Adding a flow effect in the mean probability of capture althoug it is not signigicant (standardized within the model) 
+## Suppressed in 2024 (not properly modeled)
 #####################################################################
 
 #######################################################################
@@ -33,13 +34,19 @@ model {
 
 ###############          Hyperprior for the trapping efficiency          ################### 
 ### Mean and standard deviation of trap efficiency
-log_cess_MC ~ dunif(-10,10) #slope for capture effort (number of marking sessions)
+# Suppression of beta-bin overdispersion
+# log_cess_MC ~ dunif(-10,10) #slope for capture effort (number of marking sessions)
 
 logit_int_MC ~ dunif(-10,10)    #intercept 
 logit_flow_MC ~ dunif(-10,10) #slope for flow data (April)
+# Added in 2024
+s ~ dchisqr(4)
+sigma_MC <- s/4
+tau_MC <- pow(sigma_MC,-2)
 
-test[1] <- step(log_cess_MC) # is log_cess_MC >=0 ?
-test[2] <- step(logit_flow_MC) # is logit_flow >=0 ?
+#test[1] <- step(log_cess_MC) # is log_cess_MC >=0 ?
+#test[2] <- step(logit_flow_MC) # is logit_flow >=0 ?
+test <- step(logit_flow_MC) # is logit_flow >=0 ?
 
 ###############        Hyperparameters for N (smolt number by cohort)       ##################
 # Shape and rate parameter for gamma distribution  for negative binomial (see Gelman, 2d edition, p446)
@@ -84,26 +91,26 @@ for (t in 1:Nyears-1) {  Ntot[t+1] <- Nc[t+1,1]+Nc[t,2] }
 
 # 1986: 1st year
 #############	        Prior for p_MC[t]          #################
-  ### Overdispersion
-  logeff_MC[1] <- log(eff_MC[1]) # ln transformation of covariate of the number of marking sessions
-    
-  log_disp[1] <- logeff_MC[1] + log_cess_MC  # proportional relationship between number of marking sessions and overdispersion
-  overdisp_MC[1] <- exp(log_disp[1])
+  ### Overdispersion suppressed in 2024
+#  logeff_MC[1] <- log(eff_MC[1]) # ln transformation of covariate of the number of marking sessions
+#  log_disp[1] <- logeff_MC[1] + log_cess_MC  # proportional relationship between number of marking sessions and overdispersion
+#  overdisp_MC[1] <- exp(log_disp[1])
   
   ### Mean
   logQ_MC[1] <- log(Q_MC[1]) # ln transformation of covariate flow
   stlogQ_MC[1] <- (logQ_MC[1] - mean(logQ_MC[]))/sd(logQ_MC[]) # standardized covariate
   
-  lmupi_MC[1] <- logit_int_MC + logit_flow_MC * stlogQ_MC[1]
-  mean_MC[1] <- exp(lmupi_MC[1])/(1+exp(lmupi_MC[1]))  # back-transformation on the probability scale
+  # Changed in 2024
+  mean_MC[1] <- logit_int_MC + logit_flow_MC * stlogQ_MC[1]
+  lp_MC[1] ~ dnorm(mean_MC[1], tau_MC)
   
   ### Beta-binomiale mb+ep-21032024
   # alpha_MC[1] <- mean_MC[1] * overdisp_MC[1]
   # beta_MC[1] <- (1-mean_MC[1]) * overdisp_MC[1]
   # p_MC[1] ~ dbeta(alpha_MC[1],beta_MC[1]) 
-  p_MC[1] <- mean_MC[1]
+  p_MC[1] <- exp(lp_MC[1])/(1+exp(lp_MC[1]))  # back-transformation on the probability scale
   
-  eps_p_MC[1] <- logit(p_MC[1]) - lmupi_MC[1]  # r?siduals logit scale (March 2020)
+  eps_p_MC[1] <- (lp_MC[1] - mean_MC[1])/sigma_MC  # r?siduals logit scale (March 2020)
 
 ####################                 LIKELIHOOD               #######################  		
 	# Binomial for Recaptures 
@@ -123,26 +130,27 @@ for (t in 1:Nyears-1) {  Ntot[t+1] <- Nc[t+1,1]+Nc[t,2] }
 for (t in 2:Nyears) {
 		
 #############	        Prior for p_MC[t]          #################
-  ### Overdispersion
-  logeff_MC[t] <- log(eff_MC[t]) # ln transformation of covariate of the number of marking sessions
-    
-  log_disp[t] <- logeff_MC[t] + log_cess_MC  # proportional relationship between number of marking sessions and overdispersion
-  overdisp_MC[t] <- exp(log_disp[t])
+  ### Overdispersion suppressed in 2024
+#  logeff_MC[t] <- log(eff_MC[t]) # ln transformation of covariate of the number of marking sessions
+#  log_disp[t] <- logeff_MC[t] + log_cess_MC  # proportional relationship between number of marking sessions and overdispersion
+#  overdisp_MC[t] <- exp(log_disp[t])
   
   ### Mean
   logQ_MC[t] <- log(Q_MC[t]) # ln transformation of covariate flow
   stlogQ_MC[t] <- (logQ_MC[t] - mean(logQ_MC[]))/sd(logQ_MC[]) # standardized covariate
-  
-  lmupi_MC[t] <- logit_int_MC + logit_flow_MC * stlogQ_MC[t]
-  mean_MC[t] <- exp(lmupi_MC[t])/(1+exp(lmupi_MC[t]))  # back-transformation on the probability scale
+    
+  # Changed in 2024
+  mean_MC[t] <- logit_int_MC + logit_flow_MC * stlogQ_MC[t]
+  lp_MC[t] ~ dnorm(mean_MC[t], tau_MC)
   
   ### Beta-binomiale mb+ep-21032024
   #alpha_MC[t] <- mean_MC[t] * overdisp_MC[t]
   #beta_MC[t] <- (1-mean_MC[t]) * overdisp_MC[t]
   #p_MC[t] ~ dbeta(alpha_MC[t],beta_MC[t]) 
-  p_MC[t] <- mean_MC[t]
+  p_MC[t] <- exp(lp_MC[t])/(1+exp(lp_MC[t]))  # back-transformation on the probability scale
   
-  eps_p_MC[t] <- logit(p_MC[t]) - lmupi_MC[t]  # r?siduals logit scale (March 2020)
+  eps_p_MC[t] <- (lp_MC[t] - mean_MC[t])/sigma_MC  # r?siduals logit scale (March 2020)
+
 ####################                 LIKELIHOOD               #######################  		
 	# Binomial for Recaptures 
   Cm_R[t] ~ dbin(p_MC[t],Cm_MC[t]) 
