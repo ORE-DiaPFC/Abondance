@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  2000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -12,6 +12,82 @@ Heidelberger and Welch's convergence diagnostic
 heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+mu_B          passed          1      0.184  
+sigmap_B      passed          1      0.774  
+logit_int_Eu  passed          1      0.953  
+logit_flow_Eu passed       1001      0.100  
+sigmap_Eu     passed          1      0.645  
+p_B95         passed          1      0.557  
+p_B96         passed          1      0.454  
+p_B99         passed          1      0.116  
+p_B02         passed          1      0.737  
+p_B20         passed       3001      0.151  
+shape_lambda  passed          1      0.108  
+rate_lambda   passed          1      0.344  
+mean_gamma    passed          1      0.101  
+var_gamma     passed          1      0.236  
+p_keep        passed          1      0.449  
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+mu_B          passed     2.83e-01 1.26e-03 
+sigmap_B      passed     6.15e-01 4.10e-03 
+logit_int_Eu  passed    -2.60e+00 1.88e-03 
+logit_flow_Eu passed    -8.46e-02 2.02e-03 
+sigmap_Eu     passed     3.95e-01 1.68e-03 
+p_B95         passed     1.90e-01 9.20e-03 
+p_B96         passed     1.08e-01 1.94e-03 
+p_B99         passed     2.58e-01 3.53e-03 
+p_B02         passed     2.27e-01 1.09e-02 
+p_B20         passed     7.84e-02 6.71e-03 
+shape_lambda  passed     2.63e+00 2.69e-02 
+rate_lambda   passed     7.14e-04 6.93e-06 
+mean_gamma    passed     3.73e+03 1.78e+01 
+var_gamma     passed     5.73e+06 6.88e+04 
+p_keep        passed     8.10e-01 2.21e-03 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+mu_B          passed       1         0.0846 
+sigmap_B      passed       1         0.8308 
+logit_int_Eu  passed       1         0.6302 
+logit_flow_Eu passed       1         0.9020 
+sigmap_Eu     passed       1         0.3777 
+p_B95         passed       1         0.7607 
+p_B96         passed       1         0.4073 
+p_B99         passed       1         0.9042 
+p_B02         passed       1         0.7385 
+p_B20         passed       1         0.1452 
+shape_lambda  passed       1         0.6571 
+rate_lambda   passed       1         0.7126 
+mean_gamma    passed       1         0.2666 
+var_gamma     passed       1         0.6094 
+p_keep        passed       1         0.3086 
+                                           
+              Halfwidth Mean      Halfwidth
+              test                         
+mu_B          passed     2.84e-01 1.42e-03 
+sigmap_B      passed     6.15e-01 3.99e-03 
+logit_int_Eu  passed    -2.60e+00 1.83e-03 
+logit_flow_Eu passed    -8.16e-02 1.88e-03 
+sigmap_Eu     passed     3.95e-01 1.74e-03 
+p_B95         passed     1.98e-01 9.65e-03 
+p_B96         passed     1.09e-01 2.20e-03 
+p_B99         passed     2.57e-01 3.54e-03 
+p_B02         passed     2.25e-01 1.04e-02 
+p_B20         passed     7.90e-02 5.62e-03 
+shape_lambda  passed     2.64e+00 2.49e-02 
+rate_lambda   passed     7.17e-04 6.37e-06 
+mean_gamma    passed     3.72e+03 1.62e+01 
+var_gamma     passed     5.69e+06 6.39e+04 
+p_keep        passed     8.10e-01 2.41e-03 
 
 
 ---------------------------
@@ -23,6 +99,78 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu         p_B95         p_B96         p_B99         p_B02         p_B20 
+      1.14149       0.12575       0.54825       1.68232      -0.01190      -0.07027      -0.33038       0.23645       1.36160       1.96260 
+ shape_lambda   rate_lambda    mean_gamma     var_gamma        p_keep 
+     -2.59476      -1.66279      -1.78867       0.85624      -0.24990 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+         mu_B      sigmap_B  logit_int_Eu logit_flow_Eu     sigmap_Eu         p_B95         p_B96         p_B99         p_B02         p_B20 
+      2.04625      -0.56349      -0.84079       0.28043       0.16840       0.40039      -0.73842       0.57730      -1.17900       1.85038 
+ shape_lambda   rate_lambda    mean_gamma     var_gamma        p_keep 
+     -0.33120       0.02212      -0.87742      -1.00252       1.19825 
+
+
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ mu_B          400      798800  3746         213       
+ sigmap_B      400      789400  3746         211       
+ logit_int_Eu  400      800600  3746         214       
+ logit_flow_Eu 400      748200  3746         200       
+ sigmap_Eu     400      779400  3746         208       
+ p_B95         1600     1963200 3746         524       
+ p_B96         600      802600  3746         214       
+ p_B99         600      805600  3746         215       
+ p_B02         2400     3132600 3746         836       
+ p_B20         4000     3691000 3746         985       
+ shape_lambda  600      833400  3746         222       
+ rate_lambda   600      821600  3746         219       
+ mean_gamma    400      797600  3746         213       
+ var_gamma     400      773000  3746         206       
+ p_keep        400      760400  3746         203       
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ mu_B          600      877200  3746         234       
+ sigmap_B      400      766800  3746         205       
+ logit_int_Eu  400      776000  3746         207       
+ logit_flow_Eu 400      769400  3746         205       
+ sigmap_Eu     400      779400  3746         208       
+ p_B95         2400     3352200 3746         895       
+ p_B96         1200     1666000 3746         445       
+ p_B99         400      754200  3746         201       
+ p_B02         1600     1922800 3746         513       
+ p_B20         2000     2130000 3746         569       
+ shape_lambda  600      846400  3746         226       
+ rate_lambda   600      808200  3746         216       
+ mean_gamma    400      779400  3746         208       
+ var_gamma     400      779400  3746         208       
+ p_keep        400      756800  3746         202       
+
+

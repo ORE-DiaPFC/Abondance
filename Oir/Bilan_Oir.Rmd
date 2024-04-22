@@ -14,7 +14,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Oir"
-year <- 2022
+year <- 2023
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -26,6 +26,8 @@ mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 ### NOTA BENE  
 
+2024:
+ - Smolt: on a deconnecter l'effet de la surdispersion (pb d'initialisation)
 2021:
 - Tacons : harmoniser  priorcpue : rate_cpue -> "p_cpue" (voir Nivelle (L. 296) et Scorff)
 - Réviser les surfaces d'habitats recalculer par Fred Lange

@@ -15,7 +15,7 @@ Q_MC <- read.bugsdata(paste("data/data_flow.txt",sep=""))
 age <- read.bugsdata(paste("data/data_age.txt",sep=""))
 
 data <- c(fish
-          ,eff_MC
+          #,eff_MC
           ,Q_MC
           ,age
 )

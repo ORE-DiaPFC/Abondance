@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -12,6 +12,30 @@ Heidelberger and Welch's convergence diagnostic
 heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       4001      0.0750 
+rate_lambda  failed         NA      0.0266 
+                                     
+             Halfwidth Mean Halfwidth
+             test                    
+shape_lambda passed    2.67 0.0159   
+rate_lambda  <NA>        NA     NA   
+
+[[2]]
+                                           
+             Stationarity start     p-value
+             test         iteration        
+shape_lambda passed       1         0.946  
+rate_lambda  passed       1         0.781  
+                                       
+             Halfwidth Mean   Halfwidth
+             test                      
+shape_lambda passed    2.6446 1.22e-02 
+rate_lambda  passed    0.0185 9.24e-05 
 
 
 ---------------------------
@@ -23,6 +47,48 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda 
+      -1.995       -2.231 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+shape_lambda  rate_lambda 
+     -0.8166      -0.7331 
+
+
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ shape_lambda 200      378000 3746         101       
+ rate_lambda  200      378500 3746         101       
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                     
+              Burn-in  Total  Lower bound  Dependence
+              (M)      (N)    (Nmin)       factor (I)
+ shape_lambda 200      384700 3746         103       
+ rate_lambda  200      379700 3746         101       
+
+

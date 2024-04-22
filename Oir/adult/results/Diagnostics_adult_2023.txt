@@ -13,6 +13,110 @@ heidel.diag is a run length control diagnostic based on a criterion of relative 
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
 
+[[1]]
+                                               
+                 Stationarity start     p-value
+                 test         iteration        
+logit_int_MC[1]  passed       10001     0.168  
+logit_int_MC[2]  passed           1     0.971  
+logit_flow_MC[1] passed           1     0.535  
+logit_flow_MC[2] passed           1     0.584  
+sigmap_eff[1]    passed           1     0.311  
+sigmap_eff[2]    passed           1     0.477  
+shape_lambda     passed           1     0.600  
+rate_lambda      passed           1     0.724  
+s[1]             passed           1     0.432  
+s[2]             passed           1     0.683  
+s[3]             passed           1     0.411  
+s[4]             passed           1     0.811  
+mup_recap[1]     passed           1     0.436  
+mup_recap[2]     passed           1     0.422  
+mup_recap[3]     passed           1     0.849  
+mup_recap[4]     passed           1     0.597  
+sigmap_recap[1]  passed           1     0.876  
+sigmap_recap[2]  passed           1     0.815  
+sigmap_recap[3]  passed           1     0.723  
+sigmap_recap[4]  passed           1     0.209  
+p_MC90[1]        passed           1     0.652  
+p_MC90[2]        passed           1     0.692  
+                                            
+                 Halfwidth Mean    Halfwidth
+                 test                       
+logit_int_MC[1]  passed     0.0582 3.44e-03 
+logit_int_MC[2]  passed    -0.3233 5.80e-03 
+logit_flow_MC[1] passed    -0.6971 3.19e-03 
+logit_flow_MC[2] passed    -0.7571 4.24e-03 
+sigmap_eff[1]    passed     1.7882 2.78e-03 
+sigmap_eff[2]    passed     1.4032 4.25e-03 
+shape_lambda     passed     2.6905 8.01e-03 
+rate_lambda      passed     0.0132 4.42e-05 
+s[1]             passed    17.0636 7.03e-02 
+s[2]             passed     9.2983 3.77e-02 
+s[3]             passed     1.2755 5.62e-03 
+s[4]             passed     3.7965 1.79e-02 
+mup_recap[1]     passed     0.2145 3.67e-04 
+mup_recap[2]     passed     0.3222 3.71e-04 
+mup_recap[3]     passed     0.1206 6.12e-04 
+mup_recap[4]     passed     0.2076 6.37e-04 
+sigmap_recap[1]  passed     1.2239 2.02e-03 
+sigmap_recap[2]  passed     0.6638 2.24e-03 
+sigmap_recap[3]  passed     1.1552 8.53e-03 
+sigmap_recap[4]  passed     1.0227 3.48e-03 
+p_MC90[1]        passed     0.3509 2.97e-03 
+p_MC90[2]        passed     0.5342 2.77e-03 
+
+[[2]]
+                                               
+                 Stationarity start     p-value
+                 test         iteration        
+logit_int_MC[1]  passed           1     0.3406 
+logit_int_MC[2]  passed           1     0.2831 
+logit_flow_MC[1] passed           1     0.0812 
+logit_flow_MC[2] passed           1     0.4165 
+sigmap_eff[1]    passed           1     0.6809 
+sigmap_eff[2]    passed           1     0.2700 
+shape_lambda     passed           1     0.4328 
+rate_lambda      passed           1     0.3717 
+s[1]             passed           1     0.1020 
+s[2]             passed           1     0.1784 
+s[3]             passed       10001     0.0616 
+s[4]             passed       10001     0.1563 
+mup_recap[1]     passed           1     0.3372 
+mup_recap[2]     passed           1     0.4001 
+mup_recap[3]     passed           1     0.4868 
+mup_recap[4]     passed           1     0.8709 
+sigmap_recap[1]  passed           1     0.2059 
+sigmap_recap[2]  passed           1     0.1371 
+sigmap_recap[3]  passed           1     0.6220 
+sigmap_recap[4]  passed           1     0.0706 
+p_MC90[1]        passed           1     0.7988 
+p_MC90[2]        passed           1     0.1377 
+                                            
+                 Halfwidth Mean    Halfwidth
+                 test                       
+logit_int_MC[1]  passed     0.0594 0.003168 
+logit_int_MC[2]  passed    -0.3164 0.005665 
+logit_flow_MC[1] passed    -0.7002 0.003108 
+logit_flow_MC[2] passed    -0.7577 0.004298 
+sigmap_eff[1]    passed     1.7856 0.002698 
+sigmap_eff[2]    passed     1.4062 0.004023 
+shape_lambda     passed     2.6915 0.007991 
+rate_lambda      passed     0.0133 0.000045 
+s[1]             passed    17.0057 0.069276 
+s[2]             passed     9.2727 0.037265 
+s[3]             passed     1.2704 0.006420 
+s[4]             passed     3.7714 0.019864 
+mup_recap[1]     passed     0.2145 0.000358 
+mup_recap[2]     passed     0.3223 0.000377 
+mup_recap[3]     passed     0.1211 0.000587 
+mup_recap[4]     passed     0.2084 0.000631 
+sigmap_recap[1]  passed     1.2242 0.001996 
+sigmap_recap[2]  passed     0.6657 0.002255 
+sigmap_recap[3]  passed     1.1558 0.008509 
+sigmap_recap[4]  passed     1.0197 0.003423 
+p_MC90[1]        passed     0.3474 0.002923 
+p_MC90[2]        passed     0.5353 0.002745 
+
 
 ---------------------------
 Geweke's convergence diagnostic
@@ -23,6 +127,100 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC[1]  logit_int_MC[2] logit_flow_MC[1] logit_flow_MC[2]    sigmap_eff[1]    sigmap_eff[2]     shape_lambda 
+          1.9833           0.2393          -0.8079          -0.8911           1.3108          -1.3562           0.1532 
+     rate_lambda             s[1]             s[2]             s[3]             s[4]     mup_recap[1]     mup_recap[2] 
+         -0.1234          -1.0102          -0.7712          -1.4800          -0.9399          -0.7984          -1.6135 
+    mup_recap[3]     mup_recap[4]  sigmap_recap[1]  sigmap_recap[2]  sigmap_recap[3]  sigmap_recap[4]        p_MC90[1] 
+          0.4766          -0.5508           0.1153           0.6770           0.8147          -0.5720          -0.8448 
+       p_MC90[2] 
+          0.1498 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+ logit_int_MC[1]  logit_int_MC[2] logit_flow_MC[1] logit_flow_MC[2]    sigmap_eff[1]    sigmap_eff[2]     shape_lambda 
+        -0.67694         -0.08427          0.58849         -1.71502          1.44566          0.92288         -0.03355 
+     rate_lambda             s[1]             s[2]             s[3]             s[4]     mup_recap[1]     mup_recap[2] 
+         0.23107          1.44021          1.19878          1.41617          1.13902          0.31624          0.63448 
+    mup_recap[3]     mup_recap[4]  sigmap_recap[1]  sigmap_recap[2]  sigmap_recap[3]  sigmap_recap[4]        p_MC90[1] 
+         0.34757          0.52013          0.82142         -1.58368         -1.87812         -2.27521          1.52538 
+       p_MC90[2] 
+        -1.24562 
+
+
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                         
+                  Burn-in  Total  Lower bound  Dependence
+                  (M)      (N)    (Nmin)       factor (I)
+ logit_int_MC[1]  20       37770  3746         10.1      
+ logit_int_MC[2]  60       121920 3746         32.5      
+ logit_flow_MC[1] 20       39030  3746         10.4      
+ logit_flow_MC[2] 60       80220  3746         21.4      
+ sigmap_eff[1]    20       39520  3746         10.5      
+ sigmap_eff[2]    90       126120 3746         33.7      
+ shape_lambda     20       39930  3746         10.7      
+ rate_lambda      30       40210  3746         10.7      
+ s[1]             60       86420  3746         23.1      
+ s[2]             60       120990 3746         32.3      
+ s[3]             60       83160  3746         22.2      
+ s[4]             60       83760  3746         22.4      
+ mup_recap[1]     20       38660  3746         10.3      
+ mup_recap[2]     20       40080  3746         10.7      
+ mup_recap[3]     60       79280  3746         21.2      
+ mup_recap[4]     60       82280  3746         22.0      
+ sigmap_recap[1]  60       78560  3746         21.0      
+ sigmap_recap[2]  60       89460  3746         23.9      
+ sigmap_recap[3]  250      304900 3746         81.4      
+ sigmap_recap[4]  60       86120  3746         23.0      
+ p_MC90[1]        60       84940  3746         22.7      
+ p_MC90[2]        60       83100  3746         22.2      
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                         
+                  Burn-in  Total  Lower bound  Dependence
+                  (M)      (N)    (Nmin)       factor (I)
+ logit_int_MC[1]  20       38330  3746         10.2      
+ logit_int_MC[2]  60       84800  3746         22.6      
+ logit_flow_MC[1] 20       38410  3746         10.3      
+ logit_flow_MC[2] 60       81420  3746         21.7      
+ sigmap_eff[1]    20       39730  3746         10.6      
+ sigmap_eff[2]    60       88220  3746         23.6      
+ shape_lambda     30       40450  3746         10.8      
+ rate_lambda      30       40210  3746         10.7      
+ s[1]             60       89360  3746         23.9      
+ s[2]             60       87180  3746         23.3      
+ s[3]             60       81460  3746         21.7      
+ s[4]             60       89600  3746         23.9      
+ mup_recap[1]     20       37850  3746         10.1      
+ mup_recap[2]     20       39290  3746         10.5      
+ mup_recap[3]     60       84380  3746         22.5      
+ mup_recap[4]     90       129030 3746         34.4      
+ sigmap_recap[1]  20       38420  3746         10.3      
+ sigmap_recap[2]  60       83700  3746         22.3      
+ sigmap_recap[3]  240      266080 3746         71.0      
+ sigmap_recap[4]  60       91340  3746         24.4      
+ p_MC90[1]        60       83420  3746         22.3      
+ p_MC90[2]        60       79640  3746         21.3      
+
+

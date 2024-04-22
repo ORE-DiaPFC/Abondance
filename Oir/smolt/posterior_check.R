@@ -4,8 +4,8 @@ hyperparameters <-c(
   ## PROBABILITIES 
   "logit_int_MC" # intercept 
   ,"logit_flow_MC" #slope for flow data (April
-  ,"log_cess_MC" #slope for capture effort (number of marking sessions
-  
+  #,"log_cess_MC" #slope for capture effort (number of marking sessions
+  ,"sigma_MC"
   
   # POPULATION
   ,"shape_lambda" # Shape parameter of gamma distribution
@@ -34,19 +34,20 @@ for (par in hyperparameters){
   denplot(fit,par) 
 }
 
-traplot(fit,"overdisp_MC") 
+
+#traplot(fit,"overdisp_MC") 
 traplot(fit,"eps_p_MC") 
-traplot(fit,"mean_MC") 
+#traplot(fit,"mean_MC") 
 traplot(fit,"p_MC") 
 #traplot(fit,"alpha_MC") 
 #traplot(fit,"beta_MC") 
 
 par(mfrow=c(2,1))
-caterplot(fit, "overdisp_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit, "overdisp_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit, "eps_p_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 #par(mfrow=c(2,1))
-caterplot(fit, "mean_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+#caterplot(fit, "mean_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit, "p_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
 #caterplot(fit, "alpha_MC", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
@@ -56,7 +57,9 @@ caterplot(fit, "p_MC", reorder = FALSE, horizontal=FALSE, style=c("plain"))
 caterplot(fit, "p1c", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit, "p1y", reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-caterplot(fit, paste0("Nc[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit, paste0("Nc[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit, paste0("Nc[",1:data$Nyears,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1986:year); title("N1+ by cohort") 
+caterplot(fit, paste0("Nc[",1:data$Nyears,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1986:year); title("N2+ by cohort") 
+
+caterplot(fit,paste0("Ntot[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1986:year); title("Ntot")
 
 dev.off()

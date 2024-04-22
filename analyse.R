@@ -71,8 +71,8 @@ filename <- file.path(work.dir, model)
 nChains = CHAINS #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=BURNIN # Number of steps to "burn-in" the samplers.
-nstore=ITER # Total number of steps in chains to save.
 nthin=THIN # Number of steps to "thin" (1=keep every step).
+nstore=ITER # Total number of steps in chains to save.
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 analysis=TRUE

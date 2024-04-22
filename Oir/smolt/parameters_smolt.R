@@ -3,8 +3,8 @@ parameters <-c(
   ## PROBABILITIES 
 "logit_int_MC" # intercept 
 ,"logit_flow_MC" #slope for flow data (April
-,"log_cess_MC" #slope for capture effort (number of marking sessions
-  
+#,"log_cess_MC" #slope for capture effort (number of marking sessions
+  ,"sigma_MC"
   
   # POPULATION
 ,"shape_lambda" # Shape parameter of gamma distribution
@@ -22,9 +22,10 @@ parameters <-c(
 ,"Nc" # Number of smolt by cohort
 
 ,"eps_p_MC"
-,"overdisp_MC" # Annual overdispersion of capture probability
-,"mean_MC" # Mean capture probability
+#,"overdisp_MC" # Annual overdispersion of capture probability
+#,"mean_MC" # Mean capture probability
 ,"p_MC" # Annual capture of probability
+#,"lp_MC" # logit scale
 #,"alpha_MC" # Alpha parameter of the beta binomiale distribution
 #,"beta_MC" # Beta parameter of the beta binomiale distribution
   

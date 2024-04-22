@@ -3,8 +3,9 @@ title: "Bilan_Scorff"
 author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
 date: "4/14/2021"
 output:
-  word_document: default
+  pdf_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +13,7 @@ wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
 setwd(wdir)
 
 site <- "Scorff"
-year <- 2022
+year <- 2023
 years <- seq(1993, year, 1)
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
@@ -615,7 +616,7 @@ load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep=""))
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
 parr <- as.matrix(fit$sims.matrix)
 mcmc <- as.matrix(parr[,paste0("ntot_Sc[",1:data$Nyear,"]")]) # 1984 to now)
-r <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+parr <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 
 
@@ -627,7 +628,7 @@ boxes <- sapply(nchar(labels), function(n)
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
 
-ratio <- smolt[1:28,"50%"]/r[2:29,"50%"]
+ratio <- smolt[1:28,"50%"]/parr[1:28,"50%"]
 plot(ratio,bty="n",ylab="Ratio Smolts/Tacons 0+",xlab="Cohort",xaxt="n",ylim=c(0,1))
 axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
 

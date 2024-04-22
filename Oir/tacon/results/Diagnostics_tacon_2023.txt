@@ -2,7 +2,7 @@
 DIAGNOSTICS
 =============================
 Number of chains:  2 
-Number of iterations:  50000 
+Number of iterations:  10000 
 Convergence: gelman-Rubin R test
 Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 
 
@@ -12,6 +12,58 @@ Heidelberger and Welch's convergence diagnostic
 heidel.diag is a run length control diagnostic based on a criterion of relative accuracy for the estimate of the mean. The default setting corresponds to a relative accuracy of two significant digits.
 
 heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+[[1]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed       1         0.337  
+mup_rem       passed       1         0.671  
+int_width     passed       1         0.136  
+width_coef    passed       1         0.393  
+rate_lcpu     passed       1         0.190  
+sigma_dOir    passed       1         0.133  
+sigma_yOir    passed       1         0.435  
+sigma_gryrOir passed       1         0.391  
+coef_PC       passed       1         0.455  
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.562 0.004326 
+mup_rem       passed     0.804 0.000214 
+int_width     passed    -0.762 0.002131 
+width_coef    passed     0.776 0.001655 
+rate_lcpu     passed     0.619 0.003643 
+sigma_dOir    passed     0.720 0.000446 
+sigma_yOir    passed     1.138 0.002869 
+sigma_gryrOir passed     0.875 0.001046 
+coef_PC       passed     0.127 0.000449 
+
+[[2]]
+                                            
+              Stationarity start     p-value
+              test         iteration        
+sd_prem       passed       1         0.160  
+mup_rem       passed       1         0.397  
+int_width     passed       1         0.649  
+width_coef    passed       1         0.738  
+rate_lcpu     passed       1         0.896  
+sigma_dOir    passed       1         0.177  
+sigma_yOir    passed       1         0.449  
+sigma_gryrOir passed       1         0.428  
+coef_PC       passed       1         0.392  
+                                        
+              Halfwidth Mean   Halfwidth
+              test                      
+sd_prem       passed     0.562 0.004200 
+mup_rem       passed     0.804 0.000217 
+int_width     passed    -0.761 0.002109 
+width_coef    passed     0.776 0.001639 
+rate_lcpu     passed     0.619 0.003675 
+sigma_dOir    passed     0.721 0.000431 
+sigma_yOir    passed     1.137 0.003178 
+sigma_gryrOir passed     0.875 0.001024 
+coef_PC       passed     0.127 0.000456 
 
 
 ---------------------------
@@ -23,6 +75,66 @@ The test statistic is a standard Z-score: the difference between the two sample 
 
 The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
 
+[[1]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu    sigma_dOir    sigma_yOir sigma_gryrOir 
+      -0.7552        0.6625       -0.2584        1.5625       -0.5120       -2.3860       -1.0631        1.0260 
+      coef_PC 
+       0.4261 
+
+
+[[2]]
+
+Fraction in 1st window = 0.1
+Fraction in 2nd window = 0.5 
+
+      sd_prem       mup_rem     int_width    width_coef     rate_lcpu    sigma_dOir    sigma_yOir sigma_gryrOir 
+       2.0977       -1.0243        0.4311       -0.5553       -0.9019       -0.6715        0.9141       -0.3771 
+      coef_PC 
+       0.4649 
+
+
 
 ---------------------------
 Raftery and Lewis's diagnostic
+[[1]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ sd_prem       1200     1333300 3746         356.0     
+ mup_rem       200      389700  3746         104.0     
+ int_width     200      383400  3746         102.0     
+ width_coef    200      377100  3746         101.0     
+ rate_lcpu     200      380200  3746         101.0     
+ sigma_dOir    200      379700  3746         101.0     
+ sigma_yOir    200      374100  3746          99.9     
+ sigma_gryrOir 200      377100  3746         101.0     
+ coef_PC       200      386500  3746         103.0     
+
+
+[[2]]
+
+Quantile (q) = 0.025
+Accuracy (r) = +/- 0.005
+Probability (s) = 0.95 
+                                                       
+               Burn-in  Total   Lower bound  Dependence
+               (M)      (N)     (Nmin)       factor (I)
+ sd_prem       1400     1624400 3746         434.0     
+ mup_rem       200      378400  3746         101.0     
+ int_width     200      375400  3746         100.0     
+ width_coef    200      380200  3746         101.0     
+ rate_lcpu     200      374100  3746          99.9     
+ sigma_dOir    200      365900  3746          97.7     
+ sigma_yOir    200      371000  3746          99.0     
+ sigma_gryrOir 200      369300  3746          98.6     
+ coef_PC       200      374100  3746          99.9     
+
+

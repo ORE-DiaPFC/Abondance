@@ -34,6 +34,30 @@ for (par in hyperparameters){
   denplot(fit,par) 
 }
 
+par(mfrow=c(1,1))
+caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("ntot")
+
+par(mfrow=c(2,1))
+caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("n_1SW")
+caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("n_MSW")
+
+#par(mfrow=c(2,1))
+#caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+#title("sex_ratio_1SW")
+#caterplot(fit,paste0("sex_ratio_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+#title("sex_ratio_MSW")
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("pmale_1SW[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("pmale_1SW")
+caterplot(fit,paste0("pmale_MSW[",1:data$Nyears,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("pmale_MSW")
+
+
+
 traplot(fit, paste0("epsilon_MC[",1:data$Nyears,",1]"))
 traplot(fit, paste0("epsilon_MC[",1:data$Nyears,",2]"))
 

@@ -60,6 +60,13 @@ for (a in 1:2) {
 lQ2pic <- log(list$Q2pic) # ln transformation of autumn covariate
 stlQ2pic <- (lQ2pic - mean(lQ2pic))/sd(lQ2pic) # standardized covariate 
 
+###################################################			
+##  n_smp : Annual number of fish sampled by sea age category and sexed ; 1: 1SW-Male, 2: 1SW-Female, 3: MSW-Male, 4: MSW-Female	
+###################################################################################
+n_sex_smp <- read.csv("data/data_sex.csv",header = TRUE)
+n_sex_smp <- as.matrix(n_sex_smp[,2:5])
+
+
 data <- list(
   Y=list$Y, Q2pic=list$Q2pic
   , Cm_B=Cm_B,Cum_B=Cum_B,C_Eu=C_Eu, Cm_Eu=Cm_Eu
@@ -67,6 +74,7 @@ data <- list(
   , logQ=logQ, stlogQ=stlogQ
   , lQ2pic=lQ2pic,stlQ2pic=stlQ2pic
   ,R_B=list$R_B
+  ,n_sex_smp=n_sex_smp
 )
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données

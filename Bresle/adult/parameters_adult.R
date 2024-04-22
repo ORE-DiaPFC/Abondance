@@ -49,4 +49,5 @@ parameters <-c(
   
   ,"p_male" # proportion male per sea age
   ,"p_smp" # proportion sample for sexing
+  ,"l"
 )

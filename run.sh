@@ -4,9 +4,9 @@
 #SITE=Scorff # Nivelle Oir Bresle
 YEAR=2023
 CHAINS=2
-BURNIN=1000 # Number of steps to "burn-in" the samplers.
-ITER=50000 # Total number of steps in chains to save.
-THIN=10 # Number of steps to "thin" (1=keep every step).
+BURNIN=10000 # Number of steps to "burn-in" the samplers.
+ITER=10000 # Total number of steps in chains to save.
+THIN=500 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
 #REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"

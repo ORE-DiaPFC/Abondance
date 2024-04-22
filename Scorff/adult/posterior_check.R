@@ -134,10 +134,33 @@ par(mfrow=c(2,1))
 caterplot(fit,paste0("epsilon_R[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit,paste0("epsilon_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
-### Proportion male par 1SW et MSW
+# ### Proportion male par 1SW et MSW
+# par(mfrow=c(2,1))
+# caterplot(fit,paste0("p_male[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+# caterplot(fit,paste0("p_male[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+
+
+par(mfrow=c(1,1))
+caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+title("ntot")
+
 par(mfrow=c(2,1))
-caterplot(fit,paste0("p_male[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit,paste0("p_male[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+title("n_1SW")
+caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+title("n_MSW")
+
+#par(mfrow=c(2,1))
+#caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+#title("sex_ratio_1SW")
+#caterplot(fit,paste0("sex_ratio_MSW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+#title("sex_ratio_MSW")
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("p_male[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+title("pmale_1SW")
+caterplot(fit,paste0("p_male[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
+title("pmale_MSW")
 
 ### Proportion echnatillonés pour sexage
 par(mfrow=c(1,1))

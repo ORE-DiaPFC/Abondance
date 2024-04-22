@@ -11,7 +11,7 @@ for (c in 1:2){ # 2 chains
 ###################################################
 inits_fix <- list(
   ## NO UPDATE
-  log_cess_MC = -0.2,#runif(1,-0.3,0),#-0.2224,
+  #log_cess_MC = -0.2,#runif(1,-0.3,0),#-0.2224,
   rate_lambda = 0.003,#runif(1,0.001,0.01),#0.00248,
   shape_lambda = 2.8,#runif(1,2,3),#2.893,
   logit_flow_MC = -0.25,#runif(1,-.7,0),#-0.55,
