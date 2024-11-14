@@ -67,6 +67,7 @@ parameters <-c(
   ,"n_tot" # total annual number of adults entering the river
   ,"n_1SW" # annual number of 1SW
   ,"n_MSW" # annual number of MSW
+  ,"p_1SW" # proportion 1SW
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda"  # Rate parameter of gamma distribution

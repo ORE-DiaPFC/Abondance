@@ -39,4 +39,4 @@ rownames(p_male_MSW) <- 1994:year
 write.csv(p_male_MSW, file="results/Scorff_adults_pMale_MSW.csv")
 
 
-save(p_male_1SW, p_male_MSW, file="p_male_Scor.Rdata")
+save(p_male_1SW, p_male_MSW, file="results/p_male_Scorff.Rdata")

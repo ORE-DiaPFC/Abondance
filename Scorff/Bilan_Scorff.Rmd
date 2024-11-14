@@ -144,28 +144,82 @@ legend("topright", legend=c("Nombre total de retour", "Echappement"), col=mycol[
 ```{r, echo=FALSE}
 
 
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
-axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
-mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
+#plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
+#axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+#mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 
 # 1SW
 mcmc <- as.matrix(tmp[,paste0("n_1SW[",1:data$Y,"]")]) # 1984 to now)
 n_1SW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Effectifs",xaxt="n",xlab="",main="Nombre total de retour 1HM")
+axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 segments(1:data$Y,n_1SW[,"2.5%"], 1:data$Y,n_1SW[,"97.5%"], col=paste0(mycol[1]))
 lines(n_1SW[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Y,n_1SW[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+abline(h=mean(n_1SW[,"50%"], lty=2, col="lightgrey"))
 
 # MSW
 mcmc <- as.matrix(tmp[,paste0("n_MSW[",1:data$Y,"]")]) # 1984 to now)
 n_MSW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,300),bty="n",ylab="Effectifs",xaxt="n",xlab="",main="Nombre total de retour PHM")
+axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
 segments(1:data$Y,n_MSW[,"2.5%"], 1:data$Y,n_MSW[,"97.5%"], col=paste0(mycol[2]))
 lines(n_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(1:data$Y,n_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
+abline(h=mean(n_MSW[,"50%"], lty=3, col="lightgrey"))
 
-legend("topright", legend=c("1HM","PHM"), col=mycol[1:2],lty=1,lwd=2,bty="n")
+#legend("topright", legend=c("1HM","PHM"), col=mycol[1:2],lty=1,lwd=2,bty="n")
 
 
+
+#barplot(n_1SW[,"50%"])
+#barplot(n_MSW[,"50%"], col=paste0(mycol[2]), border = paste0(mycol[2]),xaxt="n")
+#axis(side=1,line=1,labels = 1994:2023,at=1:length(year), las=2, cex=.5)
 #dev.off()
+
+
+```
+# Proportion Male/female
+
+```{r, echo=FALSE}
+
+#### CAPTURE AT MP ####
+par(mfrow=c(1,1)) 
+mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
+mcmc <- as.matrix(tmp[,paste0("p_male[",1:data$Y,",1]")]) # 
+pmale_1SW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+mcmc <- as.matrix(tmp[,paste0("p_male[",1:data$Y,",2]")]) # 
+pmale_MSW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
+### Total number of returns
+#png("report/total_return.png",width = 780, height = 480)
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="Proportion de mâles (en %)",xaxt="n",xlab="",main="Proportion de mâles par âge de mer")
+axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+
+# N total
+segments(1:data$Y,piMP_MSW[,"2.5%"], 1:data$Y,pmale_MSW[,"97.5%"], col=paste0(mycol[2]))
+lines(pmale_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
+points(1:data$Y,pmale_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
+
+  df <- data.frame(x=1:data$Y, y= pmale_MSW[,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  lines(pred,col=mycol[2],lwd=2,lty=2)
+  
+# N total
+segments(1:data$Y,pmale_1SW[,"2.5%"], 1:data$Y,pmale_1SW[,"97.5%"], col=paste0(mycol[1]))
+lines(pmale_1SW[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
+points(1:data$Y,pmale_1SW[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+
+  df <- data.frame(x=1:data$Y, y= pmale_1SW[,"50%"])
+  lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
+  pred <- predict(lw1)
+  lines(pred,col=mycol[1],lwd=2,lty=2)
+  
+legend("topright", legend=c("1HM", "PHM"), col=mycol[1:2],lty=1,lwd=3,bty="n")
+
+
 
 
 ```
@@ -427,7 +481,7 @@ points(1:data$Y,piD_MSWum[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
 
 legend("topright", legend=c("1HM", "PHM"), col=c(mycol[2],mycol[4]),lty=1,lwd=3,bty="n")
 
-tmp <- data.frame(Years=1993:2021, MSW=piD_MSWum[,"50%"], OneSW=piD_1SWum[,"50%"])
+tmp <- data.frame(Years=1993:2022, MSW=piD_MSWum[,"50%"], OneSW=piD_1SWum[,"50%"])
 library(knitr)
 kable(tmp, row.names = FALSE, caption = paste0("Tableau bilan mortalité naturelle (en %) pour le ",site,". Seules les valeurs médianes sont reportées"))
 
@@ -465,7 +519,7 @@ n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-
+abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
 # # Escapment
 # mcmc <- as.matrix(tmp[,paste0("Nesc[",1:data$Nyears,"]")])    
 # n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
@@ -480,7 +534,7 @@ par(mfrow=c(1,1))
 
 ### Total number of returns
 plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,15000),bty="n",ylab="Nombre total de smolts",xaxt="n",xlab="Cohorte")
-axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.6)
+axis(side=1,line=1,labels = 1994:2022,at=1:data$Nyears, las=2, cex.axis=.6)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("N[",1:data$Nyears,"]")])    
@@ -488,7 +542,7 @@ n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-
+abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
 
 
 par(mfrow=c(1,1)) 
@@ -502,7 +556,7 @@ n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Nyears,n[,"2.5%"], 1:data$Nyears,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyears,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-
+abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
 
 ```
 
@@ -512,7 +566,7 @@ par(mfrow=c(1,1))
 
 ### Total number of returns
 plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,100),bty="n",ylab="% smolts capturé aux pièges",xaxt="n",xlab="Année de migration")
-axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex.axis=.7)
+axis(side=1,line=1,labels = 1995:2023,at=1:data$Nyears, las=2, cex.axis=.7)
 
 # Moulin des Princes
 mcmc <- as.matrix(tmp[,paste0("p_MP[",1:data$Nyears,"]")])    
@@ -591,6 +645,8 @@ n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Nyear,n[,"2.5%"], 1:data$Nyear,n[,"97.5%"], col=paste0(mycol[1]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
 points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
+
 ```
 
 #. Relation Parr-Smolt
@@ -600,27 +656,26 @@ points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/Scorff")
 
 
-stade <- "smolt"
+stade <- "smolt" # 1995:now
 #dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
 load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
-
 tmp <- as.matrix(fit$sims.matrix)
-mcmc <- as.matrix(tmp[,paste0("Nc[",1:data$Nyears,",1]")]) # 1984 to now)
+mcmc <- as.matrix(tmp[,paste0("Nc[",1:data$Nyears,",1]")]) # 1995 
 smolt <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
-stade <- "tacon"
+stade <- "tacon" # 1993 to now
 load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) 
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
 parr <- as.matrix(fit$sims.matrix)
-mcmc <- as.matrix(parr[,paste0("ntot_Sc[",1:data$Nyear,"]")]) # 1984 to now)
+mcmc <- as.matrix(parr[,paste0("ntot_Sc[",1:data$Nyear,"]")]) 
 parr <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 
 
-labels=1994:2020
+labels=1995:2022
 boxes <- sapply(nchar(labels), function(n) 
   paste(rep("\U2588", n), collapse=""))
 
@@ -628,12 +683,12 @@ boxes <- sapply(nchar(labels), function(n)
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
 
-ratio <- smolt[1:28,"50%"]/parr[1:28,"50%"]
-plot(ratio,bty="n",ylab="Ratio Smolts/Tacons 0+",xlab="Cohort",xaxt="n",ylim=c(0,1))
+ratio <- smolt[1:29,"50%"]/parr[2:(nrow(parr)-1),"50%"]
+plot(ratio,bty="n",ylab="Ratio Smolts 1+/Tacons 0+",xlab="Cohort",xaxt="n",ylim=c(0,1))
 axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
 
 
-  df <- data.frame(x=1:28, y= ratio)
+  df <- data.frame(x=1:29, y= ratio)
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
   pred <- predict(lw1)
   lines(pred,col=1,lwd=2,lty=1)
@@ -642,13 +697,13 @@ axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
   
 
 ### Total number of returns
-plot(NULL,xlim=c(0,50000),ylim=c(0,20000),bty="n",ylab="Smolt 1+",xlab="Tacon 0+")
+#plot(NULL,xlim=c(0,50000),ylim=c(0,20000),bty="n",ylab="Smolt 1+",xlab="Tacon 0+")
 #axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
 #points(r[2:28,"50%"],smolt[1:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-segments(r[2:28,"2.5%"],smolt[1:27,"50%"],r[2:28,"97.5%"],smolt[1:27,"50%"], col=paste0(mycol[1]))
-segments(r[2:28,"50%"],smolt[1:27,"2.5%"],r[2:28,"50%"],smolt[1:27,"97.5%"], col=paste0(mycol[1]))
+#segments(ratio[1:29,"2.5%"],smolt[1:29,"50%"],ratio[1:29,"97.5%"],smolt[1:29,"50%"], col=paste0(mycol[1]))
+#segments(ratio[1:29,"50%"],smolt[1:29,"2.5%"],ratio[1:29,"50%"],smolt[1:29,"97.5%"], col=paste0(mycol[1]))
 #text(r[2:28,"50%"],smolt[1:27,"50%"],labels=boxes, col="#CCCCCC99")
-text(r[2:28,"50%"],smolt[1:27,"50%"],labels = years, cex=.7)
+#text(ratio[1:29,"50%"],smolt[1:29,"50%"],labels = years, cex=.7)
 
 
 

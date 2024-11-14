@@ -7,8 +7,8 @@ parameters <-c(
   ,"rho" # correlation coefficient between probability of capture at the two traps
   
   #,"l_ML_dim" # mean decrease in probability of capture when Lesl? is not working
- # ,"sigmap_ML_dim" # standard deviation of decrease in probability of capture when Lesl? is not working
- # ,"junk" # variance of decrease in probability of capture when Lesl? is not working
+  # ,"sigmap_ML_dim" # standard deviation of decrease in probability of capture when Lesl? is not working
+  # ,"junk" # variance of decrease in probability of capture when Lesl? is not working
   
   ## PROBABILITIES
   ,"p" # probability of capture at the 2 traps (1: MP; 2: ML 
@@ -20,20 +20,21 @@ parameters <-c(
   ,"p_MP" # capture probability at Moulin des Princes
   ,"p_ML" # capture probability at Moulin de Lesl?
   
- ,"p1c"
- ,"p10c"
- ,"lambda0"
- ,"N0"
+  ,"p10c"
+  ,"lambda0"
+  ,"N0"
+  
+  #,"n1","n"
   
   ## POPULATION
   ,"Ntot" # annual number of smolt
- , "N" #  number of smolt by cohort
- ,"Nc" #  number of smolt by age
- ,"p1c" # proportion smolt 1+ / cohort
- ,"p1y" # proportion smolt 1+ / year
- ,"s1","s2"
- ,"l1","l2"
- #,"mu_p1c","alpha"
+  , "N" #  number of smolt by cohort
+  ,"Nc" #  number of smolt by age
+  ,"p1c" # proportion smolt 1+ / cohort
+  ,"p1y" # proportion smolt 1+ / year
+  ,"s1","s2"
+  ,"l1","l2"
+  #,"mu_p1c","alpha"
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda" # Rate parameter of gamma distribution
@@ -44,9 +45,14 @@ parameters <-c(
   
   ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
   
+  
+  ,"p_male"
+  ,"p_smp"
+  ,"ll"
+  
   #### TEST
   # 1: is logit_flow at MP >=0 ?
   # 2: is logit_flow at ML >=0 ?
   ,"test" 
- # ,"R2"
+  # ,"R2"
 ) # percentage of variation explained by flow
