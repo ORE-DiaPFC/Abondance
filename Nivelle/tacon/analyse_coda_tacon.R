@@ -829,10 +829,10 @@ for (y in 2:Y_last) {
 
 # Write the results in tables
 cnames <- c("mean", "sd","q0.025", "q0.05", "q0.25","q0.5","q0.75","q0.95","q0.975")
-write.table(YOY_tot_q,file="results/YOY_tot_q.txt", row.names=F, col.names=cnames, sep = "\t")
-write.table(YOYnat_q,file="results/YOYnat_q.txt", row.names=F, col.names=cnames, sep = "\t")
-write.table(YOYcomp_q,file="results/YOYcomp_q.txt", row.names=F, col.names=cnames, sep = "\t")
-write.table(YOYres_q,file="results/YOYres_q.txt", row.names=F, col.names=cnames, sep = "\t")
+write.table(round(YOY_tot_q,2),file="results/YOY_tot_q.txt", row.names=c("",paste0(1985:year)), col.names=cnames, sep = "\t")
+write.table(round(YOYnat_q,2),file="results/YOYnat_q.txt", row.names=c("",paste0(1985:year)), col.names=cnames, sep = "\t")
+write.table(round(YOYcomp_q,2),file="results/YOYcomp_q.txt", row.names=c("",paste0(1985:year)), col.names=cnames, sep = "\t")
+write.table(round(YOYres_q,2),file="results/YOYres_q.txt", row.names=c("",paste0(1985:year)), col.names=cnames, sep = "\t")
 #write.csv(YOY_tot_q,file="results/YOY_tot.csv", row.names=F, col.names=cnames)#, sep = "\t")
 #write.table(YOYnat_q,file="results/YOYnat.txt", row.names=F, col.names=cnames, sep = "\t")
 #write.table(YOYcomp_q,file="results/YOYcomp.txt", row.names=F, col.names=cnames, sep = "\t")
