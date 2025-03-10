@@ -1,5 +1,5 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
+year <- "2024"
 site <- "Scorff"
 stade <- "adult"
 
@@ -18,7 +18,7 @@ Y <- read.bugsdata(paste("data/","data_list.txt",sep=""))
 ## Covariate is standardized within WinBUGS
 ## In 94 and 95, it's the number of nights for which some fishes are recaptured (not the total number of nights)
 eff_R <- read.bugsdata(paste("data/","data_effort_R.txt",sep=""))
-
+if(length(eff_R)!=Y) warnings("data missing")
 
 ######################################################################################################################################
 ##  Cm_R[t,a]: Annual number of marked fish caught during or after reproduction per sea age category; 1: 1SW, 2: MSW

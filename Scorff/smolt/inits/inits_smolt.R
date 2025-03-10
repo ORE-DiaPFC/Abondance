@@ -103,7 +103,27 @@ for (c in 1:2){ # 2 chains
   N1  <- ceiling(0.5 * Ntot)
   N2  <- Ntot-N1
   n_1_M <- ceiling(p_male[,1] * N1) # male
+  n_1_F <- ceiling(N1-n_1_M)
   n_2_M <- ceiling(p_male[,2] * N2) # male
+  n_2_F <- ceiling(N2-n_2_M)
+  
+  
+  # Samples for genetic sexing
+  n_sex_smp= array(,dim=c(data$Nyears,4))
+  p_smp=array(0.01,dim=c(data$Nyears,2))
+  n_sex_smp[,1] <- as.integer(p_smp[,1]* n_1_M) # male
+  n_sex_smp[,2] <- as.integer(p_smp[,1]* n_1_F) # female
+  n_sex_smp[,3] <- as.integer(p_smp[,2]* n_2_M) # male
+  n_sex_smp[,4] <- as.integer(p_smp[,2]* n_2_F) # female
+  
+  
+  # Distributing smolt into age classes
+  Nc= array(,dim=c(data$Nyears,2))
+  p1c <- rep(0.5, data$Nyears)
+  Nc[,1] <- as.integer(p1c*Ntot)
+  Nc[,2] <- N-Nc[,1] 	
+  # Hierarchcal modelling of the proportion of 1 year old smoltsby cohort
+
   
   inits_updated <- list(
     N = N
@@ -113,8 +133,10 @@ for (c in 1:2){ # 2 chains
     ,p_smp=p_smp
     ,p_male=p_male
     ,N1=N1
+    ,Nc=Nc
     ,n_1_M=n_1_M
     ,n_2_M=n_2_M
+    ,n_sex_smp=n_sex_smp
     #, shape_lambda=shape_lambda.inits
     #,rate_lambda=rate_lambda.inits
     

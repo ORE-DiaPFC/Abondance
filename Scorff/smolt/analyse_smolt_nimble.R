@@ -3,8 +3,7 @@ rm(list=ls())   # Clear memory
 
 
 ##------------------ R PACKAGES ------------------------------##
-library(R2OpenBUGS)
-library(rjags) # require to use "read.bugsdata" function
+require(nimble)
 library(coda)
 library(mcmcplots)
 # library(dclone)
@@ -13,14 +12,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "YEAR"
-site <- "SITE"
-stade <- "STADE"
+year <- "2024"
+site <- "Scorff"
+stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("Rep",site,stade,sep="/")
-setwd(work.dir)
+#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+#setwd(work.dir)
 
 # cleaning
 #system("mkdir bugs/")
@@ -30,6 +29,23 @@ setwd(work.dir)
 ##-----------------------------DATA ----------------------------------##
 source(paste('data/data_',stade,'_TMP.R',sep="")) # creation du fichier Rdata
 load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
+
+
+dataToNimble <- list(n=data$n
+                     , n1=data$n1
+                     , n_sex_smp=data$n_sex_smp
+                     , C_ML=data$C_ML
+                     , Cm_ML=data$Cm_ML
+                     , Cum_ML=data$Cum_ML
+                     , D_ML=data$D_ML
+                     , Cm_MP=data$Cm_MP
+                     , Cum_MP=data$Cum_MP
+                     , D_MP=data$D_MP    
+                     , C_MP=data$C_MP     
+                     )
+constants <- list(Nyears=data$Nyears
+                  ,stlogQ= data$stlogQ
+)
 
 
 #----------------------------PARAMETERS---------------------------------##
@@ -53,53 +69,47 @@ source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des donné
 #for (c in 1:2){
 inits.tmp1 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",1,".txt",sep=""))
 inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt",sep=""))
-#inits <- rep(list(inits.tmp),CHAINS)
+#inits <- rep(list(inits.tmp),2)
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
-model
+source(paste0("model/model_",stade,"-",site,"_nimble.R")) # path of the model
+#if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+#model
 
-filename <- file.path(work.dir, model)
+#filename <- file.path(work.dir, model)
 #system(paste("cp",model,paste(stade,"-",site,".txt",sep=""),sep=""))
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = CHAINS #length(inits) # Number of chains to run.
-adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=0 # Number of steps to "burn-in" the samplers.
-nstore=ITER # Total number of steps in chains to save.
-nthin=THIN # Number of steps to "thin" (1=keep every step).
-#nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
-
 ### Start of the run ###
 start.time = Sys.time(); cat("Start of the run\n"); 
 
-######### BUGS ##########
-fit <- bugs(
-  data
-  ,inits
-  ,model.file = filename
-  ,parameters
-  ,n.chains = nChains
-  , n.iter = nstore + nburnin
-  , n.burnin = nburnin
-  , n.thin = nthin
-  ,DIC=FALSE
-  ,codaPkg = FALSE
-  #, clearWD=FALSE
-  ,saveExec=TRUE
-  ,restart=TRUE
-  #,debug=TRUE
-  ,working.directory=paste(work.dir,"bugs",sep="/")
-  # If Macos:
-  #, OpenBUGS.pgm = "/Users/mbuoro/.wine/drive_c/Program Files/OpenBUGS/OpenBUGS323/OpenBUGS.exe"
-  #, useWINE = TRUE
-)
+# RUN MCMC ####
+n_chains <- 2 # number of chains
+n_store <- 5000 # target of number of iteration to store per chain
+n_burnin <- 1000 # number of iterations to discard
+n_thin <- 1 # thinning interval
+n_iter <- (n_store * n_thin) + n_burnin # number of iterations to run per chain
+print(n_iter)
 
-## cleaning
-system("rm bugs/CODA*")
+
+samples <- nimbleMCMC(code = model,     # model code
+                          data = dataToNimble,                  # data
+                          constants =constants,        # constants
+                          inits = inits,          # initial values
+                          monitors = parameters,   # parameters to monitor
+                          WAIC=FALSE,                      #waic
+                          niter = n_iter,                  # nb iterations
+                          nburnin = n_burnin,              # length of the burn-in
+                          nchains = n_chains,              # nb of chains
+                          thin = n_thin,                   # thinning interval (default = 1)
+                          samplesAsCodaMCMC=T
+)             #coda
+#Arguments will be passed to JAGS; you will see progress bars
+#and other information
+#Examine output summary
+
 
 ### Save inits ###
 # save last values for inits
@@ -155,7 +165,7 @@ source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
 
-
+caterplot(samples,"Nesc", reorder=F,horizontal = F, labels=1995:year)
 
 
 # DIAGNOSTICS:
@@ -263,7 +273,7 @@ if(site == "Scorff"){
     source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
   }}
 # if(site == "Scorff"){
-# setwd("Rep")
+# setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance")
 # f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
 # f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
 # f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")

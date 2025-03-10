@@ -13,13 +13,13 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
-site <- "Scorff"
-stade <- "tacon"
+year <- "YEAR"
+site <- "SITE"
+stade <- "STADE"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("Rep",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -53,7 +53,7 @@ source(paste('inits/inits_',stade,'.R',sep="")) # création des inits des donné
 #for (c in 1:2){
 inits.tmp1 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",1,".txt",sep=""))
 inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt",sep=""))
-#inits <- rep(list(inits.tmp),2)
+#inits <- rep(list(inits.tmp),CHAINS)
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
@@ -66,11 +66,11 @@ filename <- file.path(work.dir, model)
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = 2 #length(inits) # Number of chains to run.
+nChains = CHAINS #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=0 # Number of steps to "burn-in" the samplers.
-nstore=50000 # Total number of steps in chains to save.
-nthin=10 # Number of steps to "thin" (1=keep every step).
+nstore=ITER # Total number of steps in chains to save.
+nthin=THIN # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
@@ -263,7 +263,7 @@ if(site == "Scorff"){
     source(knitr::purl(paste0(dir,"/",site,"/Bilan_",site,".Rmd"), quiet=TRUE))
   }}
 # if(site == "Scorff"){
-# setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance")
+# setwd("Rep")
 # f1 <- paste0("Scorff/tacon/results/Results_tacon","_",year,".RData")
 # f2 <- paste0("Scorff/smolt/results/Results_smolt","_",year,".RData")
 # f3 <- paste0("Scorff/adult/results/Results_adult","_",year,".RData")

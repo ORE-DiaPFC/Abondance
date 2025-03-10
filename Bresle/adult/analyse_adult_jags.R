@@ -13,14 +13,15 @@ library(mcmcplots)
 library(jagsUI)
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2021"
+year <- "2024"
 site <- "Bresle"
 stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
-setwd(work.dir)
+#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+#setwd(work.dir)
+work.dir<-getwd()
 
 # cleaning
 system("mkdir bugs/")

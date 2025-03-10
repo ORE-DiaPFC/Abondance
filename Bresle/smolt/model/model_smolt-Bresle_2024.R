@@ -138,7 +138,7 @@ for (t in 1:Nyears) {
 
 #############	        Prior for p_Eu[t]          #################
 #for (t in 1:NEu) {  # For years when Eu is installed
-for (t in 1:NYears) {  # For years when Eu is installed
+for (t in 1:Nyears) {  # For years when Eu is installed
  # logQ_Eu[t] <- log(Q_Eu[t]) # ln transformation of covariate -> in data_smolt.R - mb-21.03.2022
  # stlogQ_Eu[t] <- (logQ_Eu[t] - mean(logQ_Eu[]))/sd(logQ_Eu[]) # standardized covariate -> in data_smolt.R - mb-21.03.2022
 

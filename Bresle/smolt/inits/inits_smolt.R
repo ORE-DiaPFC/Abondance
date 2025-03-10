@@ -170,13 +170,17 @@ lambda[c(7:10,20)]<-NA
 varp_B <- (inits_fix$sigmap_B)*(inits_fix$sigmap_B)
 precp_B <- 1/(varp_B)
 logit_mupi_B <- log(inits_fix$mu_B/(1-inits_fix$mu_B)) #logit transformation
-logit_pi_B <-rnorm(data$NBeau,logit_mupi_B,precp_B)
-
+#logit_pi_B <-rnorm(data$NBeau,logit_mupi_B,precp_B)
+#logit_pi_B <-rnorm(data$Nyears,logit_mupi_B,precp_B)
 
 # p_B <- exp(logit_pi_B)/(1+exp(logit_pi_B))  # back-transformation on the probability scale
 # p_Btot <- p_B
 # data$C_B/p_Btot
-
+# mb 9-3-2025
+# C_B[t] ~ dbin (p_Btot[t],Ntot[t])
+# p_B[t] <- exp(logit_pi_B[t])/(1+exp(logit_pi_B[t])) 
+p_Btot <- data$C_B/Ntot
+logit_pi_B <- logit(p_Btot) # logit transformation
 
 ## METTRE A JOUR
 # logit_pi_Eu = c(
@@ -208,6 +212,7 @@ varp_Eu <- (inits_fix$sigmap_Eu)*(inits_fix$sigmap_Eu)
 precp_Eu <- 1/(varp_Eu) # precision
 logit_mupi_Eu <- inits_fix$logit_int_Eu + inits_fix$logit_flow_Eu * data$stlogQ_Eu
 logit_pi_Eu <-rnorm(data$NEu,logit_mupi_Eu,precp_Eu)
+#logit_pi_Eu <-rnorm(data$Nyears,logit_mupi_Eu,precp_Eu)
 
 inits_updated <- list(
   Ntot = Ntot

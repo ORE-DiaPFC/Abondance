@@ -4,7 +4,7 @@ library(rjags)
 library(coda)
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
+year <- "2024"
 site <- "Bresle"
 stade <- "adult"
 

@@ -2,9 +2,9 @@
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
-site <- "Bresle"
-stade <- "smolt"
+# year <- "2024"
+# site <- "Bresle"
+# stade <- "smolt"
 
 
 ## WORKING DIRECTORY:

@@ -22,11 +22,11 @@ if (nChains > 1) {
   cat("Convergence: gelman-Rubin R test\n")
   #gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
   gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
-  test <- gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
+  #test <- gelman.diag(fit.mcmc[,which(varnames(fit.mcmc)%in%parameterstotest)],multivariate=TRUE)
   
 }
 cat("Approximate convergence is diagnosed when the upper limit is close to 1 and <1.1 \n")
-
+#test
 
 cat("\n---------------------------\n")
 cat("Heidelberger and Welch's convergence diagnostic\n")

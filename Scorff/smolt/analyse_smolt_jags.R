@@ -13,7 +13,7 @@ library(mcmcplots)
 library(jagsUI)
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2021"
+year <- "2024"
 site <- "Scorff"
 stade <- "smolt"
 
