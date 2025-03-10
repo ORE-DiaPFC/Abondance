@@ -1,7 +1,7 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
-site <- "Scorff"
-stade <- "smolt"
+# year <- "YEAR"
+# site <- "SITE"
+# stade <- "STADE"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")
@@ -11,6 +11,7 @@ Nyears = length(1995:year)
 
 ##-----------------------------DATA ----------------------------------##
 fish <- read.bugsdata(paste("data/data_",stade,".txt",sep=""))
+str(fish)
 
 #######################################################################################
 # Mean flow observed from 1st April to May 10 (based on days when trap is working) 
@@ -40,23 +41,19 @@ logQ=stlogQ=array(,dim=dim(Q))
 ## Age of smolt
 age <- read.bugsdata(paste("data/data_age.txt",sep=""))
 
-
 ###################################################			
 ##  n_smp : Annual number of fish sampled by sea age category and sexed ; 1: 1SW-Male, 2: 1SW-Female, 3: MSW-Male, 4: MSW-Female	
 ###################################################################################
 n_sex_smp <- read.csv("data/data_smolt_sex.csv",header = TRUE); colnames(n_sex_smp)<-NULL
 n_sex_smp <- as.matrix(n_sex_smp[,2:5])
 
-n_sex_smp[26,] <- 1
-n_sex_smp[29,3] <- 1
-
 data <- list(Nyears=Nyears
-          #,fish=fish
-          #,Q=list(Q)
-          ,stlogQ=stlogQ
-          ,n=age$n,n1=age$n1
-          ,n_sex_smp=n_sex_smp
-          )
+             #,fish=fish
+             #,Q=list(Q)
+             ,stlogQ=stlogQ
+             ,n=as.integer(age$n),n1=as.integer(age$n1)
+             ,n_sex_smp=n_sex_smp
+)
 data <- c(data, fish)
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep=""))

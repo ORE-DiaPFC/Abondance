@@ -2,28 +2,29 @@
 #$ -S /bin/sh
 
 #SITE=Scorff # Nivelle Oir Bresle
-YEAR=2023
+YEAR=2024
 CHAINS=2
 BURNIN=10000 # Number of steps to "burn-in" the samplers.
 ITER=10000 # Total number of steps in chains to save.
 THIN=500 # Number of steps to "thin" (1=keep every step).
 
 # Change repos here:
-#REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
-REPbase="/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance"
-#REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance"
+REPbase="~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance"
+#REPbase="/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance"
+#REPbase="/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance"
+#REPbase="/Users/mbuoro/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abondance"
 #"/media/ORE/Abundance" 
 
 COUNTER=0
 
-for SITE in Nivelle Scorff Oir Bresle      
-#for SITE in Nivelle  
+#for SITE in Nivelle Scorff Oir Bresle      
+for SITE in Scorff  
 do
      
 cd $REPbase/$SITE
      echo $SITE
      
-     for STADE in adult tacon smolt   
+     for STADE in adult #tacon smolt   
      do
       if [ -d "$STADE" ]; then # if directory exists...
   # Control will enter here if $DIRECTORY exists.
@@ -59,7 +60,7 @@ cd $REPbase/$SITE
     cp $REPbase/diagnostics.R $STADE/diagnostics.R
      
 
-   sudo R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
+   #sudo R CMD BATCH --no-save --no-restore $STADE/analyse_"$STADE".R & # analyse dans R
     
 # Save PIDs of processes
 #COUNTER=$[COUNTER + 1]

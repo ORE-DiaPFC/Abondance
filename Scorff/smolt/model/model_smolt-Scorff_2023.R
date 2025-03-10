@@ -155,10 +155,6 @@ for (t in 1:2) { # 1995 and 1996
   Nesc[t] <- Ntot[t] - D_MP[t]
 # Modelling of the age composition data by year of migration
   n1[t] ~ dbin(p1y[t], n[t])
-  N1[t] ~ dbin(p1y[t], Ntot[t])
-  #n1r[t] <- round(n1[t])
-  #n2[t] <- round(n[t])-n1r[t]
-  #n2[t] <- n[t]-n1[t]
   } # end of loop over the two first years
 # Calculating the proportions of 1 year old smolts by year of migration from the proportions by cohort
   p1y[1] <- p1c[1]*N[1]/(p1c[1]*N[1]+(1-p10c)*N0)
@@ -180,44 +176,10 @@ for (t in 3:Nyears) {
     Nesc[t] <- Ntot[t] - D_ML[t] - D_MP[t]
 # Modelling of the age composition data by year of migration
   n1[t] ~ dbin(p1y[t], n[t])
-  N1[t] ~ dbin(p1y[t], N[t])
-  #n1r[t] <- round(n1[t])
-  #n2[t] <- round(n[t])-n1r[t]
-  #n2[t] <- n[t]-n1[t]
 # Calculating the proportions of 1 year old smolts by year of migration from the proportions by cohort
   p1y[t] <- p1c[t]*N[t]/(p1c[t]*N[t]+(1-p1c[t-1])*N[t-1])
     } # end of loop over years
 
-  
-  ## Distributing smolts 1+/2+ into sex classes - mb+ep-09052024
-  for (t in 1:Nyears) {
-    # Distributing smolts 1+/2+ into sex classes
-    n_1_M[t] ~ dbin(p_male[t,1], N1[t]) # male
-    n_1_F[t] <- N1[t]-n_1_M[t] # female
-
-    N2[t] <-  N[t] - N1[t]
-    n_2_M[t] ~ dbin(p_male[t,2], N2[t]) # male
-    n_2_F[t] <- N2[t]-n_2_M[t] # female
-
-    # Hierarchcal modelling of the proportion of male by age
-    p_male[t,1] ~ dbeta(q[1], q[2])
-    p_male[t,2] ~ dbeta(q[3], q[4])
-
-    # Samples for genetic sexing
-    n_sex_smp[t,1] ~ dbin(p_smp[t,1], n_1_M[t]) # male
-    n_sex_smp[t,2] ~ dbin(p_smp[t,1], n_1_F[t]) # female
-    n_sex_smp[t,3] ~ dbin(p_smp[t,2], n_2_M[t]) # male
-    n_sex_smp[t,4] ~ dbin(p_smp[t,2], n_2_F[t]) # female
-
-    # Hierarchcal modelling of the proportion of samples
-    p_smp[t,1] ~ dbeta(2, 2)
-    p_smp[t,2] ~ dbeta(2, 2)
-  } ## End of loop over years
-  # Prior pour que s1 et s2 soient superieurs a 1 et que le prior sur p1c soit faiblement informatif
-  ll[1] ~ dbeta(1,2); ll[2] ~ dbeta(1,2)
-  q[1] <- 1+(ll[1]*100); q[2] <- 1+(ll[2]*100)
-  ll[3] ~ dbeta(1,2); ll[4] ~ dbeta(1,2)
-  q[3] <- 1+(ll[3]*100); q[4] <- 1+(ll[4]*100)
 } # end of the model
 
 

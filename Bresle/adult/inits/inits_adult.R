@@ -155,7 +155,7 @@ inits_updated <- list(
   ,logit_pi_Eu=logit_pi_Eu
   ,logit_pi_B=logit_pi_B
   ,n=n
-  , p_male=p_male
+  ,p_male=p_male
   ,p_smp=p_smp
 )
 

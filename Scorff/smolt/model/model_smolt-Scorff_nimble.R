@@ -33,8 +33,8 @@
 # Nesc[t]: annual smolt population size escaping the river
 ############################################################################
 #############################################################################
-
-model {
+model <- nimbleCode({
+#model {
 ############################################################################################
 ###############          Hyperprior for the trapping efficiency          ################### 
 ############################################################################################
@@ -48,7 +48,7 @@ model {
         } # end of loop over traps
 
 rho ~ dunif(-1,1) # prior for the correlation coefficient between probability of capture at the two traps
-precmat[1:2,1:2] <- inverse(covmat[,])  # precision matrix
+precmat[1:2,1:2] <- inverse(covmat[1:2,1:2])  # precision matrix
 
 # Building the matrix of variance-covariance
 covmat[1,1] <- varp[1] # variance of the probability of capture at MP
@@ -61,7 +61,7 @@ covmat[2,2] <- varp[2] # variance of the probability of capture at ML
 ############################################################################################
 # Shape and rate parameter for gamma distribution  for negative binomial (see Gelman, 2d edition, p446)
 shape_lambda ~ dgamma(0.001,0.001)
-rate_lambda ~ dgamma(0.001,0.001) C(0.00001,) # protection contre les trop faibles valeurs
+rate_lambda ~ T(dgamma(0.001,0.001), 0.00001,) # protection contre les trop faibles valeurs
 mean_gamma <- shape_lambda/rate_lambda
 var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
 ################
@@ -218,6 +218,6 @@ for (t in 3:Nyears) {
   q[1] <- 1+(ll[1]*100); q[2] <- 1+(ll[2]*100)
   ll[3] ~ dbeta(1,2); ll[4] ~ dbeta(1,2)
   q[3] <- 1+(ll[3]*100); q[4] <- 1+(ll[4]*100)
-} # end of the model
+}) # end of the model
 
 

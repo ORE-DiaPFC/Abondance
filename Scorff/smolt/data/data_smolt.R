@@ -11,6 +11,7 @@ Nyears = length(1995:year)
 
 ##-----------------------------DATA ----------------------------------##
 fish <- read.bugsdata(paste("data/data_",stade,".txt",sep=""))
+str(fish)
 
 #######################################################################################
 # Mean flow observed from 1st April to May 10 (based on days when trap is working) 

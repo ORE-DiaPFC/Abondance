@@ -13,14 +13,14 @@ library(mcmcplots)
 library(nimble)
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2021"
+year <- "2024"
 site <- "Bresle"
 stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
-setwd(work.dir)
+#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+#setwd(work.dir)
 
 # cleaning
 system("mkdir bugs/")
@@ -31,17 +31,18 @@ system("mkdir bugs/")
 source(paste('data/data_',stade,'_TMP.R',sep="")) # creation du fichier Rdata
 load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
 
-data_nimble <- list(
+dataToNimble <- list(
     C_B=C_B,D_B=D_B, Cm_B=Cm_B,Cum_B=Cum_B,Cm_Eu=Cm_Eu, Cum_Eu=Cum_Eu
     
   )
   
 
-Consts <- list(
+constants <- list(
   Nyears=data$Nyears
   ,NBeau=data$NBeau
   ,NEu=data$NEu
-  , Q_Eu=data$Q_Eu, logQ_Eu =data$logQ_Eu, stlogQ_Eu=data$stlogQ_Eu
+  #,Q_Eu=data$Q_Eu, logQ_Eu =data$logQ_Eu
+  ,stlogQ_Eu=data$stlogQ_Eu
 )
 
 #----------------------------PARAMETERS---------------------------------##
@@ -69,21 +70,22 @@ inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt"
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
-if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
-model
+source(paste("model/model_",stade,"-",site,"_nimble.R",sep="")) # path of the model
+#if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,".R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
+#model
 
-filename <- file.path(work.dir, model)
+#filename <- file.path(work.dir, model)
 #system(paste("cp",model,paste(stade,"-",site,".txt",sep=""),sep=""))
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = 2 #length(inits) # Number of chains to run.
-adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=2000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
-#nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
+# RUN MCMC ####
+n_chains <- 2 # number of chains
+n_store <- 5000 # target of number of iteration to store per chain
+n_burnin <- 1000 # number of iterations to discard
+n_thin <- 1 # thinning interval
+n_iter <- (n_store * n_thin) + n_burnin # number of iterations to run per chain
+print(n_iter)
 
 ### Start of the run ###
 start.time = Sys.time(); cat("Start of the run\n"); 
@@ -109,28 +111,19 @@ start.time = Sys.time(); cat("Start of the run\n");
 ## cleaning
 #system("rm bugs/CODA*")
 
-code <- readBUGSmodel(model=paste("model_",stade,"-",site,".R",sep="")
-                      ,data = Consts
-                      ,inits = inits[[1]]
-                      #,dimensions = list(logQ_Eu = c(data$NEu))
-                      ,dir = "model/"
-                      #useInits = TRUE,
-                      ,debug = FALSE)
+samples <- nimbleMCMC(code = model,     # model code
+                      data = dataToNimble,                  # data
+                      constants =constants,        # constants
+                      inits = inits,          # initial values
+                      monitors = parameters,   # parameters to monitor
+                      WAIC=FALSE,                      #waic
+                      niter = n_iter,                  # nb iterations
+                      nburnin = n_burnin,              # length of the burn-in
+                      nchains = n_chains,              # nb of chains
+                      thin = n_thin,                   # thinning interval (default = 1)
+                      samplesAsCodaMCMC=T
+)             #coda
 
-
-
-fit <- nimbleMCMC(code = code, 
-                       constants = Consts, 
-                       data = data_nimble, 
-                       inits = inits,
-                       nchains = nChains,
-                       nburnin = nburnin, niter = nstore, thin = nthin, 
-                       monitors = parameters,
-                       progressBar = TRUE
-                  ,samples = TRUE
-                  ,samplesAsCodaMCMC = TRUE
-                  ,summary = TRUE
-                  )
 
 
 
@@ -159,6 +152,8 @@ fit.mcmc <- as.mcmc(fit) # using bugs
 source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
+
+caterplot(samples,"Ntot", reorder=F,horizontal = F)#, labels=1984:year)
 
 
 

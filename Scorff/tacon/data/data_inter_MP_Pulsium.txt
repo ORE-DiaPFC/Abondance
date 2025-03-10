@@ -1,10 +1,10 @@
 # Intracalibration data MP vs Pulsium
-# MP CPUE data for 6 sites also elctrofihed with Pulsium from 2020 to 2023
-CPUE_Sc_inter[,1]  CPUE_Sc_inter[,2]  CPUE_Sc_inter[,3]
-24                 67                 74
-29                 45                 65
-17                 43                 27
-15                 26                 31
-11                 5                  4
-13                 24                 19
+# MP CPUE data for 6 sites also elctrofihed with Pulsium from 2020 to 2024
+CPUE_Sc_inter[,1]  CPUE_Sc_inter[,2]  CPUE_Sc_inter[,3] CPUE_Sc_inter[,4]
+24	67	74	11
+29	45	65	12
+17	43	27	1
+15	26	31	1
+11	5	4	6
+13	24	19	8
 #END
