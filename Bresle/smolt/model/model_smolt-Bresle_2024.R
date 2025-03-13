@@ -45,8 +45,10 @@ model {
 ###############          Hyperprior for the trapping efficiency          ###################
 ############################################################################################
 ### Mean and standard deviation of trap efficiency at Beauchamp
-mu_B ~ dbeta(1,1) #mean probability of capture in Beauchamps
+#mu_B ~ dbeta(1,1) #mean probability of capture in Beauchamps
 
+logit_int_B ~ dnorm(0,1)    #intercept
+logit_flow_B ~ dnorm(0,1) #slope for flow data (1 April - 10 May)
 sigmap_B ~ dunif(0,30)
 varp_B <- (sigmap_B)*(sigmap_B)
 precp_B <- 1/(varp_B) # precision
@@ -61,8 +63,8 @@ exp_d_p_B <- exp(d_p_B) #differential in the probability of capture
 #p_B20 ~ dbeta(1,1) # decrease for year 2020
 
 ## Mean and standard deviation of trap efficiency at Eu
-logit_int_Eu ~ dunif(-10,10)    #intercept
-logit_flow_Eu ~ dunif(-10,10) #slope for flow data (1 April - 10 May)
+logit_int_Eu ~ dnorm(0,1)    #intercept
+logit_flow_Eu ~ dnorm(0,1) #slope for flow data (1 April - 10 May)
 sigmap_Eu ~ dunif(0,30)
 varp_Eu <- (sigmap_Eu)*(sigmap_Eu)
 precp_Eu <- 1/(varp_Eu) # precision
@@ -103,7 +105,8 @@ for (t in 1:Nyears) {  # from 1982 to 1987
 #for (t in 1:NBeau) {
 
 for (t in 1:Nyears) {  
-  logit_mupi_B[t] <- log(mu_B/(1-mu_B)) #logit transformation
+#  logit_mupi_B[t] <- log(mu_B/(1-mu_B)) #logit transformation
+  logit_mupi_B[t] <- logit_int_B + logit_flow_B * stlogQ_Eu[t]
   logit_pi_B[t] ~ dnorm(logit_mupi_B[t],precp_B)
   p_B[t] <- exp(logit_pi_B[t])/(1+exp(logit_pi_B[t]))  # back-transformation on the probability scale
   epsilon_B[t] <- (logit_pi_B[t] - logit_mupi_B[t])/sigmap_B # standardized residuals
@@ -147,6 +150,9 @@ for (t in 1:Nyears) {  # For years when Eu is installed
   p_Eu[t] <- exp(logit_pi_Eu[t])/(1+exp(logit_pi_Eu[t]))  # back-transformation on the probability scale
   epsilon_Eu[t] <- (logit_pi_Eu[t] - logit_mupi_Eu[t])/sigmap_Eu # standardized residuals
   eps_Eu[t] <- logit_pi_Eu[t] - logit_mupi_Eu[t] # residuals not standardized
+# Calculating total probability of capture at EU (decrease in probability in some years)
+  p_EUtot[t] <- p_Eu[t]*pow(eff_Eu[t], exp_d_p_EU) 
+
   } ## End of loop over years
 
 test <- step(logit_flow_Eu) # is logit_flow >=0 ?
@@ -177,8 +183,8 @@ num_B[5] <- Ntot[5] - C_B[5] + Cum_B[5] # total unmarked fish
 
 #Cm_Eu[5] ~ dbin(p_Eu[1],Cm_B[5]) # marked fish
 #Cum_Eu[5] ~ dbin(p_Eu[1], num_B[5]) #unmarked fish
-Cm_Eu[5] ~ dbin(p_Eu[5],Cm_B[5]) # marked fish
-Cum_Eu[5] ~ dbin(p_Eu[5], num_B[5]) #unmarked fish
+Cm_Eu[5] ~ dbin(p_Eutot[5],Cm_B[5]) # marked fish
+Cum_Eu[5] ~ dbin(p_Eutot[5], num_B[5]) #unmarked fish
 
 Nesc[5] <- Cm_B[5] + num_B[5]  ### Total number of smolt escaping the river
 #
@@ -199,8 +205,8 @@ for (t in 12:13) {
 
 #    Cm_Eu[t] ~ dbin(p_Eu[t-10],Cm_B[t]) # marked fish
 #    Cum_Eu[t] ~ dbin(p_Eu[t-10], num_B[t]) #unmarked fish
-    Cm_Eu[t] ~ dbin(p_Eu[t],Cm_B[t]) # marked fish
-    Cum_Eu[t] ~ dbin(p_Eu[t], num_B[t]) #unmarked fish
+    Cm_Eu[t] ~ dbin(p_Eutot[t],Cm_B[t]) # marked fish
+    Cum_Eu[t] ~ dbin(p_Eutot[t], num_B[t]) #unmarked fish
 
     Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
     } # end of loop over years
@@ -218,8 +224,8 @@ for (t in 15:19) {
 
 #    Cm_Eu[t] ~ dbin(p_Eu[t-11],Cm_B[t]) # marked fish
 #    Cum_Eu[t] ~ dbin(p_Eu[t-11], num_B[t]) #unmarked fish
-    Cm_Eu[t] ~ dbin(p_Eu[t],Cm_B[t]) # marked fish
-    Cum_Eu[t] ~ dbin(p_Eu[t], num_B[t]) #unmarked fish
+    Cm_Eu[t] ~ dbin(p_Eutot[t],Cm_B[t]) # marked fish
+    Cum_Eu[t] ~ dbin(p_Eutot[t], num_B[t]) #unmarked fish
 
     Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
     } # end of loop over years
@@ -237,8 +243,8 @@ for (t in 22:36) {
 
 #    Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
 #    Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
-    Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
-    Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
+    Cm_Eu[t] ~ dbin(p_Eutot[t],Cm_B[t]) # marked fish
+    Cum_Eu[t] ~ dbin(p_Eutot[t], num_B[t]) #unmarked fish
 
     Nesc[t] <- Cm_B[t] + num_B[t] ### Total number of smolt escaping the river
     } # end of loop over years
@@ -251,8 +257,8 @@ num_B[37] <- Ntot[37] - C_B[37] + Cum_B[37] # total unmarked fish
 
 #Cm_Eu[37] ~ dbin(p_Eu[37-13],Cm_B_bis) # marked fish
 #Cum_Eu[37] ~ dbin(p_Eu[37-13], num_B_bis) #unmarked fish
-Cm_Eu[37] ~ dbin(p_Eu[37],Cm_B_bis) # marked fish
-Cum_Eu[37] ~ dbin(p_Eu[37], num_B_bis) #unmarked fish
+Cm_Eu[37] ~ dbin(p_Eutot[37],Cm_B_bis) # marked fish
+Cum_Eu[37] ~ dbin(p_Eutot[37], num_B_bis) #unmarked fish
 
 # marked fish
 Cm_B_bis <- Cm_B_p + Cm_B_b_bis
@@ -277,8 +283,8 @@ num_B[38] <- Ntot[38] - C_B[38] + Cum_B[38] # total unmarked fish
 
 #Cm_Eu[38] ~ dbin(p_Eu[25],Cm_B[38]) # marked fish
 #Cum_Eu[38] ~ dbin(p_Eu[25], num_B[38]) #unmarked fish
-Cm_Eu[38] ~ dbin(p_Eu[38],Cm_B[38]) # marked fish
-Cum_Eu[38] ~ dbin(p_Eu[38], num_B[38]) #unmarked fish
+Cm_Eu[38] ~ dbin(p_Eutot[38],Cm_B[38]) # marked fish
+Cum_Eu[38] ~ dbin(p_Eutot[38], num_B[38]) #unmarked fish
 
 Nesc[38] <- Cm_B[38] + num_B[38]  ### Total number of smolt escaping the river
 
@@ -296,8 +302,8 @@ num_B[t] <- Ntot[t] - C_B[t] + Cum_B[t] # total unmarked fish
 
 #Cm_Eu[t] ~ dbin(p_Eu[t-13],Cm_B[t]) # marked fish
 #Cum_Eu[t] ~ dbin(p_Eu[t-13], num_B[t]) #unmarked fish
-Cm_Eu[t] ~ dbin(p_Eu[t],Cm_B[t]) # marked fish
-Cum_Eu[t] ~ dbin(p_Eu[t], num_B[t]) #unmarked fish
+Cm_Eu[t] ~ dbin(p_Eutot[t],Cm_B[t]) # marked fish
+Cum_Eu[t] ~ dbin(p_Eutot[t], num_B[t]) #unmarked fish
 
 Nesc[t] <- Cm_B[t] + num_B[t]  ### Total number of smolt escaping the river
 } # end of loop over years
