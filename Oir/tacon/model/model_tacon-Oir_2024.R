@@ -297,7 +297,7 @@ for (j in 1: NIAno) {
         
     eps_CPUE[IAno_num[j],Year_IA[j]] <- log(lambdaOir_cpu2[IAno_num[j],Year_IA[j]])/log(mul_cpuOir[IAno_num[j],Year_IA[j]]) # residuals of the relationship between IA and coefficient of proportionnality
 
-    shape_lcpuOir[IAno_num[j],Year_IA[j]] <- mul_cpuOir[IAno_num[j],Year_IA[j]] * rate_lcpu_cut * pow(k_inter,I_Puls[j])  # shape parameter of the gamma distribution for lambda_cpu
+    shape_lcpuOir[IAno_num[j],Year_IA[j]] <- mul_cpuOir[IAno_num[j],Year_IA[j]] * rate_lcpu_cut  # shape parameter of the gamma distribution for lambda_cpu
     lambdaOir_cpu[IAno_num[j],Year_IA[j]] ~ dgamma(shape_lcpuOir[IAno_num[j],Year_IA[j]],rate_lcpu_cut)I(0.001,)
     lambdaOir_cpu2[IAno_num[j],Year_IA[j]] <- max(0.001,lambdaOir_cpu[IAno_num[j],Year_IA[j]]) # try to avoid error on lambda_cpu  
     } # end of loop over sites not used for intercalibration
@@ -306,9 +306,9 @@ for (j in 1: NIAno) {
 ### CPUE used for intercalibration
 for (m in 1:NIAinter) {
     CPUE_inter[m] ~ dpois(lambdaOir_cpu2[IAinter_num[m],Year_IAinter[m]]) ## observation process
-    I_Puls[j] <- step(Year_IA[j]-32.5) # indicatrice d'utilisation du Pulsium à partir de l'année 2019 (33)
+    I_Puls[m] <- step(Year_IA[m]-32.5) # indicatrice d'utilisation du Pulsium à partir de l'année 2019 (33)
 
-    mul_cpuOir[IAinter_num[m],Year_IAinter[m]] <- k_cpuOir[IAinter_num[m]] * dIA_Oir[IAinter_num[m],Year_IAinter[m]]  # mean lambda_cpu
+    mul_cpuOir[IAinter_num[m],Year_IAinter[m]] <- k_cpuOir[IAinter_num[m]] * dIA_Oir[IAinter_num[m],Year_IAinter[m]] * pow(k_inter,I_Puls[m])  # mean lambda_cpu
 
     eps_CPUE[IAinter_num[m],Year_IAinter[m]] <- log(lambdaOir_cpu2[IAinter_num[m],Year_IAinter[m]])/log(mul_cpuOir[IAinter_num[m],Year_IAinter[m]]) # residuals of the relationship between IA and coefficient of proportionnality
 
@@ -319,14 +319,14 @@ for (m in 1:NIAinter) {
     } # end of loop over sites used for intercalibration
 
 # From 2021 to 2024, 3 sites are electrofished with MP gear for intercalibartion with Pulsium
-r[1] <- 4; r[2] <- 9; r[3] <- 2 # Index (IAno_num ou IAinter_num) of sites used for intercalibartion  
+site_MP[1] <- 4; site_MP[2] <- 9; site_MP[3] <- 2 # Index (IAno_num ou IAinter_num) of sites used for intercalibartion  
 for (m in 1:3) {
      for (l in 1:4) {   # This must be updated every year to accomodate new inetrcalibartion data
         y[m,l] <- l + 34 # index of year of intercalibration
    
-        CPUE_MP[m,l] ~ dpois(lambdaOir_cpu_inter[r[m],y[m,l]])
+        CPUE_MP[m,l] ~ dpois(lambdaOir_cpu_inter[m,l])
 
-        mul_cpuOir_inter[m,l] <- k_cpuOir[r[m]] * dIA_Oir[r[m],y[m,l]] # mean lambda_cpu modified for MP
+        mul_cpuOir_inter[m,l] <- k_cpuOir[site_MP[m]] * dIA_Oir[site_MP[m],y[m,l]] # mean lambda_cpu modified for MP
         shape_lcpuOir_inter[m,l] <- mul_cpuOir_inter[m,l] * rate_lcpu   # shape parameter of the gamma distribution for lambda_cpu
         lambdaOir_cpu_inter[m,l] ~ dgamma(shape_lcpuOir_inter[m,l],rate_lcpu)I(0.001,)
 
