@@ -19,9 +19,9 @@ stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
-#setwd(work.dir)
-work.dir<-getwd()
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+setwd(work.dir)
+
 
 # cleaning
 system("mkdir bugs/")
@@ -70,8 +70,8 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=2000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
+nstore=5000 # Total number of steps in chains to save.
+nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###

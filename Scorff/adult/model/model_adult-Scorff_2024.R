@@ -46,12 +46,12 @@ model {
   for (a in 1:2) {
     # Probabilities to be captured at Moulin des Princes.
     pi_MP94[a] ~ dbeta(1,1)  # first year 1994 is considered to be different
-    logit_int_MP[a] ~ dunif(-10,10)    #intercept 
-    logit_flow_MP[a] ~ dunif(-10,10) #slope for flow data (1SW at MP in 15 june - 15 august, MSW in April-June)
+    logit_int_MP[a] ~ dnorm(0,1.5)#~ dunif(-10,10)    #intercept 
+    logit_flow_MP[a] ~ dnorm(0,1.5)#~ dunif(-10,10) #slope for flow data (1SW at MP in 15 june - 15 august, MSW in April-June)
     # Probabilities to be captured during reproduction or after
-    logit_int_R[a] ~ dunif(-10,10) # intercept 
-    logit_effort_R[a] ~ dunif(-10,10) # slope for recapture effort
-    logit_flow_R[a] ~ dunif(-10,10) # slope for flow in December 
+    logit_int_R[a] ~ dnorm(0,1.5)#~ dunif(-10,10) # intercept 
+    logit_effort_R[a] ~ dnorm(0,1.5)#~ dunif(-10,10) # slope for recapture effort
+    logit_flow_R[a] ~ dnorm(0,1.5)#~ dunif(-10,10) # slope for flow in December 
     # Probility of recapture by electrofishinh during spwaning from 2020 (changed in 2025)
     mu_logit_pi_R_pulsium[a] ~ dnorm(0,1)
     # Probabilities to die from fishing or not depends on marked satstus and on sea age.
@@ -62,29 +62,29 @@ model {
       mupi_F[a,u] ~ dbeta(1,1)
     } # End of loop over mark category
     # Variance of mortality other than fishing depends on sea age (revealed by data)    
-    sigmapi_D[a] ~ dunif(0,20)
+    sigmapi_D[a] ~ dgamma(2.5, 2.5) #dunif(0,20) # mb+ep 20.3.2025
     varpi_D[a] <- (sigmapi_D[a])*(sigmapi_D[a])
     precpi_D[a] <- 1/(varpi_D[a]) # precision
   }# end of loop over sea age
     
     # Probility of recapture by electrofishinh during spwaning from 2020 (changed in 2025)
-    sigmapi_R_pulsium ~ dunif(0,20) # standard deviation of probabilty of recapture during reproduction
+    sigmapi_R_pulsium ~ dgamma(2.5, 2.5) # standard deviation of probabilty of recapture during reproduction # mb+ep 20.3.2025
     varpi_R_pulsium <- (sigmapi_R_pulsium)*(sigmapi_R_pulsium) 
     precpi_R_pulsium  <- 1/(varpi_R_pulsium) # precision
     # to be changed to vary with sea age when more data is available
   
   ### Variance of probabilities to be captured at Moulin des Princes (not dependent on sea age)
-  sigmapi_MP ~ dunif(0,20) # standard deviation of probabilty of capture at Moulin des Princes
+  sigmapi_MP ~ dgamma(2.5, 2.5) # standard deviation of probabilty of capture at Moulin des Princes # mb+ep 20.3.2025
   var_MP <- (sigmapi_MP)*(sigmapi_MP)
   prec_MP <- 1/(var_MP) #precision for residual temporal variance
   ### Probabilities to be captured during or after reproduction (not dependent on sea age)
-  sigmapi_R ~ dunif(0,20) # standard deviation of probabilty of recapture during reproduction
+  sigmapi_R ~ dgamma(2.5, 2.5) # standard deviation of probabilty of recapture during reproduction # mb+ep 20.3.2025
   varpi_R <- (sigmapi_R)*(sigmapi_R) 
   precpi_R  <- 1/(varpi_R) # precision
   
   # Building the matrix of variance-covariance for fishing between marked and unmarked fish
   # Modifed in 2020 : a single matrix of variance-covariance for fishing whatever sea age
-  sigmapi_F ~ dunif(0,20) # std dev of fishing independant of sea and marked status
+  sigmapi_F ~ dgamma(2.5, 2.5) # std dev of fishing independant of sea and marked status # mb+ep 20.3.2025
   varpi_F <- sigmapi_F*sigmapi_F
   #  precpi_F <- 1/(varpi_F) # precision
   # Modifed in 2020 : a single cc whatever the sea age
@@ -206,9 +206,9 @@ model {
   
   for (t in 1:29) { ## pi_R: Exchangeable from 1994 to 2022, last year of recapture with dipnets
     logeff_R[t] <- log(eff_R[t]) # ln transformation of effort
-    stlogeff_R[t] <- (logeff_R[t] - mean(logeff_R[]))/sd(logeff_R[]) # standardized covariate
+    stlogeff_R[t] <- (logeff_R[t] - mean(logeff_R[1:29]))/sd(logeff_R[1:29]) # standardized covariate
     logQ_dec[t] <- log(Q_dec[t]) # ln transformation of december flow
-    stlogQ_dec[t] <- (logQ_dec[t] - mean(logQ_dec[]))/sd(logQ_dec[]) # standardized covariate  
+    stlogQ_dec[t] <- (logQ_dec[t] - mean(logQ_dec[1:29]))/sd(logQ_dec[1:29]) # standardized covariate  
     for (a in 1:2) { 
       logit_mupi_R[t,a] <- logit_int_R[a] + logit_effort_R[a] * stlogeff_R[t] + logit_flow_R[a] * stlogQ_dec[t]
       logit_pi_R[t,a] ~ dnorm(logit_mupi_R[t,a],precpi_R)
@@ -220,7 +220,7 @@ model {
   for (t in 27:Y) {## pi_Rpulsium: Exchangeable from 2020 when recapture with Pulsium started (changed in 2025)
     for (a in 1:2) { 
     pi_R_pulsium[t,a] <- exp(logit_pi_R_pulsium[t,a])/(1+exp(logit_pi_R_pulsium[t,a]))
-    logit_pi_R_pulsium[t,a]) ~ dnorm(mu_logit_pi_R_pulsium[a], prec_logit_pi_R_pulsium)    
+    logit_pi_R_pulsium[t,a] ~ dnorm(mu_logit_pi_R_pulsium[a], precpi_R_pulsium)    
     } ## End of loop over sea age 
   } #end of loop over years
 # to bechanged to vary with flow and effort like pi_R when more years are available
@@ -520,12 +520,17 @@ model {
   
   
   
-  for (t in 1:Y){
-    # recaptured marked fish
-    psi_1SW[t,1] <- (1 - piF_1SW[t,1]) * (1 - piD_1SW[t,1]) * pi_R[t,1]
-    psi_MSW[t,1] <- (1 - piF_MSW[t,1]) * (1 - piD_MSW[t,1]) * pi_R[t,2]
-    
-  }  # end of loop over years
+  # for (t in 1:29){
+  #   # recaptured marked fish
+  #   psi_1SW[t,1] <- (1 - piF_1SW[t,1]) * (1 - piD_1SW[t,1]) * pi_R[t,1]
+  #   psi_MSW[t,1] <- (1 - piF_MSW[t,1]) * (1 - piD_MSW[t,1]) * pi_R[t,2]
+  # }  # end of loop over years
+  # 
+  # for (t in 30:Y){
+  #   # recaptured marked fish
+  #   psi_1SW[t,1] <- (1 - piF_1SW[t,1]) * (1 - piD_1SW[t,1]) * pi_R_pulsium[t,1]
+  #   psi_MSW[t,1] <- (1 - piF_MSW[t,1]) * (1 - piD_MSW[t,1]) * pi_R_pulsium[t,2]
+  # }  # end of loop over years
   
   
   

@@ -8,9 +8,9 @@
 library(coda)
 
 ##-----------------------------DATA ----------------------------------##
-year <- 2024
-site <- "Nivelle"
-stade <- "tacon"
+# year <- 2024
+# site <- "Nivelle"
+# stade <- "tacon"
 
 
 ## WORKING DIRECTORY:
@@ -191,9 +191,9 @@ H <- rep(1,15)
 jcomp_ns_riff <- fit.mcmc[,(which(colnames(fit.mcmc)=="jcomp_ns_riff[13,3]", arr.ind=T)):(which(colnames(fit.mcmc)=="jcomp_ns_riff[26,3]", arr.ind=T))]
 jcomp_ns_runs <- fit.mcmc[,(which(colnames(fit.mcmc)=="jcomp_ns_runs[13,3]", arr.ind=T)):(which(colnames(fit.mcmc)=="jcomp_ns_runs[26,3]", arr.ind=T))]
 jnat_ns_riff <- fit.mcmc[,(which(colnames(fit.mcmc)=="jnat_ns_riff[2,3]", arr.ind=T)):
-    (which(colnames(fit.mcmc)==(paste("jnat_ns_riff[",Y_last,",5]",sep="")), arr.ind=T))]
+    (which(colnames(fit.mcmc)==(paste("jnat_ns_riff[",Y_last,",7]",sep="")), arr.ind=T))]
 jnat_ns_runs <- fit.mcmc[,(which(colnames(fit.mcmc)=="jnat_ns_runs[2,3]", arr.ind=T)):
-    (which(colnames(fit.mcmc)==(paste("jnat_ns_runs[",Y_last,",5]",sep="")), arr.ind=T))]
+    (which(colnames(fit.mcmc)==(paste("jnat_ns_runs[",Y_last,",7]",sep="")), arr.ind=T))]
 jres_ns_riff <- fit.mcmc[,(which(colnames(fit.mcmc)=="jres_ns_riff[3,4]", arr.ind=T)):(which(colnames(fit.mcmc)=="jres_ns_riff[12,8]", arr.ind=T))]
 jres_ns_runs <- fit.mcmc[,(which(colnames(fit.mcmc)=="jres_ns_runs[3,4]", arr.ind=T)):(which(colnames(fit.mcmc)=="jres_ns_runs[12,8]", arr.ind=T))]
 n1 <- fit.mcmc[,(which(colnames(fit.mcmc)=="n1[1]", arr.ind=T)):(which(colnames(fit.mcmc)=="n1[445]", arr.ind=T))]
@@ -219,7 +219,7 @@ jHN_samp <- jHN_nat_samp <- jHN_comp_samp <- jHN_res_samp <- matrix(0,nrow=n_ite
 
 jLUR_samp <- jLUR_nat_samp <- jLUR_comp_samp <- jLUR_res_samp <- matrix(0,nrow=n_iter,ncol=22)
 
-jVHN_samp <- jVHN_res_samp <- matrix(0,nrow=n_iter,ncol=22)
+jVHN_samp <- jVHN_res_samp <- jVHN_nat_samp <- matrix(0,nrow=n_iter,ncol=22)
 
 jLAP_samp <- jLAP_res_samp <- matrix(0,nrow=n_iter,ncol=22)
 
@@ -479,7 +479,7 @@ for (i in 1:n_iter) {
   } ## End of loop over years
 # A partir de 2024 production naturelle sur VHN
  for (y in 41:Y_last) {
-    jVHN_ns[i,y] <- jHN_nat_ns[i,y] <- jnat_ns_riff[i,paste("jnat_ns_riff[",y,",7]",sep="")]+jnat_ns_runs[i,paste("jnat_ns_runs[",y,",7]",sep="")]
+    jVHN_ns[i,y] <- jVHN_nat_ns[i,y] <- jnat_ns_riff[i,paste("jnat_ns_riff[",y,",7]",sep="")]+jnat_ns_runs[i,paste("jnat_ns_runs[",y,",7]",sep="")]
   } ## End of loop over years
 
   # MISE A JOUR DERNIERE ANNEE. Remplacer le chiffre 31 (correspondant ? l'ann?e 2014) par la valeur de l'index Y_last
@@ -822,7 +822,7 @@ setTxtProgressBar(pb,i)
         
         jLUR[i,y] <- jLUR_nat[i,y] <- jLUR_nat_ns[i,y]
         } ## End of loop over years
-    }# end of loop over iterations
+   # }# end of loop over iterations
 
     # From 2024 to now on  
     for (y in 41:Y_last) {
@@ -1395,7 +1395,7 @@ somme <- I_prod <- matrix(0,nrow=Y_last,ncol=8)
 
 
 # Total surface in equivalent riffle
-Stot_req <- matrix(NA,nrow=n_iter,ncol=8)
+Stot_req <- Stot_req_new <-matrix(NA,nrow=n_iter,ncol=8)
 
 mu_dj_wth_y <- mu_djnat_wth_y <- mu_djcomp_wth_y <- mu_djres_wth_y <- matrix(NA,nrow=n_iter,ncol=Y_last)
 
@@ -1472,6 +1472,9 @@ setTxtProgressBar(pb,i)
         mu_djnat_wth_y[i,y] <- (mu_djnat_wth_LN[i,y]*Stot_req[i,3] + mu_djnat_wth_HN[i,y]*Stot_req[i,4] + mu_djnat_wth_LUR[i,y]*Stot_req[i,5] + mu_dj_wth_VHN[i,y]*Stot_req_new[i,7]) / 
                          ((I_prod[y,3]*Stot_req[i,3]) + (I_prod[y,4]*Stot_req[i,4]) + (I_prod[y,5]*Stot_req[i,5]) + 
                          (I_prod[y,7]*Stot_req_new[i,7]))
+        
+        mu_djcomp_wth_y[i,y] <- 0 # ep+mb 13.3.2025 no compensation since many years
+        mu_djres_wth_y[i,y] <- 0 # ep+mb 13.3.2025 no compensation since many years
                          
     } ## End of loop over years
   } ## End of loop over iterations

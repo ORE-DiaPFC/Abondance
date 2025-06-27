@@ -178,8 +178,7 @@ log_k_inter=0 # coeffcient proportion interccalibration pulsium
 #   5.822, 6.014, 6.433, 5.219, 6.884, 5.141, 6.809, 5.320, 6.166, 5.462, 6.300, 5.500, 5.526, 6.091, 5.732, 6.177, 5.094,
 #   6.159,5.084,5.997,7.287,6.321,6.201,6.038,5.097,5.432,3.634,5.924,5.735,7.943,7.21,5.118,5.908,6.679, 
 #   5.912, 6.237, 5.464, 6.830, 5.236, 5.961, 5.193, 6.806, 5.680, 5.742, 5.864, 5.514, 5.079, 6.463, 5.820, 6.442, 5.168)#,
-
-LS_rec <- c(inits0$LS_rec, tail(inits0$LS_rec, n=17)) # repliquer les 17 dernieres valeurs
+LS_rec <- c(inits0$LS_rec, tail(inits0$LS_rec, n=15)) # mb+ep 11.3.2025 : ajouter 15 (au lieu de 17)
 
 
 # METTRE A JOUR (1 valeur par an)
@@ -325,7 +324,7 @@ alpha_dj <- c(inits0$alpha_dj, 1) # ajouter 1
 #   0.002, 0.137, 0.089, 0.054, 0.010,
 #   0.025, 0.084, 0.112, 0.135, 0.097,
 #   0.045, 0.184)#,
-dj.tmp = (tail(data$CPUE, n=17) / 125)+0.02
+dj.tmp = (tail(data$CPUE, n=15) / 125)+0.02 # mb+ep 11.3.2025 : ajouter 15 (au lieu de 17)
 dj = c(inits0$dj, dj.tmp)
 
 ## METTRE A JOUR (3 NA ET 2 VALEURS PAR AN) /!\ TAILLE MATRICE
@@ -364,8 +363,9 @@ dj = c(inits0$dj, dj.tmp)
 #   NA,            NA,            NA,0.5073,0.7003,
 #   NA,            NA,            NA,0.8212,0.5498),
 #   .Dim = c(32,5)),
-gamma_dj = rbind(inits0$gamma_dj,  c(NA,NA,NA,1,1))
-
+if(ncol(inits0$gamma_dj)<=5) inits0$gamma_dj <- cbind(inits0$gamma_dj,array(NA,dim=c(nrow(inits0$gamma_dj),2)))
+gamma_dj = rbind(inits0$gamma_dj,  c(NA,NA,NA,1,1,NA,1))
+# mb+ep 2025 : passage à 7 zones, ajout de 2 colonnes NA et initiliaser à partir de la dernière année
 
 
 ## METTRE A JOUR (2 NA ET 3 VALEURS PAR AN) /!\ TAILLE MATRICE
@@ -407,7 +407,8 @@ gamma_dj = rbind(inits0$gamma_dj,  c(NA,NA,NA,1,1))
 #dj.tmp <- data$CPUE / 125
 #tmp <- tail(dj.tmp, n=17)
 jnat_ns_riff.tmp = data$Stot_ns_riff[33,] * mean(dj.tmp)
-jnat_ns_riff= rbind(inits0$jnat_ns_riff,jnat_ns_riff.tmp[1:5])
+if(ncol(inits0$jnat_ns_riff)<=5) inits0$jnat_ns_riff <- cbind(inits0$jnat_ns_riff,array(NA,dim=c(nrow(inits0$jnat_ns_riff),2)))
+jnat_ns_riff= rbind(inits0$jnat_ns_riff,jnat_ns_riff.tmp[1:7]) # mb+ep 2025 : passage à 7 zones, ajout de 2 colonnes NA et initiliaser à partir de la dernière année
 
 
 
@@ -450,8 +451,9 @@ jnat_ns_riff= rbind(inits0$jnat_ns_riff,jnat_ns_riff.tmp[1:5])
 #dj.tmp <- data$CPUE / 125
 #tmp <- tail(dj.tmp, n=17)
 jnat_ns_runs.tmp = data$Stot_ns_runs[33,] * mean(dj.tmp/5)
-jnat_ns_runs= rbind(inits0$jnat_ns_runs,jnat_ns_runs.tmp[1:5])
-
+if(ncol(inits0$jnat_ns_runs)<=5) inits0$jnat_ns_runs <- cbind(inits0$jnat_ns_runs,array(NA,dim=c(nrow(inits0$jnat_ns_runs),2)))
+jnat_ns_runs= rbind(inits0$jnat_ns_runs,jnat_ns_runs.tmp[1:7])
+# mb+ep 2025 : passage à 7 zones, ajout de 2 colonnes NA et initiliaser à partir de la dernière année
 
 ## METTRE A JOUR (17 VALEURS PAR AN)
 # lambda_cpue = c(
@@ -574,17 +576,17 @@ jnat_ns_runs= rbind(inits0$jnat_ns_runs,jnat_ns_runs.tmp[1:5])
 #   12,19,16,44,9,23,7,13,19,12,20,9,32,20,44,19,20)
 # )
 
-lambda_cpue = c(inits0$lambda_cpue, tail(data$CPUE,n=17))
+lambda_cpue = c(inits0$lambda_cpue, tail(data$CPUE,n=15))  # mb+ep 11.3.2025 : ajouter 15 (au lieu de 17)
 lambda_cpue <- ifelse(lambda_cpue==0,1,lambda_cpue) # protect against null value I(0.001,)
 
 inits_updated <- list(
-  LS_rec=LS_rec,
-  alpha_dj=alpha_dj,
-  dj=dj,
-  gamma_dj=gamma_dj,
-  jnat_ns_riff=apply(jnat_ns_riff, 1:2, function(x) as.integer(x)),
-  jnat_ns_runs=apply(jnat_ns_runs, 1:2, function(x) as.integer(x)),
-  lambda_cpue= lambda_cpue
+  LS_rec=LS_rec
+  ,alpha_dj=alpha_dj
+  ,dj=dj
+  ,gamma_dj=gamma_dj
+  ,jnat_ns_riff=apply(jnat_ns_riff, 1:2, function(x) as.integer(x))
+  ,jnat_ns_runs=apply(jnat_ns_runs, 1:2, function(x) as.integer(x))
+  ,lambda_cpue= lambda_cpue
 )
 
 

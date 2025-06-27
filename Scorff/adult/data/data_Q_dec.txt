@@ -1,7 +1,8 @@
 list(	
 ## Mean flow 24november- 24december (m3/s)	
 ## Covariate is standardized within WinBUGS	
-Q_dec = c(6.94161
+Q_dec = c(
+6.94161
 , 4.80323	
 , 3.54806	
 , 5.96452	
@@ -29,9 +30,9 @@ Q_dec = c(6.94161
 , 17.55484	
 , 9.75000
 , 3.36258	# 2021 attention toutes valeurs recalculee en 2021
-, 11,7596774	# 2022
-, 12,01194	# 2023
-, 6,35097	# 2024
+, 11.7596774	# 2022
+, 12.01194	# 2023
+, 6.35097	# 2024
 )	
 	
 )	

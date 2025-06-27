@@ -59,7 +59,7 @@ eps ~ dunif(0,10) #eps ~ dnorm(0,0.01)I(0,) # decrease in the probability of cap
 mu_d ~ dlnorm(2.5,1) ## Mean density 
 #rate_d ~ dgamma(0.1,0.1)# rate_d ~ dgamma(0.01,0.01) #### Inverse scale of a Gamma distribution for density
 #shape_d <- mu_d * rate_d # shape parameter of the gamma distribution
-sigma_d ~ dunif(0,10)  # 2022 : harmonization with the rest of the model
+sigma_d ~ dgamma(2.5, 2.5) #dunif(0,10)  # 2022 : harmonization with the rest of the model #mb-25-03-2025
 tau_d <- pow(sigma_d,-2)  # 2022 : harmonization with the rest of the model
 
 for (i in 1:Ninter) {
@@ -126,7 +126,7 @@ for (i in 1:Ninter) {
 ## PRIORS
 ## ------
 ###  ## Density (on log scale)
-sigma_dSc ~ dunif(0,10) ## Overall standard deviation in density in Scorff river
+sigma_dSc ~ dgamma(2.5, 2.5)# dunif(0,10)#mb 25-03-2025 ## Overall standard deviation in density in Scorff river
 sigma_dSc_cut <- cut(sigma_dSc) # use to predict abundance
 
 var_dSc <- sigma_dSc*sigma_dSc 
@@ -139,7 +139,7 @@ log_flow ~ dnorm(0,0.01)T(-5,5)  ## Slope for flow
 int_ydSc_cut <- cut(int_ydSc) # use to predict density when taking into account osberved flow during habitat sampling
 log_flow_cut <- cut(log_flow) # use to predict density when taking into account osberved flow during habitat sampling
 
-sigma_ySc ~ dunif(0,10) ## Standard deviation of year effect
+sigma_ySc ~ dgamma(2.5, 2.5)# dunif(0,10) ## Standard deviation of year effect #mb 25-03-2025
 var_ySc <- sigma_ySc*sigma_ySc 
 tau_ySc <- 1/var_ySc # precision
 
@@ -157,7 +157,7 @@ for (t in 1:Nyear) {
     } # end of loop over years
 
 ## Site effect (on log scale)
-sigma_siteSc ~ dunif(0,10) ## Standard deviation of site effect
+sigma_siteSc ~ dgamma(2.5, 2.5)# dunif(0,10) ## Standard deviation of site effect #mb 25-03-2025
 var_siteSc <- sigma_siteSc*sigma_siteSc 
 tau_siteSc <- 1/var_siteSc
 
@@ -217,7 +217,7 @@ for (j in 1:Nstation) {
 # From 2020 to 2024, 6 sites are electroshed with MP gear for intercalibartion with Pulsium
 r[1] <- 11; r[2] <- 12; r[3] <- 16; r[4] <- 17; r[5] <- 23; r[6] <- 26 # Index of sites used for intercalibartion  
 for (m in 1:6) {
-     for (l in 1:3) {   # This must be updated every year to accomodate new inetrcalibartion data
+     for (l in 1:3) {   # 2020 to 2022 This must be updated every year to accomodate new inetrcalibartion data
         y[m,l] <- l + 27 # index of year of intercalibration
    
         CPUE_Sc_inter[m,l] ~ dpois(lambdaSc_cpu_inter[m,l])
@@ -227,6 +227,17 @@ for (m in 1:6) {
         lambdaSc_cpu_inter[m,l] ~ dgamma(shape_lcpuSc_inter[m,l],rate_lcpu_cut)I(0.001,)
 #        lambdaSc_cpu_inter[j,t] <- max(0.001,lambdaSc_cpu[j,t]) # try to avoid error on lambda_cpu  
         } # end of loop over years
+  
+  for (l in 4:4) {   # 2024 to now /!\ This must be updated every year to accomodate new inetrcalibartion data
+    y[m,l] <- l + 28 # index of year of intercalibration
+    
+    CPUE_Sc_inter[m,l] ~ dpois(lambdaSc_cpu_inter[m,l])
+    
+    mul_cpuSc_inter[m,l] <- k_cpuSc[r[m],y[m,l]] * d_Sc[r[m],y[m,l]] # mean lambda_cpu modified for MP
+    shape_lcpuSc_inter[m,l] <- mul_cpuSc_inter[m,l] * rate_lcpu_cut   # shape parameter of the gamma distribution for lambda_cpu
+    lambdaSc_cpu_inter[m,l] ~ dgamma(shape_lcpuSc_inter[m,l],rate_lcpu_cut)I(0.001,)
+    #        lambdaSc_cpu_inter[j,t] <- max(0.001,lambdaSc_cpu[j,t]) # try to avoid error on lambda_cpu  
+  } # end of loop over years
    } # end of loop over sites
 
 ##############

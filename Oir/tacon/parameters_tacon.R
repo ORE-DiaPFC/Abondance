@@ -24,7 +24,9 @@ parameters <-c(
 ,"test"
   
 ,"k_cpuOir" # proportional relationship with width
-  
+
+,"k_inter"
+
 ,"coef_PC" # coefficient of proportionality for run.
   
   ## Probability of capture

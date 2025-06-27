@@ -521,7 +521,7 @@ S=c(
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2022
 449,341,462,1462,629,777,858,479,523,68,1138,457,1542,660,230,325,931, # 2023
 
-449,462,1462,777,523,1138,660,100,100,100,100,100,230,325,931 # 2024 fake surface data for new sites (ok, no impact)
+449,462,1462,777,523,1138,660,660,660,660,660,660,230,325,931 # 2024 fake surface data for new sites (ok, no impact)
 ),
 
 
@@ -645,7 +645,7 @@ NA,NA,11223,28074,6884,NA,23758,NA # 2024 zone 7 = Nivelle espagnole, incluant L
 # MISE A JOUR : Reprendre les 8 derni?res surfaces.
 # /!\ Besoin de changer la dimension de la matrice 
 # Surface à corriger avec données les + récentes pour Nivelle espagnole en 2026
-Stot_ns_runs[Y_last, nbre zone]
+#Stot_ns_runs[Y_last, nbre zone]
 Stot_ns_runs=structure(.Data=c(
 NA,NA,NA,NA,NA,NA,NA,NA,
 NA,NA,16494,NA,NA,NA,NA,NA,
@@ -1506,6 +1506,15 @@ S_tot=structure(.Data=c(
 4570,7368,6653,10668,11223,
 18036,28074,25237,6884,6224,
 NA,NA,3838,6547,10620,
+6538),.Dim = c(8,2)),
+
+# MISE A JOUR si actualisation des surfaces de la Nivelle espagnole (zone 7)
+# Surfaces totales par zone et par type d'habitat
+S_tot_new=structure(.Data=c(
+4570,7368,6653,10668,11223,
+18036,28074,25237,6884,6224,
+NA,NA,23758,16131,10620,
 6538),.Dim = c(8,2))
+
 
 )

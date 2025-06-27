@@ -9,6 +9,9 @@
 # work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/',site,sep="")
 # setwd(work.dir)
 
+invlogit<-function(x) {1/(1+exp(-(x)))}
+logit<-function(x) {log(x/(1-x))}
+
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 for (c in 1:2){ # 2 chains
@@ -275,12 +278,12 @@ em <- ((data$Cm_MP - data$Cm_F) - m_D)
 logit_pi_R <- logit(data$Cm_R /em)
 logit_pi_R[is.na(logit_pi_R)] <- -1.5 # si NA, mettre -1.5
 logit_pi_R[logit_pi_R =="-Inf"] <- -1.5 # si NA, mettre -1.5
+logit_pi_R <- logit_pi_R[1:29,] # stop in 2022
 
-
-pi_R_pulsium=array(,dim=c(data$Y,2))
+logit_pi_R_pulsium=array(,dim=c(data$Y,2))
 for (t in 27:data$Y) {
-   pi_R_pulsium[t,1] <- 0.1    
-   pi_R_pulsium[t,2] <- 0.1 
+  logit_pi_R_pulsium[t,1] <- logit(0.1)    
+  logit_pi_R_pulsium[t,2] <- logit(0.1)
 }
 
 # Proprotion sampling for sexing
@@ -292,6 +295,20 @@ p_smp[,2] <-rbeta(data$Y,5, 1) # MSW
 p_male=array(,dim=c(data$Y,2))
 p_male[,1] <-0.5
 p_male[,2] <- 0.2
+
+
+n_1SW <- n[,1] # Number of males and females 1SW
+n_MSW <- n[,2]
+n_1SW_m <- as.integer(p_male[,1]* n_1SW) # male
+n_1SW_f <- n_1SW-n_1SW_m 
+n_MSW_m <- as.integer(p_male[,2]* n_MSW) # male
+n_MSW_f <- n_MSW-n_MSW_m 
+
+n_sex_smp=array(,dim=c(data$Y,4))
+n_sex_smp[,1] <- as.integer(p_smp[,1]* n_1SW_m) # male
+n_sex_smp[,2] <- as.integer(p_smp[,1]* n_1SW_f) # female
+n_sex_smp[,3] <- as.integer(p_smp[,2]* n_MSW_m) # male
+n_sex_smp[,4] <- as.integer(p_smp[,2]* n_MSW_f) # female
 
 inits_fix <- list(
   lambda_tot0 = lambda_tot0,
@@ -334,9 +351,10 @@ inits_updated <- list(
   ,n=n
   ,um_D=um_D
   ,Cum_Fb=Cum_Fb,Cm_Fb=Cm_Fb
-  ,pi_R_pulsium=pi_R_pulsium
+  ,logit_pi_R_pulsium=logit_pi_R_pulsium
   ,p_smp=p_smp
   ,p_male=p_male
+  #,n_sex_smp=n_sex_smp
 )
 
 inits <- list(c( inits_fix,inits_updated))

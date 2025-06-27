@@ -92,6 +92,9 @@ inits_fix <- list(
   
   
   
+  # nm_2 <- array(NA,dim=c(data$Y,4))
+  # nm_2[c(29:data$Y),] <- data$Cm_U[c(29:data$Y),]
+  # nm_2[41,2]<-NA
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
   # e_21 = structure(.Data = c(
@@ -129,6 +132,7 @@ inits_fix <- list(
   # num_2.tmp <- data$C_U #cbind(rowSums(data$C_U[,1:2]), rowSums(data$C_U[,3:4]))
   # num_2 <- array(NA,dim=c(data$Y,4))
   # num_2[c(29:data$Y),] <- num_2.tmp[c(29:data$Y),]
+
   
 
 e_2.tmp = ((data$Cm_O[data$Y, ] + data$Cum_O[data$Y, ])/ tail(data$eff_Ol,n=1)) + data$NB[data$Y, ] +1
@@ -137,10 +141,11 @@ e_21 = rbind(inits0$e_21, e_21.tmp)
 #e_21 = e_21.tmp
 #ifelse(e_21==0, NA, e_21) # get error if = 0
 e_21[33,3]<-1 # e_21[33,3] cannot be 0!!!
+e_21[41,2]<-NA
 
 num_2 <- array(NA,dim=c(data$Y,4))
 num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
-#num_2 <- e_21
+num_2[41,2]<-NA #mb-11.4.2025
 
  
   ## METTRE A JOUR
@@ -258,6 +263,8 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   n = rbind(inits0$n, ceiling(n.tmp))
   n[33,2]<-20
   n[33,3]<- n[33,3] + 10 # need to be > to escapment
+  n[41,2]<- n[41,2] + 1 #mb-11.4.2025: cannot be 0
+  
   
   ## METTRE A JOUR /!\ TAILLE MATRICE
   # n_11 = structure(.Data = c(
@@ -394,6 +401,8 @@ num_2[c(29:data$Y),] <- e_21[c(29:data$Y),]
   no_ech_MSW[2,3]<-0
   no_ech_MSW[3,3]<-0 
   no_ech_MSW[4,3]<-0
+  
+ # no_ech_MSW[41,1:4]<-0 #mb-11.4.2025
 
 
 inits_updated <- list(
@@ -414,6 +423,7 @@ inits_updated <- list(
   no_ech_1.1SW=no_ech_1.1SW,
   no_ech_MSW = no_ech_MSW,
   num_2 =num_2
+  #,nm_2=nm_2
 )
 
 inits <- list(c( inits_fix,inits_updated))

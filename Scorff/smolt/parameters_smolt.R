@@ -21,7 +21,7 @@ parameters <-c(
   ,"p_ML" # capture probability at Moulin de Lesl?
   
   ,"p10c"
-  ,"lambda0"
+  #,"lambda0"
   ,"N0"
   
   #,"n1","n"
@@ -36,12 +36,16 @@ parameters <-c(
   ,"l1","l2"
   #,"mu_p1c","alpha"
   
-  ,"shape_lambda" # Shape parameter of gamma distribution
-  ,"rate_lambda" # Rate parameter of gamma distribution
-  ,"mean_gamma" # Mean parameter of gamma distribution
-  ,"var_gamma" # Variance parameter of gamma distribution
+  #,"shape_lambda" # Shape parameter of gamma distribution
+  #,"rate_lambda" # Rate parameter of gamma distribution
+  #,"mean_gamma" # Mean parameter of gamma distribution
+  #,"var_gamma" # Variance parameter of gamma distribution
+  #,"prob0"
+  ,"theta0"
+  ,"shape_theta","mean_theta","sigma_theta"
+  ,"theta"
   
-  ,"lambda" # Poisson parameter
+  #,"lambda" # Poisson parameter
   
   ,"Nesc" # Number of smolt escaping the river (Ntot-Dead
   

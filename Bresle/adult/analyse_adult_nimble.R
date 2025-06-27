@@ -19,8 +19,8 @@ stade <- "adult"
 
 
 ## WORKING DIRECTORY:
-#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
-#setwd(work.dir)
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+setwd(work.dir)
 
 # cleaning
 system("mkdir bugs/")
@@ -77,12 +77,12 @@ source(paste("model/model_",stade,"-",site,"_nimble.R",sep="")) # path of the mo
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = 2 #length(inits) # Number of chains to run.
-adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=2000 # Total number of steps in chains to save.
-nthin=1 # Number of steps to "thin" (1=keep every step).
-#nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
+# nChains = 2 #length(inits) # Number of chains to run.
+# adaptSteps = 1000 # Number of steps to "tune" the samplers.
+# nburnin=1000 # Number of steps to "burn-in" the samplers.
+# nstore=2000 # Total number of steps in chains to save.
+# nthin=1 # Number of steps to "thin" (1=keep every step).
+# #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 ### Start of the run ###
 start.time = Sys.time(); cat("Start of the run\n"); 
@@ -105,7 +105,7 @@ n_iter <- (n_store * n_thin) + n_burnin # number of iterations to run per chain
 print(n_iter)
 
 
-samples <- nimbleMCMC(code = model,     # model code
+fit <- nimbleMCMC(code = model,     # model code
                       data = dataToNimble,                  # data
                       constants =constants,        # constants
                       inits = inits,          # initial values

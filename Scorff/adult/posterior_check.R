@@ -29,6 +29,9 @@ hyperparameters <-c(
 ,"sigmapi_D"
 , "rho_D"
 
+
+,"mu_logit_pi_R_pulsium"
+,"sigmapi_R_pulsium"
  # ,"mupi_oF" # mean probability of recovering a caught fish (from fishing
  # ,"sigmapi_oF" # standard deviation of probability of recovering a caught fish (from fishing
 
@@ -100,24 +103,32 @@ for (par in hyperparameters){
   denplot(fit,par)
 }
 
+years <- 1994:year  # X-axis values
 
 par(mfrow=c(2,1))
-caterplot(fit,paste0("piD_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit,paste0("piD_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of marked 1SW dying from other cause than fishing (piD_1SW)")
+caterplot(fit,paste0("piD_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of unmarked 1SW dying from other cause than fishing (piD_1SW)")
 
 par(mfrow=c(2,1))
-caterplot(fit,paste0("piD_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit,paste0("piD_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-
-
-par(mfrow=c(2,1))
-caterplot(fit,paste0("piF_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit,paste0("piF_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+caterplot(fit,paste0("piD_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of marked MSW dying from other cause than fishing (piD_MSW)")
+caterplot(fit,paste0("piD_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of unmarked MSW dying from other cause than fishing (piD_MSW)")
 
 par(mfrow=c(2,1))
-caterplot(fit,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
-caterplot(fit,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
+## No exploitation allowed on 1SW in 2003
+caterplot(fit,paste0("piF_1SW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = c(1994:2002,2004:year)) 
+title("Prob. of marked 1SW dying from fishing (piF_1SW)")
+caterplot(fit,paste0("piF_1SW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = c(1994:2002,2004:year)) 
+title("Prob. of unmarked 1SW dying from fishing (piF_1SW)")
 
+par(mfrow=c(2,1))
+caterplot(fit,paste0("piF_MSW[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of marked MSW dying from fishing (piF_MSW)")
+caterplot(fit,paste0("piF_MSW[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year) 
+title("Prob. of unmarked MSW dying from fishing (piF_MSW)")
 # par(mfrow=c(2,1))
 # caterplot(fit,paste0("pi_oF[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 # caterplot(fit,paste0("pi_oF[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
@@ -142,13 +153,32 @@ caterplot(fit,paste0("epsilon_R[",1:data$Y,",2]"), reorder = FALSE, horizontal=F
 
 par(mfrow=c(1,1))
 caterplot(fit,"n_tot", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
-title("ntot")
+title("Total # returns")
+# Extract MCMC medians for p_male[,1]
+medians <- fit$median$n_tot
+#years <- 1994:year  # X-axis values
+# Fit LOESS model and add smoothing line
+loess_fit_1 <- loess(medians ~ years, span = 0.5)  
+lines(1:data$Y, predict(loess_fit_1), col = "tomato", lwd = 2)
 
 par(mfrow=c(2,1))
 caterplot(fit,"n_1SW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
-title("n_1SW")
+title("Total number of 1SW")
+# Extract MCMC medians for p_male[,1]
+medians <- fit$median$n_1SW
+#years <- 1994:year  # X-axis values
+# Fit LOESS model and add smoothing line
+loess_fit_1 <- loess(medians ~ years, span = 0.5)  
+lines(1:data$Y, predict(loess_fit_1), col = "tomato", lwd = 2)
+
 caterplot(fit,"n_MSW", reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
-title("n_MSW")
+title("Total number of MSW")
+# Extract MCMC medians for p_male[,1]
+medians <- fit$median$n_MSW
+#years <- 1994:year  # X-axis values
+# Fit LOESS model and add smoothing line
+loess_fit_1 <- loess(medians ~ years, span = 0.5)  
+lines(1:data$Y, predict(loess_fit_1), col = "tomato", lwd = 2)
 
 #par(mfrow=c(2,1))
 #caterplot(fit,paste0("sex_ratio_1SW"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
@@ -158,15 +188,34 @@ title("n_MSW")
 
 par(mfrow=c(2,1))
 caterplot(fit,paste0("p_male[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
-title("pmale_1SW")
+title("Proportion of male among 1SW")
+# Extract MCMC medians for p_male[,1]
+medians <- fit$median$p_male[,1]
+#years <- 1994:year  # X-axis values
+# Fit LOESS model and add smoothing line
+loess_fit_1 <- loess(medians ~ years, span = 0.5)  
+lines(1:data$Y, predict(loess_fit_1), col = "tomato", lwd = 2)
+
 caterplot(fit,paste0("p_male[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1994:year)
-title("pmale_MSW")
+title("Proportion of male among MSW")
+# Extract MCMC medians for p_male[,1]
+medians <- fit$median$p_male[,2]
+#years <- 1994:year  # X-axis values
+# Fit LOESS model and add smoothing line
+loess_fit_1 <- loess(medians ~ years, span = 0.5)  
+lines(1:data$Y, predict(loess_fit_1), col = "tomato", lwd = 2)
 
 ### Proportion echnatillonés pour sexage
 par(mfrow=c(1,1))
 caterplot(fit,paste0("p_smp[",1:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 caterplot(fit,paste0("p_smp[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain")) 
 
+par(mfrow=c(2,1))
+caterplot(fit,paste0("pi_R_pulsium[",27:data$Y,",1]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 2020:year)
+title("pi_R_pulsium 1SW")
+caterplot(fit,paste0("pi_R_pulsium[",27:data$Y,",2]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 2020:year)
+title("pi_R_pulsium MSW")
+#pi_R_pulsium
 
 dev.off()
 

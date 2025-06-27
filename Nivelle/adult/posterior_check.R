@@ -30,7 +30,8 @@ hyperparameters <-c(
   ,"sigmap_21"
   
   
- # ,"pi_U" # annual probability to be captured at Uxondoa since 1984 given sea age (1:1SW vs 2:MSW
+  ,"pi_U" # annual probability to be captured at Uxondoa since 1984 given sea age (1:1SW vs 2:MSW
+ #,"pi_Ol"
  # ,"eps_U" # standardized residuals of probability of capture at Uxondoa
   ,"pi_U_eff" # decreased probability of capture at Uxondoda since 2012
   
@@ -113,6 +114,23 @@ title("pmale_MSW")
 
 
 par(mfrow=c(2,1))
+# Generate caterpillar plot
+caterplot(fit, paste0("pi_U[", 1:data$Y, ",1]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain",labels = 1984:year)
+# Add second caterplot overlay
+caterplot(fit, paste0("pi_U[", 1:data$Y, ",2]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain", 
+          add = TRUE, col = "tomato",labels=NA)
+# Add title
+title("Proba. capture Uxondoa")
+# Add legend
+legend("topright", legend = c("1HM", "PHM"), fill = c("blue", "tomato"), bty = "n")
+
+caterplot(fit,paste0("pi_Ol[",29:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"),labels = 2012:year)
+title("Proba. capture Olha")
+
+
+par(mfrow=c(2,1))
 caterplot(fit,paste0("alpha_1[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 caterplot(fit,paste0("alpha_2[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
 
@@ -130,6 +148,51 @@ caterplot(fit,paste0("eps_U[",1:data$Y,",2]"), reorder = FALSE, horizontal=FALSE
 
 #par(mfrow=c(2,1))
 caterplot(fit,paste0("eps_Ol[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+
+#par(mfrow=c(2,1))
+caterplot(fit,paste0("eggs_tot[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("eggs_tot")
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("P_1SW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:year)
+title("Proportion de 1SW / cohorte")
+caterplot(fit,paste0("P_MSW[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), labels = 1984:(year-1))
+title("Proportion de MSW / cohorte")
+
+
+par(mfrow=c(2,1))
+caterplot(fit,paste0("p_11_1[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+title("Proba. de rester aval Uxondoa")
+caterplot(fit,paste0("p_11_2[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"), col="tomato")
+title("Proba. de rester aval Uxondoa")
+
+# Set plotting layout
+par(mfrow = c(2, 2))
+
+# Define offsets to separate caterpillars
+offsets <- c(-0.2, -0.1, 0.1, 0.2)  # Adjust for spacing
+
+# Generate caterpillar plots with spacing
+caterplot(fit, paste0("p_n12[", 1:data$Y, ",1]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain", 
+          labels = 1992:year, offsets = offsets[1])
+
+caterplot(fit, paste0("p_n12[", 1:data$Y, ",2]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain", 
+          labels = 1992:year,  col = 2, offsets = offsets[2])
+
+caterplot(fit, paste0("p_n12[", 1:data$Y, ",3]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain", 
+          labels = 1992:year,  col = 3, offsets = offsets[3])
+
+caterplot(fit, paste0("p_n12[", 1:data$Y, ",4]"), 
+          reorder = FALSE, horizontal = FALSE, style = "plain", 
+          labels = 1992:year,  col = 5, offsets = offsets[4])
+title("Proba. de passer dans la haute nivelle")
+
+par(mfrow=c(1,1))
+caterplot(fit,paste0("p_21[",1:data$Y,"]"), reorder = FALSE, horizontal=FALSE, style=c("plain"))
+title("Proba. de rester Haute nivelle")
 
 dev.off()
 

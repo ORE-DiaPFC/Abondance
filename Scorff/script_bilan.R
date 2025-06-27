@@ -6,9 +6,9 @@
 
 ##________________________SCORFF (starting in 1994)
 site <- "Scorff"
-year <- 2023
+year <- 2024
 
-work.dir<-paste0("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance")
+work.dir<-paste0("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance")
 setwd(work.dir)
 #setwd(paste("~/Documents/RESEARCH/PROJECTS/ORE-DiaPFC/Abundance/",site,"/",sep=""))
 
@@ -41,17 +41,49 @@ if (file.exists(dir)){
 
 ## SMOLTS (from 1995 to now on)
 stade <- "smolt"
+nimble=TRUE
 dir <-  paste(site,"/",stade,sep="")
 if (file.exists(dir)){
   load(paste(site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-  n_smolt <- fit$median$Ntot # smolt numbers by year of migration
+  if(nimble){
+    # Convert the mcmc.list to a matrix for easier manipulation
+    combined_chains <- as.matrix(fit)
+    # Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+    param_names <- grep("^Ntot\\[\\d+\\]$", colnames(combined_chains), value = TRUE)
+    # Compute medians for the selected parameters
+    n_smolt <- apply(combined_chains[, param_names, drop = FALSE], 2, median)
+  } else {
+    n_smolt <- fit$median$Ntot # smolt numbers by year of migration
+  }
   table[3:nrow(table),3] <- round(n_smolt,0) # 1995 to now
-  n_smolt <- fit$median$Nc[,1] # smolt 1+ numbers by year of migration
+  
+  if(nimble){
+    # Convert the mcmc.list to a matrix for easier manipulation
+    combined_chains <- as.matrix(fit)
+    # Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+    param_names <- grep("^Nc\\[\\d+\\, 1]$", colnames(combined_chains), value = TRUE)
+    # Compute medians for the selected parameters
+    n_smolt <- apply(combined_chains[, param_names, drop = FALSE], 2, median)
+  } else {
+    n_smolt <- fit$median$Nc[,1] # smolt 1+ numbers by year of migration
+  }
   table[3:nrow(table),4] <- round(n_smolt,0) # 1995 to now
+
   
   # Total number of smolt
   load(paste(site,"/",stade,"/data/data_",stade,"_",year,".Rdata",sep=""))
-  table_smolt <- fit$summary[paste0("Ntot[",1:data$Nyears,"]"),c("2.5%","25%","50%","75%","97.5%")]
+  if(nimble){
+    # Convert the mcmc.list to a matrix for easier manipulation
+    combined_chains <- as.matrix(fit)
+    # Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+    param_names <- grep("^Ntot\\[\\d+\\]$", colnames(combined_chains), value = TRUE)
+    # Compute medians for the selected parameters
+    table_smolt <- t(apply(combined_chains[, param_names, drop = FALSE], 2, quantile, probs=c(0.025,0.25,0.5,0.75,0.975)))
+  } else {
+    table_smolt <- fit$summary[paste0("Ntot[",1:data$Nyears,"]"),c("2.5%","25%","50%","75%","97.5%")]
+  }
+  
+
   rownames(table_smolt) <- 1995:year
   con <- file(paste0(site,"/Table_",site,"_",stade,"_",year,'.csv'), open="wt")
   write.csv( round(table_smolt,2), con, row.names = TRUE)
@@ -59,7 +91,17 @@ if (file.exists(dir)){
   
   # Number of smolt 1+
   #load(paste(site,"/",stade,"/data/data_",stade,"_",year,".Rdata",sep=""))
-  table_smolt1 <- fit$summary[paste0("Nc[",1:data$Nyears,",1]"),c("2.5%","25%","50%","75%","97.5%")]
+  if(nimble){
+    # Convert the mcmc.list to a matrix for easier manipulation
+    combined_chains <- as.matrix(fit)
+    # Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+    param_names <- grep("^Nc\\[\\d+\\, 1]$", colnames(combined_chains), value = TRUE)
+    # Compute medians for the selected parameters
+    table_smolt1 <- t(apply(combined_chains[, param_names, drop = FALSE], 2, quantile, probs=c(0.025,0.25,0.5,0.75,0.975)))
+  } else {
+    table_smolt1 <- fit$summary[paste0("Nc[",1:data$Nyears,",1]"),c("2.5%","25%","50%","75%","97.5%")]
+  }
+  
   rownames(table_smolt1) <- 1995:year
   con <- file(paste0(site,"/Table_",site,"_",stade,"1+_",year,'.csv'), open="wt")
   write.csv( round(table_smolt1,2), con, row.names = TRUE)

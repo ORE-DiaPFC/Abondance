@@ -20,6 +20,7 @@ Y <- read.bugsdata(paste("data/","data_list.txt",sep=""))
 eff_R <- read.bugsdata(paste("data/","data_effort_R.txt",sep=""))
 if(length(eff_R)!=Y) warnings("data missing")
 
+
 ######################################################################################################################################
 ##  Cm_R[t,a]: Annual number of marked fish caught during or after reproduction per sea age category; 1: 1SW, 2: MSW
 ##  Cum_R[t,a]: Annual number of unmarked fish caught during or after reproduction per sea age category; 1: 1SW, 2: MSW
@@ -107,7 +108,9 @@ n_sex_smp <- as.matrix(n_sex_smp[,2:5])
 
 
 
-data <- list( Y=Y$Y,eff_R=eff_R$eff_R
+data <- list( Y=Y$Y
+              ,eff_R=eff_R$eff_R
+              ,eff_R_pulsium=eff_R$eff_R_pulsium
               ,Cm_R=Cm_R,Cum_R=Cum_R
               ,Cm_R_pulsium=Cm_R_pulsium,Cum_R_pulsium=Cum_R_pulsium
               ,Q=Q,Q_dec=Q_dec$Q_dec

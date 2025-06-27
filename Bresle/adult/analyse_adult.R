@@ -14,14 +14,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
+year <- "2024"
 site <- "Bresle"
 stade <- "adult"
 
 cat(year, "-",site,"-",stade, "\n")
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -72,7 +72,7 @@ nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=5000 # Number of steps to "burn-in" the samplers.
 nstore=10000 # Total number of steps in chains to save.
-nthin=100 # Number of steps to "thin" (1=keep every step).
+nthin=300 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 analysis=TRUE

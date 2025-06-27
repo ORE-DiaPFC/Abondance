@@ -1,7 +1,7 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
-site <- "Oir"
-stade <- "tacon"
+# year <- "2023"
+# site <- "Oir"
+# stade <- "tacon"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")
@@ -110,7 +110,10 @@ Group_IAinter <- tmp[,7]
 NIAinter = nrow(tmp) # fait dans le script data_tacon.R
 
 
-
+## Donnees de calibration PULSIUM vs MP
+tmp <- read.table(paste("data/data_inter_MP_Pulsium.txt",sep=""),header = TRUE, check.names=FALSE,comment.char = "#",colClasses="character")
+tmp <- as.matrix(tmp);mode(tmp)<- "numeric"
+CPUE_MP <- tmp
 
 
 ############################################################
@@ -142,9 +145,11 @@ StotRR <- tmp[,2]
 
 
 
+
 data <- c( fish, list(NIAno=NIAno,NIAinter=NIAinter,NPE1=NPE1,
                       Year_IA=Year_IA,
                       CPUE_IAno=CPUE_IAno,Site_IA=Site_IA,IAno_num=IAno_num,Srr_IA=Srr_IA,Group_IA=Group_IA
+                      ,CPUE_MP=CPUE_MP
                       ,Year=Year,C1=C1,C2=C2,Site=Site,Group=Group,Lieu=Lieu,Srr=Srr,Spl=Spl
                       ,Year_IAinter=Year_IAinter,CPUE_inter=CPUE_inter,IAinter_num=IAinter_num,Site_IAinter=Site_IAinter,Srr_IAinter=Srr_IAinter,Lieu_IAinter=Lieu_IAinter
                       ,Group_IAinter=Group_IAinter

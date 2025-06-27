@@ -35,6 +35,7 @@ parameters <-c(
   ,"d_Sc_pred"  
   
   ## POPULATION
+  ,"ntot" # annual abundance
   ,"ntot_Sc" # annual abundance
   
   # STATISTIC

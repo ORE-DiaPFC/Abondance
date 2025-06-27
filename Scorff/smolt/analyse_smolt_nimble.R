@@ -1,11 +1,11 @@
 rm(list=ls())   # Clear memory
 
-
-
 ##------------------ R PACKAGES ------------------------------##
 require(nimble)
 library(coda)
+#library(rjags)
 library(mcmcplots)
+library(R2OpenBUGS)
 # library(dclone)
 # library(snow)
 # require(ggmcmc)
@@ -18,8 +18,8 @@ stade <- "smolt"
 
 
 ## WORKING DIRECTORY:
-#work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
-#setwd(work.dir)
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+setwd(work.dir)
 
 # cleaning
 #system("mkdir bugs/")
@@ -30,6 +30,7 @@ stade <- "smolt"
 source(paste('data/data_',stade,'_TMP.R',sep="")) # creation du fichier Rdata
 load(paste('data/data_',stade,"_",year,'.Rdata',sep="")) # chargement des données
 
+nimble=TRUE
 
 dataToNimble <- list(n=data$n
                      , n1=data$n1
@@ -89,12 +90,12 @@ start.time = Sys.time(); cat("Start of the run\n");
 n_chains <- 2 # number of chains
 n_store <- 5000 # target of number of iteration to store per chain
 n_burnin <- 1000 # number of iterations to discard
-n_thin <- 1 # thinning interval
+n_thin <- 300 # thinning interval
 n_iter <- (n_store * n_thin) + n_burnin # number of iterations to run per chain
 print(n_iter)
 
 
-samples <- nimbleMCMC(code = model,     # model code
+fit <- nimbleMCMC(code = model,     # model code
                           data = dataToNimble,                  # data
                           constants =constants,        # constants
                           inits = inits,          # initial values
@@ -148,15 +149,15 @@ cat("Sample analyzed after ", elapsed.time, ' minutes\n')
 ## BACKUP
 save(fit,file=paste('results/Results_',stade,"_",year,'.RData',sep=""))
 
-mydf <- as.matrix(round(fit$summary,3))
-mydf <- cbind(rownames(mydf), mydf)
-rownames(mydf) <- NULL
-colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))
-write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=",", row.names = FALSE)
-     
+# mydf <- as.matrix(round(fit$summary,3))
+# mydf <- cbind(rownames(mydf), mydf)
+# rownames(mydf) <- NULL
+# colnames(mydf)[1] <- c("Parameters")#, colnames(mydf))
+# write.table(mydf,file=paste('results/Results_',stade,"_",year,'.csv',sep=""),sep=",", row.names = FALSE)
+#      
 #------------------------------------------------------------------------------
 # EXAMINE THE RESULTS
-fit.mcmc <- as.mcmc(fit) # using bugs
+#fit.mcmc <- as.mcmc(fit) # using bugs
 
 
 
@@ -165,7 +166,7 @@ source("posterior_check.R")
 # traplot(fit, "junk")
 # denplot(fit, "junk")
 
-caterplot(samples,"Nesc", reorder=F,horizontal = F, labels=1995:year)
+#caterplot(samples,"Nesc", reorder=F,horizontal = F, labels=1995:year)
 
 
 # DIAGNOSTICS:

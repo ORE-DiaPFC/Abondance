@@ -268,7 +268,8 @@ for (t in 1:Y) {
   n_1SW[t] <- sum(n[t,1:2]) # Number of males and females 1SW
   n_MSW[t] <- sum(n[t,3:4]) # Number of males and females MSW 
   
-  sex_ratio_1SW[t] <- n[t,1]/n[t,2]
+  # step = 1 when diff >= 0 and step = 0 when diff < 0
+  sex_ratio_1SW[t] <- n[t,1] / (n[t,2] + equals(n[t,2], 0) * (n[t,1] - n[t,2]))
   sex_ratio_MSW[t] <- n[t,3]/n[t,4] 
   pmale_1SW[t] <- n[t,1]/n_1SW[t]
   pmale_MSW[t] <- n[t,3]/n_MSW[t]
@@ -329,7 +330,10 @@ for (g in 1:4) {
     
   for (t in 9:Y) { ## 1992 to now on (p_LN1_2 exchangeable after 1992)
     lim_11[t,g] <- D_11[t,g] + A_11[t,g]
-    n_11[t,g] ~ dbin(p_11_2[t],n[t,g])I(lim_11[t,g],)
+    
+    p_11_2_pow[t,g] <- p_11_2[t] * step(n[t,g]-0.5) # mb-13.3.2024 to protect against 0 values in binomial
+    n_step[t,g] <- n[t,g]+step(-1*n[t,g]) # mb-13.3.2024 to protect against 0 values in binomial
+    n_11[t,g] ~ dbin(p_11_2_pow[t,g],n_step[t,g])I(lim_11[t,g],)
     } ## End of loop over years
 
 ### BREEDING ESCAPEMENT (e_11) & FISH MIGRATING UPSTREAM UXONDOA(n_n11)
@@ -474,14 +478,39 @@ for (g in 1:2) {
       num_2[t,g] ~ dbin(p_n12[t,g],n_um[t,g])
       } # end of loop over years  
   
-  for (t in 29:Y) { # from 2012 to now on (reduced trapping effort)
+     
+      # step = 1 when diff >= 0 and step = 0 when diff < 0
+  for (t in 29:40) { # from 2012 to now on (reduced trapping effort)
+
+      #p_n12_pow[t,g] <- p_n12[t,g] * step(Cm_U[t,g]-0.5) # mb-13.3.2025 to protect against 0 values in binomial in bugs/ to remove with jags/nimble!
+      #Cm_U_step[t,g] <- Cm_U[t,g]+step(-1*Cm_U[t,g]) # mb-13.3.2025 to protect against 0 values in binomial/ to remove with jags/nimble!
+      #nm_2[t,g] ~ dbin(p_n12_pow[t,g], Cm_U_step[t,g])
       nm_2[t,g] ~ dbin(p_n12[t,g],Cm_U[t,g])
+      
+      #n_um_step[t,g] <- n_um[t,g]+step(-1*n_um[t,g]) # mb-13.3.2025 to protect against 0 values in binomial/ to remove with jags/nimble!
+      #num_2[t,g] ~ dbin(p_n12[t,g],n_um_step[t,g])
       num_2[t,g] ~ dbin(p_n12[t,g],n_um[t,g])
-      Cm_O[t,g] ~ dbin(pi_Ol[t],nm_2[t,g])
-      Cum_O[t,g] ~ dbin(pi_Ol[t],num_2[t,g])
+
+      #pi_Ol_pow[t,g]<- pi_Ol[t] * step(nm_2[t,g]-0.5) # mb-13.3.2025 to protect against 0 values in binomial/ to remove with jags/nimble!
+      #nm_2_step[t,g] <- nm_2[t,g]+step(-1*nm_2[t,g]) # mb-13.3.2025 to protect against 0 values in binomial/ to remove with jags/nimble!
+      #Cm_O[t,g] ~ dbin(pi_Ol_pow[t,g], nm_2_step[t,g])
+       Cm_O[t,g] ~ dbin(pi_Ol[t],nm_2[t,g])
+      
+      #num_2_step[t,g] <- num_2[t,g]+step(-1*num_2[t,g])# mb-13.3.2025 to protect against 0 values in binomial/ to remove with jags/nimble!
+      #Cum_O[t,g] ~ dbin(pi_Ol_pow[t,g],num_2_step[t,g])
+       Cum_O[t,g] ~ dbin(pi_Ol[t],num_2[t,g])
       } # end of loop over years
   } ## End of loop over 1SW breeding category
 
+     # 2024
+     nm_2[41,1] ~ dbin(p_n12[41,1],Cm_U[41,1])
+     num_2[41,1] ~ dbin(p_n12[41,1],n_um[41,1])
+     Cm_O[41,1] ~ dbin(pi_Ol[41],nm_2[41,1])
+     Cum_O[41,1] ~ dbin(pi_Ol[41],num_2[41,1])
+
+     nm_2[41,2] <- 0
+     num_2[41,2] <- 0
+     
 ##########################
 # Trapped marked male MSW number (some years no marked male MSW was captured)
 # Year 1992
@@ -594,12 +623,6 @@ for (g in 1:4) { # breeding category
     e_21[t,g] ~ dbin(p_21[t],e_2[t,g]) 
     e_22[t,g] <- e_2[t,g] - e_21[t,g]
     } ## End of loop over years
-  
-  #From 2010 to now on  
-  for (t in 27:Y) {
-    e_21[t,g] ~ dbin(p_21[t],e_2[t,g]) 
-    e_22[t,g] <- e_2[t,g] - e_21[t,g]
-    } ## End of loop over years
   } ## End of loop over breeding category
 
 # Year 2004 & 2005, male and female 1SW  
@@ -633,6 +656,24 @@ for (t in 25:26) {
   e_21[t,4] ~ dbin(p_21[t],e_2[t,4]) 
   e_22[t,4] <- e_2[t,4]-e_21[t,4]
   } ## End of loop over years
+
+#From 2010 to now on  
+for (g in 1:4) { # breeding category 
+  for (t in 27:40) {
+    e_21[t,g] ~ dbin(p_21[t],e_2[t,g]) 
+    e_22[t,g] <- e_2[t,g] - e_21[t,g]
+  } ## End of loop over years
+} ## End of loop over breeding category
+
+# 2024
+e_21[41,1] ~ dbin(p_21[41],e_2[41,1]) 
+e_22[41,1] <- e_2[41,1] - e_21[14,1]
+e_21[41,2] <-0
+e_22[41,2] <-0# e_2[41,2] - e_21[14,2]
+e_21[41,3] ~ dbin(p_21[41],e_2[41,3]) 
+e_22[41,3] <- e_2[41,3] - e_21[14,3]
+e_21[41,4] ~ dbin(p_21[41],e_2[41,4]) 
+e_22[41,4] <- e_2[41,4] - e_21[14,4]
 
 ###########################################
 # Annual escapement (not anymore per breeding category)

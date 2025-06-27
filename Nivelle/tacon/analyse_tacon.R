@@ -14,14 +14,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "2023"
+year <- "2024"
 site <- "Nivelle"
 stade <- "tacon"
 
 cat(year, "-",site,"-",stade, "\n")
 
 ## WORKING DIRECTORY:
-work.dir<-paste("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -71,7 +71,7 @@ filename <- file.path(work.dir, model)
 nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
 nburnin=1000 # Number of steps to "burn-in" the samplers.
-nstore=10000 # Total number of steps in chains to save.
+nstore=5000 # Total number of steps in chains to save.
 nthin=100 # Number of steps to "thin" (1=keep every step).
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
@@ -91,7 +91,7 @@ fit <- bugs(
   ,DIC=FALSE
   ,codaPkg = FALSE, clearWD=FALSE
   ,saveExec=TRUE
-  ,restart=TRUE
+  ,restart=FALSE
   #,debug=TRUE
   ,working.directory=paste(work.dir,"bugs",sep="/")
   # If Macos:
@@ -170,7 +170,7 @@ source("diagnostics.R")
 #------------------------------------------------------------------------------
 ## SUMMARY
 if(site == "Scorff" && stade == "adult") {source("summary_adult.R")}
-if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon.R")}
+if(site == "Nivelle" && stade == "tacon") {source("analyse_coda_tacon_new.R")}
 if(site == "Nivelle" && stade == "adult") {source("analyse_coda_adult.R")}
 
 

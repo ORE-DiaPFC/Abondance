@@ -1,0 +1,5 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  
+Number of iterations:  

@@ -1,7 +1,7 @@
 ---
 title: "Bilan_Scorff"
 author: "Mathieu Buoro, Nicolas Jeannot & Etienne Prévost"
-date: "4/14/2021"
+date: "3/20/2025"
 output:
   pdf_document: default
   html_document: default
@@ -9,42 +9,42 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
+wdir <- "/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance/Scorff"
 setwd(wdir)
 
 site <- "Scorff"
-year <- 2023
+year <- 2024
 years <- seq(1993, year, 1)
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
-mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
+mycol=c("#787878", "#1E90FF","#FF6A6A", "#a1dab4" )
 #mycol <- paste0(COL, 50)
 #mycol <- COL
 ##________________________SCORFF (starting in 1994)
+
 
 ```
 
 ### NOTA BENE
 
-2021:  
-- Séparer smolts 1+ vs 2+
+2021:\
+- Séparer smolts 1+ vs 2+ 
 - modele tacon: decoupler intercalibration vs modele d'estimation? + vérifier l'utilité des cut
 
-
-2020:  
-- IAS: pêche réalisée avec le Pulsium ; calibration en cours avec le Martin/pulsium  
-- Smolt: estimation par classe d'âge?  avec les proportions des âges / la série 2020  
-- Adultes: Pièges non fonctionnels du 15 Mars au 11 Mai (COVID)  
-- Recapture adultes hiver 2020: pêche à l'épuisette + pulsium intégré dans le modèle  
-
+2020:\
+- IAS: pêche réalisée avec le Pulsium ; calibration en cours avec le Martin/pulsium\
+- Smolt: estimation par classe d'âge? avec les proportions des âges / la série 2020\
+- Adultes: Pièges non fonctionnels du 15 Mars au 11 Mai (COVID)\
+- Recapture adultes hiver 2020: pêche à l'épuisette + pulsium intégré dans le modèle
 
 ### TABLEAU BILAN
 
+Seules les valeurs médianes sont reportées. L'échappement correspond aux estimations après prise ne compte des sources de mortalités en rivière (pêche et naturelle).
 
-```{r, echo = FALSE}
+```{r table, echo = FALSE}
 
-table <- array(, dim=c(length(years), 6))
-colnames(table) <- c( "Année","Tacon 0+","Smolts (tous)","Smolts 1+", 	"1HM (échappement)",	"PHM (échappement)")
+table <- array(, dim=c(length(years), 10))
+colnames(table) <- c( "Année","Tacon 0+","Smolts (tous)","Smolts 1+","Total retour", "1HM (retour)",	"PHM (retour)","Total échappement",	"1HM (échappement)",	"PHM (échappement)")
 rownames(table) <- years
 smolt.years <- years
 table[,1] <- years
@@ -52,9 +52,10 @@ table[,1] <- years
 
 ## PARR (from 1993 to now on)
 stade <- "tacon"
-dir <-  paste(wdir,site,"/",stade,sep="")
+nimble=FALSE
+dir <-  paste(stade,sep="")
 if (file.exists(dir)){
-  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  load(paste(stade,"/results/Results_",stade,"_",year,".RData",sep=""))
   n_parr <- fit$median$ntot_Sc
   table[,2] <- round(n_parr,0) # 1995 to now
 }
@@ -63,48 +64,80 @@ if (file.exists(dir)){
 
 ## SMOLTS (from 1995 to now on)
 stade <- "smolt"
-dir <-  paste(wdir,site,"/",stade,sep="")
+nimble=TRUE
+dir <-  paste(stade,sep="")
 if (file.exists(dir)){
-  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
-  n_smolt <- fit$median$Ntot # smolt numbers by year of migration
+  load(paste(stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  
+  if(nimble){
+# Convert the mcmc.list to a matrix for easier manipulation
+combined_chains <- as.matrix(fit)
+# Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+param_names <- grep("^Ntot\\[\\d+\\]$", colnames(combined_chains), value = TRUE)
+# Compute medians for the selected parameters
+n_smolt <- apply(combined_chains[, param_names, drop = FALSE], 2, median)
+  } else {
+      n_smolt <- fit$median$Ntot # smolt numbers by year of migration
+  }
   table[3:nrow(table),3] <- round(n_smolt,0) # 1995 to now
-  n_smolt <- fit$median$Nc[,1] # smolt 1+ numbers by year of migration
+  
+    if(nimble){
+# Convert the mcmc.list to a matrix for easier manipulation
+combined_chains <- as.matrix(fit)
+# Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+param_names <- grep("^Nc\\[\\d+\\, 1]$", colnames(combined_chains), value = TRUE)
+# Compute medians for the selected parameters
+n_smolt <- apply(combined_chains[, param_names, drop = FALSE], 2, median)
+  } else {
+     n_smolt <- fit$median$Nc[,1] # smolt 1+ numbers by year of migration
+  }
   table[3:nrow(table),4] <- round(n_smolt,0) # 1995 to now
 }
 
 
 ## ADULTS (1984 to now)
 stade <- "adult"
-dir <-  paste(wdir,site,"/",stade,sep="")
+nimble=FALSE
+dir <-  paste(stade,sep="")
 if (file.exists(dir)){
-  load(paste(wdir,site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  load(paste(stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+  
+  # Avant pêche
+  n_tot <-fit$median$n_tot # 1SW
+  n_1SW <-fit$median$n_1SW # 1SW
+  n_MSW <- fit$median$n_MSW #  MSW
+  table[2:nrow(table),5] <- round(n_tot,0) # 1995 to now
+  table[2:nrow(table),6] <- round(n_1SW,0) # 1995 to now
+  table[2:nrow(table),7] <- round(n_MSW,0) # 1995 to now
+  
+  # Après mortalité en rivière
+  e_tot <-fit$median$e_tot # 1SW
   e_1SW <-fit$median$e_1SW # 1SW
   e_MSW <- fit$median$e_MSW #  MSW
-  table[2:nrow(table),5] <- round(e_1SW,0) # 1995 to now
-  table[2:nrow(table),6] <- round(e_MSW,0) # 1995 to now
+  table[2:nrow(table),8] <- round(e_tot,0) # 1995 to now
+  table[2:nrow(table),9] <- round(e_1SW,0) # 1995 to now
+  table[2:nrow(table),10] <- round(e_MSW,0) # 1995 to now
 }
 
 
-con <- file(paste0(wdir,site,"/","Bilan_",site,"_",year,'.csv'), open="wt")
+con <- file(paste0("Bilan_",site,"_",year,'.csv'), open="wt")
 write.csv( table, con, row.names = FALSE)
 close(con)
 
 library(knitr)
-kable(table, row.names = FALSE, caption = paste0("Tableau bilan pour le ",site,". Seules les valeurs médianes sont reportées"))
+kable(table, row.names = FALSE, caption = paste0("Tableau bilan pour le ",site,". Seules les valeurs médianes sont reportées. L'échappement corrspond aux estimations après prise ne compte des sources de mortalités en rivière (pêche et naturelle)"))
 
 ```
 
 ## ADULTES
 
-A commenter
-
 ## Nombre total de retour et échappement
 
-```{r pressure, echo=FALSE}
+```{r retour, echo=FALSE}
 #### RETURNS
 
 stade <- "adult"
-dir <-  paste(wdir,site,"/",stade,sep="")
+dir <-  paste(wdir,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
 load(paste(dir,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
@@ -118,7 +151,7 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Nombre total de retour",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,1500),bty="n",ylab="Effectif",xaxt="n",xlab="", main="Nombre total de retour de saumon sur le Scorff")
 axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
 
 # N total
@@ -128,16 +161,17 @@ segments(1:data$Y,n[,"2.5%"], 1:data$Y,n[,"97.5%"], col=paste0(mycol[3]))
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[3],type="o")
 points(1:data$Y,n[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3]))
 
-# Escapement
+#Escapement
 mcmc <- as.matrix(tmp[,paste0("e_tot[",1:data$Y,"]")]) # 1984 to now)
 e <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 segments(1:data$Y,e[,"2.5%"], 1:data$Y,e[,"97.5%"], col=paste0(mycol[4]))
 lines(e[,"50%"],lty=1,lwd=2,col=mycol[4],type="o")
 points(1:data$Y,e[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
 
-legend("topright", legend=c("Nombre total de retour", "Echappement"), col=mycol[3:4],lty=1,lwd=2,bty="n")
+abline(h=mean(n[,"50%"]), lty=2)
+legend("topright", legend=c("Nombre total de retour", "Echappement (# retour après mortalité rivière)"), col=mycol[3:4],lty=1,lwd=2,bty="n")
+#legend("topright", legend=c("Nombre total de retour"), col=mycol[3],lty=1,lwd=2,bty="n")
 ```
-
 
 # Nombre total de retour par classe d'âge
 
@@ -181,6 +215,7 @@ abline(h=mean(n_MSW[,"50%"], lty=3, col="lightgrey"))
 
 
 ```
+
 # Proportion Male/female
 
 ```{r, echo=FALSE}
@@ -194,11 +229,11 @@ mcmc <- as.matrix(tmp[,paste0("p_male[",1:data$Y,",2]")]) #
 pmale_MSW <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100
 ### Total number of returns
 #png("report/total_return.png",width = 780, height = 480)
-plot(NULL,xlim=c(1,data$Y),ylim=c(0,100),bty="n",ylab="Proportion de mâles (en %)",xaxt="n",xlab="",main="Proportion de mâles par âge de mer")
+plot(NULL,xlim=c(1,data$Y),ylim=c(0,40),bty="n",ylab="Proportion de mâles (en %)",xaxt="n",xlab="",main="Proportion de mâles parmis les PHM")
 axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
 
 # N total
-segments(1:data$Y,piMP_MSW[,"2.5%"], 1:data$Y,pmale_MSW[,"97.5%"], col=paste0(mycol[2]))
+segments(1:data$Y,pmale_MSW[,"2.5%"], 1:data$Y,pmale_MSW[,"97.5%"], col=paste0(mycol[2]))
 lines(pmale_MSW[,"50%"],lty=1,lwd=2,col=mycol[2],type="o")
 points(1:data$Y,pmale_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 
@@ -206,7 +241,11 @@ points(1:data$Y,pmale_MSW[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
   pred <- predict(lw1)
   lines(pred,col=mycol[2],lwd=2,lty=2)
-  
+ 
+
+  plot(NULL,xlim=c(1,data$Y),ylim=c(30,70),bty="n",ylab="Proportion de mâles (en %)",xaxt="n",xlab="",main="Proportion de mâles parmis les 1HM")
+axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5)
+ 
 # N total
 segments(1:data$Y,pmale_1SW[,"2.5%"], 1:data$Y,pmale_1SW[,"97.5%"], col=paste0(mycol[1]))
 lines(pmale_1SW[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
@@ -217,7 +256,7 @@ points(1:data$Y,pmale_1SW[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
   pred <- predict(lw1)
   lines(pred,col=mycol[1],lwd=2,lty=2)
   
-legend("topright", legend=c("1HM", "PHM"), col=mycol[1:2],lty=1,lwd=3,bty="n")
+#legend("topright", legend=c("1HM", "PHM"), col=mycol[1:2],lty=1,lwd=3,bty="n")
 
 
 
@@ -267,146 +306,215 @@ legend("topright", legend=c("1HM", "PHM"), col=mycol[1:2],lty=1,lwd=3,bty="n")
 
 ```
 
-
-
 <!-- # Taux d'exploitation  -->
 
 <!-- Ici, les taux d'exploitation sont estimés par classe d'âge et suivant si les individus ont été marqués préalablement au Moulin des Princes. On observe que les individus marqués ont une probabilité d'être capturés à la ligne inférieure à ceux non marqués. -->
 
 <!-- ```{r, echo=FALSE} -->
+
 <!-- ## a: sea age;  -->
+
 <!-- ##    1-1SW (Grisle),  -->
+
 <!-- ##    2-MSW (salmon) -->
+
 <!-- ## u: effect of being marked -->
+
 <!-- ##    1 - marked -->
+
 <!-- ##    2 - unmarked -->
+
 <!-- ################################################################################ -->
+
 <!-- ## PROBABILITY DISTRIBUTIONS -->
+
 <!-- ## ------------------------- -->
+
 <!-- ## pi_MP94[a]:probability to be captured at Moulin des Princes given sea age for 1994  -->
+
 <!-- ## pi_MP[t,a]:annual probability to be captured at Moulin des Princes given sea age -->
+
 <!-- ## pi_D_1SW[t,a]: annual probability for a marked 1SW to die from cause other than fishing given marking -->
+
 <!-- ## pi_D_MSW[t,a]: annual probability for a marked MSW to die from cause other than fishing given marking -->
+
 <!-- ## pi_Dum[t,a]: annual probability for a unmarked fish to die from cause other than fishing given sea age -->
+
 <!-- ## pi_oD: probability to recover a fish that die from other cause than fishing -->
+
 <!-- ## pi_F_1SW[t,a]: annual probability of a 1SW to be captured by fishing given marking -->
+
 <!-- ## pi_F_MSW[t,a]: annual probability of a MSW to be captured by fishing given marking  -->
+
 <!-- ## pi_oF[t,a]: annual probability to recover a caught fish (exploitation). From 1994 to 2002. -->
+
 <!-- ## pi_R[t,a]: annual probability to be captured during or after reproduction given sea age -->
+
 <!-- ####################################################################################   -->
 
 <!-- par(mfrow=c(1,2))  -->
 
 <!-- #### 1SW #### -->
+
 <!-- #piF_1SW[10,1] <- 0 # No exploitation allowed on 1SW in 2003 -->
+
 <!-- #piF_1SW[10,2] <- 0 # No exploitation allowed on 1SW in 2003  -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piF_1SW[",c(1:9,11:data$Y),",1]")]) #  -->
+
 <!-- piF_1SWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- piF_1SWm <- rbind(piF_1SWm[1:9,], c(0,0,0),piF_1SWm[10:(data$Y-1),]) -->
 
 <!-- mcmc <- as.matrix(tmp[,paste0("piF_1SW[",c(1:9,11:data$Y),",2]")]) #  -->
+
 <!-- piF_1SWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- piF_1SWum <- rbind(piF_1SWum[1:9,], c(0,0,0),piF_1SWum[10:(data$Y-1),]) -->
 
 <!-- ### Total number of returns -->
+
 <!-- #png("report/total_return.png",width = 780, height = 480) -->
+
 <!-- plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% 1SW captured by fishing",xaxt="n",xlab="")#, main="% 1SW to be captured by fishing") -->
+
 <!-- axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piF_1SWm[,"2.5%"], 1:data$Y,piF_1SWm[,"97.5%"], col=paste0(mycol[4])) -->
+
 <!-- lines(piF_1SWm[,"50%"],lty=1,lwd=2,col=mycol[4],type="o") -->
+
 <!-- points(1:data$Y,piF_1SWm[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4])) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piF_1SWum[,"2.5%"], 1:data$Y,piF_1SWum[,"97.5%"], col=paste0(mycol[3])) -->
+
 <!-- lines(piF_1SWum[,"50%"],lty=1,lwd=2,col=mycol[3],type="o") -->
+
 <!-- points(1:data$Y,piF_1SWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3])) -->
 
 <!-- legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n") -->
 
-
 <!-- #### MSW #### -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piF_MSW[",1:data$Y,",1]")]) #  -->
+
 <!-- piF_MSWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piF_MSW[",1:data$Y,",2]")]) #  -->
+
 <!-- piF_MSWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- ### Total number of returns -->
+
 <!-- #png("report/total_return.png",width = 780, height = 480) -->
+
 <!-- plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% MSW captured by fishing",xaxt="n",xlab="")#,main="% MSW to be captured by fishing") -->
+
 <!-- axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piF_MSWm[,"2.5%"], 1:data$Y,piF_MSWm[,"97.5%"], col=paste0(mycol[4])) -->
+
 <!-- lines(piF_MSWm[,"50%"],lty=1,lwd=2,col=mycol[4],type="o") -->
+
 <!-- points(1:data$Y,piF_MSWm[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4])) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piF_MSWum[,"2.5%"], 1:data$Y,piF_MSWum[,"97.5%"], col=paste0(mycol[3])) -->
+
 <!-- lines(piF_MSWum[,"50%"],lty=1,lwd=2,col=mycol[3],type="o") -->
+
 <!-- points(1:data$Y,piF_MSWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3])) -->
 
 <!-- legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n") -->
 
 <!-- ``` -->
 
-
-
 <!-- ```{r, echo=FALSE} -->
 
 <!-- #### PROB. DEAD #### -->
+
 <!-- par(mfrow=c(1,2))  -->
 
 <!-- #### 1SW #### -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piD_1SW[",1:data$Y,",1]")]) #  -->
+
 <!-- piD_1SWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
 
 <!-- mcmc <- as.matrix(tmp[,paste0("piD_1SW[",1:data$Y,",2]")]) #  -->
+
 <!-- piD_1SWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
 
 <!-- ### Total number of returns -->
+
 <!-- #png("report/total_return.png",width = 780, height = 480) -->
+
 <!-- plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% 1SW dead from cause other than fishing",xaxt="n",xlab="")#, main="% 1SW to be captured by fishing") -->
+
 <!-- axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piD_1SWm[,"2.5%"], 1:data$Y,piD_1SWm[,"97.5%"], col=paste0(mycol[4])) -->
+
 <!-- lines(piD_1SWm[,"50%"],lty=1,lwd=2,col=mycol[4],type="o") -->
+
 <!-- points(1:data$Y,piD_1SWm[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4])) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piD_1SWum[,"2.5%"], 1:data$Y,piD_1SWum[,"97.5%"], col=paste0(mycol[3])) -->
+
 <!-- lines(piD_1SWum[,"50%"],lty=1,lwd=2,col=mycol[3],type="o") -->
+
 <!-- points(1:data$Y,piD_1SWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3])) -->
 
 <!-- legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n") -->
 
-
 <!-- #### MSW #### -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piD_MSW[",1:data$Y,",1]")]) #  -->
+
 <!-- piD_MSWm <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- mcmc <- as.matrix(tmp[,paste0("piD_MSW[",1:data$Y,",2]")]) #  -->
+
 <!-- piD_MSWum <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))*100 -->
+
 <!-- ### Total number of returns -->
+
 <!-- #png("report/total_return.png",width = 780, height = 480) -->
+
 <!-- plot(NULL,xlim=c(1,data$Y),ylim=c(0,50),bty="n",ylab="% MSW dead from cause other than fishing",xaxt="n",xlab="")#,main="% MSW to be captured by fishing") -->
+
 <!-- axis(side=1,line=1,labels = years[-1],at=1:data$Y, las=2, cex=.5) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piD_MSWm[,"2.5%"], 1:data$Y,piD_MSWm[,"97.5%"], col=paste0(mycol[4])) -->
+
 <!-- lines(piD_MSWm[,"50%"],lty=1,lwd=2,col=mycol[4],type="o") -->
+
 <!-- points(1:data$Y,piD_MSWm[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4])) -->
 
 <!-- # N total -->
+
 <!-- segments(1:data$Y,piD_MSWum[,"2.5%"], 1:data$Y,piD_MSWum[,"97.5%"], col=paste0(mycol[3])) -->
+
 <!-- lines(piD_MSWum[,"50%"],lty=1,lwd=2,col=mycol[3],type="o") -->
+
 <!-- points(1:data$Y,piD_MSWum[,"50%"],col=mycol[3],pch=21,bg=paste0(mycol[3])) -->
 
 <!-- legend("topright", legend=c("Unmarked", "Marked"), col=mycol[3:4],lty=1,lwd=3,bty="n") -->
 
-
 <!-- ``` -->
-
 
 # Probabilities to die from other cause than fishing (time, mark status and sea age dependent)
 
@@ -481,21 +589,21 @@ points(1:data$Y,piD_MSWum[,"50%"],col=mycol[4],pch=21,bg=paste0(mycol[4]))
 
 legend("topright", legend=c("1HM", "PHM"), col=c(mycol[2],mycol[4]),lty=1,lwd=3,bty="n")
 
-tmp <- data.frame(Years=1993:2022, MSW=piD_MSWum[,"50%"], OneSW=piD_1SWum[,"50%"])
+tmp <- data.frame(Years=1993:(year-1), MSW=piD_MSWum[,"50%"], OneSW=piD_1SWum[,"50%"])
 library(knitr)
 kable(tmp, row.names = FALSE, caption = paste0("Tableau bilan mortalité naturelle (en %) pour le ",site,". Seules les valeurs médianes sont reportées"))
 
 
 ```
 
-
-
 # SMOLTS
 
 ## Nombre de smolts estimés
+
 ```{r smolt, echo=FALSE}
 
 stade <- "smolt"
+nimble=TRUE
 #dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
@@ -503,8 +611,12 @@ load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
 #}
 
+if(nimble){
+  tmp <- as.matrix(fit)
+}else{
+  tmp <- as.matrix(fit$sims.matrix)
+}
 
-tmp <- as.matrix(fit$sims.matrix)
 
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
@@ -534,7 +646,7 @@ par(mfrow=c(1,1))
 
 ### Total number of returns
 plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,15000),bty="n",ylab="Nombre total de smolts",xaxt="n",xlab="Cohorte")
-axis(side=1,line=1,labels = 1994:2022,at=1:data$Nyears, las=2, cex.axis=.6)
+axis(side=1,line=1,labels = 1994:(year-1),at=1:data$Nyears, las=2, cex.axis=.6)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("N[",1:data$Nyears,"]")])    
@@ -560,13 +672,12 @@ abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
 
 ```
 
-
 ```{r capt_smolt, echo=FALSE}
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,100),bty="n",ylab="% smolts capturé aux pièges",xaxt="n",xlab="Année de migration")
-axis(side=1,line=1,labels = 1995:2023,at=1:data$Nyears, las=2, cex.axis=.7)
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,80),bty="n",ylab="% smolts capturé aux pièges",xaxt="n",xlab="Année de migration")
+axis(side=1,line=1,labels = 1995:year,at=1:data$Nyears, las=2, cex.axis=.7)
 
 # Moulin des Princes
 mcmc <- as.matrix(tmp[,paste0("p_MP[",1:data$Nyears,"]")])    
@@ -586,12 +697,10 @@ points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"), col=mycol[1:2],lty=1,lwd=3,bty="n")
 ```
 
-
-
 ```{r env, echo=FALSE}
 
 stade <- "smolt"
-dir <-  paste(wdir,site,"/",stade,sep="")
+dir <-  paste(wdir,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
 #load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
@@ -606,7 +715,7 @@ Q <- as.matrix(Q);mode(Q)<- "numeric"
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,20),bty="n",ylab="Mean flow observed from 1st April to May 10",xaxt="n",xlab="")
+plot(NULL,xlim=c(1,data$Nyears),ylim=c(0,20),bty="n",ylab="Débit moyen du 1er Avril au 10 Mai",xaxt="n",xlab="")
 axis(side=1,line=1,labels = years[-c(1,2)],at=1:data$Nyears, las=2, cex=.5)
 
 lines(Q[,1],lty=1,lwd=2,col="steelblue1",type="o")
@@ -636,34 +745,41 @@ tmp <- as.matrix(fit$sims.matrix)
 par(mfrow=c(1,1)) 
 
 ### Total number of returns
-plot(NULL,xlim=c(1,data$Nyear),ylim=c(0,50000),bty="n",ylab=" Nombre total de tacons 0+",xaxt="n",xlab="Cohort")
+plot(NULL,xlim=c(1,data$Nyear),ylim=c(0,80000),bty="n",ylab="Effectif",xaxt="n",xlab="Cohorte", main="Nombre total de tacons 0+")
 axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex.axis=.7)
 
 # N total
 mcmc <- as.matrix(tmp[,paste0("ntot_Sc[",1:data$Nyear,"]")])    
 n <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
-segments(1:data$Nyear,n[,"2.5%"], 1:data$Nyear,n[,"97.5%"], col=paste0(mycol[1]))
+segments(1:data$Nyear,n[,"2.5%"], 1:data$Nyear,n[,"97.5%"], col="black")
 lines(n[,"50%"],lty=1,lwd=2,col=mycol[1],type="o")
-points(1:data$Nyear,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
+points(1:data$Nyear,n[,"50%"],col="black",pch=21,bg="black")
 abline(h=mean(n[,"50%"], lty=2, col="lightgrey"))
 
 ```
 
-#. Relation Parr-Smolt
+1.  Relation Parr-Smolt
 
 ```{r parr-smolt survival, echo=FALSE}
 
-setwd("/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/Scorff")
+#setwd("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance/Scorff")
 
 
 stade <- "smolt" # 1995:now
+nimble=TRUE
 #dir <-  paste(wdir,site,"/",stade,sep="")
 #if (file.exists(dir)){
 # load dataset
 load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) # chargement des données
 load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
-tmp <- as.matrix(fit$sims.matrix)
-mcmc <- as.matrix(tmp[,paste0("Nc[",1:data$Nyears,",1]")]) # 1995 
+if(nimble){
+  tmp <- as.matrix(fit)
+}else{
+  tmp <- as.matrix(fit$sims.matrix)
+}
+
+#mcmc <- as.matrix(tmp[,paste0("Ntot[",1:data$Nyears,"]")])  
+mcmc <- as.matrix(tmp[,paste0("Nc[",1:data$Nyears,", 1]")]) # 1995 
 smolt <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 stade <- "tacon" # 1993 to now
@@ -675,7 +791,7 @@ parr <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
 
 
 
-labels=1995:2022
+labels=1995:(year-1)
 boxes <- sapply(nchar(labels), function(n) 
   paste(rep("\U2588", n), collapse=""))
 
@@ -683,12 +799,12 @@ boxes <- sapply(nchar(labels), function(n)
 #png(paste0(site,"/total_return.png"),width = 780, height = 480)
 par(mfrow=c(1,1)) 
 
-ratio <- smolt[1:29,"50%"]/parr[2:(nrow(parr)-1),"50%"]
-plot(ratio,bty="n",ylab="Ratio Smolts 1+/Tacons 0+",xlab="Cohort",xaxt="n",ylim=c(0,1))
-axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
+# debut des smolts en 1995 et tacon en 1993
+ratio <- smolt[1:nrow(smolt),"50%"]/parr[2:(nrow(parr)-1),"50%"]
+plot(ratio,bty="n",ylab="Ratio Smolts 1+/Tacons 0+",xlab="Cohorte (tacons)",xaxt="n",ylim=c(0,1))
+axis(side=1,line=0,labels = 1994:(year-1),at=1:(length(years)-2), las=2, cex=.5)
 
-
-  df <- data.frame(x=1:29, y= ratio)
+  df <- data.frame(x=1994:(year-1), y= ratio)
   lw1 <- loess(y ~ x,span = 0.75, degree = 2, data=df)
   pred <- predict(lw1)
   lines(pred,col=1,lwd=2,lty=1)
@@ -728,31 +844,136 @@ axis(side=1,line=0,labels = 1994:2022,at=1:29, las=2, cex=.5)
 # fig
 ```
 
+```{r return}
+site <- "Scorff"
+dir <-  paste(wdir,"/",sep="")
+years <- seq(1994, year, 1)
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Smolt year","Smolts", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
+rownames(table) <- years
+smolt.years <- years
+table[,1] <- smolt.years
 
-Stock : number of anadromous adults escaped (available for reproduction)
-Recruitment: number of parr 0+
+## JUVENILES from 1995 to now on
+stade <- "smolt"
+nimble=TRUE
+load(paste(dir,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+ if(nimble){
+# Convert the mcmc.list to a matrix for easier manipulation
+combined_chains <- as.matrix(fit)
+# Extract column names that match the pattern "N\\[\\d+\\]" (i.e., "N[1]", "N[2]", ...)
+param_names <- grep("^Nesc\\[\\d+\\]$", colnames(combined_chains), value = TRUE)
+# Compute medians for the selected parameters
+Nesc <- apply(combined_chains[, param_names, drop = FALSE], 2, median)
+  } else {
+      Nesc <- fit$median$Nesc # escapement from river
+  }
 
-```{r SR, echo=FALSE}
+table[2:nrow(table),2] <- Nesc # 1995 to now
 
+
+
+## ADULTS (1984 to now)
 stade <- "adult"
-load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep="")) 
-load(paste0(stade,"/results/Results_",stade,"_",year,".RData"))
-adu <- as.matrix(fit$sims.matrix)
-mcmc <- as.matrix(adu[,paste0("e_tot[",1:data$Y,"]")]) # 1984 to now)
-s <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975)))
+load(paste(dir,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+n_1SW <- c(fit$median$n_1SW) 
+n_MSW <- c(fit$median$n_MSW)
+
+for (y in 1:(nrow(table))){
+  
+  table[y,5] <- (n_1SW[y+1]/ table[y,2])*100
+  table[y,6] <- (n_MSW[y+2]/ table[y,2])*100
+  
+  if (is.na(n_1SW[y+1]) | is.na(n_MSW[y+2]) | is.na(table[y,2])) next;
+  table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
+}
+
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
+
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
+#write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
+con <- file(paste('Table_ReturnRates_',site,'.csv',sep=""), open="wt")
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                  ,sep=""), con)
+write.csv( table, con, row.names = FALSE)
+close(con)
+
+# Plot of return rates
+global <- as.numeric(table[-nrow(table),4])
+plot(global,bty="n",ylab="Taux de retour (%)",xlab="Cohorte (smolt)",xaxt="n",ylim=c(0,30), type="b", main="Taux de retour (%)")
+axis(side=1,line=0,labels = 1994:(year),at=1:length(years), las=2, cex=.5)
+Osw <-as.numeric(table[-nrow(table),5])
+points(Osw, type="b", col="darkblue")
+legend("topright", legend=c("Global", "1SW"), fill=c("black","darkblue"), bty="n")
 
 
-#png(paste0(site,"/total_return.png"),width = 780, height = 480)
-par(mfrow=c(1,1)) 
+# Plot of return rates
+global <- as.numeric(table[-nrow(table),4])/100
+plot(log(global),bty="n",ylab="Taux de retour (log)",xlab="Cohorte (smolt)",xaxt="n",ylim=c(-5,0), type="b", main="Taux de retour (log)")
+axis(side=1,line=0,labels = 1994:(year),at=1:length(years), las=2, cex=.5)
+Osw <-as.numeric(table[-nrow(table),5])/100
+points(log(Osw), type="b", col="darkblue")
+legend("topright", legend=c("Global", "1SW"), fill=c("black","darkblue"), bty="n")
 
-### Total number of returns
-plot(NULL,xlim=c(0,1000),ylim=c(0,50000),bty="n",ylab="Recruitment (tacon 0+)",xlab="Stock (escapted adults)")
 
-#axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5)
-# Stock
-segments(s[,"2.5%"], r[2:27,"50%"],s[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1]))
-segments(s[,"50%"], r[2:27,"2.5%"],s[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1]))
-points(s[1:26,"50%"],r[2:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
-text(s[1:26,"50%"],r[2:27,"50%"]+2000,labels = years, cex=.5)
+plot(NULL,bty="n",ylab="Taux de retour (%)",xlab="Cohorte (smolt)",xaxt="n",xlim=c(1,length(years)),ylim=c(0,6), main="Taux de retour des PHM")
+axis(side=1,line=0,labels = 1994:(year),at=1:length(years), las=2, cex=.5)
+Msw <-as.numeric(table[-nrow(table),6])
+points(Msw, type="b", col="tomato")
+
+
+plot(NULL,bty="n",ylab="Taux de retour (log)",xlab="Cohorte (smolt)",xaxt="n",xlim=c(1,length(years)),ylim=c(-10,0), main="Taux de retour des PHM (log)")
+axis(side=1,line=0,labels = 1994:(year),at=1:length(years), las=2, cex=.5)
+Msw <-log(as.numeric(table[-nrow(table),6])/100)
+points(Msw, type="b", col="tomato")
+
 
 ```
+
+
+#Stock : number of anadromous adults escaped (available for reproduction) #Recruitment: number of parr 0+
+
+<!-- ```{r SR, echo=FALSE} -->
+
+<!-- stade <- "adult" -->
+
+<!-- load(paste(stade,"/data/data_",stade,"_",year,'.Rdata',sep=""))  -->
+
+<!-- load(paste0(stade,"/results/Results_",stade,"_",year,".RData")) -->
+
+<!-- adu <- as.matrix(fit$sims.matrix) -->
+
+<!-- mcmc <- as.matrix(adu[,paste0("e_tot[",1:data$Y,"]")]) # 1984 to now) -->
+
+<!-- s <- t(apply(mcmc,2,quantile,probs=c(0.025, .5, 0.975))) -->
+
+<!-- #png(paste0(site,"/total_return.png"),width = 780, height = 480) -->
+
+<!-- par(mfrow=c(1,1))  -->
+
+<!-- ### Total number of returns -->
+
+<!-- plot(NULL,xlim=c(0,1000),ylim=c(0,50000),bty="n",ylab="Recruitment (tacon 0+)",xlab="Stock (escapted adults)") -->
+
+<!-- #axis(side=1,line=1,labels = years,at=1:data$Nyear, las=2, cex=.5) -->
+
+<!-- # Stock -->
+
+<!-- segments(s[,"2.5%"], r[2:27,"50%"],s[,"97.5%"],r[2:27,"50%"], col=paste0(mycol[1])) -->
+
+<!-- segments(s[,"50%"], r[2:27,"2.5%"],s[,"50%"],r[2:27,"97.5%"], col=paste0(mycol[1])) -->
+
+<!-- points(s[1:26,"50%"],r[2:27,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1])) -->
+
+<!-- text(s[1:26,"50%"],r[2:27,"50%"]+2000,labels = years, cex=.5) -->
+
+<!-- ``` -->

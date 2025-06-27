@@ -1,7 +1,7 @@
 ##-----------------------------INFO ----------------------------------##
-year <- "2024"
-site <- "Nivelle"
-stade <- "adult"
+# year <- "2024"
+# site <- "Nivelle"
+# stade <- "adult"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")
@@ -164,4 +164,4 @@ data <- list( Y=Y
               ,NB=NB)
 
 save(data,file=paste('data/data_',stade,"_",year,'.Rdata',sep="")) # sauvegarde des données
-bugs.data(data,digits=3, data.file = paste0('data/data_',stade,"_",year,'.txt'))
+#bugs.data(data,digits=3, data.file = paste0('data/data_',stade,"_",year,'.txt'))

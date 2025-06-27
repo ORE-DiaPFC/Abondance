@@ -57,6 +57,8 @@ if(year=="2020") # ajout d'une station
   lambdaOir_cpu_inits <- tmp
 }
 
+lambdaOir_cpu_inits[3,38]<-NA
+lambdaOir_cpu_inits[7,38]<-NA
 
 log_dOir <- inits0$log_dOir
 vect1 <- rep(NA,34) # 34 premeirs sont des NA
@@ -71,6 +73,9 @@ if(year=="2020")
   tmp[69,34] <- tmp[68,34]
   log_dOir_inits <- tmp 
 }
+
+log_dOir_inits[60,38]<-NA
+log_dOir_inits[64,38]<-NA
 
 lp_remgr_inits <- as.matrix(cbind(inits0$lp_remgr,rep(1,13)))
 
@@ -95,6 +100,8 @@ if(year=="2020")
   ntot_inits <- tmp 
 }
 
+ntot_inits[60,38]<-NA # mb
+ntot_inits[64,38]<-NA
 
 year_dOir_inits <- c(inits0$year_dOir, 0)
 

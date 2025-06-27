@@ -14,14 +14,14 @@ library(mcmcplots)
 
 
 ##-----------------------------INFO ----------------------------------##
-year <- "YEAR"
-site <- "SITE"
-stade <- "STADE"
+year <- "2024"
+site <- "Scorff"
+stade <- "adult"
 
 cat(year, "-",site,"-",stade, "\n")
 
 ## WORKING DIRECTORY:
-work.dir<-paste("Rep",site,stade,sep="/")
+work.dir<-paste("/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance",site,stade,sep="/")
 setwd(work.dir)
 
 # cleaning
@@ -59,7 +59,7 @@ inits.tmp2 <- read.bugsdata(paste("inits/init-",site,"-",stade,year,"_",2,".txt"
 inits <- list(inits.tmp1,inits.tmp2)
 
 #------------------------MODEL----------------------------------##
-model <- paste("model/model_",stade,"-",site,".R",sep="") # path of the model
+model <- paste("model/model_",stade,"-",site,"_2024.R",sep="") # path of the model
 #if(site == "Scorff" && stade == "smolt") {model <- paste("model/model_",stade,"-",site,"_",year,"_age.R",sep="")} # le modèle Scorrf pour les smolt peut changer tous les ans suivant conditions
 model
 
@@ -68,11 +68,11 @@ filename <- file.path(work.dir, model)
 
 
 #---------------------------ANALYSIS-----------------------------##
-nChains = CHAINS #length(inits) # Number of chains to run.
+nChains = 2 #length(inits) # Number of chains to run.
 adaptSteps = 1000 # Number of steps to "tune" the samplers.
-nburnin=BURNIN # Number of steps to "burn-in" the samplers.
-nthin=THIN # Number of steps to "thin" (1=keep every step).
-nstore=ITER # Total number of steps in chains to save.
+nburnin=2000 # Number of steps to "burn-in" the samplers.
+nthin=200 # Number of steps to "thin" (1=keep every step).
+nstore=5000 # Total number of steps in chains to save.
 #nPerChain = ceiling( ( numSavedSteps * thinSteps ) / nChains ) # Steps per chain.
 
 analysis=TRUE

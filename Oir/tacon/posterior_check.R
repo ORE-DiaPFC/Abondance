@@ -16,6 +16,7 @@ hyperparameters <-c(
   ,"sigma_gryrOir" # Standard deviation of interaction between group and year
   
   ,"coef_PC" # coefficient of proportionality for run.
+ ,"k_inter"
   
   #,"n_Oir"  # annual abundance in Oir river 
  # , paste0("n_Oir[",1:data$Nyear,"]")

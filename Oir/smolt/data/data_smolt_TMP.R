@@ -1,7 +1,7 @@
-##-----------------------------INFO ----------------------------------##
-year <- "2023"
-site <- "Oir"
-stade <- "smolt"
+# ##-----------------------------INFO ----------------------------------##
+# year <- "2023"
+# site <- "Oir"
+# stade <- "smolt"
 
 ## WORKING DIRECTORY:
 #work.dir<-paste("Rep",site,stade,sep="/")

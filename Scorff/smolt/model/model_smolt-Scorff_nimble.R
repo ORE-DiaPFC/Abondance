@@ -60,10 +60,15 @@ covmat[2,2] <- varp[2] # variance of the probability of capture at ML
 ###############       Hyperparameters for N (smolt number by cohort)      ##################
 ############################################################################################
 # Shape and rate parameter for gamma distribution  for negative binomial (see Gelman, 2d edition, p446)
-shape_lambda ~ dgamma(0.001,0.001)
-rate_lambda ~ T(dgamma(0.001,0.001), 0.00001,) # protection contre les trop faibles valeurs
-mean_gamma <- shape_lambda/rate_lambda
-var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
+#shape_lambda ~ dgamma(0.001,0.001)
+#rate_lambda ~ T(dgamma(0.001,0.001), 0.00001,) # protection contre les trop faibles valeurs
+#mean_gamma <- shape_lambda/rate_lambda
+#var_gamma <- shape_lambda/(rate_lambda*rate_lambda)
+# New hyper parameters after reformulation of the NegBin according to ist mean (theta) and shape parameter
+shape_theta ~ dgamma(1, 1) #mb+ep 18.3.2025
+mean_theta ~ dnorm(log(5000),sd=1)# mb+ep 18.3.2025
+sigma_theta ~ dgamma(5/2, scale = 2/5)# mb+ep 18.3.2025
+  
 ################
 
 ############################################################################################
@@ -125,22 +130,29 @@ for (t in 3:Nyears) {p_ML[t] <- p[t,2]} # end of loop over years
 # Nyears : from 1995 to now on (migration year)	
 # Modelling the smolts numbers by cohort (year of birth+1) and by age class (1 and 2)
 # Initialisation pour la cohorte 0 (1994)
-  lambda0 ~ dgamma(shape_lambda,rate_lambda) 
-  N0 ~ dpois(lambda0)
+#  lambda0 ~ dgamma(shape_lambda,rate_lambda) 
+#  N0 ~ dpois(lambda0)
+  N0 ~ dnegbin(prob=prob0, size=shape_theta) # mb+ep 18.3.2025
+  theta0 ~ dlnorm(mean_theta, sdlog = sigma_theta)# mb+ep 18.3.2025
+  prob0 <- shape_theta / (shape_theta + theta0)# mb+ep 18.3.2025
   N01c ~ dbin(p10c, N0)
   N02c <- N0-N01c 	
   p10c ~ dbeta(s1, s2)
 # Calculating the smolt numbers by year of migration
   Ntot[1] <- Nc[1,1]+N02c
+  
 for (t in 1:Nyears) {    
 ################              Prior for Ntot[t], i=1 to Nyears         ######################
   # Hierarchical under negative binomiale		
-  lambda[t] ~ dgamma(shape_lambda,rate_lambda) 
-  N[t] ~ dpois(lambda[t])
+  #lambda[t] ~ dgamma(shape_lambda,rate_lambda) 
+  #N[t] ~ dpois(lambda[t])
+  N[t] ~ dnegbin(prob=prob[t], size=shape_theta) # mb+ep 18.3.2025
+  theta[t] ~ dlnorm(mean_theta, sdlog = sigma_theta)# mb+ep 18.3.2025
+  prob[t] <- shape_theta / (shape_theta + theta[t])# mb+ep 18.3.2025
 # Distributing smolt into age classes
   Nc[t,1] ~ dbin(p1c[t], N[t])
   Nc[t,2] <- N[t]-Nc[t,1] 	
-# Hierarchcal modelling of the proportion of 1 year old smoltsby cohort
+# Hierarchcal modelling of the proportion of 1 year old smolts by cohort
   p1c[t] ~ dbeta(s1, s2)
     } # end of loop over years
 # Calculating the smolt numbers by year of migration

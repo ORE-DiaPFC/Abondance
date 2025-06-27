@@ -306,9 +306,9 @@ for (j in 1: NIAno) {
 ### CPUE used for intercalibration
 for (m in 1:NIAinter) {
     CPUE_inter[m] ~ dpois(lambdaOir_cpu2[IAinter_num[m],Year_IAinter[m]]) ## observation process
-    I_Puls[m] <- step(Year_IA[m]-32.5) # indicatrice d'utilisation du Pulsium à partir de l'année 2019 (33)
+    I_Puls2[m] <- step(Year_IAinter[m]-32.5) # indicatrice d'utilisation du Pulsium à partir de l'année 2019 (33)
 
-    mul_cpuOir[IAinter_num[m],Year_IAinter[m]] <- k_cpuOir[IAinter_num[m]] * dIA_Oir[IAinter_num[m],Year_IAinter[m]] * pow(k_inter,I_Puls[m])  # mean lambda_cpu
+    mul_cpuOir[IAinter_num[m],Year_IAinter[m]] <- k_cpuOir[IAinter_num[m]] * dIA_Oir[IAinter_num[m],Year_IAinter[m]] * pow(k_inter,I_Puls2[m])  # mean lambda_cpu
 
     eps_CPUE[IAinter_num[m],Year_IAinter[m]] <- log(lambdaOir_cpu2[IAinter_num[m],Year_IAinter[m]])/log(mul_cpuOir[IAinter_num[m],Year_IAinter[m]]) # residuals of the relationship between IA and coefficient of proportionnality
 

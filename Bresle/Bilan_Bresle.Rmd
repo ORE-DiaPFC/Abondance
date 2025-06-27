@@ -9,11 +9,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-wdir <- "/media/hdd4To/mbuoro/ORE-DiaPFC/Abundance/"
+wdir <- "/media/HDD12To/mbuoro/ORE-DiaPFC/Abundance/"
 #setwd(wdir)
 
 site <- "Bresle"
-year <- 2022
+year <- 2024
 
 #COL <- c("yellowgreen","hotpink2","steelblue1","black")
 mycol=c("#787878", "#1E90FF", "#a1dab4", "#FF6A6A")
@@ -312,5 +312,87 @@ points(p,n[,"50%"],col=mycol[1],pch=21,bg=paste0(mycol[1]))
 # points(1:data$Nyears,n[,"50%"],col=mycol[2],pch=21,bg=paste0(mycol[2]))
 # 
 # legend("topright", legend=c("Moulin des Princes", "Moulin du Leslé"), col=mycol[1:2],lty=1,lwd=3,bty="n")
+```
+
+```{r}
+##________________________BRESLE (starting in 1984)
+site <- "Bresle"
+
+years <- seq(1982, year, 1)
+table <- array(, dim=c(length(years), 6))
+colnames(table) <- c( "Smolt year","Smolts", 	"adults",	"global return rate (%)" ,	"1SW return rate (%)", "MSW return rate (%)")
+rownames(table) <- years
+smolt.years <- years
+table[,1] <- smolt.years
+
+## JUVENILES (1982 to now ; # /!\ NO CAPTURE IN 1988 to 1991 & 2001)
+stade <- "smolt"
+load(paste(wdir,"/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+Nesc <- fit$median$Nesc # escapement from river
+table[1:6,2] <- Nesc[1:6] # 1982 to 1987
+table[11:19,2] <- Nesc[7:15] # 1992 to 2000
+table[21:38,2] <- Nesc[16:33] # 2002 to 2019
+table[40:nrow(table),2] <- Nesc[34:length(Nesc)] # 2002 to now
+
+## ADULTS (1984 to now)
+stade <- "adult"
+load(paste(wdir,"/",site,"/",stade,"/results/Results_",stade,"_",year,".RData",sep=""))
+n_1SW <- c(NA,NA,fit$median$n_1SW) # spawners 1SW
+n_MSW <- c(NA,NA,fit$median$n_MSW) # spawners MSW
+
+for (y in 1:(nrow(table))){
+  table[y,3] <- n_1SW[y+1] + n_MSW[y+2] # Smolt 1+ become 1SW 1 years later / MSW 2 years later; /!\ NA reported if one of the two is missing!!!
+  table[y,4] <- (table[y,3] / table[y,2])*100 
+  table[y,5] <- (n_1SW[y+1]/ table[y,2])*100
+  table[y,6] <- (n_MSW[y+2]/ table[y,2])*100
+}
+
+table[,2:3]<-round(table[,2:3],0)
+table[,4:6]<-round(table[,4:6],2)
+
+Avg <- apply(tail(table,10),2,mean,na.rm=TRUE)
+table <- rbind(table,round(Avg,2))
+rownames(table)[nrow(table)]<-"10yr avg"
+table[nrow(table),1]<-"10yr avg"
+#write.csv(round(table,2), file=paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/CIEM/Table9_',site,"_",year,'.csv',sep=""))
+con <- file(paste(wdir,"/",site,"/",stade,'/Table_ReturnRates_',site,'.csv',sep=""), open="wt")
+# writeLines(paste("# Table 9 - juvenile and adult salmon  numbers (estim.) in-river return rate in the monitored rivers - ",site," (",year,")
+#                   Nota : juvenile fish are smolts except in r. Nivelle which are parrs O+ (cohort parr 0+ = smolt.years -1). 
+#                   Adult numbers refer to the smolt year N: runs of N+1 and N+2
+#                   These are estimated trap-return numbers of wild fish except in 94-95 years in Nivelle when some stocked fish returned. 
+#                  Stocking is considered to adjust numbers"
+#                  ,sep=""), con)
+write.csv( table, con, row.names = FALSE)
+close(con)
+
+
+# Plot of return rates
+global <- as.numeric(table[-nrow(table),4])
+plot(global,bty="n",ylab="Taux de retour (%)",xlab="Cohorte (smolt)",xaxt="n",ylim=c(0,30), type="b", main="Taux de retour (%)")
+axis(side=1,line=0,labels = 1982:(year),at=1:length(years), las=2, cex=.5)
+Osw <-as.numeric(table[-nrow(table),5])
+points(Osw, type="b", col="darkblue")
+legend("topright", legend=c("Global", "1SW"), fill=c("black","darkblue"), bty="n")
+
+
+# Plot of return rates
+global <- as.numeric(table[-nrow(table),4])/100
+plot(log(global),bty="n",ylab="Taux de retour (log)",xlab="Cohorte (smolt)",xaxt="n",ylim=c(-5,0), type="b", main="Taux de retour (log)")
+axis(side=1,line=0,labels = 1982:(year),at=1:length(years), las=2, cex=.5)
+Osw <-as.numeric(table[-nrow(table),5])/100
+points(log(Osw), type="b", col="darkblue")
+legend("topright", legend=c("Global", "1SW"), fill=c("black","darkblue"), bty="n")
+
+
+plot(NULL,bty="n",ylab="Taux de retour (%)",xlab="Cohorte (smolt)",xaxt="n",xlim=c(1,length(years)),ylim=c(0,6), main="Taux de retour des PHM")
+axis(side=1,line=0,labels = 1982:(year),at=1:length(years), las=2, cex=.5)
+Msw <-as.numeric(table[-nrow(table),6])
+points(Msw, type="b", col="tomato")
+
+
+plot(NULL,bty="n",ylab="Taux de retour (log)",xlab="Cohorte (smolt)",xaxt="n",xlim=c(1,length(years)),ylim=c(-10,0), main="Taux de retour des PHM (log)")
+axis(side=1,line=0,labels = 1982:(year),at=1:length(years), las=2, cex=.5)
+Msw <-log(as.numeric(table[-nrow(table),6])/100)
+points(Msw, type="b", col="tomato")
 ```
 

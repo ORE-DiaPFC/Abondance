@@ -1,0 +1,33 @@
+=============================
+DIAGNOSTICS
+=============================
+Number of chains:  2 
+Number of iterations:  5000 
+[1] "2024"
+ [1] 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018
+[26] 2019 2020 2021 2022 2023 2024
+ [1] 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018
+[26] 2019 2020 2021 2022 2023 2024
+RStudioGD 
+        2 
+pdf 
+  4 
+pdf 
+  5 
+nt digits.
+
+heidel.diag also implements a convergence diagnostic, and removes up to half the chain in order to ensure that the means are estimated from a chain that has converged.
+
+
+---------------------------
+Geweke's convergence diagnostic
+
+Geweke (1992) proposed a convergence diagnostic for Markov chains based on a test for equality of the means of the first and last part of a Markov chain (by default the first 10% and the last 50%).
+If the samples are drawn from the stationary distribution of the chain, the two means are equal and Geweke's statistic has an asymptotically standard normal distribution. 
+The test statistic is a standard Z-score: the difference between the two sample means divided by its estimated standard error. The standard error is estimated from the spectral density at zero and so takes into account any autocorrelation.
+
+The Z-score is calculated under the assumption that the two parts of the chain are asymptotically independent, which requires that the sum of frac1 and frac2 be strictly less than 1.
+
+
+---------------------------
+Raftery and Lewis's diagnostic

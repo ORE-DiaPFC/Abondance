@@ -171,10 +171,6 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   gamma_dj[y,z] ~ dgamma(zeta_gamma_dj[z],eta_gamma_dj[z])        
     } ## End of loop over zones
   } ## End of loop over years
-  for (y in 41:Y_last) { #from year 2024 zone 7 (Spanish Nivelle) became accessible to adults
-# Spanish Nivelle is treated as equivalent to the upper Nivelle: to be revisited with more years
-  gamma_dj[y,7] ~ dgamma(zeta_gamma_dj[5],eta_gamma_dj[5])    
-  } ## End of loop over years
 
 #####################
 ## Mean density per type of recruitment, year, zone and habitat (mu_dj[r,y,z,h]) 
@@ -202,11 +198,6 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
       zeta_dj[1,y,z,h] <- mu_dj[1,y,z,h]*eta_dj[1]
       } ## End of loop over years
     } ## End of loop over zones
- ## Spanish Nivelle (+Lap) from 2024 to last year
-      for (y in 41:Y_last) {
-      mu_dj[1,y,7,h]<- mu_dj_nat*alpha_dj[y]*gamma_dj[y,7]*beta_dj[h]
-      zeta_dj[1,y,7,h] <- mu_dj[1,y,7,h]*eta_dj[1]
-      } ## End of loop over years
 
 ### Compensation (r = 2) ###
   ## 1996 : LN, HN & LUR = Alevins
@@ -328,7 +319,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 # From 2021, this is changed to Pulsium : see new code added in 2023 below  
    rho_s ~ dgamma(1,1) # nonlinear relationshihp between flow and surface
    p_cpue ~ dbeta(2,2) # this non informative prior is excluding extreme value
-   eta_cpue <- p_cpue/(1-p_cpue) # inverse scale of NegBin process of capture in CPUE
+   eta_cpue <- p_cpue/(1-p_cpue) # variance of a Bernouilli process
    sd_s_rec ~ dunif(0,10)
    v_s_rec <- sd_s_rec * sd_s_rec # variance of the recent surface
    prec_s_rec <- 1/v_s_rec # precision
@@ -448,7 +439,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
 
 # From 2021 to end, new electrofishing gear MP -> Pulsium
 # kcpue changes to k_cpue_Puls
-  k_cpue_Puls <- k_cpue * k_inter ; k_inter <- exp(log_k_inter); log_k_inter ~ dnorm(0,1) # changed in 2025 from dunif(-10,10) 
+  k_cpue_Puls <- k_cpue * k_inter ; k_inter <- exp(log_k_inter); log_k_inter ~ dunif(-10,10) 
   for (i in 716:I) {
   
   ## Pass
@@ -465,9 +456,8 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   Lmu_s_rec[i] <- log(Q[i]/Q_85[i])*rho_s + log(S[i]) 
   } ## End of loop over sites
 
-# In 2021 and to 2022, 4 sites were electrofished every year with the former gear (MP) for intercalibration
+# From 2021 to 2024, 4 sites were electrofished every year with the former gear (MP) for intercalibration
 # The 4 sites are :  Olha, Betrienea, Conf Sorrimenta, Zahara
-# No intercalibration in 2023 and 2024 du to high flows
   r[1] <- 4; r[2] <- 9; r[3] <- 11; r[4] <- 13 # Sites numbers
   for (y in 1:2) { # incrementer pour chaque annee d'intercalibration
        for (s in 1:4) {
@@ -625,7 +615,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   ## LN: Year 2002
   lambda_j_ns_riff[19,3] <- mu_dj[1,19,3,1]*Stot_ns_riff[19,3]
   jnat_ns_riff[19,3] ~ dpois(lambda_j_ns_riff[19,3])
-  # LUR: Year 2002
+  # LUR: Year 20002
   lambda_j_ns_riff[23,5] <- mu_dj[1,23,5,1]*Stot_ns_riff[23,5]
   jnat_ns_riff[23,5] ~ dpois(lambda_j_ns_riff[23,5])
   # HN: Year 2009 
@@ -645,7 +635,7 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   ## LN: Year 2002
   lambda_j_ns_runs[19,3] <- mu_dj[1,19,3,2]*Stot_ns_runs[19,3]
   jnat_ns_runs[19,3] ~ dpois(lambda_j_ns_runs[19,3])
-  # LUR: Year 2002 
+  # LUR: Year 20002 
   lambda_j_ns_runs[23,5] <- mu_dj[1,23,5,2]*Stot_ns_runs[23,5]
   jnat_ns_runs[23,5] ~ dpois(lambda_j_ns_runs[23,5])
   # HN: Year 2009
@@ -661,17 +651,6 @@ Dal[11,7] <- AL[11,7]/Stot_req[7]
   jnat_ns[23,5] <- jnat_ns_riff[23,5]+jnat_ns_runs[23,5]
   jnat_ns[26,4] <- jnat_ns_riff[26,4]+jnat_ns_runs[26,4]
   jnat_ns[26,5] <- jnat_ns_riff[26,5]+jnat_ns_runs[26,5]
-
-    for (y in 41:Y_last) { # from 2024 to now on the Spanish Nivelle contributes to natural recruitment
-        ## Riffles
-        lambda_j_ns_riff[y,7] <- mu_dj[1,y,7,1]*Stot_ns_riff[y,7]
-        jnat_ns_riff[y,7] ~ dpois(lambda_j_ns_riff[y,7])
-        ## Runs
-        lambda_j_ns_runs[y,7] <- mu_dj[1,y,7,2]*Stot_ns_runs[y,7]
-        jnat_ns_runs[y,7] ~ dpois(lambda_j_ns_runs[y,7])
-
-        jnat_ns[y,7] <- jnat_ns_riff[y,7]+jnat_ns_runs[y,7]
-        } ## End of loop over years
 
 #########################################
 ## Natural recruitment + Compensation

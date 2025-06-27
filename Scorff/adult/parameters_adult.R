@@ -15,6 +15,8 @@ parameters <-c(
   ,"sigmapi_R" # standard deviation of probabilty of recapture during reproduction
   
   ,"pi_R_pulsium" # probability recapture during reproduction using electric fishing (pulsium)
+  ,"mu_logit_pi_R_pulsium"
+  ,"sigmapi_R_pulsium"
   
   ,"mupi_D" # mean probability to die from natural cause
   ,"sigmapi_D" # standard deviation of probability of dying from natural cause 
@@ -60,8 +62,8 @@ parameters <-c(
   ,"pi_R" # probability of recapture during or after reproduction
   ,"epsilon_R" # standardized residuals of probability of recapture during or after reproduction
   
-  , "psi_1SW" # probability to recover a marked fish
-  , "psi_MSW" # probability to recover a marked fis
+  #, "psi_1SW" # probability to recover a marked fish
+  #, "psi_MSW" # probability to recover a marked fis
   
   ## POPULATION
   ,"n_tot" # total annual number of adults entering the river

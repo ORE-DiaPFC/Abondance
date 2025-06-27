@@ -9,6 +9,13 @@
 # work.dir<-paste('~/Documents/RESEARCH/PROJECTS/ORE/Abundance/',site,sep="")
 # setwd(work.dir)
 
+invlogit <-
+  function (x) 
+  {
+    return(exp(x)/(1 + exp(x)))
+  }
+
+
 load(paste('data/data_',stade,"_",year,'.Rdata',sep=""))
 
 for (c in 1:2){ # 2 chains
@@ -89,6 +96,13 @@ for (c in 1:2){ # 2 chains
   Cm_MP.inits <- rep(NA,data$Nyears)
   Cm_MP.inits[26]<- 0 # COVID, no capture
   
+  # num_ML[t] <- Ntot[t] - C_ML[t] + Cum_ML[t] - D_ML[t] # total unmarked fish 
+  # Cm_MP[t] ~ dbin(p_MP[t],Cm_ML[t]) # marked fish 
+  # Cum_MP[t] ~ dbin(p_MP[t], num_ML[t]) #unmarked fish
+  num_ML <- Ntot -data$C_ML+data$Cum_ML-data$D_ML
+  p_MP<-invlogit(logit_pi[,1])
+  Cum_MP <- as.integer(p_MP* num_ML)
+  
   # Proprotion sampling for sexing
   p_smp=array(,dim=c(data$Nyears,2))
   p_smp[,1] <-rbeta(data$Nyears,1, 5) # 1SW
@@ -124,7 +138,24 @@ for (c in 1:2){ # 2 chains
   Nc[,2] <- N-Nc[,1] 	
   # Hierarchcal modelling of the proportion of 1 year old smoltsby cohort
 
-  
+  if(nimble){
+    inits_updated <- list(
+      N = N
+      , lambda = lambda
+      , logit_pi = logit_pi
+      , Cm_MP = Cm_MP.inits
+      , Cum_MP=Cum_MP
+      , p_smp=p_smp
+      , p_male=p_male
+      , N1=N1
+      , Nc=Nc
+      , n_1_M=n_1_M
+      , n_2_M=n_2_M
+      , n_sex_smp=n_sex_smp
+      #, shape_lambda=shape_lambda.inits
+      #,rate_lambda=rate_lambda.inits
+    )
+  } else {
   inits_updated <- list(
     N = N
     , lambda = lambda
@@ -133,14 +164,14 @@ for (c in 1:2){ # 2 chains
     ,p_smp=p_smp
     ,p_male=p_male
     ,N1=N1
-    ,Nc=Nc
+    #,Nc=Nc
     ,n_1_M=n_1_M
     ,n_2_M=n_2_M
-    ,n_sex_smp=n_sex_smp
+    #,n_sex_smp=n_sex_smp
     #, shape_lambda=shape_lambda.inits
     #,rate_lambda=rate_lambda.inits
-    
   )
+  }
   
   inits <- list(c( inits_fix,inits_updated))
   

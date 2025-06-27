@@ -211,7 +211,7 @@ logit_pi_B <- logit(p_Btot) # logit transformation
 varp_Eu <- (inits_fix$sigmap_Eu)*(inits_fix$sigmap_Eu)
 precp_Eu <- 1/(varp_Eu) # precision
 logit_mupi_Eu <- inits_fix$logit_int_Eu + inits_fix$logit_flow_Eu * data$stlogQ_Eu
-logit_pi_Eu <-rnorm(data$NEu,logit_mupi_Eu,precp_Eu)
+logit_pi_Eu <-rnorm(data$Nyears,logit_mupi_Eu,precp_Eu)
 #logit_pi_Eu <-rnorm(data$Nyears,logit_mupi_Eu,precp_Eu)
 
 inits_updated <- list(

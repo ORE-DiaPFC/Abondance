@@ -132,8 +132,8 @@ parameters <-c(
   ,"P_1SW" # annual proportion of 1SW
   ,"P_MSW" # annual proportion of MSW
   
-  , "ech_1SW_wild" # annual number of captured individuals 1SW of wild origin (sum of 1R/1SW and 2R/1SW)
-  , "ech_MSW_wild" # annual number of captured individuals MSW of wild origin (sum of 1R/1SW and 2R/1SW)
+  #,"ech_1SW_wild" # annual number of captured individuals 1SW of wild origin (sum of 1R/1SW and 2R/1SW)
+  #,"ech_MSW_wild" # annual number of captured individuals MSW of wild origin (sum of 1R/1SW and 2R/1SW)
   
   ,"d_pi_Ol"
   ,"d_pi_U"

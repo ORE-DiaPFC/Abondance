@@ -83,22 +83,11 @@ lambda.pred ~ dgamma(shape_lambda,rate_lambda)
 Ntot.pred ~ dpois(lambda.pred)
 
 # Nyears : from 1982 to now on (migration year)
-#for (t in 1:6) {  # from 1982 to 1987
 for (t in 1:Nyears) {  # from 1982 to 1987
 ################              Prior for Ntot[t], i=1 to Nyears         ######################
   # Hierarchical under negative binomiale
   lambda[t] ~ dgamma(shape_lambda,rate_lambda)
   Ntot[t] ~ dpois(lambda[t])
-#  } # end of loop over years
-
-#for (t in 11:19) { #from 1992 to 2000
-#  lambda[t] ~ dgamma(shape_lambda,rate_lambda)
-#  Ntot[t] ~ dpois(lambda[t])
-#  } # end of loop over years
-#
-#for (t in 21:Nyears) { # from 2002 to now on
-#  lambda[t] ~ dgamma(shape_lambda,rate_lambda)
-#  Ntot[t] ~ dpois(lambda[t])
   } # end of loop over years
 
 #############	        Prior for p_Beauchamps[t]          #################
@@ -106,37 +95,13 @@ for (t in 1:Nyears) {  # from 1982 to 1987
 
 for (t in 1:Nyears) {  
 #  logit_mupi_B[t] <- log(mu_B/(1-mu_B)) #logit transformation
-  logit_mupi_B[t] <- logit_int_B + logit_flow_B * stlogQ_Eu[t]
+  logit_mupi_B[t] <- logit_int_B + logit_flow_B * stlogQ_Eu[t] # Q_Eu = Q_Beauchamps
   logit_pi_B[t] ~ dnorm(logit_mupi_B[t],precp_B)
   p_B[t] <- exp(logit_pi_B[t])/(1+exp(logit_pi_B[t]))  # back-transformation on the probability scale
   epsilon_B[t] <- (logit_pi_B[t] - logit_mupi_B[t])/sigmap_B # standardized residuals
-#  } ## End of loop over years
-#
-# Calculating total probability of capture at Beauchamps (decrease in probability in some years)
-#for (t in 1:9) { # from 1982 to 1994
+
   p_Btot[t] <- p_B[t]*pow(eff_B[t], exp_d_p_B) 
-#    } #end of loop over years
-#
-#p_Btot[10] <- p_B[10] * p_B95 #year 1995
-#p_Btot[11] <- p_B[11] * p_B96 #year 1996
-#
-#for (t in 12:13) { # from 1997 to 1998
-#    p_Btot[t] <- p_B[t]
-#    } #end of loop over years
-#
-#p_Btot[14] <- p_B[14] * p_B99 #year 1996
-#p_Btot[15] <- p_B[15]# p_Btot[15] <- p_B[15] * p_B00 #year 2000
-# pas d'estimation en 2001 (pas de donn?es)
-#p_Btot[16] <- p_B[16] * p_B02 #year 2002
-#
-#for (t in 17:33) { #from 2003 to now on
-#    p_Btot[t] <- p_B[t]
-#    } #end of loop over years
-#
-#p_Btot[34] <- p_B[34] * p_B20 #year 2020 (COVID)
-#
-#for (t in 35:NBeau) { #from 2021 to now on
-#  p_Btot[t] <- p_B[t]
+
 } #end of loop over years
 
 #############	        Prior for p_Eu[t]          #################
@@ -151,22 +116,13 @@ for (t in 1:Nyears) {  # For years when Eu is installed
   epsilon_Eu[t] <- (logit_pi_Eu[t] - logit_mupi_Eu[t])/sigmap_Eu # standardized residuals
   eps_Eu[t] <- logit_pi_Eu[t] - logit_mupi_Eu[t] # residuals not standardized
 # Calculating total probability of capture at EU (decrease in probability in some years)
-  p_EUtot[t] <- p_Eu[t]*pow(eff_Eu[t], exp_d_p_EU) 
+  p_Eutot[t] <- p_Eu[t]*pow(eff_Eu[t], exp_d_p_Eu) 
 
   } ## End of loop over years
 
-test <- step(logit_flow_Eu) # is logit_flow >=0 ?
+test_Eu <- step(logit_flow_Eu) # is logit_flow >=0 ?
+test_B <- step(logit_flow_B) # is logit_flow >=0 ?
 
-# Section on R2 is removed because wrong and useless
-#Calculating R? = 1 -(E(variance of residuals (/!\ not standardized!) / E(variance of capture probabilities)))
-# See Gelman & Pardoe 2006
-#sdeps_Eu <- sd(eps_Eu[])
-#vareps_Eu <- sdeps_Eu * sdeps_Eu
-
-#sdlpi_Eu <- sd(logit_pi_Eu[])
-#varlpi_Eu <- sdlpi_Eu * sdlpi_Eu
-
-#R2 <- 1 - (mean(vareps_Eu)/mean(varlpi_Eu))
 
 ###################                 LIKELIHOOD               #######################
 # from 1982 to 1985 : only capture at Beauchamps
@@ -290,8 +246,8 @@ Nesc[38] <- Cm_B[38] + num_B[38]  ### Total number of smolt escaping the river
 
 # Year 2020: only capture at Beauchamps
 #C_B[39] ~ dbin(p_Btot[34],Ntot[39]) # number of fish captured at Beauchamps in 2020 (COVID)
-C_B[39] ~ dbin(p_Btot[39],Ntot[39]) # number of fish captured at Beauchamps in 2020 (COVID)
-Nesc[39] <- Ntot[39] - D_B[39]
+#C_B[39] ~ dbin(p_Btot[39],Ntot[39]) # number of fish captured at Beauchamps in 2020 (COVID)
+#Nesc[39] <- Ntot[39] - D_B[39]
 
 
 # From 2021 to now on:
