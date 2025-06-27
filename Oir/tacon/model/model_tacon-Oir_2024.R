@@ -24,7 +24,7 @@
 ## NIAno: Total number of samples by CPUE for sites not used for intercalibration (number of lines)
 ## NIAinter: Total number of samples by CPUE for sites used for intercalibration (number of lines)
 ## Ngroup: Number of groups considered within the river and its tributary rivers (13 groups)
-## NIA: Number of sites sampled by CPUE (11 considered)
+## NIA: Number of sites sampled by CPUE (12 considered (IAS02->IAS03), the site IAS01 not considered because it is below Cerisel trap)
 ## Ninter: Number of sites used to built the relationship between successive removal and CPUE (6 considered)
 ## C1[i]: Number of 0+ captured by electric fishing during the first pass
 ## C2[i]: Number of 0+ captured by electric fishing during the second pass
@@ -99,7 +99,7 @@ for (r in 1:4) { # 1: Oir, 2: La Roche, 3: Pont Levesque, 4: Moulin du Bois
     } # end of looop over Oir river and tributary rivers  
     
 for (t in 1:Nyear) {
-    year_dOir[t] ~ dnorm(0,tau_yOir)I(,2.3) ## year effect. Setting up a constraint to not get log(10) times the mean density. 
+    year_dOir[t] ~ dnorm(0,tau_yOir) #I(,2.3) ## year effect. Setting up a constraint to not get log(10) times the mean density -> removed in 2025. 
     } # end of loop over years
 
 # Statistics
@@ -168,7 +168,7 @@ for (i in 1:NPE1) { # density for sites sampled by successive removal
     lambda_n[Site[i],Year[i]] <- dobs_Oir[Site[i],Year[i]] * (Srr[i]+Spl[i])
     } # end of loop over PE or PTE samples 
 
-for (j in 1: NIAno) {  # density for sites sampled by IA and not used in the intercalibration
+for (j in 1: NIAno) {  # density for sites sampled by IA and not used in the intercalibration (all sites on the Oir main course)
     log_mudOir[Site_IA[j],Year_IA[j]] <- mu_ydOir[1] + year_dOir[Year_IA[j]] + gryr_Oir[Group_an[Group_IA[j],Year_IA[j]]]
     log_dOir[Site_IA[j],Year_IA[j]] ~ dnorm(log_mudOir[Site_IA[j],Year_IA[j]],tau_dOir)I(-10,6)
         
@@ -183,13 +183,13 @@ for (j in 1: NIAno) {  # density for sites sampled by IA and not used in the int
     lambda_n[Site_IA[j],Year_IA[j]] <- dRR_Oir[Site_IA[j],Year_IA[j]] * Srr_IA[j]
     } # end of loop over CPUE for sites not used in intercalibration
 
-for (m in 76:NIAinter) { # from 2009 until now, density for sites sampled by IA and that were used for intercalibration.
+for (m in 76:NIAinter) { # from 2009 until now, density for sites sampled by IA only but that were used for intercalibration in the past
     log_mudOir[Site_IAinter[m],Year_IAinter[m]] <- mu_ydOir[Lieu_IAinter[m]]+ year_dOir[Year_IAinter[m]] + gryr_Oir[Group_an[Group_IAinter[m],Year_IAinter[m]]]
     log_dOir[Site_IAinter[m],Year_IAinter[m]] ~ dnorm(log_mudOir[Site_IAinter[m],Year_IAinter[m]],tau_dOir)I(-10,6)
 
     # Back transformation on natural scale and transformation in equivalent rapid
     dRR_Oir[Site_IAinter[m],Year_IAinter[m]] <- exp(log_dOir[Site_IAinter[m],Year_IAinter[m]]) # density in rapid equivalent
-    dIA_Oir[IAinter_num[m],Year_IAinter[m]] <- dRR_Oir[Site_IAinter[m],Year_IAinter[m]] ## to use in the intercalibration
+    dIA_Oir[IAinter_num[m],Year_IAinter[m]] <- dRR_Oir[Site_IAinter[m],Year_IAinter[m]]
 
     eps_dOir[Site_IAinter[m],Year_IAinter[m]] <- (log_dOir[Site_IAinter[m],Year_IAinter[m]]-log_mudOir[Site_IAinter[m],Year_IAinter[m]])/sigma_dOir ## standardized residuals on observed density in equivalent rapid
     
@@ -223,7 +223,7 @@ for (i in 1:NPE1) {
 ## Calculating predicted density for CPUE using density predicted at sites sampled by successive removals if habitat is only rapids
 ## Average mean of density   
 ########
-### IAS04
+### IAS04, IAS05
 for (t in 8:11) { # from 1994 to 1997
     dIA_Oir[6,t] <- dRR_Oir[5,t] # IAS04 = Oir2.8
     dIA_Oir[7,t] <- ((dRR_Oir[17,t] * Srr_inter[1]) + (dRR_Oir[13,t] * Srr_inter[2]) + (dRR_Oir[18,t]*0.42*Srr_inter[3])) / (Srr_inter[1] + Srr_inter[2] + (0.42*Srr_inter[3]))  # IAS05 = Oir4.5+ Oir4.6 + Oir4.7 (42% des RR du secteur 4.7) 
@@ -321,7 +321,7 @@ for (m in 1:NIAinter) {
 # From 2021 to 2024, 3 sites are electrofished with MP gear for intercalibartion with Pulsium
 site_MP[1] <- 4; site_MP[2] <- 9; site_MP[3] <- 2 # Index (IAno_num ou IAinter_num) of sites used for intercalibartion  
 for (m in 1:3) {
-     for (l in 1:4) {   # This must be updated every year to accomodate new inetrcalibartion data
+     for (l in 1:4) {   # This must be updated every year to accomodate new inetrcalibration data
         y[m,l] <- l + 34 # index of year of intercalibration
    
         CPUE_MP[m,l] ~ dpois(lambdaOir_cpu_inter[m,l])
