@@ -1,0 +1,39 @@
+######################################################################################################################################					
+##  Changed in 2025 for the introduction of previous spawners, only considered for the returns at MdP trap (after, MSW fish include the PS as before) 
+##  C_MP[t,a]: Annual number of fish captured at Moulin des Princes per sea age category; 1:1SW, 2:MSW, 3:PS-short absence, 4:PS-long absence 					
+##  Cum_MP[t,a]: Annual number of fish captured at Moulin des Princes and released unmarked per sea age category (happened only once in 1995 for 1SW); 1:1SW, 2:MSW					
+##  Cm_MP[t,a]: Annual number of fish captured and marked at Moulin des Princes per sea age category; 1:1SW, 2:MSW					
+######################################################################################################################################					
+C_MP[,1]	C_MP[,2]	C_MP[,3]	C_MP[,4]	Cm_MP[,1]	Cm_MP[,2]	Cum_MP[,1]	Cum_MP[,2]	
+157	3	4	0	156	7	0	0	
+508	43	0	0	500	42	1	0	
+507	30	1	0	502	30	0	0	
+322	36	2	0	320	38	0	0	
+442	9	0	0	442	9	0	0	
+167	37	4	0	166	41	0	0	
+151	10	1	0	151	11	0	0	
+228	15	2	0	226	17	0	0	
+420	6	1	0	420	7	0	0	
+130	25	1	0	130	25	0	0	
+761	26	6	1	761	33	0	0	
+335	60	12	1	335	73	0	0	
+662	35	4	0	661	39	0	0	
+318	42	5	0	318	47	0	0	
+191	16	11	1	191	28	0	0	
+187	43	11	0	187	54	0	0	
+533	22	12	0	533	34	0	0	
+307	122	16	2	307	140	0	0	
+227	53	2	1	227	56	0	0	
+394	33	10	0	393	43	0	0	
+433	68	6	2	433	76	0	0	
+391	70	1	1	391	72	0	0	
+386	36	1	2	385	39	1	0	
+762	92	1	0	756	93	6	0	
+199	44	0	0	199	44	0	0	
+161	20	1	0	161	21	0	0	
+274	4	1	0	273	5	0	0	
+272	11	1	0	272	12	0	0	#2021
+129	54	1	0	129	55	0	0	#2022
+95	19	0	0	95	19	0	0	#2023
+46	2	0	0	46	2	0	0	#2024
+#END					

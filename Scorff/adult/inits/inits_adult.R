@@ -39,13 +39,13 @@ for (c in 1:2){ # 2 chains
   #   c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487),
   #   c(0.2227,0.7493,-0.4883,0.9541,1.074, 0.7177,1.445,0.4209,0.7487))
   #mupi_oF = runif(1,.4,.7)#0.5933
-  pi_MP94 = runif(2,.2,.5)#c( 0.4432,0.322)
+  pi_MP94 = c(runif(2,.2,.5), NA, NA)#c( 0.4432,0.322) # ep+mb-07-2025
   pi_MP20 = c(NA,runif(1,.01,.2))# COVID
   pi_oD = runif(1,.1,.3)#0.1511
   rate_lambda = runif(1,0.005,.1)#0.01217
   rho_D = runif(1,0.4,.8)#.5#c(  -0.5855,0.9674),
   rho_F = runif(1,-.8,-.4)#-.5#c( -0.7123,-0.0143),
-  s = c( 22.23,5.283)
+  s = c( 22.23,5.283,1,20,1,20) # ep+mb-07-2025
   shape_lambda = runif(1,5,10)#7.159
   sigmapi_D = runif(2,1,2)#c( 1.651,1.651)
   sigmapi_F = runif(1,0,1)#0.719#c( 0.719,1.118),
@@ -99,10 +99,18 @@ um_F[]<-as.integer(um_F)
 #   693.0,172.0),
 #   .Dim = c(21,2))
 #int(C_MP[t,a]*(Cm_R[t,a]+Cum_R[t,a])/Cm_R[t,a]) 
-n <- array(,dim=c(data$Y,2))
+n <- array(,dim=c(data$Y+1,4))
 n[,1] = as.integer(((C_MP[,1]*(Cm_R[,1]+Cum_R[,1]))/(Cm_R[,1]+1)) + 50)
 n[,2] = as.integer(((C_MP[,2]*(Cm_R[,2]+Cum_R[,2]))/(Cm_R[,2]+1)) + 50)
+n[,3] = as.integer(C_MP[,3] + 5)
+n[,4] = as.integer(C_MP[,4] + 2)
 
+# to predict next year
+n[data$Y+1,1] <- NA # not to predict
+n[data$Y+1,2] <- 50
+n[data$Y+1,3] <- 5
+n[data$Y+1,4] <- 2
+  
 # METTRE A JOUR
 # lambda_tot = c(
 #   657.7,858.0,804.5,531.5,685.3,
@@ -112,6 +120,23 @@ n[,2] = as.integer(((C_MP[,2]*(Cm_R[,2]+Cum_R[,2]))/(Cm_R[,2]+1)) + 50)
 #   704.7)
 #lambda_tot <- n[t,1]+n[t,2]
 lambda_tot <- as.integer(rowSums(n)) 
+
+
+# POUR NIMBLE
+# Plambda dans rebta(s,s)
+# Proba de 2nd retour
+#P2R
+# 
+# 
+
+# echappement total de l'année 0
+e_tot0 <- 600
+# echappement total de l'année -1
+e_tot1 <- 600
+
+# Facteur de correction pour calcul de e_tot0 et e_tot1
+x0 <- 1
+x1 <- 1
 
 # METTRE A JOUR /!\ TAILLE MATRICE
 # logit_piD_1SW = structure(.Data = c(

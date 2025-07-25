@@ -1,0 +1,10 @@
+# File changed in 2025: introduction of the quantities needed calculate the egg deposition and the comparison with the CL
+list(Y=31, # Number of years: from 1994 to now on
+pf_1SW=0.45, pf_MSW=0.8, fec_1SW=3485, fec_MSW=5569,
+S_ERR = c(200811, 200811, 200811, 200811, 200811,
+ 200811, 200811, 200811, 200811, 210397,
+ 210397, 210397, 210397, 210397, 210397,
+ 210397, 210284, 210284, 229027, 229027,
+ 229027, 229027, 229027, 229027, 229027,
+ 229027, 229027, 229027, 229027, 229027,
+ 229027) # 2024
