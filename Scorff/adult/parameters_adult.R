@@ -70,14 +70,21 @@ parameters <-c(
   ,"n_1SW" # annual number of 1SW
   ,"n_MSW" # annual number of MSW
   ,"p_1SW" # proportion 1SW
+  ,"n" # annual number by category
   
   ,"shape_lambda" # Shape parameter of gamma distribution
   ,"rate_lambda"  # Rate parameter of gamma distribution
   
+  ,"x0"
+  ,"e_tot0"
   ,"lambda_tot0"  # Initiate lambda distribution
   ,"Plambda0" # Initiate proportion distribution
   ,"lambda_tot" # Poisson parameter
   ,"Plambda" # Proportion distribution
+  
+  ,"x1"
+  ,"e_tot1"
+  ,"lambda_tot1"
   
   ,"s" # Dirichlet parameter 
   
@@ -94,4 +101,19 @@ parameters <-c(
   ,"m_D"
   ,"um_D"
   #,"pi_muoF"
+  #
+  # ep+mb 07-2025
+  ,"P2R" # survie 2nd retour
+  ,"P2R0" # survie courte absence
+  ,"P2R1"# survie longue absence
+  
+  ## Exploitation rates (ep+mb July 2025)
+  ,"ER_1SW"
+  ,"ER_MSW"
+  
+  ## Eggs deposition
+  ,"eggs"
+  ,"egg_dens"
+  ,"I_egg_CL"
+
 )
