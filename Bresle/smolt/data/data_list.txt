@@ -1,12 +1,12 @@
 list(
 
 #Nyears: Length of time series from 1982 to 2024  
-Nyears = 43, #2024
+Nyears = 44, #2025
 
 # NBeau: Number of years with trapping in Beauchamps 
-NBeau = 38, #2024
+NBeau = 39, #2025
 
 # NEu: Number of years with trapping in Eu           
-NEu = 30 #2024
+NEu = 31 #2025
 
 )
